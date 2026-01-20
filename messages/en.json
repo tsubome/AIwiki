@@ -1,0 +1,52 @@
+{
+  "common": {
+    "siteName": "AIwiki",
+    "siteDescription": "Local LLM Information Wiki",
+    "home": "Home",
+    "models": "Models",
+    "language": "Language",
+    "loading": "Loading..."
+  },
+  "home": {
+    "title": "AIwiki - Local LLM Wiki",
+    "subtitle": "Comprehensive information about locally runnable LLMs",
+    "latestModels": "Latest Models",
+    "viewAll": "View All"
+  },
+  "models": {
+    "title": "Model List",
+    "description": "Browse all registered LLM models",
+    "searchPlaceholder": "Search by model name...",
+    "noModels": "No models found",
+    "viewDetails": "View Details",
+    "baseModelsOnly": "Base Models Only",
+    "allModels": "Show All",
+    "variants": "Variants",
+    "totalModels": "{count} models"
+  },
+  "model": {
+    "developer": "Developer",
+    "parameters": "Parameters",
+    "license": "License",
+    "releaseDate": "Release Date",
+    "modelType": "Model Type",
+    "huggingface": "HuggingFace",
+    "ggufFiles": "GGUF Files",
+    "recommended": "Recommended",
+    "download": "Download",
+    "familyTree": "Family Tree",
+    "currentModel": "Current Model",
+    "parentModel": "Parent Model",
+    "childModels": "Derived Models",
+    "noGgufFiles": "No GGUF files registered"
+  },
+  "modelType": {
+    "BASE": "Base Model",
+    "FINETUNE": "Fine-tuned",
+    "MERGE": "Merged Model",
+    "QUANTIZED": "Quantized"
+  },
+  "footer": {
+    "copyright": "AIwiki - Local LLM Information Wiki"
+  }
+}

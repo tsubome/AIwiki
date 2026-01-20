@@ -1,0 +1,52 @@
+{
+  "common": {
+    "siteName": "AIwiki",
+    "siteDescription": "ローカルLLMの情報まとめWiki",
+    "home": "ホーム",
+    "models": "モデル一覧",
+    "language": "言語",
+    "loading": "読み込み中..."
+  },
+  "home": {
+    "title": "AIwiki - ローカルLLM情報Wiki",
+    "subtitle": "ローカルで動かせるLLMの情報を整理してまとめています",
+    "latestModels": "最新のモデル",
+    "viewAll": "すべて見る"
+  },
+  "models": {
+    "title": "モデル一覧",
+    "description": "登録されているすべてのLLMモデルを表示します",
+    "searchPlaceholder": "モデル名で検索...",
+    "noModels": "モデルが見つかりませんでした",
+    "viewDetails": "詳細を見る",
+    "baseModelsOnly": "ベースモデルのみ",
+    "allModels": "すべて表示",
+    "variants": "バリエーション",
+    "totalModels": "{count}モデル"
+  },
+  "model": {
+    "developer": "開発者",
+    "parameters": "パラメータ数",
+    "license": "ライセンス",
+    "releaseDate": "リリース日",
+    "modelType": "モデル種別",
+    "huggingface": "HuggingFace",
+    "ggufFiles": "GGUFファイル",
+    "recommended": "推奨",
+    "download": "ダウンロード",
+    "familyTree": "家系図",
+    "currentModel": "現在のモデル",
+    "parentModel": "親モデル",
+    "childModels": "派生モデル",
+    "noGgufFiles": "GGUFファイルは登録されていません"
+  },
+  "modelType": {
+    "BASE": "ベースモデル",
+    "FINETUNE": "ファインチューニング",
+    "MERGE": "マージモデル",
+    "QUANTIZED": "量子化版"
+  },
+  "footer": {
+    "copyright": "AIwiki - ローカルLLM情報Wiki"
+  }
+}

@@ -1,0 +1,37 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
+type Props = {
+  showAllModels: boolean
+  onFilterChange: (showAll: boolean) => void
+}
+
+export default function ModelFilter({ showAllModels, onFilterChange }: Props) {
+  const t = useTranslations('models')
+
+  return (
+    <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+      <button
+        onClick={() => onFilterChange(false)}
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          !showAllModels
+            ? 'bg-white text-gray-900 shadow-sm'
+            : 'text-gray-600 hover:text-gray-900'
+        }`}
+      >
+        {t('baseModelsOnly')}
+      </button>
+      <button
+        onClick={() => onFilterChange(true)}
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          showAllModels
+            ? 'bg-white text-gray-900 shadow-sm'
+            : 'text-gray-600 hover:text-gray-900'
+        }`}
+      >
+        {t('allModels')}
+      </button>
+    </div>
+  )
+}
