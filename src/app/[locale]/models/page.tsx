@@ -16,6 +16,7 @@ export default async function ModelsPage() {
   const t = await getTranslations('models')
 
   // Fetch root models (models without parent) with their children
+  // Include up to 5 levels of nesting to capture deep family trees
   const rootModels = await prisma.lLMModel.findMany({
     where: {
       parentId: null,
@@ -23,7 +24,15 @@ export default async function ModelsPage() {
     include: {
       children: {
         include: {
-          children: true, // Include grandchildren for nested families
+          children: {
+            include: {
+              children: {
+                include: {
+                  children: true, // 5th level
+                },
+              },
+            },
+          },
         },
         orderBy: [
           { modelType: 'asc' },
@@ -37,21 +46,30 @@ export default async function ModelsPage() {
     ],
   })
 
+  console.log('[ModelsPage] Root models found:', rootModels.length)
+  rootModels.forEach(m => {
+    console.log(`[ModelsPage] - ${m.name}: ${m.children.length} direct children`)
+  })
+
   // Flatten the family structure: root + all descendants as direct children
   const families = rootModels.map(root => {
     // Collect all descendants recursively
-    const getAllDescendants = (model: typeof root): typeof root.children => {
-      const descendants: typeof root.children = []
+    const getAllDescendants = (model: any, depth = 0): any[] => {
+      const descendants: any[] = []
+      if (!model.children || !Array.isArray(model.children)) {
+        return descendants
+      }
       for (const child of model.children) {
+        console.log(`[ModelsPage]   ${'  '.repeat(depth)}└── ${child.name} (${child.modelType})`)
         descendants.push(child)
-        if ('children' in child && Array.isArray(child.children)) {
-          descendants.push(...getAllDescendants(child as typeof root))
-        }
+        descendants.push(...getAllDescendants(child, depth + 1))
       }
       return descendants
     }
 
+    console.log(`[ModelsPage] Processing family: ${root.name}`)
     const allChildren = getAllDescendants(root)
+    console.log(`[ModelsPage] Total descendants for ${root.name}: ${allChildren.length}`)
 
     return {
       ...root,
