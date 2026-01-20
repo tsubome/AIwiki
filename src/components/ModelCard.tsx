@@ -9,10 +9,10 @@ type Props = {
 }
 
 const modelTypeColors: Record<string, string> = {
-  BASE: 'bg-blue-100 text-blue-800',
-  FINETUNE: 'bg-green-100 text-green-800',
-  MERGE: 'bg-purple-100 text-purple-800',
-  QUANTIZED: 'bg-orange-100 text-orange-800',
+  BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+  FINETUNE: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+  MERGE: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+  QUANTIZED: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
 }
 
 export default function ModelCard({ model }: Props) {
@@ -22,13 +22,13 @@ export default function ModelCard({ model }: Props) {
   return (
     <Link
       href={`/models/${model.slug}`}
-      className="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow"
+      className="block bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg dark:hover:shadow-gray-900/50 transition-shadow"
     >
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">{model.name}</h3>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{model.name}</h3>
           {model.developer && (
-            <p className="text-sm text-gray-500 mt-1">{model.developer}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{model.developer}</p>
           )}
         </div>
         <span
@@ -39,12 +39,12 @@ export default function ModelCard({ model }: Props) {
       </div>
 
       {model.description && (
-        <p className="text-gray-600 mt-3 text-sm line-clamp-2">
+        <p className="text-gray-600 dark:text-gray-300 mt-3 text-sm line-clamp-2">
           {model.description}
         </p>
       )}
 
-      <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
+      <div className="mt-4 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
         {model.parameters && (
           <span className="flex items-center">
             <svg className="w-4 h-4 mr-1 flex-shrink-0" style={{ width: '16px', height: '16px', minWidth: '16px', maxWidth: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">

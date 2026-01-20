@@ -14,10 +14,10 @@ type Props = {
 }
 
 const modelTypeColors: Record<string, string> = {
-  BASE: 'bg-blue-100 text-blue-800',
-  FINETUNE: 'bg-green-100 text-green-800',
-  MERGE: 'bg-purple-100 text-purple-800',
-  QUANTIZED: 'bg-orange-100 text-orange-800',
+  BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+  FINETUNE: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+  MERGE: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+  QUANTIZED: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
 }
 
 export default function ModelFamily({ family, showAllModels }: Props) {
@@ -30,17 +30,17 @@ export default function ModelFamily({ family, showAllModels }: Props) {
     : family.children.filter(child => child.modelType === 'BASE')
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Family Header (Root Model) */}
       <Link
         href={`/models/${family.slug}`}
-        className="block p-6 hover:bg-gray-50 transition-colors border-b border-gray-100"
+        className="block p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-100 dark:border-gray-700"
       >
         <div className="flex items-start justify-between">
           <div>
-            <h3 className="text-xl font-bold text-gray-900">{family.name}</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">{family.name}</h3>
             {family.developer && (
-              <p className="text-sm text-gray-500 mt-1">{family.developer}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{family.developer}</p>
             )}
           </div>
           <span
@@ -51,12 +51,12 @@ export default function ModelFamily({ family, showAllModels }: Props) {
         </div>
 
         {family.description && (
-          <p className="text-gray-600 mt-3 text-sm line-clamp-2">
+          <p className="text-gray-600 dark:text-gray-300 mt-3 text-sm line-clamp-2">
             {family.description}
           </p>
         )}
 
-        <div className="mt-3 flex items-center gap-4 text-sm text-gray-500">
+        <div className="mt-3 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
           {family.parameters && (
             <span className="flex items-center">
               <svg className="w-4 h-4 mr-1 flex-shrink-0" style={{ width: '16px', height: '16px', minWidth: '16px', maxWidth: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,23 +78,23 @@ export default function ModelFamily({ family, showAllModels }: Props) {
 
       {/* Child Models */}
       {visibleChildren.length > 0 && (
-        <div className="bg-gray-50">
-          <div className="px-6 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">
+        <div className="bg-gray-50 dark:bg-gray-900">
+          <div className="px-6 py-2 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">
             {t('variants')} ({visibleChildren.length})
           </div>
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-gray-200 dark:divide-gray-700">
             {visibleChildren.map((child) => (
               <Link
                 key={child.id}
                 href={`/models/${child.slug}`}
-                className="flex items-center justify-between px-6 py-3 hover:bg-gray-100 transition-colors"
+                className="flex items-center justify-between px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-gray-400">└</span>
+                  <span className="text-gray-400 dark:text-gray-500">└</span>
                   <div>
-                    <span className="font-medium text-gray-900">{child.name}</span>
+                    <span className="font-medium text-gray-900 dark:text-gray-100">{child.name}</span>
                     {child.parameters && (
-                      <span className="ml-2 text-sm text-gray-500">({child.parameters})</span>
+                      <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">({child.parameters})</span>
                     )}
                   </div>
                 </div>

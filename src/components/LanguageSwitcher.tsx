@@ -16,7 +16,7 @@ export default function LanguageSwitcher() {
     <select
       value={locale}
       onChange={handleChange}
-      className="bg-gray-100 border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer"
+      className="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer"
     >
       <option value="ja">日本語</option>
       <option value="en">English</option>

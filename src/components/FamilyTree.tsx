@@ -14,6 +14,7 @@ import {
 import '@xyflow/react/dist/style.css'
 import { useRouter } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 
 type ModelNode = {
   id: string
@@ -28,16 +29,26 @@ type Props = {
   currentModelId: string
 }
 
-const modelTypeColors: Record<string, { bg: string; border: string }> = {
-  BASE: { bg: '#dbeafe', border: '#3b82f6' },
-  FINETUNE: { bg: '#dcfce7', border: '#22c55e' },
-  MERGE: { bg: '#f3e8ff', border: '#a855f7' },
-  QUANTIZED: { bg: '#ffedd5', border: '#f97316' },
+const modelTypeColorsLight: Record<string, { bg: string; border: string; text: string }> = {
+  BASE: { bg: '#dbeafe', border: '#3b82f6', text: '#1e40af' },
+  FINETUNE: { bg: '#dcfce7', border: '#22c55e', text: '#166534' },
+  MERGE: { bg: '#f3e8ff', border: '#a855f7', text: '#6b21a8' },
+  QUANTIZED: { bg: '#ffedd5', border: '#f97316', text: '#9a3412' },
+}
+
+const modelTypeColorsDark: Record<string, { bg: string; border: string; text: string }> = {
+  BASE: { bg: '#1e3a5f', border: '#60a5fa', text: '#93c5fd' },
+  FINETUNE: { bg: '#14532d', border: '#4ade80', text: '#86efac' },
+  MERGE: { bg: '#3b0764', border: '#c084fc', text: '#d8b4fe' },
+  QUANTIZED: { bg: '#431407', border: '#fb923c', text: '#fdba74' },
 }
 
 export default function FamilyTree({ models, currentModelId }: Props) {
   const router = useRouter()
   const t = useTranslations('modelType')
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === 'dark'
+  const modelTypeColors = isDark ? modelTypeColorsDark : modelTypeColorsLight
 
   // Build the tree structure
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
@@ -74,8 +85,8 @@ export default function FamilyTree({ models, currentModelId }: Props) {
         data: {
           label: (
             <div className="text-center">
-              <div className="font-semibold">{model.name}</div>
-              <div className="text-xs opacity-70">{t(model.modelType)}</div>
+              <div className="font-semibold" style={{ color: colors.text }}>{model.name}</div>
+              <div className="text-xs" style={{ color: colors.text, opacity: 0.7 }}>{t(model.modelType)}</div>
             </div>
           ),
         },
@@ -96,16 +107,17 @@ export default function FamilyTree({ models, currentModelId }: Props) {
       children.forEach((child, index) => {
         processNode(child, childX + index * HORIZONTAL_SPACING, y + VERTICAL_SPACING)
 
+        const edgeColor = isDark ? '#9ca3af' : '#6b7280'
         edges.push({
           id: `${model.id}-${child.id}`,
           source: model.id,
           target: child.id,
           markerEnd: {
             type: MarkerType.ArrowClosed,
-            color: '#6b7280',
+            color: edgeColor,
           },
           style: {
-            stroke: '#6b7280',
+            stroke: edgeColor,
             strokeWidth: 2,
           },
         })
@@ -118,7 +130,7 @@ export default function FamilyTree({ models, currentModelId }: Props) {
     })
 
     return { nodes, edges }
-  }, [models, currentModelId, t])
+  }, [models, currentModelId, t, isDark, modelTypeColors])
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
@@ -135,7 +147,7 @@ export default function FamilyTree({ models, currentModelId }: Props) {
   }
 
   return (
-    <div className="h-[400px] w-full border border-gray-200 rounded-lg bg-gray-50">
+    <div className="h-[400px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -150,7 +162,7 @@ export default function FamilyTree({ models, currentModelId }: Props) {
         minZoom={0.5}
         maxZoom={1.5}
       >
-        <Background color="#e5e7eb" gap={16} />
+        <Background color={isDark ? '#374151' : '#e5e7eb'} gap={16} />
         <Controls showInteractive={false} />
       </ReactFlow>
     </div>

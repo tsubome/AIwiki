@@ -16,10 +16,10 @@ export default function Error({
   return (
     <div className="min-h-[400px] flex items-center justify-center">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
           エラーが発生しました
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
           {error.message || 'ページの読み込み中にエラーが発生しました。'}
         </p>
         <button
