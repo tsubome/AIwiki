@@ -46,6 +46,12 @@
     "MERGE": "マージモデル",
     "QUANTIZED": "量子化版"
   },
+  "familyTree": {
+    "title": "モデル家系図",
+    "pressEscToExit": "で閉じる",
+    "showFinetuned": "FTモデル表示",
+    "hideFinetuned": "FTモデル非表示"
+  },
   "footer": {
     "copyright": "AIwiki - ローカルLLM情報Wiki"
   }

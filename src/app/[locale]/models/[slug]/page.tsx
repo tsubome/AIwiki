@@ -88,6 +88,7 @@ export default async function ModelDetailPage({ params }: Props) {
       slug: true,
       modelType: true,
       parentId: true,
+      developer: true,
     },
   })
 

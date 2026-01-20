@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import {
   ReactFlow,
   Node,
@@ -22,6 +22,7 @@ type ModelNode = {
   slug: string
   modelType: string
   parentId: string | null
+  developer?: string | null
 }
 
 type Props = {
@@ -46,9 +47,19 @@ const modelTypeColorsDark: Record<string, { bg: string; border: string; text: st
 export default function FamilyTree({ models, currentModelId }: Props) {
   const router = useRouter()
   const t = useTranslations('modelType')
+  const tTree = useTranslations('familyTree')
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
   const modelTypeColors = isDark ? modelTypeColorsDark : modelTypeColorsLight
+
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [showFinetuned, setShowFinetuned] = useState(true)
+
+  // Filter models based on showFinetuned
+  const filteredModels = useMemo(() => {
+    if (showFinetuned) return models
+    return models.filter(m => m.modelType !== 'FINETUNE')
+  }, [models, showFinetuned])
 
   // Build the tree structure
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
@@ -56,12 +67,13 @@ export default function FamilyTree({ models, currentModelId }: Props) {
     const edges: Edge[] = []
     const positionMap = new Map<string, { x: number; y: number }>()
 
-    // Find root nodes (no parent)
-    const rootNodes = models.filter(m => !m.parentId)
+    // Find root nodes (no parent or parent not in filtered list)
+    const modelIds = new Set(filteredModels.map(m => m.id))
+    const rootNodes = filteredModels.filter(m => !m.parentId || !modelIds.has(m.parentId))
     const childMap = new Map<string, ModelNode[]>()
 
-    models.forEach(m => {
-      if (m.parentId) {
+    filteredModels.forEach(m => {
+      if (m.parentId && modelIds.has(m.parentId)) {
         const children = childMap.get(m.parentId) || []
         children.push(m)
         childMap.set(m.parentId, children)
@@ -69,15 +81,15 @@ export default function FamilyTree({ models, currentModelId }: Props) {
     })
 
     // Position nodes using BFS
-    const HORIZONTAL_SPACING = 250
-    const VERTICAL_SPACING = 100
+    const HORIZONTAL_SPACING = 280
+    const VERTICAL_SPACING = 120
     let currentY = 0
 
     const processNode = (model: ModelNode, x: number, y: number) => {
       positionMap.set(model.id, { x, y })
 
       const isCurrent = model.id === currentModelId
-      const colors = modelTypeColors[model.modelType]
+      const colors = modelTypeColors[model.modelType] || modelTypeColorsLight.BASE
 
       nodes.push({
         id: model.id,
@@ -85,8 +97,17 @@ export default function FamilyTree({ models, currentModelId }: Props) {
         data: {
           label: (
             <div className="text-center">
-              <div className="font-semibold" style={{ color: colors.text }}>{model.name}</div>
-              <div className="text-xs" style={{ color: colors.text, opacity: 0.7 }}>{t(model.modelType)}</div>
+              <div className="font-semibold text-sm" style={{ color: colors.text }}>{model.name}</div>
+              {model.developer && (
+                <div className="text-xs mt-0.5" style={{ color: colors.text, opacity: 0.6 }}>{model.developer}</div>
+              )}
+              <div className="text-xs mt-1 px-2 py-0.5 rounded" style={{
+                color: colors.text,
+                opacity: 0.8,
+                background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'
+              }}>
+                {t(model.modelType)}
+              </div>
             </div>
           ),
         },
@@ -95,8 +116,9 @@ export default function FamilyTree({ models, currentModelId }: Props) {
           border: `2px solid ${isCurrent ? '#ef4444' : colors.border}`,
           borderRadius: '8px',
           padding: '10px',
-          minWidth: '150px',
+          minWidth: '180px',
           boxShadow: isCurrent ? '0 0 0 3px rgba(239, 68, 68, 0.3)' : undefined,
+          cursor: 'pointer',
         },
       })
 
@@ -130,24 +152,105 @@ export default function FamilyTree({ models, currentModelId }: Props) {
     })
 
     return { nodes, edges }
-  }, [models, currentModelId, t, isDark, modelTypeColors])
+  }, [filteredModels, currentModelId, t, isDark, modelTypeColors])
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
+  // Update nodes/edges when filter changes
+  useEffect(() => {
+    setNodes(initialNodes)
+    setEdges(initialEdges)
+  }, [initialNodes, initialEdges, setNodes, setEdges])
+
   const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
-    const model = models.find(m => m.id === node.id)
+    const model = filteredModels.find(m => m.id === node.id)
     if (model) {
       router.push(`/models/${model.slug}`)
     }
-  }, [models, router])
+  }, [filteredModels, router])
+
+  // Handle ESC key to exit fullscreen
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isFullscreen])
+
+  // Lock body scroll when fullscreen
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isFullscreen])
 
   if (models.length === 0) {
     return null
   }
 
+  const containerClass = isFullscreen
+    ? 'fixed inset-0 z-50 bg-gray-50 dark:bg-gray-900'
+    : 'h-[400px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900'
+
+  const hasFinetuned = models.some(m => m.modelType === 'FINETUNE')
+
   return (
-    <div className="h-[400px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900">
+    <div className={containerClass}>
+      {/* Controls Bar */}
+      <div className="absolute top-2 right-2 z-10 flex items-center gap-2">
+        {/* FT Toggle */}
+        {hasFinetuned && (
+          <button
+            onClick={() => setShowFinetuned(!showFinetuned)}
+            className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+              showFinetuned
+                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                : 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+            }`}
+          >
+            {showFinetuned ? 'FT: ON' : 'FT: OFF'}
+          </button>
+        )}
+
+        {/* Fullscreen Toggle */}
+        <button
+          onClick={() => setIsFullscreen(!isFullscreen)}
+          className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          title={isFullscreen ? 'Exit fullscreen (ESC)' : 'Fullscreen'}
+        >
+          {isFullscreen ? (
+            <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Fullscreen Header */}
+      {isFullscreen && (
+        <div className="absolute top-2 left-2 z-10">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+            {tTree('title')}
+          </h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            ESC {tTree('pressEscToExit')}
+          </p>
+        </div>
+      )}
+
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -159,8 +262,8 @@ export default function FamilyTree({ models, currentModelId }: Props) {
         nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={true}
-        minZoom={0.5}
-        maxZoom={1.5}
+        minZoom={0.3}
+        maxZoom={2}
       >
         <Background color={isDark ? '#374151' : '#e5e7eb'} gap={16} />
         <Controls showInteractive={false} />
