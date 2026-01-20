@@ -1,0 +1,9 @@
+{
+  "name": "Llama 1 65B",
+  "slug": "llama-1-65b",
+  "parameters": "65B",
+  "releaseDate": "2023-02-24",
+  "developer": "Meta",
+  "license": "Llama License (Research)",
+  "modelType": "BASE"
+}

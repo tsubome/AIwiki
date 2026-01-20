@@ -1,0 +1,10 @@
+{
+  "name": "Llama Guard 7B",
+  "slug": "llama-guard-7b",
+  "description": "Safety classifier model based on Llama 2",
+  "parameters": "7B",
+  "releaseDate": "2023-12-07",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "FINETUNE"
+}

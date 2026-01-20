@@ -1,0 +1,10 @@
+{
+  "name": "Code Llama 70B",
+  "slug": "code-llama-70b",
+  "description": "Code generation model based on Llama 2",
+  "parameters": "70B",
+  "releaseDate": "2024-01-29",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "FINETUNE"
+}

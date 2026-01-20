@@ -1,0 +1,9 @@
+{
+  "name": "Llama 3 70B",
+  "slug": "llama-3-70b",
+  "parameters": "70B",
+  "releaseDate": "2024-04-18",
+  "developer": "Meta",
+  "license": "Llama 3 Community License",
+  "modelType": "BASE"
+}

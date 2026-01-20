@@ -1,0 +1,10 @@
+{
+  "name": "Llama 4 Behemoth",
+  "slug": "llama-4-behemoth",
+  "description": "Largest Llama model (in training)",
+  "parameters": "2T+",
+  "releaseDate": "2025-04-05",
+  "developer": "Meta",
+  "license": "Llama 4 Community License",
+  "modelType": "BASE"
+}

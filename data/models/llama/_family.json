@@ -1,0 +1,8 @@
+{
+  "name": "Llama",
+  "slug": "llama",
+  "description": "Meta's Large Language Model series, one of the most influential open-weight LLM families",
+  "developer": "Meta",
+  "license": "Llama Community License",
+  "modelType": "BASE"
+}

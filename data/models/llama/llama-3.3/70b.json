@@ -1,0 +1,10 @@
+{
+  "name": "Llama 3.3 70B",
+  "slug": "llama-3-3-70b",
+  "description": "Cost-efficient model matching 405B performance",
+  "parameters": "70B",
+  "releaseDate": "2024-12-06",
+  "developer": "Meta",
+  "license": "Llama 3.3 Community License",
+  "modelType": "BASE"
+}

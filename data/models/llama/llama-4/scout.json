@@ -1,0 +1,10 @@
+{
+  "name": "Llama 4 Scout",
+  "slug": "llama-4-scout",
+  "description": "109B active / 400B total parameters, MoE architecture",
+  "parameters": "109B/400B",
+  "releaseDate": "2025-04-05",
+  "developer": "Meta",
+  "license": "Llama 4 Community License",
+  "modelType": "BASE"
+}

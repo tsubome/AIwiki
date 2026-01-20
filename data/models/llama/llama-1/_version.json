@@ -1,0 +1,9 @@
+{
+  "name": "Llama 1",
+  "slug": "llama-1",
+  "description": "The original Llama model, Meta's first open-weight large language model",
+  "releaseDate": "2023-02-24",
+  "developer": "Meta",
+  "license": "Llama License (Research)",
+  "modelType": "BASE"
+}

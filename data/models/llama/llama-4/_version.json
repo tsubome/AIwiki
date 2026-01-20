@@ -1,0 +1,9 @@
+{
+  "name": "Llama 4",
+  "slug": "llama-4",
+  "description": "Fourth generation Llama with MoE architecture",
+  "releaseDate": "2025-04-05",
+  "developer": "Meta",
+  "license": "Llama 4 Community License",
+  "modelType": "BASE"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Llama 3.3 Swallow 70B",
+  "slug": "llama-3-3-swallow-70b",
+  "description": "Japanese language fine-tuned model based on Llama 3.3",
+  "parameters": "70B",
+  "releaseDate": "2024-12-18",
+  "developer": "東京工業大学/産総研",
+  "license": "Llama 3.3 Community License",
+  "modelType": "FINETUNE"
+}

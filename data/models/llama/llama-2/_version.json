@@ -1,0 +1,9 @@
+{
+  "name": "Llama 2",
+  "slug": "llama-2",
+  "description": "Second generation Llama with improved performance and commercial license",
+  "releaseDate": "2023-07-18",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "BASE"
+}

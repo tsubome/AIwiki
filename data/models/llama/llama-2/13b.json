@@ -1,0 +1,9 @@
+{
+  "name": "Llama 2 13B",
+  "slug": "llama-2-13b",
+  "parameters": "13B",
+  "releaseDate": "2023-07-18",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "BASE"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Llama 3.3",
+  "slug": "llama-3-3",
+  "description": "Cost-efficient model with 405B-level performance at 70B scale",
+  "releaseDate": "2024-12-06",
+  "developer": "Meta",
+  "license": "Llama 3.3 Community License",
+  "modelType": "BASE"
+}

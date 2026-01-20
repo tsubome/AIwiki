@@ -1,0 +1,10 @@
+{
+  "name": "Llama 3.2 1B",
+  "slug": "llama-3-2-1b",
+  "description": "Lightweight model for edge deployment",
+  "parameters": "1B",
+  "releaseDate": "2024-09-25",
+  "developer": "Meta",
+  "license": "Llama 3.2 Community License",
+  "modelType": "BASE"
+}

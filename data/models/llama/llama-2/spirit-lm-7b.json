@@ -1,0 +1,10 @@
+{
+  "name": "Spirit LM 7B",
+  "slug": "spirit-lm-7b",
+  "description": "Multimodal (speech+text) model based on Llama 2",
+  "parameters": "7B",
+  "releaseDate": "2024-09-17",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "FINETUNE"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Llama 4 Maverick",
+  "slug": "llama-4-maverick",
+  "description": "400B active / 2T total parameters, MoE architecture",
+  "parameters": "400B/2T",
+  "releaseDate": "2025-04-05",
+  "developer": "Meta",
+  "license": "Llama 4 Community License",
+  "modelType": "BASE"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Code Llama 13B",
+  "slug": "code-llama-13b",
+  "description": "Code generation model based on Llama 2",
+  "parameters": "13B",
+  "releaseDate": "2023-08-24",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "FINETUNE"
+}

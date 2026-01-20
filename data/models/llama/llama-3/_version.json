@@ -1,0 +1,9 @@
+{
+  "name": "Llama 3",
+  "slug": "llama-3",
+  "description": "Third generation Llama with significantly improved performance",
+  "releaseDate": "2024-04-18",
+  "developer": "Meta",
+  "license": "Llama 3 Community License",
+  "modelType": "BASE"
+}

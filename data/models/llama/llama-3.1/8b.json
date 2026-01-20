@@ -1,0 +1,9 @@
+{
+  "name": "Llama 3.1 8B",
+  "slug": "llama-3-1-8b",
+  "parameters": "8B",
+  "releaseDate": "2024-07-23",
+  "developer": "Meta",
+  "license": "Llama 3.1 Community License",
+  "modelType": "BASE"
+}

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
-import { prisma } from '@/lib/prisma'
+import { getModelBySlug, getFamilyTreeModels } from '@/lib/model-service'
 import { Link } from '@/i18n/routing'
 import FamilyTreeNew from '@/components/FamilyTreeNew'
 
@@ -11,9 +11,7 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
 
-  const model = await prisma.lLMModel.findUnique({
-    where: { slug },
-  })
+  const model = getModelBySlug(slug)
 
   if (!model) {
     return { title: 'Model Not Found' }
@@ -30,68 +28,14 @@ export default async function ModelDetailPage({ params }: Props) {
   const t = await getTranslations('model')
   const tType = await getTranslations('modelType')
 
-  const model = await prisma.lLMModel.findUnique({
-    where: { slug },
-    include: {
-      ggufFiles: true,
-      parent: true,
-      children: true,
-    },
-  })
+  const model = getModelBySlug(slug)
 
   if (!model) {
     notFound()
   }
 
   // Get all related models for the family tree
-  // First, find the root ancestor
-  let rootId = model.id
-  let currentModel = model
-  const ancestorIds: string[] = [model.id]
-
-  while (currentModel.parentId) {
-    ancestorIds.push(currentModel.parentId)
-    rootId = currentModel.parentId
-    const parent = await prisma.lLMModel.findUnique({
-      where: { id: currentModel.parentId },
-      include: { parent: true },
-    })
-    if (!parent) break
-    currentModel = parent as typeof currentModel
-  }
-
-  // Get all descendants from the root
-  const getAllDescendants = async (id: string): Promise<string[]> => {
-    const children = await prisma.lLMModel.findMany({
-      where: { parentId: id },
-      select: { id: true },
-    })
-
-    const descendantIds: string[] = []
-    for (const child of children) {
-      descendantIds.push(child.id)
-      const grandchildren = await getAllDescendants(child.id)
-      descendantIds.push(...grandchildren)
-    }
-
-    return descendantIds
-  }
-
-  const descendantIds = await getAllDescendants(rootId)
-  const allRelatedIds = [...new Set([rootId, ...descendantIds])]
-
-  const familyModels = await prisma.lLMModel.findMany({
-    where: { id: { in: allRelatedIds } },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-      modelType: true,
-      parentId: true,
-      developer: true,
-      parameters: true,
-    },
-  })
+  const familyModels = getFamilyTreeModels(slug)
 
   const modelTypeColors: Record<string, string> = {
     BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',

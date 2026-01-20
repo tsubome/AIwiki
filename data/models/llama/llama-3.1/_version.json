@@ -1,0 +1,9 @@
+{
+  "name": "Llama 3.1",
+  "slug": "llama-3-1",
+  "description": "Extended context (128K) version with improved multilingual support",
+  "releaseDate": "2024-07-23",
+  "developer": "Meta",
+  "license": "Llama 3.1 Community License",
+  "modelType": "BASE"
+}
