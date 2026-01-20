@@ -38,7 +38,8 @@
     "currentModel": "Current Model",
     "parentModel": "Parent Model",
     "childModels": "Derived Models",
-    "noGgufFiles": "No GGUF files registered"
+    "noGgufFiles": "No GGUF files registered",
+    "relatedModels": "Related Models"
   },
   "modelType": {
     "BASE": "Base Model",

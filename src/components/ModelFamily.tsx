@@ -25,9 +25,10 @@ export default function ModelFamily({ family, showAllModels }: Props) {
   const tType = useTranslations('modelType')
 
   // Filter children based on showAllModels flag
+  // Only show models that have parameters (actual downloadable models, not version nodes)
   const visibleChildren = showAllModels
-    ? family.children
-    : family.children.filter(child => child.modelType === 'BASE')
+    ? family.children.filter(child => child.parameters)
+    : family.children.filter(child => child.modelType === 'BASE' && child.parameters)
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">

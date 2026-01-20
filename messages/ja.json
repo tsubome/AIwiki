@@ -38,7 +38,8 @@
     "currentModel": "現在のモデル",
     "parentModel": "親モデル",
     "childModels": "派生モデル",
-    "noGgufFiles": "GGUFファイルは登録されていません"
+    "noGgufFiles": "GGUFファイルは登録されていません",
+    "relatedModels": "関連モデル"
   },
   "modelType": {
     "BASE": "ベースモデル",

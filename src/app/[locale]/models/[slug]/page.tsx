@@ -217,7 +217,7 @@ export default async function ModelDetailPage({ params }: Props) {
       {/* Related Models */}
       {(model.parent || model.children.length > 0) && (
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">関連モデル</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{t('relatedModels')}</h2>
 
           {model.parent && (
             <div className="mb-4">
