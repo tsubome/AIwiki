@@ -24,11 +24,27 @@ export default function ModelFamily({ family, showAllModels }: Props) {
   const t = useTranslations('models')
   const tType = useTranslations('modelType')
 
+  // Get version nodes (direct children of the family root, typically without parameters)
+  // These are the major versions like Llama 1, Llama 2, Llama 3, etc.
+  const versionNodes = family.children
+    .filter(child => child.parentId === family.id && !child.parameters)
+    .sort((a, b) => {
+      // Sort by release date descending (newest first)
+      if (a.releaseDate && b.releaseDate) {
+        return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()
+      }
+      // If no release date, sort by name
+      return b.name.localeCompare(a.name)
+    })
+
+  // Take only the last 5 versions (newest ones)
+  const latestVersions = versionNodes.slice(0, 5)
+
   // Filter children based on showAllModels flag
-  // Only show models that have parameters (actual downloadable models, not version nodes)
+  // Show version nodes instead of parameter variants
   const visibleChildren = showAllModels
-    ? family.children.filter(child => child.parameters)
-    : family.children.filter(child => child.modelType === 'BASE' && child.parameters)
+    ? latestVersions
+    : latestVersions.filter(child => child.modelType === 'BASE')
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -77,11 +93,11 @@ export default function ModelFamily({ family, showAllModels }: Props) {
         </div>
       </Link>
 
-      {/* Child Models */}
+      {/* Child Models (Version Nodes) */}
       {visibleChildren.length > 0 && (
         <div className="bg-gray-50 dark:bg-gray-900">
           <div className="px-6 py-2 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">
-            {t('variants')} ({visibleChildren.length})
+            {t('variants')} ({versionNodes.length}{versionNodes.length > 5 ? '+' : ''})
           </div>
           <div className="divide-y divide-gray-200 dark:divide-gray-700">
             {visibleChildren.map((child) => (
@@ -94,8 +110,10 @@ export default function ModelFamily({ family, showAllModels }: Props) {
                   <span className="text-gray-400 dark:text-gray-500">└</span>
                   <div>
                     <span className="font-medium text-gray-900 dark:text-gray-100">{child.name}</span>
-                    {child.parameters && (
-                      <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">({child.parameters})</span>
+                    {child.releaseDate && (
+                      <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                        ({new Date(child.releaseDate).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short' })})
+                      </span>
                     )}
                   </div>
                 </div>
@@ -106,6 +124,14 @@ export default function ModelFamily({ family, showAllModels }: Props) {
                 </span>
               </Link>
             ))}
+            {versionNodes.length > 5 && (
+              <Link
+                href={`/models/${family.slug}`}
+                className="flex items-center justify-center px-6 py-2 text-sm text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                +{versionNodes.length - 5} more...
+              </Link>
+            )}
           </div>
         </div>
       )}

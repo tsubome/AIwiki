@@ -39,6 +39,42 @@ const NODE_WIDTH = 140
 const NODE_GAP = 40
 const ESTIMATED_NODE_HEIGHT = 90
 
+// Node type colors
+// 1. Main version (blue) - part of the main lineage
+// 2. FT derivative (green) - fine-tuned models
+// 3. Non-FT derivative (purple) - other derivatives like distillations
+type NodeStyle = {
+  bg: string
+  bgDark: string
+  border: string
+  text: string
+  textDark: string
+}
+
+const NODE_STYLES: Record<string, NodeStyle> = {
+  main: {
+    bg: '#dbeafe',      // blue-100
+    bgDark: '#1e3a5f',
+    border: '#3b82f6',  // blue-500
+    text: '#1e40af',    // blue-800
+    textDark: '#93c5fd', // blue-300
+  },
+  finetune: {
+    bg: '#dcfce7',      // green-100
+    bgDark: '#14532d',
+    border: '#22c55e',  // green-500
+    text: '#166534',    // green-800
+    textDark: '#86efac', // green-300
+  },
+  derivative: {
+    bg: '#f3e8ff',      // purple-100
+    bgDark: '#3b1f5c',
+    border: '#a855f7',  // purple-500
+    text: '#6b21a8',    // purple-800
+    textDark: '#d8b4fe', // purple-300
+  },
+}
+
 // Custom Node Component
 function VersionNodeComponent({ data }: { data: any }) {
   const router = useRouter()
@@ -46,19 +82,21 @@ function VersionNodeComponent({ data }: { data: any }) {
   const isDark = resolvedTheme === 'dark'
 
   const isFinetune = data.modelType === 'FINETUNE'
+  const isDerivative = data.isDerivative
   const isCurrent = data.isCurrent
 
-  const bgColor = isFinetune
-    ? (isDark ? '#14532d' : '#dcfce7')
-    : (isDark ? '#1e3a5f' : '#dbeafe')
-  const borderColor = isCurrent
-    ? '#ef4444'
-    : isFinetune
-      ? '#22c55e'
-      : '#3b82f6'
-  const textColor = isFinetune
-    ? (isDark ? '#86efac' : '#166534')
-    : (isDark ? '#93c5fd' : '#1e40af')
+  // Determine node style based on type
+  let styleKey: string
+  if (isDerivative) {
+    styleKey = isFinetune ? 'finetune' : 'derivative'
+  } else {
+    styleKey = 'main'
+  }
+  const style = NODE_STYLES[styleKey]
+
+  const bgColor = isDark ? style.bgDark : style.bg
+  const borderColor = isCurrent ? '#ef4444' : style.border
+  const textColor = isDark ? style.textDark : style.text
 
   const handleBubbleClick = (e: React.MouseEvent, slug: string) => {
     e.stopPropagation()
@@ -269,6 +307,7 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
             modelType: version.modelType,
             parameterVariants: version.parameterVariants,
             isCurrent,
+            isDerivative: false,  // Main version, not a derivative
           },
         })
         xOffset = 1
@@ -289,14 +328,17 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
             modelType: derivative.modelType,
             parameterVariants: derivative.parameterVariants,
             isCurrent: dIsCurrent,
+            isDerivative: true,  // This is a derivative model
           },
         })
       })
     })
 
     // Create edges
-    const edgeColor = isDark ? '#9ca3af' : '#6b7280'
-    const ftEdgeColor = '#22c55e'
+    // Edge colors match node types
+    const mainEdgeColor = NODE_STYLES.main.border      // blue for main lineage
+    const ftEdgeColor = NODE_STYLES.finetune.border    // green for finetune
+    const derivativeEdgeColor = NODE_STYLES.derivative.border  // purple for non-FT derivatives
 
     // Main vertical edges between consecutive versions
     for (let i = 0; i < versions.length - 1; i++) {
@@ -305,10 +347,10 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
         source: versions[i].id,
         target: versions[i + 1].id,
         type: 'straight',
-        style: { stroke: edgeColor, strokeWidth: 2 },
+        style: { stroke: mainEdgeColor, strokeWidth: 2 },
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: edgeColor,
+          color: mainEdgeColor,
           width: 15,
           height: 15,
         },
@@ -318,7 +360,8 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
     // Branch edges from version to its derivatives (on the next row)
     versions.forEach((version) => {
       version.derivatives.forEach((derivative) => {
-        const color = derivative.modelType === 'FINETUNE' ? ftEdgeColor : edgeColor
+        // Choose edge color based on derivative type
+        const color = derivative.modelType === 'FINETUNE' ? ftEdgeColor : derivativeEdgeColor
         edges.push({
           id: `branch-${version.id}-${derivative.id}`,
           source: version.id,
