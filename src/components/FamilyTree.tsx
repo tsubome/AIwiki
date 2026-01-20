@@ -199,7 +199,7 @@ export default function FamilyTree({ models, currentModelId }: Props) {
 
   const containerClass = isFullscreen
     ? 'fixed inset-0 z-50 bg-gray-50 dark:bg-gray-900'
-    : 'h-[400px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900'
+    : 'relative h-[400px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900'
 
   const hasFinetuned = models.some(m => m.modelType === 'FINETUNE')
 
