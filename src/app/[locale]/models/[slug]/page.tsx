@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import { prisma } from '@/lib/prisma'
 import { Link } from '@/i18n/routing'
-import FamilyTree from '@/components/FamilyTree'
+import FamilyTreeNew from '@/components/FamilyTreeNew'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -89,6 +89,7 @@ export default async function ModelDetailPage({ params }: Props) {
       modelType: true,
       parentId: true,
       developer: true,
+      parameters: true,
     },
   })
 
@@ -258,7 +259,7 @@ export default async function ModelDetailPage({ params }: Props) {
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
             {t('currentModel')}: <span className="font-medium text-red-600 dark:text-red-400">{model.name}</span>
           </p>
-          <FamilyTree models={familyModels} currentModelId={model.id} />
+          <FamilyTreeNew models={familyModels} currentModelId={model.id} />
         </div>
       )}
     </div>

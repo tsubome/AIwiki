@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIwiki Family Tree Mockup - React Flow Style</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 20px;
+    }
+
+    .description {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    /* React Flow Canvas Simulation */
+    .react-flow-canvas {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      position: relative;
+      height: 650px;
+      overflow: hidden;
+    }
+
+    /* Grid background */
+    .react-flow-canvas::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(#e5e7eb 1px, transparent 1px),
+        linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.5;
+    }
+
+    /* Node - Version Card */
+    .node {
+      position: absolute;
+      background: #dbeafe;
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      padding: 12px 16px;
+      width: 140px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .node.current {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+    }
+
+    .node.finetune {
+      background: #dcfce7;
+      border-color: #22c55e;
+    }
+
+    .node-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e40af;
+      margin-bottom: 4px;
+    }
+
+    .node.finetune .node-name {
+      color: #166534;
+    }
+
+    .node-developer {
+      font-size: 11px;
+      color: #1e40af;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    .node.finetune .node-developer {
+      color: #166534;
+    }
+
+    /* Parameter Bubbles */
+    .param-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .param-bubble {
+      background: white;
+      border: 2px solid #3b82f6;
+      color: #1e40af;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .param-bubble:hover {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .node.finetune .param-bubble {
+      border-color: #22c55e;
+      color: #166534;
+    }
+
+    .node.finetune .param-bubble:hover {
+      background: #22c55e;
+      color: white;
+    }
+
+    /* Edge - SVG Line */
+    .edges {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .edge {
+      fill: none;
+      stroke: #6b7280;
+      stroke-width: 2;
+    }
+
+    .edge-arrow {
+      fill: #6b7280;
+    }
+
+    .edge.finetune {
+      stroke: #22c55e;
+    }
+
+    .edge-arrow.finetune {
+      fill: #22c55e;
+    }
+
+    /* Legend */
+    .legend {
+      margin-top: 20px;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .legend h3 {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .legend-items {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-node {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid;
+    }
+
+    .legend-node.base {
+      background: #dbeafe;
+      border-color: #3b82f6;
+    }
+
+    .legend-node.finetune {
+      background: #dcfce7;
+      border-color: #22c55e;
+    }
+
+    .legend-node.current {
+      background: #dbeafe;
+      border-color: #ef4444;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+    }
+
+    .legend-bubble {
+      background: white;
+      border: 2px solid #3b82f6;
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    /* Controls hint */
+    .controls-hint {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 11px;
+      color: #666;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body>
+  <h1>React Flow 家系図 - 新しいノード表示</h1>
+  <p class="description">縦: バージョン進化 / 矢印から分岐: FT・派生モデル / ノード端間距離: 40px固定</p>
+
+  <div class="react-flow-canvas">
+    <!--
+      Layout calculation:
+      - Node height: ~80px
+      - Gap between node edges: 40px (both vertical and horizontal)
+      - Main column X center: 150px
+      - Main node width: 140px (left=80, right=220)
+
+      Row 0: Llama 2         top=30,  bottom=110
+      Gap: 40px
+      Row 1: Llama 3         top=150, bottom=230
+      Gap: 40px
+      Row 2: Llama 3.1       top=270, bottom=350
+      Gap: 40px
+      Row 3: Llama 3.2       top=390, bottom=470
+
+      Horizontal columns (40px gap between edges):
+      - Col 0: left=80,  right=220 (main)
+      - Col 1: left=260, right=400 (220+40)
+      - Col 2: left=440, right=580 (400+40)
+    -->
+
+    <!-- SVG Edges -->
+    <svg class="edges" width="100%" height="100%">
+      <defs>
+        <!-- Standard arrow marker - orient="auto" rotates based on line direction -->
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M2,2 L10,6 L2,10 L4,6 Z" fill="#6b7280" />
+        </marker>
+        <marker id="arrow-ft" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M2,2 L10,6 L2,10 L4,6 Z" fill="#22c55e" />
+        </marker>
+      </defs>
+
+      <!-- Main vertical edges -->
+      <!-- Row 0 (bottom~145) → Row 1 (top=185) -->
+      <path class="edge" d="M 150 145 L 150 185" marker-end="url(#arrow)" />
+
+      <!-- Row 1 (bottom~275) → Row 2 (top=315) -->
+      <path class="edge" d="M 150 275 L 150 315" marker-end="url(#arrow)" />
+
+      <!-- Row 2 (tallest bottom=430) → Row 3 (top=470) -->
+      <path class="edge" d="M 150 430 L 150 470" marker-end="url(#arrow)" />
+
+      <!-- Branch from Row1→Row2 edge to ELYZA JP and Swallow -->
+      <!-- T-junction at y=295 (middle of 275-315 gap) -->
+      <path class="edge finetune" d="M 150 295 L 330 295 L 330 315" marker-end="url(#arrow-ft)" />
+      <path class="edge finetune" d="M 150 295 L 510 295 L 510 315" marker-end="url(#arrow-ft)" />
+
+      <!-- Branch from Row2→Row3 edge to Nemotron -->
+      <!-- T-junction at y=450 (middle of 430-470 gap) -->
+      <path class="edge" d="M 150 450 L 330 450 L 330 470" marker-end="url(#arrow)" />
+    </svg>
+
+    <!-- Main column nodes -->
+    <!--
+      Layout calculation (40px gap, based on tallest node in each row):
+      Actual node heights from screenshot:
+      - 2 rows of bubbles: ~115px
+      - 1 row of bubbles (2-3 items): ~90px
+      - 1 row of bubbles (1 item): ~80px
+
+      Row 0: Llama 2 (2 rows bubbles)
+        - top=30, height~115px, bottom~145
+
+      Gap: 40px → Row 1 starts at 185
+
+      Row 1: Llama 3 (1 row bubbles)
+        - top=185, height~90px, bottom~275
+
+      Gap: 40px → Row 2 starts at 315
+
+      Row 2: Llama 3.1 (2 rows), ELYZA JP (1 row), Swallow (1 row)
+        - Tallest: Llama 3.1 ~115px
+        - All top=315, tallest bottom=430
+
+      Gap: 40px → Row 3 starts at 470
+
+      Row 3: Llama 3.2 (2 rows), Nemotron (1 row)
+        - top=470
+    -->
+
+    <!-- Row 0: Llama 2 (top=30) -->
+    <div class="node" style="left: 80px; top: 30px;">
+      <div class="node-name">Llama 2</div>
+      <div class="node-developer">Meta</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">7B</span>
+        <span class="param-bubble">13B</span>
+        <span class="param-bubble">70B</span>
+      </div>
+    </div>
+
+    <!-- Row 1: Llama 3 (top=185) -->
+    <div class="node current" style="left: 80px; top: 185px;">
+      <div class="node-name">Llama 3</div>
+      <div class="node-developer">Meta</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">8B</span>
+        <span class="param-bubble">70B</span>
+      </div>
+    </div>
+
+    <!-- Row 2: Llama 3.1, ELYZA JP, Swallow (all top=315) -->
+    <div class="node" style="left: 80px; top: 315px;">
+      <div class="node-name">Llama 3.1</div>
+      <div class="node-developer">Meta</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">8B</span>
+        <span class="param-bubble">70B</span>
+        <span class="param-bubble">405B</span>
+      </div>
+    </div>
+
+    <div class="node finetune" style="left: 260px; top: 315px;">
+      <div class="node-name">ELYZA JP</div>
+      <div class="node-developer">ELYZA</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">8B</span>
+      </div>
+    </div>
+
+    <div class="node finetune" style="left: 440px; top: 315px;">
+      <div class="node-name">Swallow</div>
+      <div class="node-developer">TokyoTech</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">8B</span>
+        <span class="param-bubble">70B</span>
+      </div>
+    </div>
+
+    <!-- Row 3: Llama 3.2, Nemotron (all top=470) -->
+    <div class="node" style="left: 80px; top: 470px;">
+      <div class="node-name">Llama 3.2</div>
+      <div class="node-developer">Meta</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">1B</span>
+        <span class="param-bubble">3B</span>
+        <span class="param-bubble">11B</span>
+        <span class="param-bubble">90B</span>
+      </div>
+    </div>
+
+    <div class="node" style="left: 260px; top: 470px;">
+      <div class="node-name">Nemotron</div>
+      <div class="node-developer">NVIDIA</div>
+      <div class="param-bubbles">
+        <span class="param-bubble">70B</span>
+      </div>
+    </div>
+
+    <!-- Controls hint -->
+    <div class="controls-hint">
+      ズーム / パン可能
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <h3>凡例</h3>
+    <div class="legend-items">
+      <div class="legend-item">
+        <div class="legend-node base"></div>
+        <span>ベースモデル / 派生</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-node finetune"></div>
+        <span>ファインチューン</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-node current"></div>
+        <span>現在表示中</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-bubble">70B</span>
+        <span>パラメータサイズ（クリックで詳細へ）</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
