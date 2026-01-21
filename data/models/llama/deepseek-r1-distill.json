@@ -1,0 +1,39 @@
+{
+  "name": "DeepSeek-R1-Distill-Llama",
+  "slug": "deepseek-r1-distill",
+  "releaseDate": "2025-01-20",
+  "developer": "DeepSeek",
+  "license": "MIT License",
+  "modelType": "FINETUNE",
+
+  "description": "DeepSeek社がDeepSeek-R1の推論能力をLlama 3ベースモデルに蒸留したモデル。長い思考連鎖（Chain-of-Thought）による高度な推論能力を持ち、数学・コーディング・論理的推論タスクで優れた性能を発揮。",
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en", "zh"],
+    "architecture": "Transformer with GQA"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-R1-Distill-Llama-8B",
+      "slug": "deepseek-r1-distill-8b",
+      "parameters": "8B",
+      "description": "Llama 3 8Bベースの蒸留モデル。軽量ながら高度な推論能力を持つ。",
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-R1-Distill-Llama-70B",
+      "slug": "deepseek-r1-distill-70b",
+      "parameters": "70B",
+      "description": "Llama 3 70Bベースの蒸留モデル。DeepSeek-R1に匹敵する推論能力を発揮。",
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+      "gguf": []
+    }
+  ]
+}

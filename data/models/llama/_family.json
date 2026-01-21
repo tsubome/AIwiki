@@ -8,10 +8,15 @@
     "llama-1",
     "llama-2",
     "code-llama",
+    "llama-guard",
+    "spirit-lm",
     "llama-3",
     "llama-3.1",
     "llama-3.2",
     "llama-3.3",
-    "llama-4"
+    "llama-4",
+    "swallow",
+    "elyza",
+    "deepseek-r1-distill"
   ]
 }
