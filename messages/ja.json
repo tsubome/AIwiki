@@ -51,7 +51,11 @@
     "title": "モデル家系図",
     "pressEscToExit": "で閉じる",
     "showFinetuned": "FTモデル表示",
-    "hideFinetuned": "FTモデル非表示"
+    "hideFinetuned": "FTモデル非表示",
+    "legendBase": "ベース",
+    "legendFinetune": "FT",
+    "legendDerivative": "派生",
+    "legendCurrent": "表示中"
   },
   "footer": {
     "copyright": "AIwiki - ローカルLLM情報Wiki"

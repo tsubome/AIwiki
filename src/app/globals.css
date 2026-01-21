@@ -31,6 +31,33 @@ body {
   stroke-width: 2;
 }
 
+/* Family tree parameter bubbles */
+.family-tree-bubble {
+  transition: all 0.15s ease;
+}
+
+.family-tree-bubble:hover {
+  transform: scale(1.05);
+}
+
+/* Blue bubble (main/derivative) hover */
+.family-tree-bubble.blue:hover {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+
+/* Green bubble (finetune) hover */
+.family-tree-bubble.green:hover {
+  background: #22c55e !important;
+  color: white !important;
+}
+
+/* Purple bubble (non-FT derivative) hover */
+.family-tree-bubble.purple:hover {
+  background: #a855f7 !important;
+  color: white !important;
+}
+
 /* Print styles */
 @media print {
   body {

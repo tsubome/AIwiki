@@ -176,24 +176,32 @@ function VersionNodeComponent({ data }: { data: any }) {
       )}
       {data.parameterVariants && data.parameterVariants.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px' }}>
-          {data.parameterVariants.map((variant: any) => (
-            <span
-              key={variant.id}
-              onClick={(e) => handleBubbleClick(e, variant.slug)}
-              style={{
-                background: isDark ? 'rgba(255,255,255,0.1)' : 'white',
-                border: `2px solid ${borderColor}`,
-                color: textColor,
-                fontSize: '11px',
-                fontWeight: 600,
-                padding: '3px 8px',
-                borderRadius: '12px',
-                cursor: 'pointer',
-              }}
-            >
-              {variant.parameters}
-            </span>
-          ))}
+          {data.parameterVariants.map((variant: any) => {
+            // Determine bubble color class for hover effect
+            const bubbleColorClass = isDerivative
+              ? (isFinetune ? 'green' : 'purple')
+              : 'blue'
+
+            return (
+              <span
+                key={variant.id}
+                onClick={(e) => handleBubbleClick(e, variant.slug)}
+                className={`family-tree-bubble ${bubbleColorClass}`}
+                style={{
+                  background: isDark ? 'rgba(255,255,255,0.1)' : 'white',
+                  border: `2px solid ${borderColor}`,
+                  color: textColor,
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  padding: '3px 8px',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                }}
+              >
+                {variant.parameters}
+              </span>
+            )
+          })}
         </div>
       )}
 
@@ -447,8 +455,8 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
     })
 
     // Create edges
-    // Edge colors match node types
-    const mainEdgeColor = NODE_STYLES.main.border      // blue for main lineage
+    // Edge colors
+    const mainEdgeColor = '#6b7280'  // gray-500 for main lineage (neutral, matches mockup)
     const ftEdgeColor = NODE_STYLES.finetune.border    // green for finetune
     const derivativeEdgeColor = NODE_STYLES.derivative.border  // purple for non-FT derivatives
 
@@ -609,6 +617,30 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
         <Background color={isDark ? '#374151' : '#e5e7eb'} gap={16} />
         <Controls showInteractive={false} />
       </ReactFlow>
+
+      {/* Legend */}
+      <div className={`absolute bottom-2 left-2 z-10 ${
+        isDark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
+      } border rounded-lg px-3 py-2 text-xs`}>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded border-2 border-blue-500 bg-blue-100" />
+            <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendBase')}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded border-2 border-green-500 bg-green-100" />
+            <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendFinetune')}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded border-2 border-purple-500 bg-purple-100" />
+            <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendDerivative')}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded border-2 border-red-500 bg-blue-100 shadow-[0_0_0_2px_rgba(239,68,68,0.3)]" />
+            <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendCurrent')}</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

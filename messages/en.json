@@ -51,7 +51,11 @@
     "title": "Model Family Tree",
     "pressEscToExit": "to close",
     "showFinetuned": "Show FT Models",
-    "hideFinetuned": "Hide FT Models"
+    "hideFinetuned": "Hide FT Models",
+    "legendBase": "Base",
+    "legendFinetune": "FT",
+    "legendDerivative": "Derivative",
+    "legendCurrent": "Current"
   },
   "footer": {
     "copyright": "AIwiki - Local LLM Information Wiki"
