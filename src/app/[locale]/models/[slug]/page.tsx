@@ -170,7 +170,7 @@ export default async function ModelDetailPage({ params }: Props) {
 
           <RelatedModelsTabs
             currentModel={{ developer: model.developer }}
-            children={model.children.map((child) => ({
+            childModels={model.children.map((child) => ({
               id: child.id,
               name: child.name,
               slug: child.slug,

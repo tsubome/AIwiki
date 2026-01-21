@@ -16,7 +16,7 @@ interface RelatedModelsTabsProps {
   currentModel: {
     developer: string | null
   }
-  children: RelatedModel[]
+  childModels: RelatedModel[]  // Renamed from 'children' to avoid React reserved prop conflict
   siblingVersions?: RelatedModel[]  // Other versions in the same family (e.g., Llama 1, Llama 3 when viewing Llama 2)
   translations: {
     evolution: string
@@ -86,14 +86,14 @@ function classifyChildren(
 
 export default function RelatedModelsTabs({
   currentModel,
-  children,
+  childModels,
   siblingVersions = [],
   translations,
 }: RelatedModelsTabsProps) {
   // Classify children into official derivatives and third-party FT
   const classified = useMemo(
-    () => classifyChildren(currentModel.developer, children),
-    [currentModel.developer, children]
+    () => classifyChildren(currentModel.developer, childModels),
+    [currentModel.developer, childModels]
   )
 
   // Build the full classification including sibling versions as evolution
