@@ -17,6 +17,7 @@ interface RelatedModelsTabsProps {
     developer: string | null
   }
   children: RelatedModel[]
+  siblingVersions?: RelatedModel[]  // Other versions in the same family (e.g., Llama 1, Llama 3 when viewing Llama 2)
   translations: {
     evolution: string
     officialDerivatives: string
@@ -36,23 +37,18 @@ function getBaseName(name: string): string {
 }
 
 /**
- * Classify related models into three categories:
- * 1. Evolution: Same developer + BASE type + no parameters (next-gen versions)
- * 2. Official Derivatives: Same developer + non-BASE type (official fine-tunes)
- * 3. Third-party FT: Different developer (external fine-tunes)
+ * Classify child models into official derivatives and third-party FT.
+ * Evolution (sibling versions) is handled separately.
  *
- * Parameter variations (7B, 70B, etc.) are excluded from tabs.
- * Models with the same base name are grouped and only one representative is shown.
+ * Parameter variations (7B, 70B, etc.) are grouped by base name.
  */
-function classifyModels(
+function classifyChildren(
   parentDeveloper: string | null,
   children: RelatedModel[]
 ): {
-  evolution: RelatedModel[]
   official: RelatedModel[]
   thirdparty: RelatedModel[]
 } {
-  const evolution: RelatedModel[] = []
   const official: RelatedModel[] = []
   const thirdparty: RelatedModel[] = []
 
@@ -62,7 +58,6 @@ function classifyModels(
   for (const child of children) {
     const sameDeveloper = parentDeveloper && child.developer === parentDeveloper
     const baseName = getBaseName(child.name)
-    const isParameterVariation = child.parameters !== null
 
     // Skip if we've already added a model with this base name
     // This groups parameter variations (e.g., "Code Llama 7B", "Code Llama 34B" -> just "Code Llama")
@@ -70,44 +65,49 @@ function classifyModels(
       continue
     }
 
+    // Skip BASE type children (parameter variations like 7B, 70B)
+    if (child.modelType === 'BASE') {
+      continue
+    }
+
     if (sameDeveloper) {
-      if (child.modelType === 'BASE') {
-        // Evolution: Only include if it's NOT a parameter variation
-        // (versions like "Llama 3" don't have parameters field set)
-        if (!isParameterVariation) {
-          evolution.push(child)
-          seenBaseNames.add(baseName)
-        }
-      } else {
-        // Official derivatives: Include but group by base name
-        official.push(child)
-        seenBaseNames.add(baseName)
-      }
+      // Official derivatives
+      official.push(child)
+      seenBaseNames.add(baseName)
     } else {
-      // Third-party FT: Include but group by base name
+      // Third-party FT
       thirdparty.push(child)
       seenBaseNames.add(baseName)
     }
   }
 
-  return { evolution, official, thirdparty }
+  return { official, thirdparty }
 }
 
 export default function RelatedModelsTabs({
   currentModel,
   children,
+  siblingVersions = [],
   translations,
 }: RelatedModelsTabsProps) {
+  // Classify children into official derivatives and third-party FT
   const classified = useMemo(
-    () => classifyModels(currentModel.developer, children),
+    () => classifyChildren(currentModel.developer, children),
     [currentModel.developer, children]
   )
 
+  // Build the full classification including sibling versions as evolution
+  const allClassified = useMemo(() => ({
+    evolution: siblingVersions,
+    official: classified.official,
+    thirdparty: classified.thirdparty,
+  }), [siblingVersions, classified])
+
   // Determine which tabs have content
   const availableTabs: TabCategory[] = []
-  if (classified.evolution.length > 0) availableTabs.push('evolution')
-  if (classified.official.length > 0) availableTabs.push('official')
-  if (classified.thirdparty.length > 0) availableTabs.push('thirdparty')
+  if (allClassified.evolution.length > 0) availableTabs.push('evolution')
+  if (allClassified.official.length > 0) availableTabs.push('official')
+  if (allClassified.thirdparty.length > 0) availableTabs.push('thirdparty')
 
   // Default to first available tab
   const [activeTab, setActiveTab] = useState<TabCategory>(availableTabs[0] || 'evolution')
@@ -123,7 +123,7 @@ export default function RelatedModelsTabs({
     thirdparty: translations.thirdPartyFT,
   }
 
-  const currentModels = classified[activeTab] || []
+  const currentModels = allClassified[activeTab] || []
 
   return (
     <div>
@@ -141,7 +141,7 @@ export default function RelatedModelsTabs({
           >
             {tabLabels[tab]}
             <span className="ml-2 text-xs text-gray-400 dark:text-gray-500">
-              ({classified[tab].length})
+              ({allClassified[tab].length})
             </span>
           </button>
         ))}

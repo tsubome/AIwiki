@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
-import { getModelBySlug, getFamilyTreeModels } from '@/lib/model-service'
+import { getModelBySlug, getFamilyTreeModels, getSiblingVersions } from '@/lib/model-service'
 import { Link } from '@/i18n/routing'
 import FamilyTreeNew from '@/components/FamilyTreeNew'
 import RelatedModelsTabs from '@/components/RelatedModelsTabs'
@@ -37,6 +37,9 @@ export default async function ModelDetailPage({ params }: Props) {
 
   // Get all related models for the family tree
   const familyModels = getFamilyTreeModels(slug)
+
+  // Get sibling versions (other versions in the same family)
+  const siblingVersions = getSiblingVersions(slug)
 
   const modelTypeColors: Record<string, string> = {
     BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
@@ -161,44 +164,35 @@ export default async function ModelDetailPage({ params }: Props) {
       </div>
 
       {/* Related Models */}
-      {(model.parent || model.children.length > 0) && (
+      {(model.parent || model.children.length > 0 || siblingVersions.length > 0) && (
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{t('relatedModels')}</h2>
 
-          {model.parent && (
-            <div className="mb-4">
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{t('parentModel')}</h3>
-              <Link
-                href={`/models/${model.parent.slug}`}
-                className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-              >
-                ← {model.parent.name}
-              </Link>
-            </div>
-          )}
-
-          {model.children.length > 0 && (
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{t('childModels')}</h3>
-              <RelatedModelsTabs
-                currentModel={{ developer: model.developer }}
-                children={model.children.map((child) => ({
-                  id: child.id,
-                  name: child.name,
-                  slug: child.slug,
-                  developer: child.developer,
-                  modelType: child.modelType,
-                  parameters: child.parameters,
-                }))}
-                translations={{
-                  evolution: t('evolution'),
-                  officialDerivatives: t('officialDerivatives'),
-                  thirdPartyFT: t('thirdPartyFT'),
-                  noModels: t('noRelatedModels'),
-                }}
-              />
-            </div>
-          )}
+          <RelatedModelsTabs
+            currentModel={{ developer: model.developer }}
+            children={model.children.map((child) => ({
+              id: child.id,
+              name: child.name,
+              slug: child.slug,
+              developer: child.developer,
+              modelType: child.modelType,
+              parameters: child.parameters,
+            }))}
+            siblingVersions={siblingVersions.map((version) => ({
+              id: version.id,
+              name: version.name,
+              slug: version.slug,
+              developer: version.developer,
+              modelType: version.modelType,
+              parameters: version.parameters,
+            }))}
+            translations={{
+              evolution: t('evolution'),
+              officialDerivatives: t('officialDerivatives'),
+              thirdPartyFT: t('thirdPartyFT'),
+              noModels: t('noRelatedModels'),
+            }}
+          />
         </div>
       )}
 

@@ -197,3 +197,26 @@ export function getFamilyTreeModels(modelSlug: string): ModelWithChildren[] {
 export function getAllModels(): ModelWithChildren[] {
   return getAllModelsFlat().map(m => toPrismaModel(m))
 }
+
+/**
+ * Get sibling versions in the same family (excluding self)
+ * e.g., For Llama 2, returns [Llama 1, Llama 3, Llama 3.1, ...]
+ * Used by the related models tabs
+ */
+export function getSiblingVersions(modelSlug: string): ModelWithChildren[] {
+  const families = loadAllFamilies()
+
+  for (const family of families) {
+    // Check if model is a version in this family
+    for (const version of family.versions) {
+      if (version.slug === modelSlug) {
+        // Found! Return other versions (excluding self)
+        return family.versions
+          .filter(v => v.slug !== modelSlug)
+          .map(v => toPrismaModel(v))
+      }
+    }
+  }
+
+  return []
+}
