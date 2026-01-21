@@ -201,12 +201,19 @@ export function getAllModels(): ModelWithChildren[] {
 /**
  * Get sibling versions in the same family (excluding self)
  * e.g., For Llama 2, returns [Llama 1, Llama 3, Llama 3.1, ...]
+ * For family root (Llama), returns all versions [Llama 1, Llama 2, Llama 3, ...]
  * Used by the related models tabs
  */
 export function getSiblingVersions(modelSlug: string): ModelWithChildren[] {
   const families = loadAllFamilies()
 
   for (const family of families) {
+    // Check if this is the family root
+    if (family.slug === modelSlug) {
+      // Return all versions for family root page
+      return family.versions.map(v => toPrismaModel(v))
+    }
+
     // Check if model is a version in this family
     for (const version of family.versions) {
       if (version.slug === modelSlug) {
