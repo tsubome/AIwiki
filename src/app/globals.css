@@ -31,6 +31,43 @@ body {
   stroke-width: 2;
 }
 
+/* React Flow controls dark mode */
+.react-flow-controls-dark .react-flow__controls-button {
+  background-color: #1f2937;
+  border-color: #4b5563;
+  fill: #9ca3af;
+}
+
+.react-flow-controls-dark .react-flow__controls-button:hover {
+  background-color: #374151;
+}
+
+.react-flow-controls-dark .react-flow__controls-button svg {
+  fill: #9ca3af;
+}
+
+.react-flow-controls-dark .react-flow__controls-button:hover svg {
+  fill: #d1d5db;
+}
+
+/* Light mode controls */
+.react-flow__controls-button {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+}
+
+.react-flow__controls-button:hover {
+  background-color: #f3f4f6;
+}
+
+.react-flow__controls-button svg {
+  fill: #6b7280;
+}
+
+.react-flow__controls-button:hover svg {
+  fill: #374151;
+}
+
 /* Family tree parameter bubbles */
 .family-tree-bubble {
   transition: all 0.15s ease;

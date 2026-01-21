@@ -136,14 +136,17 @@ function VersionNodeComponent({ data }: { data: any }) {
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
 
-  const isFinetune = data.modelType === 'FINETUNE'
   const isDerivative = data.isDerivative
+  const isThirdParty = data.isThirdParty  // Third-party FT (different developer)
   const isCurrent = data.isCurrent
 
   // Determine node style based on type
+  // - Main lineage: blue
+  // - Official derivative (same developer): purple
+  // - Third-party FT (different developer): green
   let styleKey: string
   if (isDerivative) {
-    styleKey = isFinetune ? 'finetune' : 'derivative'
+    styleKey = isThirdParty ? 'finetune' : 'derivative'  // third-party = green, official = purple
   } else {
     styleKey = 'main'
   }
@@ -184,8 +187,9 @@ function VersionNodeComponent({ data }: { data: any }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px' }}>
           {data.parameterVariants.map((variant: any) => {
             // Determine bubble color class for hover effect
+            // third-party = green, official derivative = purple, main = blue
             const bubbleColorClass = isDerivative
-              ? (isFinetune ? 'green' : 'purple')
+              ? (isThirdParty ? 'green' : 'purple')
               : 'blue'
 
             return (
@@ -547,9 +551,17 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
       }
 
       // Derivative nodes (on their own row, starting from column 1)
+      // Find parent version to get its developer for comparison
+      const parentVersion = plan.parentVersionId
+        ? versions.find(v => v.id === plan.parentVersionId)
+        : null
+
       plan.derivatives.forEach((derivative, dIndex) => {
         const dIsCurrent = derivative.id === currentModelId ||
           derivative.parameterVariants.some(v => v.id === currentModelId)
+
+        // Determine if this is an official derivative (same developer) or third-party
+        const isThirdParty = parentVersion && derivative.developer !== parentVersion.developer
 
         // Derivatives start at column 1 (to the right of main column)
         const derivativeX = 80 + (1 + dIndex) * (NODE_WIDTH + NODE_GAP)
@@ -564,6 +576,7 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
             parameterVariants: derivative.parameterVariants,
             isCurrent: dIsCurrent,
             isDerivative: true,
+            isThirdParty,  // true = third-party FT (green), false = official derivative (purple)
           },
         })
       })
@@ -606,8 +619,9 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
       const branchY = rowYPositions[rowIndex] - VERTICAL_SPACING / 2
 
       plan.derivatives.forEach((derivative, dIndex) => {
-        // Choose edge color based on derivative type
-        const color = derivative.modelType === 'FINETUNE' ? ftEdgeColor : derivativeEdgeColor
+        // Choose edge color based on developer (third-party = green, official = purple)
+        const isThirdParty = derivative.developer !== parentVersion.developer
+        const color = isThirdParty ? ftEdgeColor : derivativeEdgeColor
 
         edges.push({
           id: `branch-${parentVersion.id}-${derivative.id}`,
@@ -747,30 +761,42 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
         elementsSelectable={true}
         minZoom={0.3}
         maxZoom={2}
+        proOptions={{ hideAttribution: true }}
       >
         <Background color={isDark ? '#374151' : '#e5e7eb'} gap={16} />
-        <Controls showInteractive={false} />
+        <Controls
+          showInteractive={false}
+          className={isDark ? 'react-flow-controls-dark' : ''}
+          style={{
+            backgroundColor: isDark ? '#1f2937' : 'white',
+            borderColor: isDark ? '#4b5563' : '#e5e7eb',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderRadius: '8px',
+            boxShadow: 'none',
+          }}
+        />
       </ReactFlow>
 
       {/* Legend */}
-      <div className={`absolute bottom-2 left-2 z-10 ${
+      <div className={`absolute bottom-2 left-14 z-10 ${
         isDark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
       } border rounded-lg px-3 py-2 text-xs`}>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded border-2 border-blue-500 bg-blue-100" />
+            <div className={`w-4 h-4 rounded border-2 border-blue-500 ${isDark ? 'bg-blue-900' : 'bg-blue-100'}`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendBase')}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded border-2 border-green-500 bg-green-100" />
+            <div className={`w-4 h-4 rounded border-2 border-green-500 ${isDark ? 'bg-green-900' : 'bg-green-100'}`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendFinetune')}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded border-2 border-purple-500 bg-purple-100" />
+            <div className={`w-4 h-4 rounded border-2 border-purple-500 ${isDark ? 'bg-purple-900' : 'bg-purple-100'}`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendDerivative')}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded border-2 border-red-500 bg-blue-100 shadow-[0_0_0_2px_rgba(239,68,68,0.3)]" />
+            <div className={`w-4 h-4 rounded border-2 border-red-500 ${isDark ? 'bg-blue-900' : 'bg-blue-100'} shadow-[0_0_0_2px_rgba(239,68,68,0.3)]`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendCurrent')}</span>
           </div>
         </div>
