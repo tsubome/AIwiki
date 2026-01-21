@@ -101,16 +101,16 @@ export default async function ModelDetailPage({ params }: Props) {
           {model.releaseDate && (
             <div>
               <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('releaseDate')}</dt>
-              <dd className="text-gray-900 dark:text-gray-100">
-                {new Date(model.releaseDate).toLocaleDateString()}
+              <dd className="text-gray-900 dark:text-gray-100" suppressHydrationWarning>
+                {new Date(model.releaseDate).toLocaleDateString('ja-JP')}
               </dd>
             </div>
           )}
           {model.specs?.contextLength && (
             <div>
               <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">コンテキスト長</dt>
-              <dd className="text-gray-900 dark:text-gray-100">
-                {model.specs.contextLength.toLocaleString()} tokens
+              <dd className="text-gray-900 dark:text-gray-100" suppressHydrationWarning>
+                {model.specs.contextLength.toLocaleString('ja-JP')} tokens
               </dd>
             </div>
           )}
