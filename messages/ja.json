@@ -39,7 +39,11 @@
     "parentModel": "親モデル",
     "childModels": "派生モデル",
     "noGgufFiles": "GGUFファイルは登録されていません",
-    "relatedModels": "関連モデル"
+    "relatedModels": "関連モデル",
+    "evolution": "進化版",
+    "officialDerivatives": "公式派生",
+    "thirdPartyFT": "サードパーティFT",
+    "noRelatedModels": "関連モデルがありません"
   },
   "modelType": {
     "BASE": "ベースモデル",

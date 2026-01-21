@@ -39,7 +39,11 @@
     "parentModel": "Parent Model",
     "childModels": "Derived Models",
     "noGgufFiles": "No GGUF files registered",
-    "relatedModels": "Related Models"
+    "relatedModels": "Related Models",
+    "evolution": "Evolution",
+    "officialDerivatives": "Official Derivatives",
+    "thirdPartyFT": "Third-party FT",
+    "noRelatedModels": "No related models"
   },
   "modelType": {
     "BASE": "Base Model",

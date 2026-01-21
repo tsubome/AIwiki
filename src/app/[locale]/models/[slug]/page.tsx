@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { getModelBySlug, getFamilyTreeModels } from '@/lib/model-service'
 import { Link } from '@/i18n/routing'
 import FamilyTreeNew from '@/components/FamilyTreeNew'
+import RelatedModelsTabs from '@/components/RelatedModelsTabs'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -179,18 +180,23 @@ export default async function ModelDetailPage({ params }: Props) {
           {model.children.length > 0 && (
             <div>
               <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{t('childModels')}</h3>
-              <ul className="space-y-2">
-                {model.children.map((child) => (
-                  <li key={child.id}>
-                    <Link
-                      href={`/models/${child.slug}`}
-                      className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-                    >
-                      → {child.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <RelatedModelsTabs
+                currentModel={{ developer: model.developer }}
+                children={model.children.map((child) => ({
+                  id: child.id,
+                  name: child.name,
+                  slug: child.slug,
+                  developer: child.developer,
+                  modelType: child.modelType,
+                  parameters: child.parameters,
+                }))}
+                translations={{
+                  evolution: t('evolution'),
+                  officialDerivatives: t('officialDerivatives'),
+                  thirdPartyFT: t('thirdPartyFT'),
+                  noModels: t('noRelatedModels'),
+                }}
+              />
             </div>
           )}
         </div>
