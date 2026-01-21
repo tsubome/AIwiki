@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo, useState, useEffect } from 'react'
+import { useCallback, useMemo, useState, useEffect, useRef } from 'react'
 import {
   ReactFlow,
   Node,
@@ -15,11 +15,15 @@ import {
   EdgeProps,
   BaseEdge,
   getStraightPath,
+  useReactFlow,
+  ReactFlowProvider,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import { useRouter } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
 
 // Types
 type ModelNode = {
@@ -218,7 +222,7 @@ const edgeTypes = {
   tJunction: TJunctionEdge,
 }
 
-export default function FamilyTreeNew({ models, currentModelId }: Props) {
+function FamilyTreeInner({ models, currentModelId }: Props) {
   const router = useRouter()
   const tTree = useTranslations('familyTree')
   const { resolvedTheme } = useTheme()
@@ -226,6 +230,90 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
 
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showFinetuned, setShowFinetuned] = useState(true)
+  const [isExporting, setIsExporting] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { getNodes, getViewport } = useReactFlow()
+
+  // Export function
+  const handleExport = useCallback(async (format: 'png' | 'pdf') => {
+    if (!containerRef.current) return
+    setIsExporting(true)
+
+    try {
+      // Find the ReactFlow viewport element
+      const viewport = containerRef.current.querySelector('.react-flow__viewport') as HTMLElement
+      if (!viewport) {
+        console.error('ReactFlow viewport not found')
+        return
+      }
+
+      // Get the bounding box of all nodes to determine the content area
+      const nodes = getNodes()
+      if (nodes.length === 0) return
+
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+      nodes.forEach(node => {
+        const x = node.position.x
+        const y = node.position.y
+        const width = NODE_WIDTH
+        const height = 150 // Approximate max node height
+        minX = Math.min(minX, x)
+        minY = Math.min(minY, y)
+        maxX = Math.max(maxX, x + width)
+        maxY = Math.max(maxY, y + height)
+      })
+
+      // Add padding
+      const padding = 50
+      minX -= padding
+      minY -= padding
+      maxX += padding
+      maxY += padding
+
+      const contentWidth = maxX - minX
+      const contentHeight = maxY - minY
+
+      // Create canvas from the entire container
+      const canvas = await html2canvas(containerRef.current, {
+        backgroundColor: isDark ? '#111827' : '#f9fafb',
+        scale: 2, // Higher resolution
+        useCORS: true,
+        logging: false,
+        // Capture the full content
+        width: containerRef.current.scrollWidth,
+        height: containerRef.current.scrollHeight,
+      })
+
+      if (format === 'png') {
+        // Download as PNG
+        const link = document.createElement('a')
+        link.download = `family-tree-${Date.now()}.png`
+        link.href = canvas.toDataURL('image/png')
+        link.click()
+      } else {
+        // Download as PDF
+        const imgData = canvas.toDataURL('image/png')
+        const imgWidth = canvas.width
+        const imgHeight = canvas.height
+
+        // Create PDF with appropriate dimensions
+        const pdfWidth = imgWidth * 0.75 // Convert to points (assuming 96 DPI)
+        const pdfHeight = imgHeight * 0.75
+        const pdf = new jsPDF({
+          orientation: pdfWidth > pdfHeight ? 'landscape' : 'portrait',
+          unit: 'pt',
+          format: [pdfWidth, pdfHeight],
+        })
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
+        pdf.save(`family-tree-${Date.now()}.pdf`)
+      }
+    } catch (error) {
+      console.error('Export failed:', error)
+    } finally {
+      setIsExporting(false)
+    }
+  }, [isDark, getNodes])
 
   // Build nodes and edges
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
@@ -561,8 +649,27 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
   const hasFinetuned = models.some(m => m.modelType === 'FINETUNE')
 
   return (
-    <div className={containerClass}>
+    <div ref={containerRef} className={containerClass}>
       <div className="absolute top-2 right-2 z-10 flex items-center gap-2">
+        {/* Export buttons */}
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => handleExport('png')}
+            disabled={isExporting}
+            className="px-2 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+            title={tTree('saveAsPng')}
+          >
+            {isExporting ? '...' : 'PNG'}
+          </button>
+          <button
+            onClick={() => handleExport('pdf')}
+            disabled={isExporting}
+            className="px-2 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+            title={tTree('saveAsPdf')}
+          >
+            {isExporting ? '...' : 'PDF'}
+          </button>
+        </div>
         {hasFinetuned && (
           <button
             onClick={() => setShowFinetuned(!showFinetuned)}
@@ -642,5 +749,14 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
         </div>
       </div>
     </div>
+  )
+}
+
+// Wrap with ReactFlowProvider to enable useReactFlow hook
+export default function FamilyTreeNew({ models, currentModelId }: Props) {
+  return (
+    <ReactFlowProvider>
+      <FamilyTreeInner models={models} currentModelId={currentModelId} />
+    </ReactFlowProvider>
   )
 }

@@ -59,7 +59,9 @@
     "legendBase": "Base",
     "legendFinetune": "FT",
     "legendDerivative": "Derivative",
-    "legendCurrent": "Current"
+    "legendCurrent": "Current",
+    "saveAsPng": "Save as PNG",
+    "saveAsPdf": "Save as PDF"
   },
   "footer": {
     "copyright": "AIwiki - Local LLM Information Wiki"

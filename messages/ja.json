@@ -59,7 +59,9 @@
     "legendBase": "ベース",
     "legendFinetune": "FT",
     "legendDerivative": "派生",
-    "legendCurrent": "表示中"
+    "legendCurrent": "表示中",
+    "saveAsPng": "PNGで保存",
+    "saveAsPdf": "PDFで保存"
   },
   "footer": {
     "copyright": "AIwiki - ローカルLLM情報Wiki"
