@@ -1,25 +1,34 @@
+/**
+ * Model Loader - New Structure
+ *
+ * Directory structure:
+ *   data/models/
+ *   └── llama/
+ *       ├── _family.json      # Family metadata
+ *       ├── llama-1.json      # Model with all variants
+ *       ├── llama-2.json
+ *       ├── llama-3.json
+ *       └── ...
+ */
+
 import fs from 'fs'
 import path from 'path'
 import type {
   FamilyData,
-  VersionData,
   ModelData,
-  ResolvedModel,
+  ModelVariant,
   ResolvedFamily,
-  ResolvedVersion,
+  ResolvedModel,
+  ResolvedVariant,
+  GGUFFile,
 } from '@/types/model-data'
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'models')
 
-// Generate unique ID from path
-function generateId(familySlug: string, versionSlug?: string, modelSlug?: string): string {
-  const parts = [familySlug]
-  if (versionSlug) parts.push(versionSlug)
-  if (modelSlug) parts.push(modelSlug)
-  return parts.join('-')
-}
+// ============================================
+// File System Helpers
+// ============================================
 
-// Read JSON file safely
 function readJsonFile<T>(filePath: string): T | null {
   try {
     const content = fs.readFileSync(filePath, 'utf-8')
@@ -29,97 +38,125 @@ function readJsonFile<T>(filePath: string): T | null {
   }
 }
 
-// Get all family directories
-export function getFamilyDirs(): string[] {
+function getFamilyDirs(): string[] {
   if (!fs.existsSync(DATA_DIR)) return []
   return fs.readdirSync(DATA_DIR, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 }
 
-// Get all version directories for a family
-function getVersionDirs(familyDir: string): string[] {
+function getModelFiles(familyDir: string): string[] {
   const familyPath = path.join(DATA_DIR, familyDir)
   return fs.readdirSync(familyPath, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name)
-}
-
-// Get all model files in a version directory
-function getModelFiles(familyDir: string, versionDir: string): string[] {
-  const versionPath = path.join(DATA_DIR, familyDir, versionDir)
-  return fs.readdirSync(versionPath, { withFileTypes: true })
-    .filter(dirent => dirent.isFile() && dirent.name.endsWith('.json') && dirent.name !== '_version.json')
+    .filter(dirent =>
+      dirent.isFile() &&
+      dirent.name.endsWith('.json') &&
+      dirent.name !== '_family.json'
+    )
     .map(dirent => dirent.name.replace('.json', ''))
 }
 
-// Load a single family with all its data
+// ============================================
+// ID Generation
+// ============================================
+
+function generateModelId(familySlug: string, modelSlug: string): string {
+  return `${familySlug}:${modelSlug}`
+}
+
+function generateVariantId(familySlug: string, modelSlug: string, variantSlug: string): string {
+  return `${familySlug}:${modelSlug}:${variantSlug}`
+}
+
+// ============================================
+// Data Resolution
+// ============================================
+
+function resolveVariant(
+  variant: ModelVariant,
+  model: ModelData,
+  familySlug: string
+): ResolvedVariant {
+  return {
+    ...variant,
+    id: generateVariantId(familySlug, model.slug, variant.slug),
+    modelSlug: model.slug,
+    familySlug,
+    gguf: variant.gguf || [],
+  }
+}
+
+function resolveModel(
+  model: ModelData,
+  familySlug: string
+): ResolvedModel {
+  const resolvedVariants = (model.variants || []).map(v =>
+    resolveVariant(v, model, familySlug)
+  )
+
+  return {
+    ...model,
+    id: generateModelId(familySlug, model.slug),
+    familySlug,
+    variants: resolvedVariants,
+  }
+}
+
+// ============================================
+// Public API
+// ============================================
+
+/**
+ * Load a single family with all its models and variants
+ */
 export function loadFamily(familySlug: string): ResolvedFamily | null {
   const familyPath = path.join(DATA_DIR, familySlug)
   if (!fs.existsSync(familyPath)) return null
 
+  // Load family metadata
   const familyData = readJsonFile<FamilyData>(path.join(familyPath, '_family.json'))
   if (!familyData) return null
 
-  const familyId = generateId(familySlug)
-  const versions: ResolvedVersion[] = []
-  const allChildren: ResolvedModel[] = []
+  // Load all models in this family
+  const models: ResolvedModel[] = []
 
-  // Load versions
-  for (const versionDir of getVersionDirs(familySlug)) {
-    const versionData = readJsonFile<VersionData>(
-      path.join(familyPath, versionDir, '_version.json')
+  for (const modelFile of getModelFiles(familySlug)) {
+    const modelData = readJsonFile<ModelData>(
+      path.join(familyPath, `${modelFile}.json`)
     )
-    if (!versionData) continue
+    if (!modelData) continue
 
-    const versionId = generateId(familySlug, versionDir)
-    const variants: ResolvedModel[] = []
-    const derivatives: ResolvedModel[] = []
+    models.push(resolveModel(modelData, familySlug))
+  }
 
-    // Load models in this version
-    for (const modelFile of getModelFiles(familySlug, versionDir)) {
-      const modelData = readJsonFile<ModelData>(
-        path.join(familyPath, versionDir, `${modelFile}.json`)
-      )
-      if (!modelData) continue
-
-      const modelId = generateId(familySlug, versionDir, modelFile)
-      const resolvedModel: ResolvedModel = {
-        ...modelData,
-        id: modelId,
-        parentId: versionId,
-        children: [],
-      }
-
-      if (modelData.modelType === 'BASE') {
-        variants.push(resolvedModel)
-      } else {
-        derivatives.push(resolvedModel)
-      }
-      allChildren.push(resolvedModel)
-    }
-
-    const resolvedVersion: ResolvedVersion = {
-      ...versionData,
-      id: versionId,
-      parentId: familyId,
-      children: [...variants, ...derivatives],
-      variants,
-      derivatives,
-    }
-    versions.push(resolvedVersion)
-    allChildren.push(resolvedVersion)
+  // Sort models by version order if specified, otherwise by release date
+  if (familyData.versions && familyData.versions.length > 0) {
+    models.sort((a, b) => {
+      const aIndex = familyData.versions.indexOf(a.slug)
+      const bIndex = familyData.versions.indexOf(b.slug)
+      if (aIndex === -1 && bIndex === -1) return 0
+      if (aIndex === -1) return 1
+      if (bIndex === -1) return -1
+      return aIndex - bIndex
+    })
+  } else {
+    models.sort((a, b) => {
+      if (!a.releaseDate && !b.releaseDate) return 0
+      if (!a.releaseDate) return 1
+      if (!b.releaseDate) return -1
+      return new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime()
+    })
   }
 
   return {
     ...familyData,
-    id: familyId,
-    children: allChildren,
-    versions,
+    models,
   }
 }
 
-// Load all families
+/**
+ * Load all families
+ */
 export function loadAllFamilies(): ResolvedFamily[] {
   const families: ResolvedFamily[] = []
   for (const familyDir of getFamilyDirs()) {
@@ -129,52 +166,108 @@ export function loadAllFamilies(): ResolvedFamily[] {
   return families
 }
 
-// Find a model by slug (searches all families)
+/**
+ * Find a model by slug
+ */
 export function findModelBySlug(slug: string): ResolvedModel | null {
-  for (const familyDir of getFamilyDirs()) {
-    const family = loadFamily(familyDir)
-    if (!family) continue
-
-    // Check family root
-    if (family.slug === slug) return family
-
-    // Check versions and their children
-    for (const version of family.versions) {
-      if (version.slug === slug) return version
-      for (const child of [...version.variants, ...version.derivatives]) {
-        if (child.slug === slug) return child
+  for (const family of loadAllFamilies()) {
+    for (const model of family.models) {
+      if (model.slug === slug) {
+        return model
       }
     }
   }
   return null
 }
 
-// Get all models as flat array (for compatibility with existing code)
-export function getAllModelsFlat(): ResolvedModel[] {
+/**
+ * Find a variant by slug
+ */
+export function findVariantBySlug(slug: string): ResolvedVariant | null {
+  for (const family of loadAllFamilies()) {
+    for (const model of family.models) {
+      for (const variant of model.variants) {
+        if (variant.slug === slug) {
+          return variant
+        }
+      }
+    }
+  }
+  return null
+}
+
+/**
+ * Find model or variant by slug
+ */
+export function findBySlug(slug: string): { type: 'model' | 'variant', model: ResolvedModel, variant?: ResolvedVariant } | null {
+  for (const family of loadAllFamilies()) {
+    for (const model of family.models) {
+      if (model.slug === slug) {
+        return { type: 'model', model }
+      }
+      for (const variant of model.variants) {
+        if (variant.slug === slug) {
+          return { type: 'variant', model, variant }
+        }
+      }
+    }
+  }
+  return null
+}
+
+/**
+ * Get all models as flat array
+ */
+export function getAllModels(): ResolvedModel[] {
   const models: ResolvedModel[] = []
   for (const family of loadAllFamilies()) {
-    models.push(family)
-    for (const version of family.versions) {
-      models.push(version)
-      models.push(...version.variants)
-      models.push(...version.derivatives)
-    }
+    models.push(...family.models)
   }
   return models
 }
 
-// Convert to Prisma-like format for compatibility
-export function toPrismaFormat(family: ResolvedFamily) {
-  const flatChildren: ResolvedModel[] = []
-
-  for (const version of family.versions) {
-    flatChildren.push(version)
-    flatChildren.push(...version.variants)
-    flatChildren.push(...version.derivatives)
+/**
+ * Get all variants as flat array
+ */
+export function getAllVariants(): ResolvedVariant[] {
+  const variants: ResolvedVariant[] = []
+  for (const family of loadAllFamilies()) {
+    for (const model of family.models) {
+      variants.push(...model.variants)
+    }
   }
+  return variants
+}
 
-  return {
-    ...family,
-    children: flatChildren,
+/**
+ * Get sibling models (same family, different models)
+ */
+export function getSiblingModels(modelSlug: string): ResolvedModel[] {
+  for (const family of loadAllFamilies()) {
+    for (const model of family.models) {
+      if (model.slug === modelSlug) {
+        return family.models.filter(m => m.slug !== modelSlug)
+      }
+    }
   }
+  return []
+}
+
+/**
+ * Get family by model slug
+ */
+export function getFamilyByModelSlug(modelSlug: string): ResolvedFamily | null {
+  for (const family of loadAllFamilies()) {
+    for (const model of family.models) {
+      if (model.slug === modelSlug) {
+        return family
+      }
+      for (const variant of model.variants) {
+        if (variant.slug === modelSlug) {
+          return family
+        }
+      }
+    }
+  }
+  return null
 }

@@ -1,0 +1,49 @@
+{
+  "name": "Llama 2",
+  "slug": "llama-2",
+  "releaseDate": "2023-07-18",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "BASE",
+
+  "description": "2023年7月18日公開。Microsoftと提携して開発された第2世代モデル。商用利用可能なLlama 2 Community Licenseで公開され、オープンソースLLMの商用展開を大きく推進。2兆トークンでトレーニングされ、コンテキスト長は4Kトークン。最適化されたTransformerアーキテクチャを採用し、Chat版はSFTとRLHFで人間の好みに合わせて調整。70Bモデルは推論スケーラビリティ向上のためGrouped-Query Attention (GQA)を使用。",
+
+  "specs": {
+    "contextLength": 4096,
+    "trainingTokens": "2T",
+    "knowledgeCutoff": "2022-09",
+    "languages": ["en"],
+    "architecture": "Transformer with GQA (70B)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/meta-llama/Llama-2-7b"
+  },
+
+  "variants": [
+    {
+      "name": "Llama 2 7B",
+      "slug": "llama-2-7b",
+      "parameters": "7B",
+      "description": "軽量モデル。効率的なローカル実行に最適。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-2-7b",
+      "gguf": []
+    },
+    {
+      "name": "Llama 2 13B",
+      "slug": "llama-2-13b",
+      "parameters": "13B",
+      "description": "中規模モデル。バランスの取れた性能。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-2-13b",
+      "gguf": []
+    },
+    {
+      "name": "Llama 2 70B",
+      "slug": "llama-2-70b",
+      "parameters": "70B",
+      "description": "大規模モデル。Grouped-Query Attention (GQA)採用で推論効率を向上。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-2-70b",
+      "gguf": []
+    }
+  ]
+}

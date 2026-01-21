@@ -49,7 +49,8 @@
     "BASE": "Base Model",
     "FINETUNE": "Fine-tuned",
     "MERGE": "Merged Model",
-    "QUANTIZED": "Quantized"
+    "QUANTIZED": "Quantized",
+    "INSTRUCT": "Instruction-tuned"
   },
   "familyTree": {
     "title": "Model Family Tree",

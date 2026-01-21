@@ -1,0 +1,40 @@
+{
+  "name": "Llama 3",
+  "slug": "llama-3",
+  "releaseDate": "2024-04-18",
+  "developer": "Meta",
+  "license": "Llama 3 Community License",
+  "modelType": "BASE",
+
+  "description": "2024年4月18日公開。大幅な性能向上を実現した第3世代モデル。新しい128Kトークナイザーを採用し、15兆トークン以上でトレーニング。コンテキスト長は8Kトークン。最適化されたTransformerアーキテクチャとGrouped-Query Attention (GQA)を採用。",
+
+  "specs": {
+    "contextLength": 8192,
+    "trainingTokens": "15T+",
+    "languages": ["en"],
+    "architecture": "Transformer with GQA"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B"
+  },
+
+  "variants": [
+    {
+      "name": "Llama 3 8B",
+      "slug": "llama-3-8b",
+      "parameters": "8B",
+      "description": "Llama 3の軽量モデル。15兆トークン以上でトレーニング、コンテキスト長8192トークン。Grouped-Query Attention (GQA)採用。効率的なローカル実行に最適。",
+      "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3 70B",
+      "slug": "llama-3-70b",
+      "parameters": "70B",
+      "description": "Llama 3の大規模モデル。15兆トークン以上でトレーニングされ、コンテキスト長8192トークン。Grouped-Query Attention (GQA)採用。多くのベンチマークでGPT-4に迫る性能を発揮。",
+      "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B",
+      "gguf": []
+    }
+  ]
+}

@@ -1,15 +1,118 @@
 // Model data types for directory-based storage
+// Refactored: 1 model = 1 JSON file with all variants
 
-export type ModelType = 'BASE' | 'FINETUNE' | 'MERGE' | 'QUANTIZED'
+// ============================================
+// GGUF Files
+// ============================================
 
 export interface GGUFFile {
-  name: string
-  size?: string
-  url: string
-  recommended?: boolean
+  name: string           // "Q4_K_M"
+  size?: string          // "4.9GB"
+  url: string            // Download URL
+  recommended?: boolean  // Recommended flag
+  description?: string   // "バランス型。多くの環境で推奨"
 }
 
-export interface BaseModelData {
+// ============================================
+// Model Variants (e.g., 8B, 70B)
+// ============================================
+
+export interface ParameterDetails {
+  active: string         // "17B" (MoE active parameters)
+  total: string          // "109B" (MoE total parameters)
+  experts?: number       // 16 (number of experts)
+}
+
+export interface ModelVariant {
+  name: string           // "Llama 3 8B"
+  slug: string           // "llama-3-8b"
+  parameters: string     // "8B" or "17B/109B"
+  parameterDetails?: ParameterDetails
+  description?: string
+  huggingface?: string
+  gguf: GGUFFile[]
+}
+
+// ============================================
+// Model Specs & Links
+// ============================================
+
+export interface ModelSpecs {
+  contextLength?: number
+  trainingTokens?: string
+  knowledgeCutoff?: string
+  languages?: string[]
+  architecture?: string
+}
+
+export interface ModelLinks {
+  huggingface?: string
+  paper?: string
+  github?: string
+  website?: string
+}
+
+// ============================================
+// Model Types
+// ============================================
+
+export type ModelType = 'BASE' | 'FINETUNE' | 'MERGE' | 'QUANTIZED' | 'INSTRUCT'
+
+// ============================================
+// Model Data (Single JSON file)
+// ============================================
+
+export interface ModelData {
+  name: string           // "Llama 3"
+  slug: string           // "llama-3"
+  releaseDate?: string   // "2024-04-18"
+  developer?: string     // "Meta"
+  license?: string       // "Llama 3 Community License"
+  modelType: ModelType
+  description?: string
+  specs?: ModelSpecs
+  links?: ModelLinks
+  variants: ModelVariant[]
+}
+
+// ============================================
+// Family Data (_family.json)
+// ============================================
+
+export interface FamilyData {
+  name: string           // "Llama"
+  slug: string           // "llama"
+  developer?: string     // "Meta"
+  description?: string
+  website?: string
+  versions: string[]     // ["llama-1", "llama-2", "llama-3", ...]
+}
+
+// ============================================
+// Runtime Types (with resolved relationships)
+// ============================================
+
+export interface ResolvedModel extends ModelData {
+  id: string
+  familySlug: string
+  variants: ResolvedVariant[]
+}
+
+export interface ResolvedVariant extends ModelVariant {
+  id: string
+  modelSlug: string      // Parent model's slug
+  familySlug: string
+}
+
+export interface ResolvedFamily extends FamilyData {
+  models: ResolvedModel[]
+}
+
+// ============================================
+// Legacy types (for backward compatibility during migration)
+// ============================================
+
+export interface LegacyBaseModelData {
   name: string
   slug: string
   description?: string
@@ -20,37 +123,8 @@ export interface BaseModelData {
   huggingface?: string
   modelType: ModelType
   ggufFiles?: GGUFFile[]
-}
-
-// Family root (e.g., Llama)
-export interface FamilyData extends BaseModelData {
-  // Family-level metadata
-}
-
-// Version (e.g., Llama 1, Llama 2)
-export interface VersionData extends BaseModelData {
-  // Version-level metadata
-}
-
-// Model variant (e.g., Llama 2 7B, Swallow 7B)
-export interface ModelData extends BaseModelData {
-  // Model-level metadata
-}
-
-// Runtime model with resolved relationships
-export interface ResolvedModel extends BaseModelData {
-  id: string
-  parentId?: string
-  parent?: ResolvedModel
-  children: ResolvedModel[]
-}
-
-// Family with all descendants loaded
-export interface ResolvedFamily extends ResolvedModel {
-  versions: ResolvedVersion[]
-}
-
-export interface ResolvedVersion extends ResolvedModel {
-  variants: ResolvedModel[]
-  derivatives: ResolvedModel[]
+  contextLength?: number
+  trainingTokens?: string
+  knowledgeCutoff?: string
+  languages?: string[]
 }
