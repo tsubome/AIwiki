@@ -12,6 +12,9 @@ import {
   Handle,
   Position,
   MarkerType,
+  EdgeProps,
+  BaseEdge,
+  getStraightPath,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import { useRouter } from '@/i18n/routing'
@@ -36,8 +39,33 @@ type Props = {
 
 // Constants
 const NODE_WIDTH = 140
-const NODE_GAP = 40
-const ESTIMATED_NODE_HEIGHT = 90
+const NODE_GAP = 40  // Visual gap between node edges (both vertical and horizontal)
+const ARROW_HEIGHT = 25  // Height of arrow marker (increased for better visibility)
+const VERTICAL_SPACING = NODE_GAP + ARROW_HEIGHT  // Total vertical spacing including arrow
+
+// Calculate node height based on actual CSS styles
+// CSS breakdown:
+// - padding: 12px top + 12px bottom = 24px
+// - border: 2px top + 2px bottom = 4px
+// - name: ~20px (14px font * 1.4 line-height) + 4px margin = 24px
+// - developer: ~15px (11px font * 1.4) + 8px margin = 23px (when present)
+// - bubble: ~25px (11px font + 6px padding + 4px border)
+// - bubble gap: 6px between rows
+// Note: With 140px node width and 16px side padding, inner width is 108px
+// Each bubble ~36px + 6px gap = max 2 bubbles per row
+function calculateNodeHeight(paramCount: number, hasDeveloper: boolean = true): number {
+  const paddingAndBorder = 28  // 24px padding + 4px border
+  const nameHeight = 24  // font + margin
+  const developerHeight = hasDeveloper ? 23 : 0  // font + margin (when present)
+  const bubbleHeight = 25  // single bubble row height
+  const bubbleGap = 6  // gap between bubble rows
+  const bubblesPerRow = 2  // max bubbles per row based on width
+
+  const rows = Math.max(1, Math.ceil(paramCount / bubblesPerRow))
+  const bubblesHeight = rows * bubbleHeight + (rows - 1) * bubbleGap
+
+  return paddingAndBorder + nameHeight + developerHeight + bubblesHeight
+}
 
 // Node type colors
 // 1. Main version (blue) - part of the main lineage
@@ -73,6 +101,27 @@ const NODE_STYLES: Record<string, NodeStyle> = {
     text: '#6b21a8',    // purple-800
     textDark: '#d8b4fe', // purple-300
   },
+}
+
+// Custom T-Junction Edge for branch connections
+// Path: from main line's branch point → horizontal to derivative → down to derivative
+function TJunctionEdge({ id, sourceX, sourceY, targetX, targetY, style, markerEnd, data }: EdgeProps) {
+  // branchY is the Y coordinate where the horizontal branch starts (in the gap)
+  const branchY = data?.branchY as number || sourceY + 20
+
+  // Path: start at (sourceX, branchY), go horizontal to targetX, then down to targetY
+  const path = `M ${sourceX} ${branchY} L ${targetX} ${branchY} L ${targetX} ${targetY}`
+
+  return (
+    <path
+      id={id}
+      className="react-flow__edge-path"
+      d={path}
+      style={style}
+      markerEnd={markerEnd as string}
+      fill="none"
+    />
+  )
 }
 
 // Custom Node Component
@@ -157,6 +206,10 @@ const nodeTypes = {
   versionNode: VersionNodeComponent,
 }
 
+const edgeTypes = {
+  tJunction: TJunctionEdge,
+}
+
 export default function FamilyTreeNew({ models, currentModelId }: Props) {
   const router = useRouter()
   const tTree = useTranslations('familyTree')
@@ -214,24 +267,62 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
         .filter(c => c.parameters && c.modelType === 'BASE' && filteredModelIds.has(c.id))
         .map(c => ({ id: c.id, slug: c.slug, parameters: c.parameters! }))
 
-      // Find derivatives (children of parameter variants - both FINETUNE and other types)
+      // Find derivatives - can be:
+      // 1. Direct children that are not BASE type (FINETUNE, etc.) - new file-based structure
+      // 2. Children of parameter variants (grandchildren) - old Prisma structure
       const derivatives: VersionData[] = []
+      const seenDerivativeNames = new Set<string>()
+
+      // Check direct children (non-BASE types with parameters)
+      children.forEach(child => {
+        if (child.modelType !== 'BASE' && filteredModelIds.has(child.id)) {
+          // Group derivatives by base name (remove parameter suffix)
+          const baseName = child.name.replace(/\s+\d+[BMT]+$/i, '').trim()
+          if (!seenDerivativeNames.has(baseName)) {
+            seenDerivativeNames.add(baseName)
+            // Find all parameter variants for this derivative
+            const derivativeVariants = children
+              .filter(c =>
+                c.modelType !== 'BASE' &&
+                filteredModelIds.has(c.id) &&
+                c.name.replace(/\s+\d+[BMT]+$/i, '').trim() === baseName
+              )
+              .map(c => ({ id: c.id, slug: c.slug, parameters: c.parameters || '' }))
+
+            derivatives.push({
+              id: child.id,
+              name: baseName,
+              slug: child.slug,
+              developer: child.developer || null,
+              modelType: child.modelType,
+              parameterVariants: derivativeVariants,
+              derivatives: [],
+            })
+          }
+        }
+      })
+
+      // Also check grandchildren (old structure compatibility)
       children.forEach(paramChild => {
         if (paramChild.parameters && filteredModelIds.has(paramChild.id)) {
           const grandchildren = childMap.get(paramChild.id) || []
           grandchildren.forEach(gc => {
             if (filteredModelIds.has(gc.id)) {
-              derivatives.push({
-                id: gc.id,
-                name: gc.name.replace(/\s+\d+[BM]$/i, '').replace(/\s+8B$/i, ''),
-                slug: gc.slug,
-                developer: gc.developer || null,
-                modelType: gc.modelType,
-                parameterVariants: gc.parameters
-                  ? [{ id: gc.id, slug: gc.slug, parameters: gc.parameters }]
-                  : [],
-                derivatives: [],
-              })
+              const baseName = gc.name.replace(/\s+\d+[BMT]+$/i, '').trim()
+              if (!seenDerivativeNames.has(baseName)) {
+                seenDerivativeNames.add(baseName)
+                derivatives.push({
+                  id: gc.id,
+                  name: baseName,
+                  slug: gc.slug,
+                  developer: gc.developer || null,
+                  modelType: gc.modelType,
+                  parameterVariants: gc.parameters
+                    ? [{ id: gc.id, slug: gc.slug, parameters: gc.parameters }]
+                    : [],
+                  derivatives: [],
+                })
+              }
             }
           })
         }
@@ -252,44 +343,64 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
       .map(v => buildVersionData(v))
       .filter((v): v is VersionData => v !== null && v.parameterVariants.length > 0)
 
-    // Layout: Plan rows - derivatives appear on the NEXT row (same row as next version)
-    // This matches the mockup where ELYZA JP and Swallow (derivatives of Llama 3)
-    // appear on the same row as Llama 3.1
+    // Layout: Plan rows - derivatives appear on their OWN row below their parent
+    // Row order: Main Version → Derivatives (if any) → Next Main Version → ...
+    // This ensures derivatives don't share rows with unrelated main versions
     type RowPlan = {
       mainVersion: VersionData | null
-      derivatives: VersionData[]  // Derivatives from PREVIOUS version
+      derivatives: VersionData[]
+      parentVersionId: string | null  // For derivative rows, the parent version's ID
+      maxHeight: number
     }
 
     const rowPlans: RowPlan[] = []
     for (let i = 0; i < versions.length; i++) {
-      const prevDerivatives = i > 0 ? versions[i - 1].derivatives : []
+      const mainVersion = versions[i]
+
+      // Add main version row
+      const mainHeight = calculateNodeHeight(
+        mainVersion.parameterVariants.length,
+        !!mainVersion.developer
+      )
       rowPlans.push({
-        mainVersion: versions[i],
-        derivatives: prevDerivatives
+        mainVersion,
+        derivatives: [],
+        parentVersionId: null,
+        maxHeight: mainHeight
       })
+
+      // Add derivative row if this version has derivatives
+      if (mainVersion.derivatives.length > 0) {
+        let derivativeMaxHeight = 0
+        mainVersion.derivatives.forEach(d => {
+          const dHeight = calculateNodeHeight(d.parameterVariants.length, !!d.developer)
+          derivativeMaxHeight = Math.max(derivativeMaxHeight, dHeight)
+        })
+        rowPlans.push({
+          mainVersion: null,
+          derivatives: mainVersion.derivatives,
+          parentVersionId: mainVersion.id,
+          maxHeight: derivativeMaxHeight
+        })
+      }
     }
 
-    // If last version has derivatives, add an extra row for them
-    const lastVersion = versions[versions.length - 1]
-    if (lastVersion && lastVersion.derivatives.length > 0) {
-      rowPlans.push({
-        mainVersion: null,
-        derivatives: lastVersion.derivatives
-      })
-    }
-
-    // Calculate Y positions based on row heights
+    // Calculate Y positions based on actual row heights with spacing that includes arrow height
     let currentY = 30
     const rowYPositions: number[] = []
-    rowPlans.forEach(() => {
+    const rowBottoms: number[] = []  // Track bottom edge of each row for edge connections
+    rowPlans.forEach((plan, idx) => {
       rowYPositions.push(currentY)
-      currentY += ESTIMATED_NODE_HEIGHT + NODE_GAP
+      rowBottoms.push(currentY + plan.maxHeight)
+      const derivativeNames = plan.derivatives.map(d => d.name).join(',')
+      console.log(`[FamilyTree] Row ${idx}: y=${currentY}, maxHeight=${plan.maxHeight}, bottom=${currentY + plan.maxHeight}, main=${plan.mainVersion?.name || 'none'}, derivatives=${derivativeNames}`)
+      // Next row starts at: current row's bottom + VERTICAL_SPACING (includes arrow height)
+      currentY = currentY + plan.maxHeight + VERTICAL_SPACING
     })
 
     // Create nodes
     rowPlans.forEach((plan, rowIndex) => {
       const y = rowYPositions[rowIndex]
-      let xOffset = 0
 
       // Main version at column 0
       if (plan.mainVersion) {
@@ -307,28 +418,29 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
             modelType: version.modelType,
             parameterVariants: version.parameterVariants,
             isCurrent,
-            isDerivative: false,  // Main version, not a derivative
+            isDerivative: false,
           },
         })
-        xOffset = 1
       }
 
-      // Derivative nodes to the right
+      // Derivative nodes (on their own row, starting from column 1)
       plan.derivatives.forEach((derivative, dIndex) => {
         const dIsCurrent = derivative.id === currentModelId ||
           derivative.parameterVariants.some(v => v.id === currentModelId)
 
+        // Derivatives start at column 1 (to the right of main column)
+        const derivativeX = 80 + (1 + dIndex) * (NODE_WIDTH + NODE_GAP)
         nodes.push({
           id: derivative.id,
           type: 'versionNode',
-          position: { x: 80 + (xOffset + dIndex) * (NODE_WIDTH + NODE_GAP), y },
+          position: { x: derivativeX, y },
           data: {
             name: derivative.name,
             developer: derivative.developer,
             modelType: derivative.modelType,
             parameterVariants: derivative.parameterVariants,
             isCurrent: dIsCurrent,
-            isDerivative: true,  // This is a derivative model
+            isDerivative: true,
           },
         })
       })
@@ -340,7 +452,7 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
     const ftEdgeColor = NODE_STYLES.finetune.border    // green for finetune
     const derivativeEdgeColor = NODE_STYLES.derivative.border  // purple for non-FT derivatives
 
-    // Main vertical edges between consecutive versions
+    // Main vertical edges between consecutive main versions
     for (let i = 0; i < versions.length - 1; i++) {
       edges.push({
         id: `main-${versions[i].id}-${versions[i + 1].id}`,
@@ -357,22 +469,37 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
       })
     }
 
-    // Branch edges from version to its derivatives (on the next row)
-    versions.forEach((version) => {
-      version.derivatives.forEach((derivative) => {
+    // Branch edges from version to its derivatives using T-junction style
+    // The branch point is in the middle of the gap above the derivative row
+    rowPlans.forEach((plan, rowIndex) => {
+      if (plan.derivatives.length === 0 || !plan.parentVersionId) return
+
+      // This is a derivative row - find the parent version
+      const parentVersion = versions.find(v => v.id === plan.parentVersionId)
+      if (!parentVersion) return
+
+      // Calculate branchY: middle of the gap above this derivative row
+      // branchY = derivativeRowY - VERTICAL_SPACING/2
+      const branchY = rowYPositions[rowIndex] - VERTICAL_SPACING / 2
+
+      plan.derivatives.forEach((derivative, dIndex) => {
         // Choose edge color based on derivative type
         const color = derivative.modelType === 'FINETUNE' ? ftEdgeColor : derivativeEdgeColor
+
         edges.push({
-          id: `branch-${version.id}-${derivative.id}`,
-          source: version.id,
+          id: `branch-${parentVersion.id}-${derivative.id}`,
+          source: parentVersion.id,
           target: derivative.id,
-          type: 'smoothstep',
+          type: 'tJunction',
           style: { stroke: color, strokeWidth: 2 },
           markerEnd: {
             type: MarkerType.ArrowClosed,
             color: color,
             width: 15,
             height: 15,
+          },
+          data: {
+            branchY,  // Pass the Y coordinate for the T-junction
           },
         })
       })
@@ -470,6 +597,7 @@ export default function FamilyTreeNew({ models, currentModelId }: Props) {
         onEdgesChange={onEdgesChange}
         onNodeClick={onNodeClick}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitView
         fitViewOptions={{ padding: 0.3 }}
         nodesDraggable={false}
