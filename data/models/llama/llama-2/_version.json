@@ -1,9 +1,14 @@
 {
   "name": "Llama 2",
   "slug": "llama-2",
-  "description": "Second generation Llama with improved performance and commercial license",
+  "description": "2023年7月18日公開。Microsoftと提携して開発された第2世代モデル。商用利用可能なLlama 2 Community Licenseで公開され、オープンソースLLMの商用展開を大きく推進。2兆トークンでトレーニングされ、コンテキスト長は4Kトークン。最適化されたTransformerアーキテクチャを採用し、Chat版はSFTとRLHFで人間の好みに合わせて調整。70Bモデルは推論スケーラビリティ向上のためGrouped-Query Attention (GQA)を使用。",
   "releaseDate": "2023-07-18",
   "developer": "Meta",
   "license": "Llama 2 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "contextLength": 4096,
+  "trainingTokens": "2T",
+  "knowledgeCutoff": "2022-09",
+  "languages": ["en"],
+  "huggingface": "https://huggingface.co/meta-llama/Llama-2-7b"
 }

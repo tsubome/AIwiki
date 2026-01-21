@@ -1,10 +1,11 @@
 {
-  "name": "Llama 3.3 70B",
+  "name": "Llama 3.3 70B Instruct",
   "slug": "llama-3-3-70b",
-  "description": "Cost-efficient model matching 405B performance",
+  "description": "70Bパラメータで405Bモデルに匹敵する性能を実現したコスト効率モデル。Instruction-tuned版のみ提供。128Kコンテキスト長、多言語対応（8言語）。Llama 3.1互換プロンプトフォーマット使用。",
   "parameters": "70B",
   "releaseDate": "2024-12-06",
   "developer": "Meta",
   "license": "Llama 3.3 Community License",
-  "modelType": "BASE"
+  "modelType": "INSTRUCT",
+  "contextLength": 128000
 }

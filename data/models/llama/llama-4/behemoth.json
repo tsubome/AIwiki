@@ -1,10 +1,13 @@
 {
   "name": "Llama 4 Behemoth",
   "slug": "llama-4-behemoth",
-  "description": "Largest Llama model (in training)",
-  "parameters": "2T+",
+  "description": "288Bアクティブ/2T総パラメータを持つLlama史上最大のMoEモデル（トレーニング中）。STEMベンチマークでGPT-4.5、Claude 3.5 Sonnet、Gemini 2.0 Proを上回る性能を目指す。ネイティブマルチモーダル対応。",
+  "parameters": "288B/2T",
+  "activeParameters": "288B",
+  "totalParameters": "2T",
   "releaseDate": "2025-04-05",
   "developer": "Meta",
   "license": "Llama 4 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "huggingface": "https://huggingface.co/meta-llama"
 }

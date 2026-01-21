@@ -2,8 +2,11 @@
   "name": "Llama 2 7B",
   "slug": "llama-2-7b",
   "parameters": "7B",
+  "description": "Llama 2の最小モデル。2兆トークンでトレーニング、コンテキスト長4096トークン。軽量でリソース効率が高い。訓練にはA100-80GB GPUで184,320時間使用。",
   "releaseDate": "2023-07-18",
   "developer": "Meta",
   "license": "Llama 2 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "contextLength": 4096,
+  "trainingTokens": "2T"
 }

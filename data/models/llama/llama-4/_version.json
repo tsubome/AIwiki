@@ -1,9 +1,12 @@
 {
   "name": "Llama 4",
   "slug": "llama-4",
-  "description": "Fourth generation Llama with MoE architecture",
+  "description": "2025年4月5日公開。Mixture of Experts（MoE）アーキテクチャを採用した第4世代。Scout（16エキスパート）、Maverick（128エキスパート）、Behemothの3モデル構成。全モデルがネイティブマルチモーダル対応（テキスト・画像・動画入力）。12言語に対応。",
   "releaseDate": "2025-04-05",
   "developer": "Meta",
   "license": "Llama 4 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "knowledgeCutoff": "2024-08",
+  "languages": ["en", "ar", "de", "es", "fr", "hi", "id", "it", "pt", "th", "tl", "vi"],
+  "huggingface": "https://huggingface.co/meta-llama"
 }

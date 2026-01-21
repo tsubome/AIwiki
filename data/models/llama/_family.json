@@ -1,8 +1,9 @@
 {
   "name": "Llama",
   "slug": "llama",
-  "description": "Meta's Large Language Model series, one of the most influential open-weight LLM families",
+  "description": "Metaが開発する大規模言語モデル（LLM）および小規模言語モデル（SLM）シリーズ。2023年2月の初代LLaMAから始まり、Transformerアーキテクチャを採用。パラメータ数よりもトレーニングデータ量の増加に注力し、LLaMA-13BがGPT-3-175Bをほとんどのベンチマークで上回った。英語、ドイツ語、フランス語、イタリア語、ポルトガル語、ヒンディー語、スペイン語、タイ語の8言語に対応。",
   "developer": "Meta",
-  "license": "Llama Community License",
-  "modelType": "BASE"
+  "license": "Llama 4 Community License Agreement",
+  "modelType": "BASE",
+  "huggingface": "https://huggingface.co/meta-llama"
 }

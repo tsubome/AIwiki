@@ -1,9 +1,10 @@
 {
-  "name": "Llama 1 33B",
+  "name": "LLaMA 32.5B",
   "slug": "llama-1-33b",
-  "parameters": "33B",
+  "parameters": "32.5B",
+  "description": "LLaMAの大規模モデル。性能とリソース効率のバランスに優れた選択肢。",
   "releaseDate": "2023-02-24",
   "developer": "Meta",
-  "license": "Llama License (Research)",
+  "license": "LLaMA License (非商用研究専用)",
   "modelType": "BASE"
 }

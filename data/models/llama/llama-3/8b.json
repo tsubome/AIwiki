@@ -2,8 +2,11 @@
   "name": "Llama 3 8B",
   "slug": "llama-3-8b",
   "parameters": "8B",
+  "description": "Llama 3の軽量モデル。15兆トークン以上でトレーニング、コンテキスト長8192トークン。Grouped-Query Attention (GQA)採用。効率的なローカル実行に最適。",
   "releaseDate": "2024-04-18",
   "developer": "Meta",
   "license": "Llama 3 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "contextLength": 8192,
+  "trainingTokens": "15T+"
 }

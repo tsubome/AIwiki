@@ -1,9 +1,10 @@
 {
-  "name": "Llama 1",
+  "name": "LLaMA",
   "slug": "llama-1",
-  "description": "The original Llama model, Meta's first open-weight large language model",
+  "description": "2023年2月24日公開。Metaによる初の大規模言語モデル。当初は研究者向けに非商用ライセンスで公開されたが、数日後にBitTorrentを通じて流出。1.4兆トークンでトレーニングされ、パラメータ効率の最適化に注力。GPT-3の10分の1のサイズながら同等以上の性能を達成し、オープンソースLLM発展の基盤となった。",
   "releaseDate": "2023-02-24",
   "developer": "Meta",
-  "license": "Llama License (Research)",
-  "modelType": "BASE"
+  "license": "LLaMA License (非商用研究専用)",
+  "modelType": "BASE",
+  "huggingface": "https://huggingface.co/meta-llama"
 }

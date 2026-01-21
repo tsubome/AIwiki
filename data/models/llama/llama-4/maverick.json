@@ -1,10 +1,15 @@
 {
   "name": "Llama 4 Maverick",
   "slug": "llama-4-maverick",
-  "description": "400B active / 2T total parameters, MoE architecture",
-  "parameters": "400B/2T",
+  "description": "17Bアクティブ/400B総パラメータのMoEモデル。128エキスパート構成。1Mトークンのコンテキスト長をサポート。GPT-4oやGemini 2.0 Flashと競合する性能を持ち、推論タスクに特化。テキスト・画像・動画の入力に対応。12言語対応。",
+  "parameters": "17B/400B",
+  "activeParameters": "17B",
+  "totalParameters": "400B",
+  "experts": 128,
   "releaseDate": "2025-04-05",
   "developer": "Meta",
   "license": "Llama 4 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "contextLength": 1000000,
+  "huggingface": "https://huggingface.co/meta-llama"
 }

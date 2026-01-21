@@ -1,10 +1,12 @@
 {
   "name": "Code Llama 70B",
   "slug": "code-llama-70b",
-  "description": "Code generation model based on Llama 2",
+  "description": "Code Llamaの最大モデル。Base版のみ16Kトークンでファインチューニングされ推論時100Kサポート。Python版とInstruct版は100Kコンテキストをサポートしない。インフィリング（コード穴埋め）に対応。",
   "parameters": "70B",
   "releaseDate": "2024-01-29",
   "developer": "Meta",
   "license": "Llama 2 Community License",
-  "modelType": "FINETUNE"
+  "modelType": "FINETUNE",
+  "contextLength": 100000,
+  "huggingface": "https://huggingface.co/codellama/CodeLlama-70b-hf"
 }

@@ -2,8 +2,11 @@
   "name": "Llama 3.1 8B",
   "slug": "llama-3-1-8b",
   "parameters": "8B",
+  "description": "Llama 3.1の軽量モデル。128Kコンテキスト長、多言語対応（8言語）、ツール使用機能搭載。15兆トークン以上でトレーニング。効率的なローカル実行に最適。",
   "releaseDate": "2024-07-23",
   "developer": "Meta",
   "license": "Llama 3.1 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "contextLength": 128000,
+  "trainingTokens": "15T+"
 }

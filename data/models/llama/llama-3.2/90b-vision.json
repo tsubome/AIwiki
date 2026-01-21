@@ -1,10 +1,11 @@
 {
   "name": "Llama 3.2 90B Vision",
   "slug": "llama-3-2-90b-vision",
-  "description": "Large multimodal model with vision capabilities",
+  "description": "大規模マルチモーダルVisionモデル。高度な画像理解、複雑なチャート・グラフの解釈、詳細な画像キャプション生成、画像内オブジェクトの位置特定が可能。128Kコンテキスト長。Llama 3.1 70Bベースにビジョンアダプターを追加し、画像推論タスクでクローズドモデルに匹敵する性能を実現。",
   "parameters": "90B",
   "releaseDate": "2024-09-25",
   "developer": "Meta",
   "license": "Llama 3.2 Community License",
-  "modelType": "BASE"
+  "modelType": "BASE",
+  "contextLength": 128000
 }

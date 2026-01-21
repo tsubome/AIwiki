@@ -1,10 +1,12 @@
 {
   "name": "Code Llama 13B",
   "slug": "code-llama-13b",
-  "description": "Code generation model based on Llama 2",
+  "description": "Code Llamaの中規模モデル。Base、Python、Instructの3バリエーション。16Kトークンでファインチューニングされ、推論時は最大100Kトークンをサポート。インフィリング（コード穴埋め）に対応。",
   "parameters": "13B",
   "releaseDate": "2023-08-24",
   "developer": "Meta",
   "license": "Llama 2 Community License",
-  "modelType": "FINETUNE"
+  "modelType": "FINETUNE",
+  "contextLength": 100000,
+  "huggingface": "https://huggingface.co/codellama/CodeLlama-13b-hf"
 }

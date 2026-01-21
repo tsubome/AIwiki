@@ -1,9 +1,12 @@
 {
   "name": "Llama 3.3",
   "slug": "llama-3-3",
-  "description": "Cost-efficient model with 405B-level performance at 70B scale",
+  "description": "2024年12月6日公開。70Bパラメータで405Bモデルに匹敵する性能を実現したコスト効率化バージョン。Instruction-tuned版のみ提供（pretrained版なし）。コンテキスト長128Kトークンをサポート。Llama 3.1互換のプロンプトフォーマットを使用。推論コストを大幅削減。",
   "releaseDate": "2024-12-06",
   "developer": "Meta",
   "license": "Llama 3.3 Community License",
-  "modelType": "BASE"
+  "modelType": "INSTRUCT",
+  "contextLength": 128000,
+  "languages": ["en", "de", "fr", "it", "pt", "hi", "es", "th"],
+  "huggingface": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
 }
