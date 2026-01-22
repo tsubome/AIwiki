@@ -2,13 +2,9 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import type { LLMModel } from '@prisma/client'
+import type { ModelWithChildren } from '@/lib/model-service'
 import ModelFamily from './ModelFamily'
 import ModelFilter from './ModelFilter'
-
-type ModelWithChildren = LLMModel & {
-  children: LLMModel[]
-}
 
 type Props = {
   families: ModelWithChildren[]

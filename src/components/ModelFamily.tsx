@@ -2,11 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
-import type { LLMModel } from '@prisma/client'
-
-type ModelWithChildren = LLMModel & {
-  children: LLMModel[]
-}
+import type { ModelWithChildren } from '@/lib/model-service'
 
 type Props = {
   family: ModelWithChildren
