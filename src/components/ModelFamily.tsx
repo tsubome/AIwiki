@@ -79,11 +79,11 @@ export default function ModelFamily({ family, showAllModels }: Props) {
             </span>
           )}
           {family.releaseDate && (
-            <span className="flex items-center">
+            <span className="flex items-center" suppressHydrationWarning>
               <svg className="w-4 h-4 mr-1 flex-shrink-0" style={{ width: '16px', height: '16px', minWidth: '16px', maxWidth: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              {new Date(family.releaseDate).toLocaleDateString()}
+              {new Date(family.releaseDate).toLocaleDateString('ja-JP')}
             </span>
           )}
         </div>
@@ -107,7 +107,7 @@ export default function ModelFamily({ family, showAllModels }: Props) {
                   <div>
                     <span className="font-medium text-gray-900 dark:text-gray-100">{child.name}</span>
                     {child.releaseDate && (
-                      <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                      <span className="ml-2 text-sm text-gray-500 dark:text-gray-400" suppressHydrationWarning>
                         ({new Date(child.releaseDate).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short' })})
                       </span>
                     )}
