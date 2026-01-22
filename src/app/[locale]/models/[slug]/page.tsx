@@ -6,10 +6,23 @@ import {
   getSiblingVersions,
   getParentModelSlug,
 } from '@/lib/model-service'
-import { Link } from '@/i18n/routing'
+import { getAllModels } from '@/lib/model-loader'
+import { Link, routing } from '@/i18n/routing'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
+}
+
+// Generate static params for all model slugs
+export function generateStaticParams() {
+  const models = getAllModels()
+  const modelSlugs = models.map(m => m.slug)
+  const variantSlugs = models.flatMap(m => m.variants.map(v => v.slug))
+  const allSlugs = [...modelSlugs, ...variantSlugs]
+
+  return routing.locales.flatMap(locale =>
+    allSlugs.map(slug => ({ locale, slug }))
+  )
 }
 
 export async function generateMetadata({ params }: Props) {
