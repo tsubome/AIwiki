@@ -5,6 +5,8 @@ import {
   getFamilyTreeModels,
   getSiblingVersions,
   getParentModelSlug,
+  getFamilyBySlug,
+  getAllFamilySlugs,
 } from '@/lib/model-service'
 import { getAllModels } from '@/lib/model-loader'
 import { Link, routing } from '@/i18n/routing'
@@ -13,12 +15,13 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>
 }
 
-// Generate static params for all model slugs
+// Generate static params for all model and family slugs
 export function generateStaticParams() {
   const models = getAllModels()
   const modelSlugs = models.map(m => m.slug)
   const variantSlugs = models.flatMap(m => m.variants.map(v => v.slug))
-  const allSlugs = [...modelSlugs, ...variantSlugs]
+  const familySlugs = getAllFamilySlugs()
+  const allSlugs = [...new Set([...modelSlugs, ...variantSlugs, ...familySlugs])]
 
   return routing.locales.flatMap(locale =>
     allSlugs.map(slug => ({ locale, slug }))
@@ -26,7 +29,16 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { locale, slug } = await params
+  const { slug } = await params
+
+  // Check if this is a family
+  const family = getFamilyBySlug(slug)
+  if (family) {
+    return {
+      title: `${family.name} - AIwiki`,
+      description: family.description || `${family.name} model family`,
+    }
+  }
 
   // Check if this is a variant - redirect to parent model
   const parentSlug = getParentModelSlug(slug)
@@ -64,6 +76,85 @@ export default async function ModelDetailPage({ params }: Props) {
   const t = await getTranslations('model')
   const tType = await getTranslations('modelType')
 
+  const modelTypeColors: Record<string, string> = {
+    BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    FINETUNE: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    MERGE: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    QUANTIZED: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+    INSTRUCT: 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
+  }
+
+  // Check if this is a family page
+  const family = getFamilyBySlug(slug)
+  if (family) {
+    return (
+      <div className="max-w-4xl mx-auto">
+        {/* Family Header */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            {family.name}
+          </h1>
+
+          {family.developer && (
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              {t('developer')}: {family.developer}
+            </p>
+          )}
+
+          {family.description && (
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              {family.description}
+            </p>
+          )}
+        </div>
+
+        {/* Models in this Family */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            モデル一覧 ({family.models.length})
+          </h2>
+
+          <div className="space-y-4">
+            {family.models.map((model) => (
+              <Link
+                key={model.id}
+                href={`/models/${model.slug}`}
+                className="block p-4 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              >
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                      {model.name}
+                    </h3>
+                    {model.description && (
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                        {model.description}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
+                      <span>{model.variantCount} バリエーション</span>
+                      {model.releaseDate && (
+                        <span suppressHydrationWarning>
+                          {new Date(model.releaseDate).toLocaleDateString('ja-JP')}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <span
+                    className={`px-2 py-1 text-xs font-medium rounded-full ${modelTypeColors[model.modelType] || modelTypeColors.BASE}`}
+                  >
+                    {tType(model.modelType)}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Model page
   const model = getModelBySlug(slug)
 
   if (!model) {
@@ -75,14 +166,6 @@ export default async function ModelDetailPage({ params }: Props) {
 
   // Get family tree models
   const familyModels = getFamilyTreeModels(slug)
-
-  const modelTypeColors: Record<string, string> = {
-    BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-    FINETUNE: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    MERGE: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-    QUANTIZED: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-    INSTRUCT: 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
-  }
 
   return (
     <div className="max-w-4xl mx-auto">

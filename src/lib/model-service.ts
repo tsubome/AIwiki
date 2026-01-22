@@ -239,6 +239,41 @@ export function getAllFamilies(): { name: string; slug: string; modelCount: numb
 }
 
 // ============================================
+// Family Detail Page
+// ============================================
+
+export interface FamilyForDetail {
+  slug: string
+  name: string
+  developer: string | null
+  description: string | null
+  models: ModelForList[]
+}
+
+/**
+ * Get family by slug for the detail page
+ */
+export function getFamilyBySlug(slug: string): FamilyForDetail | null {
+  const family = loadFamily(slug)
+  if (!family) return null
+
+  return {
+    slug: family.slug,
+    name: family.name,
+    developer: family.developer || null,
+    description: family.description || null,
+    models: family.models.map(toModelForList),
+  }
+}
+
+/**
+ * Get all family slugs (for generateStaticParams)
+ */
+export function getAllFamilySlugs(): string[] {
+  return loadAllFamilies().map(f => f.slug)
+}
+
+// ============================================
 // Legacy API (for backward compatibility)
 // Keep these during migration, remove later
 // ============================================
