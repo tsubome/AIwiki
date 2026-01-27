@@ -14,7 +14,9 @@ import {
   getAllModels,
   getSiblingModels,
   getFamilyByModelSlug,
+  getTreeDataByFamilySlug,
 } from './model-loader'
+import type { TreeData, TreeRelationship } from './generated-data'
 import type {
   ResolvedModel,
   ResolvedFamily,
@@ -92,6 +94,9 @@ export interface ModelForTree {
   slug: string
   modelType: string
   releaseDate: Date | null
+  parentId: string | null
+  developer: string | null
+  parameters: string | null
 }
 
 // ============================================
@@ -147,14 +152,28 @@ function toModelForDetail(model: ResolvedModel): ModelForDetail {
   }
 }
 
-function toModelForTree(model: ResolvedModel): ModelForTree {
+function toModelForTree(model: ResolvedModel, familySlug: string): ModelForTree {
   return {
     id: model.id,
     name: model.name,
     slug: model.slug,
     modelType: model.modelType,
     releaseDate: model.releaseDate ? new Date(model.releaseDate) : null,
+    parentId: familySlug, // All models belong to the family
+    developer: model.developer || null,
+    parameters: null, // Version nodes don't have parameters
   }
+}
+
+// TreeNode type for FamilyTreeNew (includes variants as separate nodes)
+export interface TreeNode {
+  id: string
+  name: string
+  slug: string
+  modelType: string
+  parentId: string | null
+  developer: string | null
+  parameters: string | null
 }
 
 // ============================================
@@ -199,12 +218,123 @@ export function getSiblingVersions(modelSlug: string): ModelForList[] {
 }
 
 /**
- * Get all models in the same family for family tree
+ * Helper function to build tree nodes using _tree.json relationships
+ * If _tree.json exists, use it. Otherwise, fall back to baseModel field.
+ *
+ * IMPORTANT: FamilyTreeNew component expects:
+ * - Main evolution line models: parentId = family.slug (direct children of family root)
+ * - Derivative models (finetune, official-derivative, distill): parentId = parent model's id
+ *
+ * The component creates vertical edges between main line models based on array ORDER,
+ * and branch edges to derivatives based on parentId.
  */
-export function getFamilyTreeModels(modelSlug: string): ModelForTree[] {
+function buildTreeNodesForFamily(family: ResolvedFamily): TreeNode[] {
+  const nodes: TreeNode[] = []
+  const treeData = getTreeDataByFamilySlug(family.slug)
+
+  // Build a map of model slug -> relationship for quick lookup
+  const relationshipMap = new Map<string, TreeRelationship>()
+  if (treeData?.relationships) {
+    for (const rel of treeData.relationships) {
+      relationshipMap.set(rel.child, rel)
+    }
+  }
+
+  // 1. Add family root node
+  nodes.push({
+    id: family.slug,
+    name: family.name,
+    slug: family.slug,
+    modelType: 'BASE',
+    parentId: null,
+    developer: family.developer || null,
+    parameters: null,
+  })
+
+  // Build a map of model slug -> model.id for parent resolution
+  const modelIdMap = new Map<string, string>()
+  for (const model of family.models) {
+    modelIdMap.set(model.slug, model.id)
+  }
+
+  // 2. Add each model as a version node
+  for (const model of family.models) {
+    // Determine parentId based on relationship type
+    let parentId = family.slug // Default: direct child of family root
+
+    // Check _tree.json first (priority)
+    const relationship = relationshipMap.get(model.slug)
+    if (relationship) {
+      // Main evolution line (evolution type) stays as direct child of family root
+      // The component will create vertical edges based on array order
+      if (relationship.type === 'evolution') {
+        parentId = family.slug
+      } else if (relationship.parent) {
+        // Derivatives (finetune, official-derivative, distill, etc.)
+        // become children of their parent model
+        const parentModelId = modelIdMap.get(relationship.parent)
+        if (parentModelId) {
+          parentId = parentModelId
+        }
+      }
+    } else if (model.modelType === 'FINETUNE' && model.baseModel) {
+      // Fallback: use baseModel field for FINETUNE without _tree.json entry
+      const baseModelSlug = model.baseModel.split('/').pop()?.toLowerCase()
+      const baseModel = family.models.find(m =>
+        m.slug === baseModelSlug ||
+        m.slug.includes(baseModelSlug || '') ||
+        baseModelSlug?.includes(m.slug)
+      )
+      if (baseModel) {
+        parentId = baseModel.id
+      }
+    }
+
+    // Add the model (version) node
+    nodes.push({
+      id: model.id,
+      name: model.name,
+      slug: model.slug,
+      modelType: model.modelType,
+      parentId,
+      developer: model.developer || null,
+      parameters: null,
+    })
+
+    // 3. Add each variant as a parameter node (child of this model)
+    for (const variant of model.variants) {
+      nodes.push({
+        id: variant.id,
+        name: variant.name,
+        slug: variant.slug,
+        modelType: 'BASE',
+        parentId: model.id,
+        developer: model.developer || null,
+        parameters: variant.parameters,
+      })
+    }
+  }
+
+  return nodes
+}
+
+/**
+ * Get all models in the same family for family tree
+ * Returns a flat array with proper parent-child relationships for FamilyTreeNew
+ */
+export function getFamilyTreeModels(modelSlug: string): TreeNode[] {
   const family = getFamilyByModelSlug(modelSlug)
   if (!family) return []
-  return family.models.map(toModelForTree)
+  return buildTreeNodesForFamily(family)
+}
+
+/**
+ * Get family tree nodes by family slug (for family pages)
+ */
+export function getFamilyTreeByFamilySlug(familySlug: string): TreeNode[] {
+  const family = loadFamily(familySlug)
+  if (!family) return []
+  return buildTreeNodesForFamily(family)
 }
 
 /**
@@ -299,20 +429,20 @@ export interface ModelWithChildren {
 
 const DEFAULT_TIMESTAMP = new Date('2024-01-01')
 
-function toLegacyModel(model: ResolvedModel): ModelWithChildren {
+function toLegacyModel(model: ResolvedModel, parentId: string | null = null): ModelWithChildren {
   const releaseDate = model.releaseDate ? new Date(model.releaseDate) : null
   return {
     id: model.id,
     name: model.name,
     slug: model.slug,
     description: model.description || null,
-    parameters: model.variants[0]?.parameters || null,
+    parameters: null, // Version nodes don't have parameters directly
     releaseDate,
     developer: model.developer || null,
     license: model.license || null,
     huggingface: model.links?.huggingface || null,
     modelType: model.modelType,
-    parentId: null,
+    parentId,
     createdAt: releaseDate || DEFAULT_TIMESTAMP,
     updatedAt: releaseDate || DEFAULT_TIMESTAMP,
     children: [],
@@ -335,7 +465,8 @@ export function getRootModelsWithChildren(): ModelWithChildren[] {
   const families = loadAllFamilies()
 
   return families.map(family => {
-    const children = family.models.map(m => toLegacyModel(m))
+    // Pass family.slug as parentId for each child model
+    const children = family.models.map(m => toLegacyModel(m, family.slug))
 
     return {
       id: family.slug,

@@ -5,7 +5,14 @@
     "home": "Home",
     "models": "Models",
     "language": "Language",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "variants": "{count} variants",
+    "modelList": "Model List",
+    "contextLength": "Context Length",
+    "trainingTokens": "Training Tokens",
+    "supportedLanguages": "Supported Languages",
+    "parameterVariations": "Parameter Variations",
+    "tokens": "tokens"
   },
   "home": {
     "title": "AIwiki - Local LLM Wiki",
@@ -62,7 +69,9 @@
     "legendDerivative": "Derivative",
     "legendCurrent": "Current",
     "saveAsPng": "Save as PNG",
-    "saveAsPdf": "Save as PDF"
+    "saveAsPdf": "Save as PDF",
+    "ftOn": "FT: ON",
+    "ftOff": "FT: OFF"
   },
   "footer": {
     "copyright": "AIwiki - Local LLM Information Wiki"

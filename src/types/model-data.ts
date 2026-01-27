@@ -14,6 +14,44 @@ export interface GGUFFile {
 }
 
 // ============================================
+// Prompt Template (for local LLM users)
+// ============================================
+
+export interface PromptTemplate {
+  format: string         // "llama-3", "chatml", "alpaca", "vicuna", etc.
+  system?: string        // System prompt template
+  user?: string          // User prompt template
+  assistant?: string     // Assistant prompt template
+  stopTokens?: string[]  // ["<|eot_id|>", "<|end_of_text|>"]
+}
+
+// ============================================
+// Hardware Requirements
+// ============================================
+
+export interface HardwareRequirements {
+  minVram?: string       // "6GB" (minimum VRAM for quantized)
+  recommendedVram?: string // "8GB" (recommended VRAM)
+  ram?: string           // "16GB" (RAM for CPU inference)
+  notes?: string         // "Q4_K_M量子化で24GB×2枚構成推奨"
+}
+
+// ============================================
+// Benchmark Scores
+// ============================================
+
+export interface BenchmarkScores {
+  mmlu?: number          // MMLU score
+  mmlupro?: number       // MMLU-Pro score
+  humaneval?: number     // HumanEval (code) score
+  math?: number          // MATH score
+  gpqa?: number          // GPQA Diamond score
+  ifeval?: number        // IFEval score
+  custom?: Record<string, number>  // Other benchmarks
+  source?: string        // "Open LLM Leaderboard 2024-12-01"
+}
+
+// ============================================
 // Model Variants (e.g., 8B, 70B)
 // ============================================
 
@@ -30,6 +68,7 @@ export interface ModelVariant {
   parameterDetails?: ParameterDetails
   description?: string
   huggingface?: string
+  requirements?: HardwareRequirements  // Hardware requirements for this variant
   gguf: GGUFFile[]
 }
 
@@ -43,6 +82,7 @@ export interface ModelSpecs {
   knowledgeCutoff?: string
   languages?: string[]
   architecture?: string
+  promptTemplate?: PromptTemplate  // Prompt format for inference
 }
 
 export interface ModelLinks {
@@ -53,10 +93,29 @@ export interface ModelLinks {
 }
 
 // ============================================
-// Model Types
+// Model Types & Tags
 // ============================================
 
 export type ModelType = 'BASE' | 'FINETUNE' | 'MERGE' | 'QUANTIZED' | 'INSTRUCT'
+
+// Tags for filtering and categorization
+export type ModelTag =
+  | 'official'           // Official model from developer
+  | 'uncensored'         // Uncensored/unfiltered
+  | 'censored'           // Has safety filters
+  | 'roleplay'           // Roleplay optimized
+  | 'coding'             // Code generation
+  | 'math'               // Math/reasoning
+  | 'multilingual'       // Multiple languages
+  | 'japanese'           // Japanese optimized
+  | 'chinese'            // Chinese optimized
+  | 'vision'             // Image understanding
+  | 'long-context'       // Extended context (>32K)
+  | 'fast'               // Optimized for speed
+  | 'moe'                // Mixture of Experts
+  | 'distilled'          // Knowledge distillation
+  | 'merged'             // Merged model
+  | string               // Allow custom tags
 
 // ============================================
 // Model Data (Single JSON file)
@@ -70,6 +129,13 @@ export interface ModelData {
   license?: string       // "Llama 3 Community License"
   modelType: ModelType
   description?: string
+
+  // New fields for local LLM users
+  baseModel?: string     // "meta-llama/Meta-Llama-3-8B" (for finetunes)
+  mergedFrom?: string[]  // ["model-A", "model-B"] (for merged models)
+  tags?: ModelTag[]      // ["official", "coding", "multilingual"]
+  benchmarks?: BenchmarkScores
+
   specs?: ModelSpecs
   links?: ModelLinks
   variants: ModelVariant[]

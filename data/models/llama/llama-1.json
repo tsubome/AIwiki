@@ -1,51 +1,53 @@
 {
-  "name": "Llama 1",
+  "name": "LLaMA 1",
   "slug": "llama-1",
   "releaseDate": "2023-02-24",
   "developer": "Meta",
-  "license": "Llama 1 License (Research Only)",
+  "license": "Non-commercial Research License",
   "modelType": "BASE",
 
-  "description": "2023年2月24日公開。Metaの初代LLMモデル。研究目的のみのライセンスで公開。1.4兆トークンでトレーニングされ、LLaMA-13BがGPT-3-175Bを多くのベンチマークで上回った。Transformerアーキテクチャを採用し、オープンソースLLMの先駆けとなった。",
+  "description": "2023年2月24日公開。Metaの初代大規模言語モデル。公開データのみで学習し、LLaMA-13BがGPT-3 (175B)を多くのベンチマークで上回る効率性を実証。オープンソースLLM革命の起点となった歴史的モデル。Chinchillaスケーリング則に基づく「オーバー・トレーニング」アプローチを採用。",
 
   "specs": {
     "contextLength": 2048,
-    "trainingTokens": "1.4T",
+    "trainingTokens": "1.0T (7B/13B) / 1.4T (33B/65B)",
     "languages": ["en"],
-    "architecture": "Transformer"
+    "architecture": "Decoder-only Transformer (RMSNorm, SwiGLU, RoPE)"
   },
 
   "links": {
+    "paper": "https://arxiv.org/abs/2302.13971",
+    "github": "https://github.com/meta-llama/llama",
     "huggingface": "https://huggingface.co/meta-llama"
   },
 
   "variants": [
     {
-      "name": "Llama 1 7B",
+      "name": "LLaMA 7B",
       "slug": "llama-1-7b",
-      "parameters": "7B",
-      "description": "軽量モデル。研究用途向け。",
+      "parameters": "6.7B",
+      "description": "軽量モデル。単一GPU推論が可能。1兆トークンで学習。",
       "gguf": []
     },
     {
-      "name": "Llama 1 13B",
+      "name": "LLaMA 13B",
       "slug": "llama-1-13b",
       "parameters": "13B",
-      "description": "中規模モデル。GPT-3-175Bを多くのベンチマークで上回る性能。",
+      "description": "GPT-3 (175B)を多くのベンチマークで上回る性能を実証。1兆トークンで学習。",
       "gguf": []
     },
     {
-      "name": "Llama 1 33B",
+      "name": "LLaMA 33B",
       "slug": "llama-1-33b",
-      "parameters": "33B",
-      "description": "大規模モデル。",
+      "parameters": "32.5B",
+      "description": "大規模モデル。1.4兆トークンで学習。30B表記も使用される。",
       "gguf": []
     },
     {
-      "name": "Llama 1 65B",
+      "name": "LLaMA 65B",
       "slug": "llama-1-65b",
-      "parameters": "65B",
-      "description": "最大モデル。最高性能だがリソース要求が高い。",
+      "parameters": "65.2B",
+      "description": "最大モデル。Chinchilla 70B相当の性能。1.4兆トークンで学習。",
       "gguf": []
     }
   ]

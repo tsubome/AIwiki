@@ -6,15 +6,21 @@
   "license": "Llama 2 Community License",
   "modelType": "FINETUNE",
 
-  "description": "2023年8月24日公開。Llama 2をベースにコード生成・理解に特化してファインチューニングされたモデル。500億トークンのコードデータで追加学習。Base、Python特化、Instructの3バリエーションを提供。16Kトークンでファインチューニングされ、推論時は最大100Kトークンをサポート。インフィリング（コード穴埋め）にも対応（7B/13Bのみ）。",
+  "baseModel": "meta-llama/Llama-2",
+  "tags": ["official", "coding"],
+
+  "description": "2023年8月24日公開（70Bは2024年1月追加）。Llama 2をベースに500億コードトークンで追加学習したコード特化モデル。16Kトークンで学習し、推論時は最大100Kトークンをサポート。Base、Python特化、Instructの3バリエーション。Infilling（FIM：コード穴埋め）機能対応（7B/13B/70B）。HumanEval最大67.8%、MBPP最大65.6%達成。",
 
   "specs": {
     "contextLength": 100000,
+    "trainingTokens": "500B (base) / 1T (70B)",
     "languages": ["en"],
-    "architecture": "Transformer with GQA"
+    "architecture": "Transformer with GQA (RoPE拡張: θ=1M)"
   },
 
   "links": {
+    "paper": "https://arxiv.org/abs/2308.12950",
+    "github": "https://github.com/facebookresearch/codellama",
     "huggingface": "https://huggingface.co/codellama"
   },
 
@@ -23,7 +29,7 @@
       "name": "Code Llama 7B",
       "slug": "code-llama-7b",
       "parameters": "7B",
-      "description": "軽量コーディングモデル。インフィリング対応。Base、Python、Instructの3バリエーション。",
+      "description": "軽量コーディングモデル。Infilling対応。Base/Python/Instructの3バリエーション。",
       "huggingface": "https://huggingface.co/codellama/CodeLlama-7b-hf",
       "gguf": []
     },
@@ -31,7 +37,7 @@
       "name": "Code Llama 13B",
       "slug": "code-llama-13b",
       "parameters": "13B",
-      "description": "中規模コーディングモデル。インフィリング対応。Base、Python、Instructの3バリエーション。",
+      "description": "中規模コーディングモデル。Infilling対応。Base/Python/Instructの3バリエーション。",
       "huggingface": "https://huggingface.co/codellama/CodeLlama-13b-hf",
       "gguf": []
     },
@@ -39,7 +45,7 @@
       "name": "Code Llama 34B",
       "slug": "code-llama-34b",
       "parameters": "34B",
-      "description": "大規模コーディングモデル。インフィリング非対応。Base、Python、Instructの3バリエーション。",
+      "description": "大規模コーディングモデル。Infilling非対応。HumanEval 51.8%、MBPP 55%達成。Base/Python/Instructの3バリエーション。",
       "huggingface": "https://huggingface.co/codellama/CodeLlama-34b-hf",
       "gguf": []
     },
@@ -47,7 +53,7 @@
       "name": "Code Llama 70B",
       "slug": "code-llama-70b",
       "parameters": "70B",
-      "description": "最大コーディングモデル。Base版のみ推論時100Kサポート。インフィリング非対応。",
+      "description": "最大コーディングモデル。2024年1月追加。1兆トークンで学習。Infilling対応。HumanEval 67.8%達成。",
       "huggingface": "https://huggingface.co/codellama/CodeLlama-70b-hf",
       "gguf": []
     }

@@ -5,7 +5,14 @@
     "home": "ホーム",
     "models": "モデル一覧",
     "language": "言語",
-    "loading": "読み込み中..."
+    "loading": "読み込み中...",
+    "variants": "{count} バリエーション",
+    "modelList": "モデル一覧",
+    "contextLength": "コンテキスト長",
+    "trainingTokens": "トレーニングトークン",
+    "supportedLanguages": "対応言語",
+    "parameterVariations": "パラメータバリエーション",
+    "tokens": "トークン"
   },
   "home": {
     "title": "AIwiki - ローカルLLM情報Wiki",
@@ -62,7 +69,9 @@
     "legendDerivative": "派生",
     "legendCurrent": "表示中",
     "saveAsPng": "PNGで保存",
-    "saveAsPdf": "PDFで保存"
+    "saveAsPdf": "PDFで保存",
+    "ftOn": "FT: ON",
+    "ftOff": "FT: OFF"
   },
   "footer": {
     "copyright": "AIwiki - ローカルLLM情報Wiki"

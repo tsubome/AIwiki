@@ -3,37 +3,87 @@
   "slug": "llama-3",
   "releaseDate": "2024-04-18",
   "developer": "Meta",
-  "license": "Llama 3 Community License",
+  "license": "Meta Llama 3 Community License",
   "modelType": "BASE",
 
-  "description": "2024年4月18日公開。大幅な性能向上を実現した第3世代モデル。新しい128Kトークナイザーを採用し、15兆トークン以上でトレーニング。コンテキスト長は8Kトークン。最適化されたTransformerアーキテクチャとGrouped-Query Attention (GQA)を採用。",
+  "tags": ["official", "multilingual"],
+
+  "description": "2024年4月18日公開。語彙サイズを128Kトークンに4倍拡大し、15兆トークン以上で学習した第3世代モデル。全サイズでGQA採用。8Bモデルで従来のLlama 2 70Bに匹敵する性能を実現。事前学習・微調整ともにMetaユーザーデータを含まないことを明言。",
 
   "specs": {
     "contextLength": 8192,
     "trainingTokens": "15T+",
+    "knowledgeCutoff": "2023-03 (8B) / 2023-12 (70B)",
     "languages": ["en"],
-    "architecture": "Transformer with GQA"
+    "architecture": "Auto-regressive Decoder-only Transformer (全モデルGQA)",
+    "promptTemplate": {
+      "format": "llama-3",
+      "system": "<|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|>",
+      "user": "<|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|>",
+      "assistant": "<|start_header_id|>assistant<|end_header_id|>\n\n",
+      "stopTokens": ["<|eot_id|>", "<|end_of_text|>"]
+    }
   },
 
   "links": {
-    "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B"
+    "paper": "https://arxiv.org/abs/2407.21783",
+    "github": "https://github.com/meta-llama/llama3",
+    "huggingface": "https://huggingface.co/meta-llama"
   },
 
   "variants": [
     {
-      "name": "Llama 3 8B",
+      "name": "Meta Llama 3 8B",
       "slug": "llama-3-8b",
       "parameters": "8B",
-      "description": "Llama 3の軽量モデル。15兆トークン以上でトレーニング、コンテキスト長8192トークン。Grouped-Query Attention (GQA)採用。効率的なローカル実行に最適。",
+      "description": "軽量ベースモデル。GQA採用で推論効率向上。",
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "requirements": {
+        "minVram": "6GB",
+        "recommendedVram": "8GB",
+        "ram": "16GB"
+      },
       "gguf": []
     },
     {
-      "name": "Llama 3 70B",
+      "name": "Meta Llama 3 8B Instruct",
+      "slug": "llama-3-8b-instruct",
+      "parameters": "8B",
+      "description": "指示追従最適化版。SFT+RLHFで調整。",
+      "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct",
+      "requirements": {
+        "minVram": "6GB",
+        "recommendedVram": "8GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Meta Llama 3 70B",
       "slug": "llama-3-70b",
       "parameters": "70B",
-      "description": "Llama 3の大規模モデル。15兆トークン以上でトレーニングされ、コンテキスト長8192トークン。Grouped-Query Attention (GQA)採用。多くのベンチマークでGPT-4に迫る性能を発揮。",
+      "description": "大規模ベースモデル。多くのベンチマークでGPT-4に迫る性能。",
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B",
+      "requirements": {
+        "minVram": "40GB",
+        "recommendedVram": "48GB",
+        "ram": "140GB",
+        "notes": "Q4_K_M量子化で24GB×2枚推奨"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Meta Llama 3 70B Instruct",
+      "slug": "llama-3-70b-instruct",
+      "parameters": "70B",
+      "description": "指示追従最適化版。SFT+RLHFで調整。",
+      "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct",
+      "requirements": {
+        "minVram": "40GB",
+        "recommendedVram": "48GB",
+        "ram": "140GB",
+        "notes": "Q4_K_M量子化で24GB×2枚推奨"
+      },
       "gguf": []
     }
   ]

@@ -42,3 +42,6 @@ prisma/dev.db-journal
 .idea
 .vscode
 .open-next/
+
+# Generated files
+src/lib/generated-data.ts

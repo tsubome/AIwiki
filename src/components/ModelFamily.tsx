@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import type { ModelWithChildren } from '@/lib/model-service'
 
@@ -19,10 +19,21 @@ const modelTypeColors: Record<string, string> = {
 export default function ModelFamily({ family, showAllModels }: Props) {
   const t = useTranslations('models')
   const tType = useTranslations('modelType')
+  const locale = useLocale()
+
+  // Date formatter based on locale
+  const formatDate = (date: string | Date) => {
+    const d = typeof date === 'string' ? new Date(date) : date
+    return d.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'en-US')
+  }
+  const formatDateShort = (date: string | Date) => {
+    const d = typeof date === 'string' ? new Date(date) : date
+    return d.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'en-US', { year: 'numeric', month: 'short' })
+  }
 
   // Get version nodes (direct children of the family root, typically without parameters)
   // These are the major versions like Llama 1, Llama 2, Llama 3, etc.
-  const versionNodes = family.children
+  const allVersionNodes = family.children
     .filter(child => child.parentId === family.id && !child.parameters)
     .sort((a, b) => {
       // Sort by release date descending (newest first)
@@ -33,14 +44,16 @@ export default function ModelFamily({ family, showAllModels }: Props) {
       return b.name.localeCompare(a.name)
     })
 
-  // Take only the last 5 versions (newest ones)
-  const latestVersions = versionNodes.slice(0, 5)
+  // Filter by modelType FIRST based on showAllModels flag
+  const filteredVersionNodes = showAllModels
+    ? allVersionNodes
+    : allVersionNodes.filter(child => child.modelType === 'BASE')
 
-  // Filter children based on showAllModels flag
-  // Show version nodes instead of parameter variants
-  const visibleChildren = showAllModels
-    ? latestVersions
-    : latestVersions.filter(child => child.modelType === 'BASE')
+  // Take only the first 5 versions (newest ones) AFTER filtering
+  const visibleChildren = filteredVersionNodes.slice(0, 5)
+
+  // Use filtered count for display
+  const totalVersionCount = filteredVersionNodes.length
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -83,7 +96,7 @@ export default function ModelFamily({ family, showAllModels }: Props) {
               <svg className="w-4 h-4 mr-1 flex-shrink-0" style={{ width: '16px', height: '16px', minWidth: '16px', maxWidth: '16px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              {new Date(family.releaseDate).toLocaleDateString('ja-JP')}
+              {formatDate(family.releaseDate)}
             </span>
           )}
         </div>
@@ -93,7 +106,7 @@ export default function ModelFamily({ family, showAllModels }: Props) {
       {visibleChildren.length > 0 && (
         <div className="bg-gray-50 dark:bg-gray-900">
           <div className="px-6 py-2 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700">
-            {t('variants')} ({versionNodes.length}{versionNodes.length > 5 ? '+' : ''})
+            {t('variants')} ({totalVersionCount}{totalVersionCount > 5 ? '+' : ''})
           </div>
           <div className="divide-y divide-gray-200 dark:divide-gray-700">
             {visibleChildren.map((child) => (
@@ -108,7 +121,7 @@ export default function ModelFamily({ family, showAllModels }: Props) {
                     <span className="font-medium text-gray-900 dark:text-gray-100">{child.name}</span>
                     {child.releaseDate && (
                       <span className="ml-2 text-sm text-gray-500 dark:text-gray-400" suppressHydrationWarning>
-                        ({new Date(child.releaseDate).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short' })})
+                        ({formatDateShort(child.releaseDate)})
                       </span>
                     )}
                   </div>
@@ -120,12 +133,12 @@ export default function ModelFamily({ family, showAllModels }: Props) {
                 </span>
               </Link>
             ))}
-            {versionNodes.length > 5 && (
+            {totalVersionCount > 5 && (
               <Link
                 href={`/models/${family.slug}`}
                 className="flex items-center justify-center px-6 py-2 text-sm text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
-                +{versionNodes.length - 5} more...
+                +{totalVersionCount - 5} more...
               </Link>
             )}
           </div>

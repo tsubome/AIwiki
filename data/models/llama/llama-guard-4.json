@@ -1,0 +1,34 @@
+{
+  "name": "Llama Guard 4",
+  "slug": "llama-guard-4",
+  "releaseDate": "2025-04-05",
+  "developer": "Meta",
+  "license": "Llama 4 Community License",
+  "modelType": "FINETUNE",
+
+  "baseModel": "meta-llama/Llama-4-Scout",
+  "tags": ["official", "multilingual", "vision"],
+
+  "description": "Llama 4 ScoutからPruningしたネイティブマルチモーダル安全性分類器。テキスト+複数画像対応。12言語対応。",
+
+  "specs": {
+    "languages": ["en", "de", "fr", "it", "pt", "hi", "es", "th", "vi", "ja", "ko", "zh"],
+    "architecture": "Transformer (Llama 4)"
+  },
+
+  "links": {
+    "github": "https://github.com/meta-llama/PurpleLlama",
+    "huggingface": "https://huggingface.co/meta-llama"
+  },
+
+  "variants": [
+    {
+      "name": "Llama Guard 4 12B",
+      "slug": "llama-guard-4-12b",
+      "parameters": "12B",
+      "description": "Llama 4 Scoutベース。ネイティブマルチモーダル。12言語対応。",
+      "huggingface": "https://huggingface.co/meta-llama",
+      "gguf": []
+    }
+  ]
+}

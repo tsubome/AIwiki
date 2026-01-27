@@ -1,0 +1,35 @@
+{
+  "name": "Llama Guard 1",
+  "slug": "llama-guard-1",
+  "releaseDate": "2023-12-07",
+  "developer": "Meta",
+  "license": "Llama 2 Community License",
+  "modelType": "FINETUNE",
+
+  "baseModel": "meta-llama/Llama-2-7b",
+  "tags": ["official"],
+
+  "description": "Purple Llamaプロジェクトの初代安全性分類器。Llama 2-7Bをベースに、有害な入出力を7つのカテゴリで分類。",
+
+  "specs": {
+    "languages": ["en"],
+    "architecture": "Transformer (Llama 2)"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2312.06674",
+    "github": "https://github.com/meta-llama/PurpleLlama",
+    "huggingface": "https://huggingface.co/meta-llama/LlamaGuard-7b"
+  },
+
+  "variants": [
+    {
+      "name": "Llama Guard 1 7B",
+      "slug": "llama-guard-1-7b",
+      "parameters": "7B",
+      "description": "Llama 2-7Bベース。7つの安全性カテゴリを検出。",
+      "huggingface": "https://huggingface.co/meta-llama/LlamaGuard-7b",
+      "gguf": []
+    }
+  ]
+}

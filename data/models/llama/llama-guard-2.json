@@ -1,0 +1,35 @@
+{
+  "name": "Llama Guard 2",
+  "slug": "llama-guard-2",
+  "releaseDate": "2024-04-18",
+  "developer": "Meta",
+  "license": "Llama 3 Community License",
+  "modelType": "FINETUNE",
+
+  "baseModel": "meta-llama/Meta-Llama-3-8B",
+  "tags": ["official"],
+
+  "description": "Llama 3-8Bベースの安全性分類器。11の安全性カテゴリに拡張。MLCommons標準に準拠。",
+
+  "specs": {
+    "languages": ["en"],
+    "architecture": "Transformer (Llama 3)"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2312.06674",
+    "github": "https://github.com/meta-llama/PurpleLlama",
+    "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-Guard-2-8B"
+  },
+
+  "variants": [
+    {
+      "name": "Llama Guard 2 8B",
+      "slug": "llama-guard-2-8b",
+      "parameters": "8B",
+      "description": "Llama 3-8Bベース。11カテゴリ対応。",
+      "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-Guard-2-8B",
+      "gguf": []
+    }
+  ]
+}

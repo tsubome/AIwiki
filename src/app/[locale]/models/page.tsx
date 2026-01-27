@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server'
 import { getRootModelsWithChildren } from '@/lib/model-service'
 import ModelList from '@/components/ModelList'
 
+// Force static generation
+export const dynamic = 'force-static'
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'models' })

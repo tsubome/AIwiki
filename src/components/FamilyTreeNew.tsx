@@ -390,9 +390,17 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
       const children = childMap.get(versionModel.id) || []
 
       // Parameter variants: children with parameters that are BASE type
-      const paramVariants = children
+      // Deduplicate by parameter value (e.g., 70B and 70B-Instruct both show "70B")
+      const paramVariantsRaw = children
         .filter(c => c.parameters && c.modelType === 'BASE' && filteredModelIds.has(c.id))
         .map(c => ({ id: c.id, slug: c.slug, parameters: c.parameters! }))
+      const paramVariantsMap = new Map<string, { id: string; slug: string; parameters: string }>()
+      paramVariantsRaw.forEach(v => {
+        if (!paramVariantsMap.has(v.parameters)) {
+          paramVariantsMap.set(v.parameters, v)
+        }
+      })
+      const paramVariants = Array.from(paramVariantsMap.values())
 
       // Find derivatives - can be:
       // 1. Direct children that are not BASE type (FINETUNE, etc.) - new file-based structure
@@ -400,21 +408,28 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
       const derivatives: VersionData[] = []
       const seenDerivativeNames = new Set<string>()
 
-      // Check direct children (non-BASE types with parameters)
+      // Check direct children (non-BASE types) - these are derivative models
       children.forEach(child => {
         if (child.modelType !== 'BASE' && filteredModelIds.has(child.id)) {
           // Group derivatives by base name (remove parameter suffix)
           const baseName = child.name.replace(/\s+\d+[BMT]+$/i, '').trim()
           if (!seenDerivativeNames.has(baseName)) {
             seenDerivativeNames.add(baseName)
-            // Find all parameter variants for this derivative
-            const derivativeVariants = children
-              .filter(c =>
-                c.modelType !== 'BASE' &&
-                filteredModelIds.has(c.id) &&
-                c.name.replace(/\s+\d+[BMT]+$/i, '').trim() === baseName
-              )
-              .map(c => ({ id: c.id, slug: c.slug, parameters: c.parameters || '' }))
+
+            // Find parameter variants from the derivative's OWN children
+            // (e.g., Code Llama 7B, 13B are children of code-llama, not llama-2)
+            // Deduplicate by parameter value
+            const derivativeChildren = childMap.get(child.id) || []
+            const derivativeVariantsRaw = derivativeChildren
+              .filter(c => c.parameters && filteredModelIds.has(c.id))
+              .map(c => ({ id: c.id, slug: c.slug, parameters: c.parameters! }))
+            const derivativeVariantsMap = new Map<string, { id: string; slug: string; parameters: string }>()
+            derivativeVariantsRaw.forEach(v => {
+              if (!derivativeVariantsMap.has(v.parameters)) {
+                derivativeVariantsMap.set(v.parameters, v)
+              }
+            })
+            const derivativeVariants = Array.from(derivativeVariantsMap.values())
 
             derivatives.push({
               id: child.id,
@@ -720,7 +735,7 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
                 : 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
             }`}
           >
-            {showFinetuned ? 'FT: ON' : 'FT: OFF'}
+            {showFinetuned ? tTree('ftOn') : tTree('ftOff')}
           </button>
         )}
         <button
@@ -767,14 +782,6 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
         <Controls
           showInteractive={false}
           className={isDark ? 'react-flow-controls-dark' : ''}
-          style={{
-            backgroundColor: isDark ? '#1f2937' : 'white',
-            borderColor: isDark ? '#4b5563' : '#e5e7eb',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            borderRadius: '8px',
-            boxShadow: 'none',
-          }}
         />
       </ReactFlow>
 

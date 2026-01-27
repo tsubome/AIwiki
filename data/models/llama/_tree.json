@@ -1,0 +1,29 @@
+{
+  "description": "Meta Llamaファミリーのモデル関係図",
+  "relationships": [
+    { "child": "llama-1", "parent": null, "type": "evolution" },
+    { "child": "llama-2", "parent": "llama-1", "type": "evolution" },
+    { "child": "llama-3", "parent": "llama-2", "type": "evolution" },
+    { "child": "llama-3.1", "parent": "llama-3", "type": "evolution" },
+    { "child": "llama-3.2", "parent": "llama-3.1", "type": "evolution" },
+    { "child": "llama-3.3", "parent": "llama-3.2", "type": "evolution" },
+    { "child": "llama-4", "parent": "llama-3.3", "type": "evolution" },
+
+    { "child": "code-llama", "parent": "llama-2", "type": "official-derivative" },
+    { "child": "llama-guard-1", "parent": "llama-2", "type": "official-derivative" },
+    { "child": "spirit-lm", "parent": "llama-2", "type": "official-derivative" },
+
+    { "child": "llama-guard-2", "parent": "llama-3", "type": "official-derivative" },
+
+    { "child": "llama-guard-3", "parent": "llama-3.1", "type": "official-derivative" },
+
+    { "child": "llama-guard-4", "parent": "llama-4", "type": "official-derivative" },
+
+    { "child": "swallow-llama2", "parent": "llama-2", "type": "finetune" },
+    { "child": "swallow-llama3", "parent": "llama-3", "type": "finetune" },
+    { "child": "elyza", "parent": "llama-3", "type": "finetune" },
+    { "child": "swallow-llama3.1", "parent": "llama-3.1", "type": "finetune" },
+    { "child": "deepseek-r1-distill", "parent": "llama-3.1", "type": "distill" },
+    { "child": "swallow-llama3.3", "parent": "llama-3.3", "type": "finetune" }
+  ]
+}

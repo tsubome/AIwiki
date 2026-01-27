@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import {
   getModelBySlug,
   getFamilyTreeModels,
+  getFamilyTreeByFamilySlug,
   getSiblingVersions,
   getParentModelSlug,
   getFamilyBySlug,
@@ -10,10 +11,14 @@ import {
 } from '@/lib/model-service'
 import { getAllModels } from '@/lib/model-loader'
 import { Link, routing } from '@/i18n/routing'
+import FamilyTreeNew from '@/components/FamilyTreeNew'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
 }
+
+// Force static generation - no server-side code at runtime
+export const dynamic = 'force-static'
 
 // Generate static params for all model and family slugs
 export function generateStaticParams() {
@@ -74,7 +79,17 @@ export default async function ModelDetailPage({ params }: Props) {
   }
 
   const t = await getTranslations('model')
+  const tCommon = await getTranslations('common')
   const tType = await getTranslations('modelType')
+
+  // Date formatter based on locale
+  const formatDate = (date: string | Date) => {
+    const d = typeof date === 'string' ? new Date(date) : date
+    return d.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'en-US')
+  }
+  const formatNumber = (num: number) => {
+    return num.toLocaleString(locale === 'ja' ? 'ja-JP' : 'en-US')
+  }
 
   const modelTypeColors: Record<string, string> = {
     BASE: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
@@ -87,6 +102,9 @@ export default async function ModelDetailPage({ params }: Props) {
   // Check if this is a family page
   const family = getFamilyBySlug(slug)
   if (family) {
+    // Get family tree nodes for the family page
+    const familyTreeNodes = getFamilyTreeByFamilySlug(slug)
+
     return (
       <div className="max-w-4xl mx-auto">
         {/* Family Header */}
@@ -108,10 +126,20 @@ export default async function ModelDetailPage({ params }: Props) {
           )}
         </div>
 
+        {/* Family Tree */}
+        {familyTreeNodes.length > 1 && (
+          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              {t('familyTree')}
+            </h2>
+            <FamilyTreeNew models={familyTreeNodes} currentModelId={slug} />
+          </div>
+        )}
+
         {/* Models in this Family */}
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            モデル一覧 ({family.models.length})
+            {tCommon('modelList')} ({family.models.length})
           </h2>
 
           <div className="space-y-4">
@@ -132,10 +160,10 @@ export default async function ModelDetailPage({ params }: Props) {
                       </p>
                     )}
                     <div className="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
-                      <span>{model.variantCount} バリエーション</span>
+                      <span>{tCommon('variants', { count: model.variantCount })}</span>
                       {model.releaseDate && (
                         <span suppressHydrationWarning>
-                          {new Date(model.releaseDate).toLocaleDateString('ja-JP')}
+                          {formatDate(model.releaseDate)}
                         </span>
                       )}
                     </div>
@@ -198,27 +226,27 @@ export default async function ModelDetailPage({ params }: Props) {
             <div>
               <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('releaseDate')}</dt>
               <dd className="text-gray-900 dark:text-gray-100" suppressHydrationWarning>
-                {new Date(model.releaseDate).toLocaleDateString('ja-JP')}
+                {formatDate(model.releaseDate)}
               </dd>
             </div>
           )}
           {model.specs?.contextLength && (
             <div>
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">コンテキスト長</dt>
+              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{tCommon('contextLength')}</dt>
               <dd className="text-gray-900 dark:text-gray-100" suppressHydrationWarning>
-                {model.specs.contextLength.toLocaleString('ja-JP')} tokens
+                {formatNumber(model.specs.contextLength)} {tCommon('tokens')}
               </dd>
             </div>
           )}
           {model.specs?.trainingTokens && (
             <div>
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">トレーニングトークン</dt>
+              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{tCommon('trainingTokens')}</dt>
               <dd className="text-gray-900 dark:text-gray-100">{model.specs.trainingTokens}</dd>
             </div>
           )}
           {model.specs?.languages && model.specs.languages.length > 0 && (
             <div>
-              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">対応言語</dt>
+              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{tCommon('supportedLanguages')}</dt>
               <dd className="text-gray-900 dark:text-gray-100">
                 {model.specs.languages.join(', ')}
               </dd>
@@ -255,7 +283,7 @@ export default async function ModelDetailPage({ params }: Props) {
       {model.variants.length > 0 && (
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            パラメータバリエーション
+            {tCommon('parameterVariations')}
           </h2>
 
           <div className="space-y-6">
@@ -290,7 +318,7 @@ export default async function ModelDetailPage({ params }: Props) {
                 {variant.ggufFiles.length > 0 ? (
                   <div className="space-y-2">
                     <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      GGUF ファイル
+                      {t('ggufFiles')}
                     </h4>
                     {variant.ggufFiles.map((file) => (
                       <div
@@ -309,7 +337,7 @@ export default async function ModelDetailPage({ params }: Props) {
                             {file.name}
                             {file.recommended && (
                               <span className="ml-2 text-xs text-primary-600 dark:text-primary-400">
-                                (推奨)
+                                ({t('recommended')})
                               </span>
                             )}
                           </span>
@@ -332,7 +360,7 @@ export default async function ModelDetailPage({ params }: Props) {
                   </div>
                 ) : (
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    GGUFファイルは登録されていません
+                    {t('noGgufFiles')}
                   </p>
                 )}
               </div>
@@ -359,7 +387,7 @@ export default async function ModelDetailPage({ params }: Props) {
                   {sibling.name}
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  {sibling.variantCount} バリエーション
+                  {tCommon('variants', { count: sibling.variantCount })}
                 </p>
               </Link>
             ))}
@@ -367,27 +395,16 @@ export default async function ModelDetailPage({ params }: Props) {
         </div>
       )}
 
-      {/* Family Tree - Simplified for now */}
+      {/* Family Tree */}
       {familyModels.length > 1 && (
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             {t('familyTree')}
           </h2>
-          <div className="flex flex-wrap gap-2">
-            {familyModels.map((fm) => (
-              <Link
-                key={fm.id}
-                href={`/models/${fm.slug}`}
-                className={`px-3 py-2 rounded-lg text-sm ${
-                  fm.slug === slug
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                {fm.name}
-              </Link>
-            ))}
-          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            {t('currentModel')}: <span className="font-medium text-red-600 dark:text-red-400">{model.name}</span>
+          </p>
+          <FamilyTreeNew models={familyModels} currentModelId={model.id} />
         </div>
       )}
     </div>

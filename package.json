@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "generate-data": "node scripts/generate-data.js",
+    "prebuild": "npm run generate-data",
+    "dev": "npm run generate-data && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "build:cloudflare": "opennextjs-cloudflare build",
     "preview:cloudflare": "opennextjs-cloudflare build && wrangler dev",
-    "deploy:cloudflare": "opennextjs-cloudflare build && wrangler deploy"
+    "deploy:cloudflare": "npm run generate-data && opennextjs-cloudflare build && wrangler deploy"
   },
   "dependencies": {
     "@xyflow/react": "^12.3.0",

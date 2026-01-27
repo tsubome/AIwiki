@@ -23,12 +23,13 @@ export default function ModelList({ families }: Props) {
   })
 
   // Count total visible models (version nodes, not parameter variants)
+  // Filter first, then count (matching ModelFamily logic)
   const totalModels = families.reduce((acc, family) => {
-    const versionNodes = family.children.filter(c => c.parentId === family.id && !c.parameters)
-    const visibleVersions = showAllModels
-      ? versionNodes
-      : versionNodes.filter(c => c.modelType === 'BASE')
-    return acc + 1 + Math.min(visibleVersions.length, 5)
+    const allVersionNodes = family.children.filter(c => c.parentId === family.id && !c.parameters)
+    const filteredVersionNodes = showAllModels
+      ? allVersionNodes
+      : allVersionNodes.filter(c => c.modelType === 'BASE')
+    return acc + 1 + filteredVersionNodes.length
   }, 0)
 
   return (

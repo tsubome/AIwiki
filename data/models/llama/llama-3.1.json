@@ -6,18 +6,21 @@
   "license": "Llama 3.1 Community License",
   "modelType": "BASE",
 
-  "description": "2024年7月23日公開。コンテキスト長を128Kトークンに大幅拡張した強化版。405Bパラメータの大規模モデルが初登場し、GPT-4oやClaude 3.5 Sonnetと競合可能な性能を実現。多言語対応（8言語）が強化され、ツール使用機能も追加。15兆トークン以上でトレーニング。",
+  "description": "2024年7月23日公開。コンテキスト長を128Kトークンに16倍拡張。405Bパラメータの史上最大オープンウェイトモデルを投入し、GPT-4oやClaude 3.5 Sonnetと同等の性能を達成。8言語の多言語対応とツール統合機能を実装。16,000基以上のH100 GPUで学習（405B）。合成データ生成やモデル蒸留の親モデルとしても活用推奨。",
 
   "specs": {
     "contextLength": 128000,
-    "trainingTokens": "15T+",
+    "trainingTokens": "15T+ (405B: 15.6T)",
     "knowledgeCutoff": "2023-12",
     "languages": ["en", "de", "fr", "it", "pt", "hi", "es", "th"],
-    "architecture": "Transformer with GQA"
+    "architecture": "Optimized Decoder-only Transformer (全モデルGQA)"
   },
 
   "links": {
-    "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-8B"
+    "paper": "https://arxiv.org/abs/2407.21783",
+    "website": "https://llama.meta.com/",
+    "github": "https://github.com/meta-llama/llama-models",
+    "huggingface": "https://huggingface.co/meta-llama"
   },
 
   "variants": [
@@ -25,24 +28,48 @@
       "name": "Llama 3.1 8B",
       "slug": "llama-3.1-8b",
       "parameters": "8B",
-      "description": "軽量モデル。128Kコンテキスト長、多言語対応、ツール使用機能搭載。効率的なローカル実行に最適。",
+      "description": "軽量ベースモデル。128Kコンテキスト、多言語対応、ツール使用機能。1.46M GPU時間で学習。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-8B",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.1 8B Instruct",
+      "slug": "llama-3.1-8b-instruct",
+      "parameters": "8B",
+      "description": "指示追従最適化版。HumanEval 72.6%達成。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
       "gguf": []
     },
     {
       "name": "Llama 3.1 70B",
       "slug": "llama-3.1-70b",
       "parameters": "70B",
-      "description": "大規模モデル。128Kコンテキスト長、多言語対応、ツール使用機能搭載。Grouped-Query Attention (GQA)採用。",
+      "description": "大規模ベースモデル。128Kコンテキスト、GQA採用。7.0M GPU時間で学習。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-70B",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.1 70B Instruct",
+      "slug": "llama-3.1-70b-instruct",
+      "parameters": "70B",
+      "description": "指示追従最適化版。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
       "gguf": []
     },
     {
       "name": "Llama 3.1 405B",
       "slug": "llama-3.1-405b",
       "parameters": "405B",
-      "description": "Metaの最大オープンウェイトモデル。128Kコンテキスト長、多言語対応、ツール使用機能搭載。GPT-4oやClaude 3.5 Sonnetと競合可能な性能を実現。",
+      "description": "史上最大のオープンウェイトモデル。MMLU 5-shot 87.3%達成。30.84M GPU時間で学習。FP8量子化でシングルノード実行可能。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-405B",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.1 405B Instruct",
+      "slug": "llama-3.1-405b-instruct",
+      "parameters": "405B",
+      "description": "指示追従最適化版。HumanEval 89.0%達成。合成データ生成・蒸留用の親モデルとして推奨。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
       "gguf": []
     }
   ]

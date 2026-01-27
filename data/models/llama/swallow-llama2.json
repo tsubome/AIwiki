@@ -1,0 +1,65 @@
+{
+  "name": "Swallow (Llama 2)",
+  "slug": "swallow-llama2",
+  "releaseDate": "2023-12-19",
+  "developer": "東京工業大学 / 産総研",
+  "license": "Llama 2 Community License",
+  "modelType": "FINETUNE",
+
+  "baseModel": "meta-llama/Llama-2-7b",
+  "tags": ["japanese", "multilingual"],
+
+  "description": "東京工業大学と産業技術総合研究所が開発した日本語特化モデル。Llama 2をベースに日本語データで継続事前学習を行い、日本語性能を大幅に向上。",
+
+  "specs": {
+    "contextLength": 4096,
+    "languages": ["ja", "en"],
+    "architecture": "Transformer"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/tokyotech-llm"
+  },
+
+  "variants": [
+    {
+      "name": "Swallow 7B",
+      "slug": "swallow-7b-llama2",
+      "parameters": "7B",
+      "description": "Llama 2 7Bベースの日本語特化モデル。",
+      "huggingface": "https://huggingface.co/tokyotech-llm/Swallow-7b-hf",
+      "requirements": {
+        "minVram": "6GB",
+        "recommendedVram": "8GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Swallow 13B",
+      "slug": "swallow-13b-llama2",
+      "parameters": "13B",
+      "description": "Llama 2 13Bベースの日本語特化モデル。",
+      "huggingface": "https://huggingface.co/tokyotech-llm/Swallow-13b-hf",
+      "requirements": {
+        "minVram": "10GB",
+        "recommendedVram": "16GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Swallow 70B",
+      "slug": "swallow-70b-llama2",
+      "parameters": "70B",
+      "description": "Llama 2 70Bベースの日本語特化モデル。高い日本語性能。",
+      "huggingface": "https://huggingface.co/tokyotech-llm/Swallow-70b-hf",
+      "requirements": {
+        "minVram": "40GB",
+        "recommendedVram": "48GB",
+        "ram": "140GB"
+      },
+      "gguf": []
+    }
+  ]
+}

@@ -2,21 +2,27 @@
   "name": "Llama",
   "slug": "llama",
   "developer": "Meta",
-  "description": "Metaが開発する大規模言語モデル（LLM）および小規模言語モデル（SLM）シリーズ。2023年2月の初代LLaMAから始まり、Transformerアーキテクチャを採用。パラメータ数よりもトレーニングデータ量の増加に注力し、LLaMA-13BがGPT-3-175Bをほとんどのベンチマークで上回った。",
+  "description": "Metaが開発する大規模言語モデル（LLM）シリーズ。2023年2月のLLaMA 1から始まり、オープンソースLLM革命を牽引。Llama 4ではMixture of Experts（MoE）とネイティブマルチモーダルを採用し、最大10Mトークンのコンテキストを実現。派生モデルとしてCode Llama（コード特化）、Llama Guard（安全性分類）も提供。",
   "website": "https://llama.meta.com",
   "versions": [
     "llama-1",
     "llama-2",
     "code-llama",
-    "llama-guard",
+    "llama-guard-1",
     "spirit-lm",
+    "swallow-llama2",
     "llama-3",
+    "llama-guard-2",
+    "swallow-llama3",
+    "elyza",
     "llama-3.1",
+    "llama-guard-3",
+    "swallow-llama3.1",
+    "deepseek-r1-distill",
     "llama-3.2",
     "llama-3.3",
+    "swallow-llama3.3",
     "llama-4",
-    "swallow",
-    "elyza",
-    "deepseek-r1-distill"
+    "llama-guard-4"
   ]
 }

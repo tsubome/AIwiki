@@ -6,49 +6,84 @@
   "license": "Llama 3.2 Community License",
   "modelType": "BASE",
 
-  "description": "2024年9月25日公開。エッジデバイス向けの軽量モデル（1B/3B）と、初のマルチモーダル対応Vision版（11B/90B）を導入。Vision版は画像理解と文書分析が可能。軽量モデルはローカルデプロイに最適化され、Qualcomm・MediaTekとの提携でモバイルデバイス対応を強化。量子化版（QAT+LoRA、SpinQuant）も提供。",
+  "description": "2024年9月25日公開。エッジ/モバイル向け軽量テキストモデル（1B/3B）と初のマルチモーダルVisionモデル（11B/90B）を投入。軽量モデルはLlama 3.1 8Bからの構造化プルーニングと知識蒸留で開発。Visionモデルは60億画像-テキストペアで学習。Qualcomm・MediaTekと提携しモバイル最適化。Visionモデルは画像+テキスト入力に対応（EU制限あり）。",
 
   "specs": {
     "contextLength": 128000,
+    "trainingTokens": "最大9T (1B/3B)",
+    "knowledgeCutoff": "2023-12",
     "languages": ["en", "de", "fr", "it", "pt", "hi", "es", "th"],
-    "architecture": "Transformer / Vision Transformer"
+    "architecture": "Auto-regressive Transformer (GQA) / Vision Adapter"
   },
 
   "links": {
-    "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-1B"
+    "github": "https://github.com/meta-llama/llama-models",
+    "huggingface": "https://huggingface.co/meta-llama"
   },
 
   "variants": [
     {
       "name": "Llama 3.2 1B",
       "slug": "llama-3.2-1b",
-      "parameters": "1B",
-      "description": "エッジデバイス向けの超軽量モデル。128Kコンテキスト長、多言語対応。要約、指示追従、リライトなどのテキストタスクに最適化。量子化版も提供。",
+      "parameters": "1.23B",
+      "description": "エッジ向け超軽量ベースモデル。Llama 3.1 8Bからのpruning+蒸留。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-1B",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.2 1B Instruct",
+      "slug": "llama-3.2-1b-instruct",
+      "parameters": "1.23B",
+      "description": "指示追従最適化版。要約・リライト等のテキストタスクに最適化。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
       "gguf": []
     },
     {
       "name": "Llama 3.2 3B",
       "slug": "llama-3.2-3b",
-      "parameters": "3B",
-      "description": "エッジデバイス向けの軽量モデル。128Kコンテキスト長、多言語対応。1Bより高い性能を発揮。量子化版も提供。",
+      "parameters": "3.21B",
+      "description": "エッジ向け軽量ベースモデル。Llama 2 7Bを凌駕する性能。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-3B",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.2 3B Instruct",
+      "slug": "llama-3.2-3b-instruct",
+      "parameters": "3.21B",
+      "description": "指示追従最適化版。モバイルデバイスでの動作を想定。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
       "gguf": []
     },
     {
       "name": "Llama 3.2 11B Vision",
       "slug": "llama-3.2-11b-vision",
-      "parameters": "11B",
-      "description": "マルチモーダル対応Visionモデル。画像理解、チャート・グラフの解釈、画像からのキャプション生成、画像内オブジェクトの位置特定が可能。Llama 3.1 8Bベース。",
+      "parameters": "10.6B",
+      "description": "マルチモーダルVisionベースモデル。Llama 3.1 8B + Vision Adapter（3B）。画像理解・チャート解釈が可能。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-11B-Vision",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.2 11B Vision Instruct",
+      "slug": "llama-3.2-11b-vision-instruct",
+      "parameters": "10.6B",
+      "description": "Vision指示追従最適化版。300万以上の合成例でInstruction tuning。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct",
       "gguf": []
     },
     {
       "name": "Llama 3.2 90B Vision",
       "slug": "llama-3.2-90b-vision",
-      "parameters": "90B",
-      "description": "大規模マルチモーダルVisionモデル。高度な画像理解、複雑なチャート・グラフの解釈が可能。Llama 3.1 70Bベースにビジョンアダプターを追加。",
+      "parameters": "88.8B",
+      "description": "大規模マルチモーダルVisionモデル。Llama 3.1 70B + Vision Adapter（20B）。",
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-90B-Vision",
+      "gguf": []
+    },
+    {
+      "name": "Llama 3.2 90B Vision Instruct",
+      "slug": "llama-3.2-90b-vision-instruct",
+      "parameters": "88.8B",
+      "description": "大規模Vision指示追従最適化版。高度な画像理解と複雑なチャート解釈が可能。",
+      "huggingface": "https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct",
       "gguf": []
     }
   ]

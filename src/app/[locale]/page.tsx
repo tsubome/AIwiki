@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/routing'
 import { getModelsForList } from '@/lib/model-service'
 
+// Force static generation
+export const dynamic = 'force-static'
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
@@ -12,9 +15,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 }
 
-export default async function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const t = await getTranslations('home')
+  const tCommon = await getTranslations('common')
   const tType = await getTranslations('modelType')
+
+  // Date formatter based on locale
+  const formatDate = (date: string | Date) => {
+    const d = typeof date === 'string' ? new Date(date) : date
+    return d.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'en-US')
+  }
 
   // Get latest models sorted by release date
   const allModels = getModelsForList()
@@ -88,11 +99,11 @@ export default async function HomePage() {
 
               <div className="mt-4 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                 <span className="flex items-center">
-                  {model.variantCount} バリエーション
+                  {tCommon('variants', { count: model.variantCount })}
                 </span>
                 {model.releaseDate && (
                   <span className="flex items-center" suppressHydrationWarning>
-                    {new Date(model.releaseDate).toLocaleDateString('ja-JP')}
+                    {formatDate(model.releaseDate)}
                   </span>
                 )}
               </div>

@@ -6,6 +6,9 @@
   "license": "Llama 2 Community License",
   "modelType": "FINETUNE",
 
+  "baseModel": "meta-llama/Llama-2-7b",
+  "tags": ["official", "multilingual"],
+
   "description": "Metaが開発したマルチモーダル言語モデル。テキストと音声を自由に混在して処理可能。Llama 2をベースに、音声トークンを追加学習することで、テキストから音声、音声からテキストへのシームレスな変換を実現。表現豊かな音声生成が可能。",
 
   "specs": {
