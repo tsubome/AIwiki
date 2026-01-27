@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getRootModelsWithChildren } from '@/lib/model-service'
 import ModelList from '@/components/ModelList'
 
@@ -15,7 +15,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 }
 
-export default async function ModelsPage() {
+export default async function ModelsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+
+  // Enable static rendering for this locale
+  setRequestLocale(locale)
+
   const t = await getTranslations('models')
 
   // Load families from directory-based data

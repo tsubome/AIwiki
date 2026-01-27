@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import {
   getModelBySlug,
   getFamilyTreeModels,
@@ -71,6 +71,9 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ModelDetailPage({ params }: Props) {
   const { locale, slug } = await params
+
+  // Enable static rendering for this locale
+  setRequestLocale(locale)
 
   // Check if this is a variant - redirect to parent model
   const parentSlug = getParentModelSlug(slug)

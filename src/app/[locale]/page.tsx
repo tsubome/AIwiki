@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/routing'
 import { getModelsForList } from '@/lib/model-service'
 
@@ -17,6 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
+
+  // Enable static rendering for this locale
+  setRequestLocale(locale)
+
   const t = await getTranslations('home')
   const tCommon = await getTranslations('common')
   const tType = await getTranslations('modelType')
