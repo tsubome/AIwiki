@@ -1,0 +1,45 @@
+{
+  "name": "Codestral Mamba",
+  "slug": "codestral-mamba",
+  "releaseDate": "2024-07-16",
+  "developer": "Mistral AI",
+  "license": "Apache-2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "code-generation", "mamba", "ssm", "long-context", "open-source"],
+
+  "description": {
+    "ja": "Mamba 2アーキテクチャベースのコードモデル。2024年7月16日公開。State Space Models（SSM）により線形時間推論を実現。理論上無限長シーケンス対応。7Bパラメータながら22B Codestralに匹敵する性能。256Kコンテキスト。入力長に関係なく高速推論。",
+    "en": "Code model based on Mamba 2 architecture. Released July 16, 2024. Achieves linear-time inference via State Space Models (SSM). Theoretically handles infinite-length sequences. 7B parameters matching 22B Codestral performance. 256K context. Fast inference regardless of input length."
+  },
+
+  "specs": {
+    "contextLength": 256000,
+    "knowledgeCutoff": "2024-Q2",
+    "languages": ["en", "code"],
+    "architecture": "Mamba 2, State Space Models (SSM), Linear-time inference"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/codestral-mamba"
+  },
+
+  "variants": [
+    {
+      "name": "Codestral Mamba 7B",
+      "slug": "codestral-mamba-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "7Bパラメータで22B相当の性能。10B未満で最高のコード性能。",
+        "en": "7B parameters with 22B-equivalent performance. Best code performance under 10B."
+      },
+      "huggingface": "https://huggingface.co/mistralai/mamba-codestral-7B-v0.1",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    }
+  ]
+}

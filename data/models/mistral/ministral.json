@@ -1,0 +1,59 @@
+{
+  "name": "Ministral",
+  "slug": "ministral",
+  "releaseDate": "2024-10-16",
+  "developer": "Mistral AI",
+  "license": "Mistral Research License",
+  "modelType": "BASE",
+
+  "tags": ["official", "text-generation", "edge", "efficient", "on-device"],
+
+  "description": {
+    "ja": "Mistral AIのエッジ向け小型モデル。2024年10月16日公開。3Bと8Bの2サイズ展開。8BはインターリーブドSliding Window Attentionで高速・メモリ効率的推論を実現。オンデバイス、プライバシー優先の推論向け。LLaMA 3.1 8B、Mistral 7Bを上回る性能。128Kコンテキスト。",
+    "en": "Mistral AI's edge-optimized small models. Released October 16, 2024. Available in 3B and 8B sizes. 8B uses Interleaved Sliding Window Attention for fast, memory-efficient inference. For on-device, privacy-first inference. Outperforms LLaMA 3.1 8B, Mistral 7B. 128K context."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2024-Q3",
+    "languages": ["en", "fr", "de", "es", "it"],
+    "architecture": "Dense Transformer, Interleaved Sliding Window Attention (8B)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/ministraux"
+  },
+
+  "variants": [
+    {
+      "name": "Ministral 3B",
+      "slug": "ministral-3b",
+      "parameters": "3B",
+      "description": {
+        "ja": "最軽量版。LLaMA 3.2 3Bを上回る性能。",
+        "en": "Lightest version. Outperforms LLaMA 3.2 3B."
+      },
+      "requirements": {
+        "minVram": "8GB",
+        "notes": "INT4: 2GB, Mobile/edge deployment"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Ministral 8B Instruct (2410)",
+      "slug": "ministral-8b-instruct-2410",
+      "parameters": "8B",
+      "description": {
+        "ja": "インターリーブドSWA採用。LLaMA 3.1 8B超。エージェントワークフロー向け。",
+        "en": "Interleaved SWA. Outperforms LLaMA 3.1 8B. For agent workflows."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "requirements": {
+        "minVram": "20GB",
+        "notes": "INT4: 6GB"
+      },
+      "gguf": []
+    }
+  ]
+}

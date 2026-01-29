@@ -1,0 +1,76 @@
+{
+  "name": "Mistral Large",
+  "slug": "mistral-large",
+  "releaseDate": "2024-02-26",
+  "developer": "Mistral AI",
+  "license": "Mistral Research License",
+  "modelType": "BASE",
+
+  "tags": ["official", "text-generation", "multilingual", "function-calling", "long-context"],
+
+  "benchmarks": {
+    "mmlu": 84.0,
+    "humaneval": 92.1,
+    "math": 76.9,
+    "custom": {
+      "gsm8k": 93.1
+    },
+    "source": "https://mistral.ai/news/mistral-large-2407"
+  },
+
+  "description": {
+    "ja": "Mistral AIのフラッグシップモデル。Large（2024年2月）、Large 2（2024年7月）、Large 2.1（2024年11月）と進化。128Kコンテキスト、80以上のコーディング言語対応。ネイティブ関数呼び出し。12言語以上対応（日本語含む）。",
+    "en": "Mistral AI's flagship model. Evolved through Large (Feb 2024), Large 2 (Jul 2024), Large 2.1 (Nov 2024). 128K context, 80+ coding languages. Native function calling. 12+ languages including Japanese."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2024-Q2",
+    "languages": ["en", "fr", "de", "es", "it", "pt", "ar", "hi", "ru", "zh", "ja", "ko"],
+    "architecture": "Dense Transformer, Native function calling, 80+ coding languages",
+    "promptTemplate": {
+      "format": "mistral-large",
+      "system": "<s>[SYSTEM_PROMPT] {system_prompt}[/SYSTEM_PROMPT]",
+      "user": "[INST] {user_message}[/INST]",
+      "assistant": "{assistant_response}</s>",
+      "stopTokens": ["</s>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/mistral-large-2407"
+  },
+
+  "variants": [
+    {
+      "name": "Mistral Large 2 (2407)",
+      "slug": "mistral-large-2-2407",
+      "parameters": "123B",
+      "description": {
+        "ja": "2024年7月リリース。123Bパラメータ。MMLU 84.0%、HumanEval 92.1%達成。",
+        "en": "Released July 2024. 123B parameters. Achieves 84.0% on MMLU, 92.1% on HumanEval."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
+      "requirements": {
+        "minVram": "250GB",
+        "notes": "INT4: 65GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Mistral Large 2.1 (2411)",
+      "slug": "mistral-large-2.1-2411",
+      "parameters": "123B",
+      "description": {
+        "ja": "2024年11月リリース。長文理解、システムプロンプト、関数呼び出しを改善。",
+        "en": "Released November 2024. Improved long-context understanding, system prompts, and function calling."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2411",
+      "requirements": {
+        "minVram": "250GB"
+      },
+      "gguf": []
+    }
+  ]
+}

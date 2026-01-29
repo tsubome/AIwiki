@@ -1,0 +1,87 @@
+{
+  "name": "Mistral Small",
+  "slug": "mistral-small",
+  "releaseDate": "2024-09-01",
+  "developer": "Mistral AI",
+  "license": "Apache-2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "text-generation", "efficient", "vision", "open-source"],
+
+  "description": {
+    "ja": "Mistral AIの効率重視モデル。Small 2（2024年9月）からSmall 3（2025年1月）、Small 3.1（ビジョン追加、2025年3月）、Small 3.2（2025年6月）と進化。24Bパラメータ。低レイテンシ、高効率の指示追従。エンタープライズグレードの効率性。",
+    "en": "Mistral AI's efficiency-focused model. Evolved from Small 2 (Sep 2024) to Small 3 (Jan 2025), Small 3.1 (vision added, Mar 2025), Small 3.2 (Jun 2025). 24B parameters. Low latency, high-efficiency instruction following. Enterprise-grade efficiency."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2025-Q1",
+    "languages": ["en", "fr", "de", "es", "it"],
+    "architecture": "Dense Transformer, Vision encoder (Small 3.1+)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/mistral-small-3-1"
+  },
+
+  "variants": [
+    {
+      "name": "Mistral Small 3 Base (2501)",
+      "slug": "mistral-small-3-base-2501",
+      "parameters": "24B",
+      "description": {
+        "ja": "2025年1月リリース。24Bパラメータベースモデル。128Kコンテキスト。",
+        "en": "Released January 2025. 24B parameter base model. 128K context."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Small-24B-Base-2501",
+      "requirements": {
+        "minVram": "55GB",
+        "notes": "INT4: 15GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Mistral Small 3 Instruct (2501)",
+      "slug": "mistral-small-3-instruct-2501",
+      "parameters": "24B",
+      "description": {
+        "ja": "指示チューニング版。低レイテンシ、高効率。",
+        "en": "Instruction-tuned variant. Low latency, high efficiency."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501",
+      "requirements": {
+        "minVram": "55GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Mistral Small 3.1 (2503)",
+      "slug": "mistral-small-3.1-2503",
+      "parameters": "24B",
+      "description": {
+        "ja": "2025年3月リリース。ビジョン機能追加。より効率的。",
+        "en": "Released March 2025. Vision capability added. More efficient."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503",
+      "requirements": {
+        "minVram": "55GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Mistral Small 3.2 (2506)",
+      "slug": "mistral-small-3.2-2506",
+      "parameters": "24B",
+      "description": {
+        "ja": "2025年6月リリース。テキストとビジョンの両方で最高クラスの性能。",
+        "en": "Released June 2025. Top-tier performance in both text and vision."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+      "requirements": {
+        "minVram": "55GB"
+      },
+      "gguf": []
+    }
+  ]
+}

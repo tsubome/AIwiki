@@ -1,0 +1,57 @@
+{
+  "name": "Pixtral Large",
+  "slug": "pixtral-large",
+  "releaseDate": "2024-11-18",
+  "developer": "Mistral AI",
+  "license": "Mistral Research License",
+  "modelType": "BASE",
+  "baseModel": "mistral-large",
+
+  "tags": ["official", "multimodal", "vision", "frontier", "document-understanding"],
+
+  "benchmarks": {
+    "custom": {
+      "mathvista": 69.4
+    },
+    "source": "https://mistral.ai/news/pixtral-large"
+  },
+
+  "description": {
+    "ja": "Mistral AIのフロンティアクラスマルチモーダルモデル。2024年11月18日公開。Mistral Large 2ベース。テキスト123B+ビジョンエンコーダー1Bで合計124Bパラメータ。最大30枚の高解像度画像を同時処理。MathVista 69.4%でGPT-4o、Claude-3.5 Sonnetを超越。128Kコンテキスト。",
+    "en": "Mistral AI's frontier-class multimodal model. Released November 18, 2024. Based on Mistral Large 2. 123B text + 1B vision encoder = 124B total parameters. Processes up to 30 high-resolution images simultaneously. 69.4% on MathVista, surpassing GPT-4o and Claude-3.5 Sonnet. 128K context."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2024-Q3",
+    "languages": ["en", "fr", "de", "es", "it"],
+    "architecture": "Multimodal Transformer, 1B vision encoder, Document/Chart/Image understanding"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/pixtral-large"
+  },
+
+  "variants": [
+    {
+      "name": "Pixtral Large Instruct (2411)",
+      "slug": "pixtral-large-instruct-2411",
+      "parameters": "124B",
+      "parameterDetails": {
+        "total": "124B",
+        "active": "124B"
+      },
+      "description": {
+        "ja": "テキスト123B+ビジョン1B。MathVista、DocVQA、ChartQAでGPT-4o超。",
+        "en": "123B text + 1B vision. Surpasses GPT-4o on MathVista, DocVQA, ChartQA."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411",
+      "requirements": {
+        "minVram": "260GB",
+        "notes": "INT4: 70GB"
+      },
+      "gguf": []
+    }
+  ]
+}

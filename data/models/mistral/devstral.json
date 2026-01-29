@@ -1,0 +1,81 @@
+{
+  "name": "Devstral",
+  "slug": "devstral",
+  "releaseDate": "2025-05-01",
+  "developer": "Mistral AI",
+  "license": "Commercial",
+  "modelType": "BASE",
+
+  "tags": ["official", "code-generation", "development", "agentic"],
+
+  "description": {
+    "ja": "Mistral AIの開発者・コーディング特化モデル。2025年5月公開。AI支援ソフトウェア開発に最適化。Devstral Small 2（2025年12月）はQwen 3 Coder Flash（30B）を上回る性能。Mistral Vibe CLIツールと統合。",
+    "en": "Mistral AI's developer and coding specialized model. Released May 2025. Optimized for AI-assisted software development. Devstral Small 2 (Dec 2025) outperforms Qwen 3 Coder Flash (30B). Integrates with Mistral Vibe CLI tool."
+  },
+
+  "specs": {
+    "knowledgeCutoff": "2025-Q2",
+    "languages": ["en", "code"],
+    "architecture": "Dense Transformer, Development-optimized"
+  },
+
+  "links": {
+    "website": "https://mistral.ai"
+  },
+
+  "variants": [
+    {
+      "name": "Devstral Small",
+      "slug": "devstral-small",
+      "parameters": "Unknown",
+      "description": {
+        "ja": "初期リリース。開発タスク向け。",
+        "en": "Initial release. For development tasks."
+      },
+      "requirements": {
+        "notes": "API only"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Devstral Small 1.1 (2507)",
+      "slug": "devstral-small-1.1-2507",
+      "parameters": "Unknown",
+      "description": {
+        "ja": "2025年7月リリース。改良版。",
+        "en": "Released July 2025. Improved version."
+      },
+      "requirements": {
+        "notes": "API only"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Devstral Small 2 (2512)",
+      "slug": "devstral-small-2-2512",
+      "parameters": "24B",
+      "description": {
+        "ja": "2025年12月リリース。24Bパラメータ。Qwen 3 Coder Flash（30B）超。",
+        "en": "Released December 2025. 24B parameters. Outperforms Qwen 3 Coder Flash (30B)."
+      },
+      "requirements": {
+        "minVram": "55GB",
+        "notes": "INT4: 15GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Devstral Medium",
+      "slug": "devstral-medium",
+      "parameters": "Unknown",
+      "description": {
+        "ja": "中型版。エンタープライズ向け。",
+        "en": "Medium version. For enterprise."
+      },
+      "requirements": {
+        "notes": "API only"
+      },
+      "gguf": []
+    }
+  ]
+}

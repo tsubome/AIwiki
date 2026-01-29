@@ -1,0 +1,30 @@
+{
+  "name": "Mistral",
+  "slug": "mistral",
+  "developer": "Mistral AI",
+  "description": {
+    "ja": "Mistral AIが開発するLLMシリーズ。2023年4月にフランス・パリで設立。創業者はGoogle DeepMindとMeta出身。Sliding Window AttentionやMixture-of-Experts（MoE）アーキテクチャの革新で知られる。オープンソースへのコミットメントと効率性重視のアプローチが特徴。テキスト生成（Mistral/Mixtral/Large/Small）、コード（Codestral）、数学（Mathstral）、マルチモーダル（Pixtral）、推論（Magistral）、音声（Voxtral）など多様なモデルを展開。",
+    "en": "LLM series developed by Mistral AI, founded in Paris, France in April 2023. Founders are from Google DeepMind and Meta. Known for innovations in Sliding Window Attention and Mixture-of-Experts (MoE) architecture. Characterized by commitment to open source and efficiency-focused approach. Diverse model lineup including text generation (Mistral/Mixtral/Large/Small), code (Codestral), math (Mathstral), multimodal (Pixtral), reasoning (Magistral), and audio (Voxtral)."
+  },
+  "website": "https://mistral.ai",
+  "versions": [
+    "mistral-7b",
+    "mixtral-8x7b",
+    "mixtral-8x22b",
+    "mistral-large",
+    "mistral-small",
+    "mistral-medium",
+    "codestral",
+    "codestral-mamba",
+    "mathstral",
+    "mistral-nemo",
+    "pixtral-12b",
+    "ministral",
+    "pixtral-large",
+    "mistral-saba",
+    "magistral",
+    "voxtral",
+    "devstral",
+    "mistral-large-3"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "Mathstral",
+  "slug": "mathstral",
+  "releaseDate": "2024-07-16",
+  "developer": "Mistral AI",
+  "license": "Apache-2.0",
+  "modelType": "FINETUNE",
+  "baseModel": "mistral-7b",
+
+  "tags": ["official", "math", "reasoning", "stem", "open-source"],
+
+  "benchmarks": {
+    "mmlu": 63.47,
+    "math": 56.6,
+    "custom": {
+      "math-majority": 68.37,
+      "math-prm": 74.59
+    },
+    "source": "https://mistral.ai/news/mathstral"
+  },
+
+  "description": {
+    "ja": "数学・STEM特化モデル。2024年7月16日公開。Project Numinaとの共同開発。Mistral 7Bベースの命令チューニング。複雑な多段階論理推論、数学的証明、科学計算に最適化。MATH 56.6%（単一）、68.37%（多数決）、74.59%（報酬モデル選択）達成。",
+    "en": "Math and STEM specialized model. Released July 16, 2024. Co-developed with Project Numina. Instruction-tuned from Mistral 7B. Optimized for complex multi-step reasoning, mathematical proofs, and scientific computation. Achieves 56.6% (single), 68.37% (majority), 74.59% (PRM) on MATH."
+  },
+
+  "specs": {
+    "contextLength": 32768,
+    "knowledgeCutoff": "2024-Q2",
+    "languages": ["en"],
+    "architecture": "Dense Transformer, Instruction-tuned for math reasoning"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/mathstral"
+  },
+
+  "variants": [
+    {
+      "name": "Mathstral 7B v0.1",
+      "slug": "mathstral-7b-v0.1",
+      "parameters": "7B",
+      "description": {
+        "ja": "数学・STEM推論特化。MATH 56.6%達成。",
+        "en": "Specialized for math/STEM reasoning. Achieves 56.6% on MATH."
+      },
+      "huggingface": "https://huggingface.co/mistralai/mathstral-7B-v0.1",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    }
+  ]
+}

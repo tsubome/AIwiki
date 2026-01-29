@@ -1,0 +1,60 @@
+{
+  "name": "Mistral NeMo",
+  "slug": "mistral-nemo",
+  "releaseDate": "2024-07-18",
+  "developer": "Mistral AI",
+  "license": "Apache-2.0",
+  "modelType": "BASE",
+  "baseModel": "mistral-7b",
+
+  "tags": ["official", "text-generation", "multilingual", "nvidia", "fp8", "long-context", "open-source"],
+
+  "description": {
+    "ja": "NVIDIAとの共同開発モデル。2024年7月18日公開。12Bパラメータ。128Kコンテキスト。量子化対応学習でFP8推論でも性能劣化なし。Gemma 2 9B、LLaMA 3 8Bを上回る性能。Mistral 7Bのドロップイン置き換え。中国語処理を大幅改善。",
+    "en": "Co-developed with NVIDIA. Released July 18, 2024. 12B parameters. 128K context. Quantization-aware training maintains performance at FP8 inference. Outperforms Gemma 2 9B, LLaMA 3 8B. Drop-in replacement for Mistral 7B. Significantly improved Chinese processing."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2024-Q2",
+    "languages": ["en", "fr", "de", "es", "it", "zh"],
+    "architecture": "Dense Transformer, FP8 native support, 128K context"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/mistralai",
+    "website": "https://mistral.ai/news/mistral-nemo"
+  },
+
+  "variants": [
+    {
+      "name": "Mistral NeMo Base (2407)",
+      "slug": "mistral-nemo-base-2407",
+      "parameters": "12B",
+      "description": {
+        "ja": "ベースモデル。12Bパラメータ。NVIDIAとの共同開発。",
+        "en": "Base model. 12B parameters. Co-developed with NVIDIA."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Nemo-Base-2407",
+      "requirements": {
+        "minVram": "28GB",
+        "notes": "FP8: 14GB, INT4: 8GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Mistral NeMo Instruct (2407)",
+      "slug": "mistral-nemo-instruct-2407",
+      "parameters": "12B",
+      "description": {
+        "ja": "指示チューニング版。サイズカテゴリで最高水準の性能。",
+        "en": "Instruction-tuned variant. Top performance in size category."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407",
+      "requirements": {
+        "minVram": "28GB"
+      },
+      "gguf": []
+    }
+  ]
+}

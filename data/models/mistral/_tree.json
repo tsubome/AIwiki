@@ -1,0 +1,23 @@
+{
+  "description": "Mistralファミリーのモデル関係図",
+  "relationships": [
+    { "child": "mistral-7b", "parent": null, "type": "evolution" },
+    { "child": "mixtral-8x7b", "parent": "mistral-7b", "type": "evolution" },
+    { "child": "mixtral-8x22b", "parent": "mixtral-8x7b", "type": "evolution" },
+    { "child": "mistral-large", "parent": null, "type": "evolution" },
+    { "child": "mistral-small", "parent": null, "type": "evolution" },
+    { "child": "mistral-medium", "parent": "mistral-small", "type": "evolution" },
+    { "child": "codestral", "parent": null, "type": "evolution" },
+    { "child": "codestral-mamba", "parent": null, "type": "evolution" },
+    { "child": "mathstral", "parent": "mistral-7b", "type": "official-derivative" },
+    { "child": "mistral-nemo", "parent": "mistral-7b", "type": "official-derivative" },
+    { "child": "pixtral-12b", "parent": "mistral-nemo", "type": "official-derivative" },
+    { "child": "ministral", "parent": null, "type": "evolution" },
+    { "child": "pixtral-large", "parent": "mistral-large", "type": "official-derivative" },
+    { "child": "mistral-saba", "parent": null, "type": "evolution" },
+    { "child": "magistral", "parent": "mistral-small", "type": "official-derivative" },
+    { "child": "voxtral", "parent": "mistral-small", "type": "official-derivative" },
+    { "child": "devstral", "parent": null, "type": "evolution" },
+    { "child": "mistral-large-3", "parent": "mistral-large", "type": "evolution" }
+  ]
+}
