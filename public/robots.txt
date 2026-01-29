@@ -1,0 +1,13 @@
+# AIwiki - Local LLM Information Wiki
+# https://aiwiki.ara-tech.jp
+
+User-agent: *
+Allow: /
+
+# LLM-specific endpoints
+# llms.txt - Site overview for LLMs
+# llms-full.txt - Complete model database in markdown
+# /api/* - JSON API endpoints
+
+# Sitemap
+Sitemap: https://aiwiki.ara-tech.jp/sitemap.xml
