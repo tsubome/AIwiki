@@ -1,0 +1,23 @@
+{
+  "description": "DeepSeekファミリーのモデル関係図",
+  "relationships": [
+    { "child": "deepseek-llm", "parent": null, "type": "evolution" },
+    { "child": "deepseek-coder", "parent": null, "type": "evolution" },
+    { "child": "deepseek-moe", "parent": null, "type": "evolution" },
+    { "child": "deepseek-math", "parent": "deepseek-coder", "type": "official-derivative" },
+    { "child": "deepseek-vl", "parent": "deepseek-llm", "type": "official-derivative" },
+    { "child": "deepseek-v2", "parent": "deepseek-llm", "type": "evolution" },
+    { "child": "deepseek-coder-v2", "parent": "deepseek-v2", "type": "official-derivative" },
+    { "child": "deepseek-prover", "parent": "deepseek-v2", "type": "official-derivative" },
+    { "child": "deepseek-v2-5", "parent": "deepseek-v2", "type": "evolution" },
+    { "child": "deepseek-vl2", "parent": "deepseek-v2", "type": "official-derivative" },
+    { "child": "deepseek-v3", "parent": "deepseek-v2", "type": "evolution" },
+    { "child": "deepseek-r1", "parent": "deepseek-v3", "type": "official-derivative" },
+    { "child": "janus", "parent": "deepseek-llm", "type": "official-derivative" },
+    { "child": "deepseek-r1-0528", "parent": "deepseek-r1", "type": "evolution" },
+    { "child": "deepseek-prover-v2", "parent": "deepseek-v3", "type": "official-derivative" },
+    { "child": "deepseek-v3-1", "parent": "deepseek-v3", "type": "evolution" },
+    { "child": "deepseek-v3-2", "parent": "deepseek-v3-1", "type": "evolution" },
+    { "child": "deepseek-math-v2", "parent": "deepseek-v3-2", "type": "official-derivative" }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "DeepSeek-V3.1",
+  "slug": "deepseek-v3-1",
+  "releaseDate": "2025-08-01",
+  "developer": "DeepSeek AI",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "deepseek-v3",
+
+  "tags": ["official", "text-generation", "moe", "hybrid-thinking", "agent", "tool-calling", "open-source"],
+
+  "description": {
+    "ja": "DeepSeek AIのV3.1ハイブリッドモデル。2025年8月公開。推論（R1風）と直接回答（V3風）を切り替え可能なハイブリッド思考モード搭載。ツール呼び出しとエージェント機能を強化。128Kコンテキスト。",
+    "en": "DeepSeek AI's V3.1 hybrid model. Released August 2025. Features hybrid thinking mode that can switch between reasoning (R1-style) and direct answering (V3-style). Enhanced tool calling and agent capabilities. 128K context."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2025-Q3",
+    "languages": ["en", "zh"],
+    "architecture": "Hybrid MoE (thinking + non-thinking), Tool calling, Agent capabilities"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "website": "https://chat.deepseek.com"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-V3.1",
+      "slug": "deepseek-v3.1-full",
+      "parameters": "671B",
+      "parameterDetails": {
+        "total": "671B",
+        "active": "37B"
+      },
+      "description": {
+        "ja": "ハイブリッド思考モード搭載。推論と直接回答を切り替え可能。",
+        "en": "Features hybrid thinking mode. Can switch between reasoning and direct answering."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
+      "requirements": {
+        "minVram": "1.4TB",
+        "notes": "8xH200 141GB recommended"
+      },
+      "gguf": []
+    }
+  ]
+}

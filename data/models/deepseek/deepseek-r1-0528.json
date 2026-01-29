@@ -1,0 +1,50 @@
+{
+  "name": "DeepSeek-R1-0528",
+  "slug": "deepseek-r1-0528",
+  "releaseDate": "2025-05-28",
+  "developer": "DeepSeek AI",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "deepseek-r1",
+
+  "tags": ["official", "reasoning", "moe", "function-calling", "json-output", "agent", "open-source"],
+
+  "description": {
+    "ja": "DeepSeek-R1のアップグレード版。2025年5月28日公開。より強力な推論深度（平均23Kトークン/質問）、ハルシネーション削減、システムプロンプト対応、JSON出力対応、関数呼び出し対応。エージェント型AIユースケースに最適化。",
+    "en": "Upgraded version of DeepSeek-R1. Released May 28, 2025. Features stronger reasoning depth (average 23K tokens/question), reduced hallucination, system prompt support, JSON output support, and function calling. Optimized for agentic AI use cases."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2025-Q2",
+    "languages": ["en", "zh"],
+    "architecture": "MoE based on DeepSeek-R1, Enhanced reasoning depth, System prompt support, JSON output, Function calling"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "website": "https://chat.deepseek.com"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-R1-0528",
+      "slug": "deepseek-r1-0528-full",
+      "parameters": "671B",
+      "parameterDetails": {
+        "total": "671B",
+        "active": "37B"
+      },
+      "description": {
+        "ja": "R1アップグレード版。エージェント機能強化、平均23Kトークンの推論深度。",
+        "en": "R1 upgraded version. Enhanced agent capabilities, average 23K tokens reasoning depth."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+      "requirements": {
+        "minVram": "1.4TB",
+        "notes": "8xH200 141GB recommended"
+      },
+      "gguf": []
+    }
+  ]
+}

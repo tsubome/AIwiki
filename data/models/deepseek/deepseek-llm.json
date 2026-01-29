@@ -1,0 +1,122 @@
+{
+  "name": "DeepSeek-LLM",
+  "slug": "deepseek-llm",
+  "releaseDate": "2023-11-29",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "BASE",
+
+  "tags": ["official", "text-generation", "multilingual", "commercial-use"],
+
+  "benchmarks": {
+    "mmlu": 71.9,
+    "humaneval": 73.78,
+    "math": 32.6,
+    "custom": {
+      "gsm8k": 84.1
+    },
+    "source": "https://arxiv.org/abs/2401.02954"
+  },
+
+  "description": {
+    "ja": "DeepSeek AIの初代LLM。2023年11月29日公開。LLaMAアーキテクチャを採用し、2兆トークン（英語＋中国語）で学習。7Bと67Bの2サイズ展開。67BではGrouped-Query Attention（GQA）を採用し効率化。",
+    "en": "DeepSeek AI's original LLM. Released November 29, 2023. Adopts LLaMA architecture, trained on 2 trillion tokens (English + Chinese). Available in 7B and 67B sizes. 67B uses Grouped-Query Attention (GQA) for efficiency."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "trainingTokens": "2T",
+    "knowledgeCutoff": "2023",
+    "languages": ["en", "zh"],
+    "architecture": "LLaMA-style decoder-only Transformer, RoPE, RMSNorm pre-normalization, 7B: MHA, 67B: GQA, Vocab 102,400 (byte-level BPE)",
+    "promptTemplate": {
+      "format": "deepseek",
+      "user": "User: {user_message}\n\n",
+      "assistant": "Assistant: {assistant_response}<｜end▁of▁sentence｜>",
+      "stopTokens": ["<｜end▁of▁sentence｜>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2401.02954",
+    "github": "https://github.com/deepseek-ai/DeepSeek-LLM"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-LLM 7B Base",
+      "slug": "deepseek-llm-7b-base",
+      "parameters": "7B",
+      "parameterDetails": {
+        "total": "7B",
+        "active": "7B"
+      },
+      "description": {
+        "ja": "7Bベースモデル。Multi-Head Attention（MHA）採用。",
+        "en": "7B base model. Uses Multi-Head Attention (MHA)."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-llm-7b-base",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-LLM 7B Chat",
+      "slug": "deepseek-llm-7b-chat",
+      "parameters": "7B",
+      "parameterDetails": {
+        "total": "7B",
+        "active": "7B"
+      },
+      "description": {
+        "ja": "7B対話チューニング版。",
+        "en": "7B chat-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-llm-7b-chat",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-LLM 67B Base",
+      "slug": "deepseek-llm-67b-base",
+      "parameters": "67B",
+      "parameterDetails": {
+        "total": "67B",
+        "active": "67B"
+      },
+      "description": {
+        "ja": "67Bベースモデル。Grouped-Query Attention（GQA）採用で効率的。MMLU 71.9%達成。",
+        "en": "67B base model. Uses Grouped-Query Attention (GQA) for efficiency. Achieves 71.9% on MMLU."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-llm-67b-base",
+      "requirements": {
+        "minVram": "135GB",
+        "notes": "INT4: 40GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-LLM 67B Chat",
+      "slug": "deepseek-llm-67b-chat",
+      "parameters": "67B",
+      "parameterDetails": {
+        "total": "67B",
+        "active": "67B"
+      },
+      "description": {
+        "ja": "67B対話チューニング版。HumanEval 73.78%、GSM8K 84.1%達成。",
+        "en": "67B chat-tuned variant. Achieves 73.78% on HumanEval and 84.1% on GSM8K."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-llm-67b-chat",
+      "requirements": {
+        "minVram": "135GB"
+      },
+      "gguf": []
+    }
+  ]
+}

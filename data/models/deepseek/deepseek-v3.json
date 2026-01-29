@@ -1,0 +1,90 @@
+{
+  "name": "DeepSeek-V3",
+  "slug": "deepseek-v3",
+  "releaseDate": "2024-12-26",
+  "developer": "DeepSeek AI",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "deepseek-v2",
+
+  "tags": ["official", "text-generation", "moe", "mla", "fp8", "long-context", "efficient", "open-source"],
+
+  "benchmarks": {
+    "mmlu": 88.5,
+    "mmlupro": 75.9,
+    "math": 90.2,
+    "gpqa": 59.1,
+    "custom": {
+      "math-500": 90.2,
+      "codeforces-percentile": 51.6,
+      "swe-bench-verified": 42.0
+    },
+    "source": "https://arxiv.org/abs/2412.19437"
+  },
+
+  "description": {
+    "ja": "DeepSeek AIの第3世代MoE言語モデル。2024年12月26日公開。671B総パラメータ（+14B MTP）、37B活性化。14.8兆トークン学習、278.8万H800 GPUh（約600万ドル）という低コストで主要プロプライエタリモデル匹敵の性能。補助損失なしロードバランシング、Multi-Token Prediction（MTP）、FP8混合精度学習を導入。MITライセンスでオープンソース化。",
+    "en": "DeepSeek AI's third-generation MoE language model. Released December 26, 2024. 671B total parameters (+14B MTP), 37B active. Trained on 14.8T tokens at 2.788M H800 GPU hours (~$6M), achieving performance comparable to major proprietary models. Introduces auxiliary-loss-free load balancing, Multi-Token Prediction (MTP), and FP8 mixed precision training. Open-sourced under MIT license."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "trainingTokens": "14.8T",
+    "knowledgeCutoff": "2024-Q4",
+    "languages": ["en", "zh"],
+    "architecture": "MoE, MLA (Multi-head Latent Attention), Auxiliary-loss-free load balancing, Multi-Token Prediction (MTP), FP8 mixed precision training, 256 routed experts + 1 shared expert per layer, 8 experts activated per token",
+    "promptTemplate": {
+      "format": "deepseek-v3",
+      "user": "<｜User｜>{user_message}",
+      "assistant": "<｜Assistant｜>{assistant_response}<｜end▁of▁sentence｜>",
+      "stopTokens": ["<｜end▁of▁sentence｜>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2412.19437",
+    "github": "https://github.com/deepseek-ai/DeepSeek-V3"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-V3-Base",
+      "slug": "deepseek-v3-base",
+      "parameters": "671B",
+      "parameterDetails": {
+        "total": "671B (+14B MTP)",
+        "active": "37B"
+      },
+      "description": {
+        "ja": "671B総パラメータ、37B活性化のベースモデル。FP8ネイティブ対応。",
+        "en": "Base model with 671B total, 37B active parameters. Native FP8 support."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V3-Base",
+      "requirements": {
+        "minVram": "1.4TB",
+        "notes": "8xH200 141GB recommended, FP8: ~700GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-V3",
+      "slug": "deepseek-v3-chat",
+      "parameters": "671B",
+      "parameterDetails": {
+        "total": "671B (+14B MTP)",
+        "active": "37B"
+      },
+      "description": {
+        "ja": "671B対話チューニング版。MMLU 88.5%、MATH-500 90.2%達成。",
+        "en": "671B chat-tuned variant. Achieves 88.5% on MMLU and 90.2% on MATH-500."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+      "requirements": {
+        "minVram": "1.4TB",
+        "notes": "8xH200 141GB recommended"
+      },
+      "gguf": []
+    }
+  ]
+}

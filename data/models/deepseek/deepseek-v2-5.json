@@ -1,0 +1,49 @@
+{
+  "name": "DeepSeek-V2.5",
+  "slug": "deepseek-v2-5",
+  "releaseDate": "2024-09-06",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "BASE",
+  "baseModel": "deepseek-v2",
+
+  "tags": ["official", "text-generation", "code-generation", "moe", "unified"],
+
+  "description": {
+    "ja": "DeepSeek AIのV2.5統合モデル。2024年9月6日公開。DeepSeek-V2-0628とDeepSeek-Coder-V2-0724の長所を統合。汎用言語能力とコーディング能力を両立。",
+    "en": "DeepSeek AI's V2.5 unified model. Released September 6, 2024. Combines strengths of DeepSeek-V2-0628 and DeepSeek-Coder-V2-0724. Balances general language and coding capabilities."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2024-Q3",
+    "languages": ["en", "zh", "code"],
+    "architecture": "Unified MoE combining V2 and Coder-V2"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-V2.5",
+      "slug": "deepseek-v2.5",
+      "parameters": "236B",
+      "parameterDetails": {
+        "total": "236B",
+        "active": "21B"
+      },
+      "description": {
+        "ja": "V2とCoder-V2の統合モデル。汎用性とコード能力を両立。",
+        "en": "Unified model combining V2 and Coder-V2. Balances versatility and coding ability."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
+      "requirements": {
+        "minVram": "500GB",
+        "notes": "8x80GB GPU recommended"
+      },
+      "gguf": []
+    }
+  ]
+}

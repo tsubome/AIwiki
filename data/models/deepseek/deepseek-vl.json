@@ -1,0 +1,61 @@
+{
+  "name": "DeepSeek-VL",
+  "slug": "deepseek-vl",
+  "releaseDate": "2024-03-11",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "FINETUNE",
+  "baseModel": "deepseek-llm",
+
+  "tags": ["official", "vision", "multimodal", "image-understanding"],
+
+  "description": {
+    "ja": "DeepSeek AIのVision-Languageモデル。2024年3月11日公開。最大1024x1024ピクセルの画像入力に対応。1.3Bと7Bの2サイズ展開。画像理解、OCR、視覚的質問応答などのマルチモーダルタスクに対応。",
+    "en": "DeepSeek AI's Vision-Language model. Released March 11, 2024. Supports image input up to 1024x1024 pixels. Available in 1.3B and 7B sizes. Handles multimodal tasks including image understanding, OCR, and visual question answering."
+  },
+
+  "specs": {
+    "knowledgeCutoff": "2024-Q1",
+    "languages": ["en", "zh"],
+    "architecture": "Vision-Language, Max 1024x1024 pixel input"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2403.05525",
+    "github": "https://github.com/deepseek-ai/DeepSeek-VL"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-VL 1.3B",
+      "slug": "deepseek-vl-1.3b",
+      "parameters": "1.3B",
+      "description": {
+        "ja": "1.3B軽量版。モバイル・エッジ向けVLM。",
+        "en": "1.3B lightweight version. VLM for mobile and edge deployment."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl-1.3b-chat",
+      "requirements": {
+        "minVram": "4GB",
+        "notes": "INT4: 1.5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-VL 7B",
+      "slug": "deepseek-vl-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "7Bフルサイズ版。高品質な画像理解。",
+        "en": "7B full-size version. High-quality image understanding."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl-7b-chat",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    }
+  ]
+}

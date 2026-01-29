@@ -1,0 +1,116 @@
+{
+  "name": "DeepSeek-Coder-V2",
+  "slug": "deepseek-coder-v2",
+  "releaseDate": "2024-06-17",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "FINETUNE",
+  "baseModel": "deepseek-v2",
+
+  "tags": ["official", "code-generation", "moe", "long-context", "math", "multilingual-code"],
+
+  "benchmarks": {
+    "humaneval": 90.2,
+    "math": 75.7,
+    "custom": {
+      "mbpp-plus": 76.2
+    },
+    "source": "https://arxiv.org/abs/2406.11931"
+  },
+
+  "description": {
+    "ja": "DeepSeek AIの第2世代コードMoEモデル。2024年6月17日公開。DeepSeek-V2ベースに追加6兆トークン（60%コード、10%数学、30%自然言語）で学習。338プログラミング言語対応、128Kコンテキスト。HumanEval 90.2%、MATH 75.7%達成。",
+    "en": "DeepSeek AI's second-generation code MoE model. Released June 17, 2024. Based on DeepSeek-V2 with 6T additional tokens (60% code, 10% math, 30% natural language). Supports 338 programming languages, 128K context. Achieves 90.2% on HumanEval and 75.7% on MATH."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "trainingTokens": "6T (additional)",
+    "knowledgeCutoff": "2024-Q2",
+    "languages": ["en", "zh", "code"],
+    "architecture": "MoE based on DeepSeek-V2, 338 programming languages support"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2406.11931",
+    "github": "https://github.com/deepseek-ai/DeepSeek-Coder-V2"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-Coder-V2-Lite Base",
+      "slug": "deepseek-coder-v2-lite-base",
+      "parameters": "16B",
+      "parameterDetails": {
+        "total": "16B",
+        "active": "2.4B"
+      },
+      "description": {
+        "ja": "16B総パラメータ、24億活性化の軽量版。",
+        "en": "Lightweight version with 16B total, 2.4B active parameters."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Base",
+      "requirements": {
+        "minVram": "35GB",
+        "notes": "INT4: 10GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder-V2-Lite Instruct",
+      "slug": "deepseek-coder-v2-lite-instruct",
+      "parameters": "16B",
+      "parameterDetails": {
+        "total": "16B",
+        "active": "2.4B"
+      },
+      "description": {
+        "ja": "Lite指示チューニング版。",
+        "en": "Lite instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+      "requirements": {
+        "minVram": "35GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder-V2 Base",
+      "slug": "deepseek-coder-v2-236b-base",
+      "parameters": "236B",
+      "parameterDetails": {
+        "total": "236B",
+        "active": "21B"
+      },
+      "description": {
+        "ja": "236B総パラメータ、210億活性化のフラッグシップ。",
+        "en": "Flagship with 236B total, 21B active parameters."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Base",
+      "requirements": {
+        "minVram": "500GB",
+        "notes": "8x80GB GPU recommended"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder-V2 Instruct",
+      "slug": "deepseek-coder-v2-236b-instruct",
+      "parameters": "236B",
+      "parameterDetails": {
+        "total": "236B",
+        "active": "21B"
+      },
+      "description": {
+        "ja": "236B指示チューニング版。HumanEval 90.2%、MATH 75.7%達成。",
+        "en": "236B instruction-tuned variant. Achieves 90.2% on HumanEval and 75.7% on MATH."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct",
+      "requirements": {
+        "minVram": "500GB"
+      },
+      "gguf": []
+    }
+  ]
+}

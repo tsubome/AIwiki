@@ -1,0 +1,84 @@
+{
+  "name": "DeepSeek-Math",
+  "slug": "deepseek-math",
+  "releaseDate": "2024-02-06",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "FINETUNE",
+  "baseModel": "deepseek-coder",
+
+  "tags": ["official", "math", "reasoning", "reinforcement-learning"],
+
+  "benchmarks": {
+    "math": 51.7,
+    "custom": {
+      "math-rl-tool": 60.0
+    },
+    "source": "https://arxiv.org/abs/2402.03300"
+  },
+
+  "description": {
+    "ja": "DeepSeek AIの数学特化LLM。2024年2月6日公開。DeepSeek-Coder-v1.5 7Bから初期化し、追加5000億トークンで学習。Group Relative Policy Optimization（GRPO）という新しい強化学習手法を導入。ツール使用時にMATH約60%達成、競技数学でGemini-Ultra/GPT-4に迫る性能。",
+    "en": "DeepSeek AI's math-specialized LLM. Released February 6, 2024. Initialized from DeepSeek-Coder-v1.5 7B with 500B additional tokens. Introduces Group Relative Policy Optimization (GRPO), a novel RL method. Achieves ~60% on MATH with tool use, approaching Gemini-Ultra/GPT-4 on competition math."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "trainingTokens": "500B (additional)",
+    "knowledgeCutoff": "2024-Q1",
+    "languages": ["en", "zh"],
+    "architecture": "Based on DeepSeek-Coder-v1.5 7B, GRPO (Group Relative Policy Optimization), Process Reward Model (PRM), Tool-integrated math solving"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2402.03300",
+    "github": "https://github.com/deepseek-ai/DeepSeek-Math"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeekMath 7B Base",
+      "slug": "deepseek-math-7b-base",
+      "parameters": "7B",
+      "description": {
+        "ja": "7Bベースモデル。事前学習版。MATH 51.7%達成。",
+        "en": "7B base model. Pre-trained version. Achieves 51.7% on MATH."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-math-7b-base",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeekMath 7B Instruct",
+      "slug": "deepseek-math-7b-instruct",
+      "parameters": "7B",
+      "description": {
+        "ja": "7B SFTチューニング版。指示追従に最適化。",
+        "en": "7B SFT-tuned variant. Optimized for instruction following."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-math-7b-instruct",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeekMath 7B RL",
+      "slug": "deepseek-math-7b-rl",
+      "parameters": "7B",
+      "description": {
+        "ja": "7B GRPO強化学習版。ツール使用時MATH約60%達成。",
+        "en": "7B GRPO reinforcement learning variant. Achieves ~60% on MATH with tool use."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-math-7b-rl",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "name": "DeepSeek-V2",
+  "slug": "deepseek-v2",
+  "releaseDate": "2024-05-06",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "BASE",
+  "baseModel": "deepseek-llm",
+
+  "tags": ["official", "text-generation", "moe", "mla", "long-context", "efficient", "commercial-use"],
+
+  "benchmarks": {
+    "custom": {
+      "mt-bench": 8.97,
+      "alpacaeval-winrate": 38.9,
+      "alignbench": 7.91
+    },
+    "source": "https://arxiv.org/abs/2405.04434"
+  },
+
+  "description": {
+    "ja": "DeepSeek AIの第2世代MoE言語モデル。2024年5月6日公開。革新的なMulti-head Latent Attention（MLA）でKVキャッシュを93.3%圧縮。128Kコンテキスト、8.1兆トークン学習。236Bモデルは210億活性化パラメータでDeepSeek-67B比5.76倍の生成スループット、学習コスト42.5%削減を実現。",
+    "en": "DeepSeek AI's second-generation MoE language model. Released May 6, 2024. Revolutionary Multi-head Latent Attention (MLA) compresses KV cache by 93.3%. 128K context, trained on 8.1T tokens. 236B model with 21B active parameters achieves 5.76x generation throughput vs DeepSeek-67B with 42.5% training cost reduction."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "trainingTokens": "8.1T",
+    "knowledgeCutoff": "2024-Q2",
+    "languages": ["en", "zh"],
+    "architecture": "MoE, Multi-head Latent Attention (MLA), 93.3% KV cache compression, 2 shared experts + 160 routed experts per layer, 6 experts activated per token"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2405.04434",
+    "github": "https://github.com/deepseek-ai/DeepSeek-V2"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-V2-Lite",
+      "slug": "deepseek-v2-lite",
+      "parameters": "16B",
+      "parameterDetails": {
+        "total": "16B",
+        "active": "2.4B"
+      },
+      "description": {
+        "ja": "16B総パラメータ、24億活性化の軽量版。",
+        "en": "Lightweight version with 16B total, 2.4B active parameters."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite",
+      "requirements": {
+        "minVram": "35GB",
+        "notes": "INT4: 10GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-V2-Lite-Chat",
+      "slug": "deepseek-v2-lite-chat",
+      "parameters": "16B",
+      "parameterDetails": {
+        "total": "16B",
+        "active": "2.4B"
+      },
+      "description": {
+        "ja": "Lite対話チューニング版。",
+        "en": "Lite chat-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
+      "requirements": {
+        "minVram": "35GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-V2",
+      "slug": "deepseek-v2-236b",
+      "parameters": "236B",
+      "parameterDetails": {
+        "total": "236B",
+        "active": "21B"
+      },
+      "description": {
+        "ja": "236B総パラメータ、210億活性化のフラッグシップ。MLA＋DeepSeekMoEで効率的な推論。",
+        "en": "Flagship with 236B total, 21B active parameters. Efficient inference via MLA + DeepSeekMoE."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V2",
+      "requirements": {
+        "minVram": "500GB",
+        "notes": "8x80GB GPU recommended"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-V2-Chat",
+      "slug": "deepseek-v2-chat",
+      "parameters": "236B",
+      "parameterDetails": {
+        "total": "236B",
+        "active": "21B"
+      },
+      "description": {
+        "ja": "236B対話チューニング版。MT-Bench 8.97達成。",
+        "en": "236B chat-tuned variant. Achieves 8.97 on MT-Bench."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat",
+      "requirements": {
+        "minVram": "500GB"
+      },
+      "gguf": []
+    }
+  ]
+}

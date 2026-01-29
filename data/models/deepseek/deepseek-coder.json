@@ -1,0 +1,143 @@
+{
+  "name": "DeepSeek-Coder",
+  "slug": "deepseek-coder",
+  "releaseDate": "2023-11-02",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "BASE",
+
+  "tags": ["official", "code-generation", "fill-in-middle", "multilingual-code"],
+
+  "benchmarks": {
+    "humaneval": 56.1,
+    "custom": {
+      "mbpp": 70.1,
+      "humaneval-instruct-33b": 78.7
+    },
+    "source": "https://arxiv.org/abs/2401.14196"
+  },
+
+  "description": {
+    "ja": "DeepSeek AIのコード特化LLM。2023年11月2日公開。2兆トークン（87%コード、13%自然言語）で学習。87プログラミング言語対応。Fill-in-the-Middle（FIM）学習でコード補完に対応。16Kコンテキスト。",
+    "en": "DeepSeek AI's code-specialized LLM. Released November 2, 2023. Trained on 2 trillion tokens (87% code, 13% natural language). Supports 87 programming languages. Fill-in-the-Middle (FIM) training enables code completion. 16K context."
+  },
+
+  "specs": {
+    "contextLength": 16384,
+    "trainingTokens": "2T",
+    "knowledgeCutoff": "2023",
+    "languages": ["en", "code"],
+    "architecture": "LLaMA-style decoder-only Transformer, Fill-in-the-Middle (FIM) training, Repository-level code understanding, 87 programming languages"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2401.14196",
+    "github": "https://github.com/deepseek-ai/DeepSeek-Coder"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-Coder 1.3B Base",
+      "slug": "deepseek-coder-1.3b-base",
+      "parameters": "1.3B",
+      "description": {
+        "ja": "最軽量版。モバイル・エッジ向け。",
+        "en": "Lightest version. For mobile and edge deployment."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-1.3b-base",
+      "requirements": {
+        "minVram": "4GB",
+        "notes": "INT4: 1GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder 1.3B Instruct",
+      "slug": "deepseek-coder-1.3b-instruct",
+      "parameters": "1.3B",
+      "description": {
+        "ja": "1.3B指示チューニング版。",
+        "en": "1.3B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-1.3b-instruct",
+      "requirements": {
+        "minVram": "4GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder 5.7B MQA Base",
+      "slug": "deepseek-coder-5.7b-base",
+      "parameters": "5.7B",
+      "description": {
+        "ja": "5.7Bベースモデル。Multi-Query Attention採用。",
+        "en": "5.7B base model with Multi-Query Attention."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-5.7bmqa-base",
+      "requirements": {
+        "minVram": "14GB",
+        "notes": "INT4: 4GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder 6.7B Base",
+      "slug": "deepseek-coder-6.7b-base",
+      "parameters": "6.7B",
+      "description": {
+        "ja": "6.7Bベースモデル。",
+        "en": "6.7B base model."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-6.7b-base",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder 6.7B Instruct",
+      "slug": "deepseek-coder-6.7b-instruct",
+      "parameters": "6.7B",
+      "description": {
+        "ja": "6.7B指示チューニング版。",
+        "en": "6.7B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-6.7b-instruct",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder 33B Base",
+      "slug": "deepseek-coder-33b-base",
+      "parameters": "33B",
+      "description": {
+        "ja": "33Bベースモデル。HumanEval 56.1%達成。",
+        "en": "33B base model. Achieves 56.1% on HumanEval."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-base",
+      "requirements": {
+        "minVram": "70GB",
+        "notes": "INT4: 20GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DeepSeek-Coder 33B Instruct",
+      "slug": "deepseek-coder-33b-instruct",
+      "parameters": "33B",
+      "description": {
+        "ja": "33B指示チューニング版。HumanEval 78.7%達成。",
+        "en": "33B instruction-tuned variant. Achieves 78.7% on HumanEval."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-instruct",
+      "requirements": {
+        "minVram": "70GB"
+      },
+      "gguf": []
+    }
+  ]
+}

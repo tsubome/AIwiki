@@ -1,0 +1,30 @@
+{
+  "name": "DeepSeek",
+  "slug": "deepseek",
+  "developer": "DeepSeek AI",
+  "description": {
+    "ja": "2023年7月に梁文鋒によって設立された中国のAI企業DeepSeek AIが開発するLLMシリーズ。Mixture-of-Experts（MoE）アーキテクチャ、Multi-head Latent Attention（MLA）、効率的な学習技術において革新を先導。大幅に低いコストで主要なプロプライエタリモデルに匹敵する性能を達成。初代LLMから推論特化のR1、コード特化Coder、数学特化Math、マルチモーダルVLシリーズ、定理証明Proverまで多岐にわたるモデルを展開。",
+    "en": "LLM series developed by DeepSeek AI, a Chinese AI company founded in July 2023 by Liang Wenfeng. Leading innovations in Mixture-of-Experts (MoE) architecture, Multi-head Latent Attention (MLA), and efficient training techniques. Achieves performance comparable to major proprietary models at significantly lower costs. Spans diverse models from the original LLM to reasoning-focused R1, code-focused Coder, math-focused Math, multimodal VL series, and theorem-proving Prover."
+  },
+  "website": "https://www.deepseek.com",
+  "versions": [
+    "deepseek-llm",
+    "deepseek-coder",
+    "deepseek-moe",
+    "deepseek-math",
+    "deepseek-vl",
+    "deepseek-v2",
+    "deepseek-coder-v2",
+    "deepseek-prover",
+    "deepseek-v2-5",
+    "deepseek-v3",
+    "deepseek-vl2",
+    "deepseek-r1",
+    "janus",
+    "deepseek-r1-0528",
+    "deepseek-v3-1",
+    "deepseek-prover-v2",
+    "deepseek-math-v2",
+    "deepseek-v3-2"
+  ]
+}

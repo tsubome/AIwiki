@@ -1,0 +1,44 @@
+{
+  "name": "DeepSeek-Prover",
+  "slug": "deepseek-prover",
+  "releaseDate": "2024-08-15",
+  "developer": "DeepSeek AI",
+  "license": "DeepSeek Model License",
+  "modelType": "FINETUNE",
+  "baseModel": "deepseek-v2",
+
+  "tags": ["official", "theorem-proving", "lean4", "formal-verification"],
+
+  "description": {
+    "ja": "DeepSeek AIの定理証明器。2024年8月15日公開（V1.5）。Lean 4形式言語による数学定理の自動証明に特化。7Bパラメータで高度な形式証明能力を実現。",
+    "en": "DeepSeek AI's theorem prover. Released August 15, 2024 (V1.5). Specialized for automatic mathematical theorem proving in Lean 4 formal language. Achieves advanced formal proving capabilities with 7B parameters."
+  },
+
+  "specs": {
+    "knowledgeCutoff": "2024-Q3",
+    "languages": ["en", "lean4"],
+    "architecture": "Specialized for Lean 4 theorem proving"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2408.08152"
+  },
+
+  "variants": [
+    {
+      "name": "DeepSeek-Prover-V1.5 7B",
+      "slug": "deepseek-prover-v1.5-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "7B定理証明器。Lean 4対応。",
+        "en": "7B theorem prover. Supports Lean 4."
+      },
+      "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V1.5-7B",
+      "requirements": {
+        "minVram": "17GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    }
+  ]
+}
