@@ -52,12 +52,31 @@ export interface ModelForDetail {
   license: string | null
   modelType: string
   releaseDate: Date | null
+  baseModel: string | null
+  tags: string[] | null
+  benchmarks: {
+    mmlu?: number
+    mmlupro?: number
+    humaneval?: number
+    math?: number
+    gpqa?: number
+    ifeval?: number
+    custom?: Record<string, number>
+    source?: string
+  } | null
   specs: {
     contextLength?: number
     trainingTokens?: string
     knowledgeCutoff?: string
     languages?: string[]
     architecture?: string
+    promptTemplate?: {
+      format: string
+      system?: string
+      user?: string
+      assistant?: string
+      stopTokens?: string[]
+    }
   } | null
   links: {
     huggingface?: string
@@ -80,6 +99,12 @@ export interface VariantForDetail {
   }
   description: string | null
   huggingface: string | null
+  requirements?: {
+    minVram?: string
+    recommendedVram?: string
+    ram?: string
+    notes?: string
+  }
   ggufFiles: GGUFFileForDetail[]
 }
 
@@ -129,6 +154,7 @@ function toVariantForDetail(variant: ResolvedVariant, index: number, locale: str
     parameterDetails: variant.parameterDetails,
     description: getLocalizedString(variant.description, locale) || null,
     huggingface: variant.huggingface || null,
+    requirements: variant.requirements,
     ggufFiles: (variant.gguf || []).map((file, i) => ({
       id: `${variant.id}-gguf-${i}`,
       name: file.name,
@@ -150,6 +176,9 @@ function toModelForDetail(model: ResolvedModel, locale: string = DEFAULT_LOCALE)
     license: model.license || null,
     modelType: model.modelType,
     releaseDate: model.releaseDate ? new Date(model.releaseDate) : null,
+    baseModel: model.baseModel || null,
+    tags: model.tags || null,
+    benchmarks: model.benchmarks || null,
     specs: model.specs || null,
     links: model.links || null,
     variants: model.variants.map((v, i) => toVariantForDetail(v, i, locale)),
