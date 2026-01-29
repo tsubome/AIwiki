@@ -1,0 +1,51 @@
+{
+  "name": "EmbeddingGemma",
+  "slug": "embeddinggemma",
+  "releaseDate": "2025-09-04",
+  "developer": "Google DeepMind",
+  "license": "Gemma Terms of Use",
+  "modelType": "BASE",
+  "baseModel": "gemma3",
+
+  "tags": ["official", "embedding", "multilingual", "retrieval", "edge"],
+
+  "benchmarks": {
+    "custom": {
+      "mteb-multilingual": 1
+    },
+    "source": "https://developers.googleblog.com/en/introducing-embeddinggemma/"
+  },
+
+  "description": {
+    "ja": "2025年9月4日公開。Gemma 3ベースの埋め込みモデル。MTEB Multilingual 500M以下カテゴリで1位。768次元（Matryoshka: 128-768）の埋め込みベクトル出力。QAT（Quantization-Aware Training）で200MB未満のRAMで動作。100+言語対応。オンデバイス検索・RAGに最適。",
+    "en": "Released September 4, 2025. Gemma 3-based embedding model. #1 in MTEB Multilingual sub-500M category. Outputs 768-dimensional embeddings (Matryoshka: 128-768). Runs on sub-200MB RAM with QAT (Quantization-Aware Training). Supports 100+ languages. Optimal for on-device search and RAG."
+  },
+
+  "specs": {
+    "contextLength": 2048,
+    "languages": ["en", "zh", "ja", "ko", "de", "fr", "es", "pt", "it", "ru", "ar", "hi", "th", "vi", "id"],
+    "architecture": "Gemma 3 base, Quantization-Aware Training (QAT), Matryoshka Representation Learning, 768-dim embeddings"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/google",
+    "website": "https://developers.googleblog.com/en/introducing-embeddinggemma/"
+  },
+
+  "variants": [
+    {
+      "name": "EmbeddingGemma 308M",
+      "slug": "embeddinggemma-308m",
+      "parameters": "308M",
+      "description": {
+        "ja": "軽量埋め込みモデル。QATで200MB未満のRAMで動作。MTEB Multilingual 500M以下で1位。",
+        "en": "Lightweight embedding model. Runs on sub-200MB RAM with QAT. #1 in MTEB Multilingual sub-500M."
+      },
+      "huggingface": "https://huggingface.co/google/embeddinggemma",
+      "requirements": {
+        "ram": "<200MB"
+      },
+      "gguf": []
+    }
+  ]
+}

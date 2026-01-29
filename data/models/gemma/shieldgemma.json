@@ -1,0 +1,73 @@
+{
+  "name": "ShieldGemma",
+  "slug": "shieldgemma",
+  "releaseDate": "2024-07-31",
+  "developer": "Google DeepMind",
+  "license": "Gemma Terms of Use",
+  "modelType": "INSTRUCT",
+  "baseModel": "gemma2",
+
+  "tags": ["official", "safety", "content-moderation", "classifier"],
+
+  "description": {
+    "ja": "2024年7月31日公開。Gemma 2ベースのテキスト安全性分類モデル。LLM-as-a-judge手法採用。4カテゴリ分類：性的コンテンツ、危険なコンテンツ、ヘイトスピーチ、ハラスメント。入力・出力両方の安全性評価が可能。",
+    "en": "Released July 31, 2024. Gemma 2-based text safety classifier. Uses LLM-as-a-judge technique. Classifies 4 categories: Sexually Explicit, Dangerous Content, Hate Speech, Harassment. Can evaluate safety of both inputs and outputs."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "languages": ["en"],
+    "architecture": "Gemma 2 base, LLM-as-a-judge"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/google",
+    "paper": "https://arxiv.org/abs/2407.21772",
+    "website": "https://ai.google.dev/gemma/docs/shieldgemma"
+  },
+
+  "variants": [
+    {
+      "name": "ShieldGemma 2B",
+      "slug": "shieldgemma-2b",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版。高速推論向け。",
+        "en": "Lightweight version. For fast inference."
+      },
+      "huggingface": "https://huggingface.co/google/shieldgemma-2b",
+      "requirements": {
+        "minVram": "5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ShieldGemma 9B",
+      "slug": "shieldgemma-9b",
+      "parameters": "9B",
+      "description": {
+        "ja": "中型版。バランス型。",
+        "en": "Medium version. Balanced performance."
+      },
+      "huggingface": "https://huggingface.co/google/shieldgemma-9b",
+      "requirements": {
+        "minVram": "22GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ShieldGemma 27B",
+      "slug": "shieldgemma-27b",
+      "parameters": "27B",
+      "description": {
+        "ja": "フラッグシップ版。最高精度。",
+        "en": "Flagship version. Highest accuracy."
+      },
+      "huggingface": "https://huggingface.co/google/shieldgemma-27b",
+      "requirements": {
+        "minVram": "65GB"
+      },
+      "gguf": []
+    }
+  ]
+}

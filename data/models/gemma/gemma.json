@@ -1,0 +1,106 @@
+{
+  "name": "Gemma",
+  "slug": "gemma",
+  "releaseDate": "2024-02-21",
+  "developer": "Google DeepMind",
+  "license": "Gemma Terms of Use",
+  "modelType": "BASE",
+
+  "tags": ["official", "text-generation", "instruction-tuned"],
+
+  "benchmarks": {
+    "mmlu": 64.3,
+    "humaneval": 32.3,
+    "math": 24.3,
+    "custom": {
+      "gsm8k": 50.9,
+      "arc-c": 61.1
+    },
+    "source": "https://ai.google.dev/gemma/docs/model_card"
+  },
+
+  "description": {
+    "ja": "2024年2月21日公開。Google DeepMindの初代オープンウェイトモデル。6T（7B）/2T（2B）トークンで学習。8Kコンテキスト対応。RoPE、GeGLU、RMSNormを採用。Multi-Query Attention（2B）/Multi-Head Attention（7B）を使用。",
+    "en": "Released February 21, 2024. Google DeepMind's first open-weight model. Trained on 6T (7B) / 2T (2B) tokens. 8K context support. Features RoPE, GeGLU, and RMSNorm. Uses Multi-Query Attention (2B) / Multi-Head Attention (7B)."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "trainingTokens": "6T (7B), 2T (2B)",
+    "knowledgeCutoff": "2023",
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer, RoPE, GeGLU, RMSNorm, Multi-Query/Multi-Head Attention, Vocab 256K",
+    "promptTemplate": {
+      "format": "gemma",
+      "user": "<start_of_turn>user\n{user_message}<end_of_turn>",
+      "assistant": "<start_of_turn>model\n{assistant_response}<end_of_turn>",
+      "stopTokens": ["<end_of_turn>", "<eos>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/google",
+    "paper": "https://arxiv.org/abs/2403.08295",
+    "github": "https://github.com/google-deepmind/gemma",
+    "website": "https://ai.google.dev/gemma"
+  },
+
+  "variants": [
+    {
+      "name": "Gemma 2B",
+      "slug": "gemma-2b",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版。Multi-Query Attention採用。2Tトークン学習。",
+        "en": "Lightweight version. Uses Multi-Query Attention. Trained on 2T tokens."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2b",
+      "requirements": {
+        "minVram": "5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 2B Instruct",
+      "slug": "gemma-2b-it",
+      "parameters": "2B",
+      "description": {
+        "ja": "2B指示チューニング版。",
+        "en": "2B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2b-it",
+      "requirements": {
+        "minVram": "5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 7B",
+      "slug": "gemma-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "標準版。Multi-Head Attention採用。6Tトークン学習。",
+        "en": "Standard version. Uses Multi-Head Attention. Trained on 6T tokens."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-7b",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 7B Instruct",
+      "slug": "gemma-7b-it",
+      "parameters": "7B",
+      "description": {
+        "ja": "7B指示チューニング版。",
+        "en": "7B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-7b-it",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    }
+  ]
+}

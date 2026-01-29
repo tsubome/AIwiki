@@ -1,0 +1,138 @@
+{
+  "name": "Gemma 2",
+  "slug": "gemma2",
+  "releaseDate": "2024-06-27",
+  "developer": "Google DeepMind",
+  "license": "Gemma Terms of Use",
+  "modelType": "BASE",
+  "baseModel": "gemma",
+
+  "tags": ["official", "text-generation", "instruction-tuned", "knowledge-distillation"],
+
+  "benchmarks": {
+    "mmlu": 75.2,
+    "humaneval": 51.8,
+    "math": 46.6,
+    "custom": {
+      "gsm8k": 74.0,
+      "arc-c": 71.4
+    },
+    "source": "https://ai.google.dev/gemma/docs/model_card_2"
+  },
+
+  "description": {
+    "ja": "2024年6月27日公開。Gemmaの後継モデル。13T（27B）/8T（9B）トークン学習。Interleaved Local-Global Sliding Window Attention、Logit Soft-capping、GQA採用。2B/9Bは知識蒸留で学習。",
+    "en": "Released June 27, 2024. Successor to Gemma. Trained on 13T (27B) / 8T (9B) tokens. Features Interleaved Local-Global Sliding Window Attention, Logit Soft-capping, and GQA. 2B/9B models trained via knowledge distillation."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "trainingTokens": "13T (27B), 8T (9B)",
+    "knowledgeCutoff": "2024-Q1",
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer, Interleaved Local-Global Sliding Window Attention, Logit Soft-capping, GQA, RoPE, SwiGLU, RMSNorm, Vocab 256K",
+    "promptTemplate": {
+      "format": "gemma",
+      "user": "<start_of_turn>user\n{user_message}<end_of_turn>",
+      "assistant": "<start_of_turn>model\n{assistant_response}<end_of_turn>",
+      "stopTokens": ["<end_of_turn>", "<eos>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/google",
+    "paper": "https://arxiv.org/abs/2408.00118",
+    "github": "https://github.com/google-deepmind/gemma",
+    "website": "https://ai.google.dev/gemma"
+  },
+
+  "variants": [
+    {
+      "name": "Gemma 2 2B",
+      "slug": "gemma-2-2b",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版。26レイヤー、8/4 Q/KVヘッド。知識蒸留で学習。",
+        "en": "Lightweight version. 26 layers, 8/4 Q/KV heads. Trained via knowledge distillation."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2-2b",
+      "requirements": {
+        "minVram": "5GB",
+        "notes": "INT8: 3GB, INT4: 2GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 2 2B Instruct",
+      "slug": "gemma-2-2b-it",
+      "parameters": "2B",
+      "description": {
+        "ja": "2B指示チューニング版。",
+        "en": "2B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2-2b-it",
+      "requirements": {
+        "minVram": "5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 2 9B",
+      "slug": "gemma-2-9b",
+      "parameters": "9B",
+      "description": {
+        "ja": "中型版。42レイヤー、16/8 Q/KVヘッド。知識蒸留で学習。",
+        "en": "Medium version. 42 layers, 16/8 Q/KV heads. Trained via knowledge distillation."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2-9b",
+      "requirements": {
+        "minVram": "22GB",
+        "notes": "INT8: 11GB, INT4: 6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 2 9B Instruct",
+      "slug": "gemma-2-9b-it",
+      "parameters": "9B",
+      "description": {
+        "ja": "9B指示チューニング版。",
+        "en": "9B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2-9b-it",
+      "requirements": {
+        "minVram": "22GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 2 27B",
+      "slug": "gemma-2-27b",
+      "parameters": "27B",
+      "description": {
+        "ja": "フラッグシップ版。46レイヤー、32/16 Q/KVヘッド。",
+        "en": "Flagship version. 46 layers, 32/16 Q/KV heads."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2-27b",
+      "requirements": {
+        "minVram": "65GB",
+        "notes": "INT8: 32GB, INT4: 17GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Gemma 2 27B Instruct",
+      "slug": "gemma-2-27b-it",
+      "parameters": "27B",
+      "description": {
+        "ja": "27B指示チューニング版。",
+        "en": "27B instruction-tuned variant."
+      },
+      "huggingface": "https://huggingface.co/google/gemma-2-27b-it",
+      "requirements": {
+        "minVram": "65GB"
+      },
+      "gguf": []
+    }
+  ]
+}

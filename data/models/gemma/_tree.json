@@ -1,0 +1,15 @@
+{
+  "description": "Gemmaファミリーのモデル関係図",
+  "relationships": [
+    { "child": "gemma", "parent": null, "type": "evolution" },
+    { "child": "codegemma", "parent": "gemma", "type": "official-derivative" },
+    { "child": "gemma2", "parent": "gemma", "type": "evolution" },
+    { "child": "shieldgemma", "parent": "gemma2", "type": "official-derivative" },
+    { "child": "gemma3", "parent": "gemma2", "type": "evolution" },
+    { "child": "shieldgemma2", "parent": "gemma3", "type": "official-derivative" },
+    { "child": "translategemma", "parent": "gemma3", "type": "official-derivative" },
+    { "child": "gemma3n", "parent": "gemma3", "type": "evolution" },
+    { "child": "functiongemma", "parent": "gemma3", "type": "official-derivative" },
+    { "child": "embeddinggemma", "parent": "gemma3", "type": "official-derivative" }
+  ]
+}

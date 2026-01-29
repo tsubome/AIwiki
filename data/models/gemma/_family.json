@@ -1,0 +1,22 @@
+{
+  "name": "Gemma",
+  "slug": "gemma",
+  "developer": "Google DeepMind",
+  "description": {
+    "ja": "Google DeepMindが開発するオープンウェイトLLMシリーズ。ラテン語で「宝石」を意味するGemmaは、2024年2月の初代モデルから2025年のGemma 3世代まで急速に進化。テキスト生成のコアモデル（Gemma→Gemma 2→Gemma 3→Gemma 3n）に加え、コーディング（CodeGemma）、翻訳（TranslateGemma）、埋め込み（EmbeddingGemma）、関数呼び出し（FunctionGemma）、安全性評価（ShieldGemma）など専門特化モデルを展開。140+言語対応、128Kコンテキスト、モバイル・エッジ向け最適化を実現。",
+    "en": "An open-weight LLM series developed by Google DeepMind. Named Gemma (Latin for 'gem'), the series rapidly evolved from the original model in February 2024 to the Gemma 3 generation in 2025. Beyond core text generation models (Gemma→Gemma 2→Gemma 3→Gemma 3n), specialized models include Coding (CodeGemma), Translation (TranslateGemma), Embedding (EmbeddingGemma), Function Calling (FunctionGemma), and Safety (ShieldGemma). Features 140+ language support, 128K context, and mobile/edge optimization."
+  },
+  "website": "https://ai.google.dev/gemma",
+  "versions": [
+    "gemma",
+    "codegemma",
+    "gemma2",
+    "shieldgemma",
+    "gemma3",
+    "shieldgemma2",
+    "translategemma",
+    "gemma3n",
+    "functiongemma",
+    "embeddinggemma"
+  ]
+}
