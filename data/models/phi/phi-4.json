@@ -1,0 +1,56 @@
+{
+  "name": "Phi-4",
+  "slug": "phi-4",
+  "releaseDate": "2024-12-12",
+  "developer": "Microsoft Research",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "phi-3-5",
+
+  "tags": ["official", "text-generation", "reasoning", "math", "efficient", "open-source"],
+
+  "benchmarks": {
+    "mmlu": 84.8,
+    "humaneval": 82.6,
+    "math": 80.4,
+    "gpqa": 56.1,
+    "source": "https://arxiv.org/abs/2412.08905"
+  },
+
+  "description": {
+    "ja": "2024年12月公開。推論・数学特化モデル。14Bパラメータ。9.8兆トークン学習。GPT-4o生成の高品質合成データ使用。MMLU 84.8%、MATH 80.4%、HumanEval 82.6%達成。Gemini Pro 1.5を数学競技問題で上回り、GPT-4oを一部推論タスクで上回る。単一GPUまたはNPUラップトップで実行可能。",
+    "en": "Released December 2024. Reasoning and math specialized. 14B parameters. 9.8T tokens training. Uses high-quality synthetic data from GPT-4o. Achieves 84.8% MMLU, 80.4% MATH, 82.6% HumanEval. Outperforms Gemini Pro 1.5 on math competitions, GPT-4o on some reasoning tasks. Runnable on single GPU or NPU laptop."
+  },
+
+  "specs": {
+    "contextLength": 16000,
+    "trainingTokens": "9.8T",
+    "knowledgeCutoff": "2024-06",
+    "languages": ["en"],
+    "architecture": "Dense decoder-only Transformer, SFT + iterative DPO, Math reasoning specialized"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/microsoft",
+    "paper": "https://arxiv.org/abs/2412.08905",
+    "website": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-phi-4-microsoft%E2%80%99s-newest-small-language-model-specializing-in-comple/4357090"
+  },
+
+  "variants": [
+    {
+      "name": "Phi-4",
+      "slug": "phi-4-base",
+      "parameters": "14B",
+      "description": {
+        "ja": "14Bで5倍大きなモデルを数学・推論で上回る。2〜4倍高速推論。",
+        "en": "14B outperforms 5x larger models on math/reasoning. 2-4x faster inference."
+      },
+      "huggingface": "https://huggingface.co/microsoft/phi-4",
+      "requirements": {
+        "minVram": "30GB",
+        "notes": "INT4: 10GB, NPU laptop compatible"
+      },
+      "gguf": []
+    }
+  ]
+}

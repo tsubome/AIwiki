@@ -1,0 +1,75 @@
+{
+  "name": "Phi-4-mini",
+  "slug": "phi-4-mini",
+  "releaseDate": "2025-02-26",
+  "developer": "Microsoft Research",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "phi-4",
+
+  "tags": ["official", "text-generation", "function-calling", "multilingual", "long-context", "reasoning", "open-source"],
+
+  "description": {
+    "ja": "2025年2月公開。3.8Bパラメータ。128Kコンテキスト。待望の関数呼び出し機能対応。語彙サイズ200K（32K→200K）でGQA追加、多言語サポート大幅強化。Llama 3.1 8B、Ministral-2410 8Bを上回る。mini-reasoning、mini-flash-reasoningなど推論特化バリアントも展開。",
+    "en": "Released February 2025. 3.8B parameters. 128K context. Long-awaited function calling support. Vocabulary 200K (from 32K), GQA added, enhanced multilingual. Outperforms Llama 3.1 8B, Ministral-2410 8B. Reasoning variants include mini-reasoning and mini-flash-reasoning."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "knowledgeCutoff": "2025-Q1",
+    "languages": ["en", "fr", "de", "es", "it", "ja", "ko", "zh"],
+    "architecture": "32-layer Transformer, hidden 3072, GQA (24 Q / 8 KV heads), Vocab 200K, RoPE, Function calling"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/microsoft",
+    "paper": "https://arxiv.org/abs/2503.01743"
+  },
+
+  "variants": [
+    {
+      "name": "Phi-4-mini Instruct",
+      "slug": "phi-4-mini-instruct",
+      "parameters": "3.8B",
+      "description": {
+        "ja": "関数呼び出し対応。指示追従・長文理解大幅改善。",
+        "en": "Function calling support. Significantly improved instruction following and long-context understanding."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "requirements": {
+        "minVram": "8GB",
+        "notes": "INT4: 3GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-4-mini-reasoning",
+      "slug": "phi-4-mini-reasoning",
+      "parameters": "3.8B",
+      "description": {
+        "ja": "2025年5月リリース。軽量推論モデル。128Kコンテキスト。",
+        "en": "Released May 2025. Lightweight reasoning model. 128K context."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-4-mini-reasoning",
+      "requirements": {
+        "minVram": "8GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-4-mini-flash-reasoning",
+      "slug": "phi-4-mini-flash-reasoning",
+      "parameters": "3.8B",
+      "description": {
+        "ja": "2025年7月リリース。Hybrid SambaY（Transformer+State-space）採用。2〜3倍低レイテンシ、最大10倍スループット。AIME 2024で52.29%達成。",
+        "en": "Released July 2025. Hybrid SambaY (Transformer+State-space). 2-3x lower latency, up to 10x throughput. Achieves 52.29% on AIME 2024."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-4-mini-flash-reasoning",
+      "requirements": {
+        "minVram": "8GB",
+        "notes": "Single A100-80GB efficient"
+      },
+      "gguf": []
+    }
+  ]
+}

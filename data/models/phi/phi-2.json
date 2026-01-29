@@ -1,0 +1,64 @@
+{
+  "name": "Phi-2",
+  "slug": "phi-2",
+  "releaseDate": "2023-12-12",
+  "developer": "Microsoft Research",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "phi-1",
+
+  "tags": ["official", "text-generation", "knowledge-transfer", "efficient", "open-source"],
+
+  "benchmarks": {
+    "mmlu": 56.7,
+    "humaneval": 47.6,
+    "custom": {
+      "hellaswag": 73.1,
+      "arc-c": 61.1,
+      "winogrande": 74.4,
+      "gsm8k": 57.2,
+      "bbh": 59.3
+    },
+    "source": "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/"
+  },
+
+  "description": {
+    "ja": "2023年12月公開（Microsoft Ignite 2023）。2.7Bパラメータ。1.4兆トークンで学習。知識転移技術によりPhi-1.5の知識を継承。Mistral 7B、LLaMA 2 13Bを多くのベンチマークで上回り、LLaMA-2-70Bを多段階推論タスクで上回る。",
+    "en": "Released December 2023 (Microsoft Ignite 2023). 2.7B parameters. Trained on 1.4T tokens. Inherits Phi-1.5 knowledge via knowledge transfer. Outperforms Mistral 7B, LLaMA 2 13B on many benchmarks, and LLaMA-2-70B on multi-step reasoning."
+  },
+
+  "specs": {
+    "trainingTokens": "1.4T",
+    "knowledgeCutoff": "2023",
+    "languages": ["en"],
+    "architecture": "Dense decoder-only Transformer, 32 layers, hidden size 2560, Knowledge transfer from Phi-1.5",
+    "promptTemplate": {
+      "format": "phi-2",
+      "user": "Instruct: {user_message}\nOutput:",
+      "stopTokens": ["\n\n"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/microsoft",
+    "website": "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/"
+  },
+
+  "variants": [
+    {
+      "name": "Phi-2",
+      "slug": "phi-2-base",
+      "parameters": "2.7B",
+      "description": {
+        "ja": "2.7Bで7B〜13Bモデルに匹敵。MMLU 56.7%、GSM8K 57.2%達成。",
+        "en": "2.7B rivaling 7B-13B models. Achieves 56.7% on MMLU, 57.2% on GSM8K."
+      },
+      "huggingface": "https://huggingface.co/microsoft/phi-2",
+      "requirements": {
+        "minVram": "6GB",
+        "notes": "INT4: 2GB"
+      },
+      "gguf": []
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "Phi-3.5",
+  "slug": "phi-3-5",
+  "releaseDate": "2024-08-20",
+  "developer": "Microsoft Research",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "phi-3",
+
+  "tags": ["official", "text-generation", "vision", "moe", "multilingual", "long-context", "open-source"],
+
+  "description": {
+    "ja": "2024年8月公開。Phi-3の多言語・MoE拡張版。mini（3.8B、多言語強化）、MoE（42B/6.6B活性化）、vision（4.2B）の3モデル。23言語対応（日本語含む）。128Kコンテキスト。Phi-3.5-MoEはLlama 3.1 8B、Mixtralを上回り、Gemini-1.5-Flash、GPT-4o-miniに匹敵。",
+    "en": "Released August 2024. Multilingual and MoE extension of Phi-3. Three models: mini (3.8B, enhanced multilingual), MoE (42B/6.6B active), vision (4.2B). Supports 23 languages including Japanese. 128K context. Phi-3.5-MoE outperforms Llama 3.1 8B and Mixtral, rivaling Gemini-1.5-Flash and GPT-4o-mini."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "trainingTokens": "3.4T",
+    "knowledgeCutoff": "2023-10",
+    "languages": ["ar", "zh", "cs", "da", "nl", "en", "fi", "fr", "de", "he", "hu", "it", "ja", "ko", "no", "pl", "pt", "ru", "es", "sv", "th", "tr", "uk"],
+    "architecture": "Dense Transformer (mini/vision), MoE 16 experts (MoE)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/microsoft",
+    "website": "https://azure.microsoft.com/en-us/blog/new-models-added-to-the-phi-3-family-available-on-microsoft-azure/"
+  },
+
+  "variants": [
+    {
+      "name": "Phi-3.5-mini Instruct",
+      "slug": "phi-3-5-mini-instruct",
+      "parameters": "3.8B",
+      "description": {
+        "ja": "多言語サポート大幅強化版。23言語対応。",
+        "en": "Significantly enhanced multilingual support. 23 languages."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
+      "requirements": {
+        "minVram": "8GB",
+        "notes": "INT4: 3GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3.5-MoE Instruct",
+      "slug": "phi-3-5-moe-instruct",
+      "parameters": "42B",
+      "parameterDetails": {
+        "total": "42B",
+        "active": "6.6B"
+      },
+      "description": {
+        "ja": "16エキスパートMoE。6.6B活性化で高効率推論。Llama 3.1 8B超。",
+        "en": "16-expert MoE. 6.6B active for efficient inference. Outperforms Llama 3.1 8B."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3.5-MoE-instruct",
+      "requirements": {
+        "minVram": "85GB",
+        "notes": "INT4: 25GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3.5-vision Instruct",
+      "slug": "phi-3-5-vision-instruct",
+      "parameters": "4.2B",
+      "description": {
+        "ja": "マルチモーダル。画像理解、OCR、チャート・表解析。",
+        "en": "Multimodal. Image understanding, OCR, chart/table analysis."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3.5-vision-instruct",
+      "requirements": {
+        "minVram": "10GB"
+      },
+      "gguf": []
+    }
+  ]
+}

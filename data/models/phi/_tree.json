@@ -1,0 +1,13 @@
+{
+  "description": "Phiファミリーのモデル関係図",
+  "relationships": [
+    { "child": "phi-1", "parent": null, "type": "evolution" },
+    { "child": "phi-2", "parent": "phi-1", "type": "evolution" },
+    { "child": "phi-3", "parent": "phi-2", "type": "evolution" },
+    { "child": "phi-3-5", "parent": "phi-3", "type": "evolution" },
+    { "child": "phi-4", "parent": "phi-3-5", "type": "evolution" },
+    { "child": "phi-4-mini", "parent": "phi-4", "type": "official-derivative" },
+    { "child": "phi-4-multimodal", "parent": "phi-4-mini", "type": "official-derivative" },
+    { "child": "phi-4-reasoning", "parent": "phi-4", "type": "official-derivative" }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "name": "Phi-3",
+  "slug": "phi-3",
+  "releaseDate": "2024-04-23",
+  "developer": "Microsoft Research",
+  "license": "MIT",
+  "modelType": "BASE",
+  "baseModel": "phi-2",
+
+  "tags": ["official", "text-generation", "vision", "long-context", "on-device", "open-source"],
+
+  "benchmarks": {
+    "mmlu": 69.0,
+    "humaneval": 58.5,
+    "gpqa": 29.2,
+    "custom": {
+      "hellaswag": 77.4,
+      "arc-c": 85.7,
+      "mt-bench": 8.38
+    },
+    "source": "https://arxiv.org/abs/2404.14219"
+  },
+
+  "description": {
+    "ja": "2024年4月公開（Microsoft Build 2024）。初の商用対応SLM。mini（3.8B）、small（7B）、medium（14B）、vision（4.2B）の4サイズ展開。SFT、DPO、RLHFで安全性強化。スマートフォン上で実行可能。Phi-3-miniはMixtral 8x7B、GPT-3.5に匹敵。",
+    "en": "Released April 2024 (Microsoft Build 2024). First commercial SLM. Four sizes: mini (3.8B), small (7B), medium (14B), vision (4.2B). Enhanced safety via SFT, DPO, RLHF. Runnable on smartphones. Phi-3-mini rivals Mixtral 8x7B and GPT-3.5."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "trainingTokens": "3.3T (mini), 4.8T (small/medium)",
+    "knowledgeCutoff": "2024-Q1",
+    "languages": ["en"],
+    "architecture": "Dense decoder-only Transformer, SFT + DPO + RLHF",
+    "promptTemplate": {
+      "format": "phi-3",
+      "system": "<|system|>\n{system_prompt}<|end|>",
+      "user": "<|user|>\n{user_message}<|end|>",
+      "assistant": "<|assistant|>\n{assistant_response}<|end|>",
+      "stopTokens": ["<|end|>", "<|endoftext|>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/microsoft",
+    "paper": "https://arxiv.org/abs/2404.14219",
+    "website": "https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/"
+  },
+
+  "variants": [
+    {
+      "name": "Phi-3-mini 4K Instruct",
+      "slug": "phi-3-mini-4k-instruct",
+      "parameters": "3.8B",
+      "description": {
+        "ja": "3.8Bパラメータ、4Kコンテキスト。スマートフォンで実行可能。",
+        "en": "3.8B parameters, 4K context. Runnable on smartphones."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
+      "requirements": {
+        "minVram": "8GB",
+        "notes": "INT4: 3GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3-mini 128K Instruct",
+      "slug": "phi-3-mini-128k-instruct",
+      "parameters": "3.8B",
+      "description": {
+        "ja": "3.8Bパラメータ、128Kコンテキスト。長文対応版。",
+        "en": "3.8B parameters, 128K context. Long-context version."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct",
+      "requirements": {
+        "minVram": "8GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3-small 8K Instruct",
+      "slug": "phi-3-small-8k-instruct",
+      "parameters": "7B",
+      "description": {
+        "ja": "7Bパラメータ、8Kコンテキスト。GPT-3.5Tを上回る。",
+        "en": "7B parameters, 8K context. Outperforms GPT-3.5T."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-small-8k-instruct",
+      "requirements": {
+        "minVram": "15GB",
+        "notes": "INT4: 5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3-small 128K Instruct",
+      "slug": "phi-3-small-128k-instruct",
+      "parameters": "7B",
+      "description": {
+        "ja": "7Bパラメータ、128Kコンテキスト。",
+        "en": "7B parameters, 128K context."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-small-128k-instruct",
+      "requirements": {
+        "minVram": "15GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3-medium 4K Instruct",
+      "slug": "phi-3-medium-4k-instruct",
+      "parameters": "14B",
+      "description": {
+        "ja": "14Bパラメータ。Gemini 1.0 Proを上回る。MMLU 78%達成。",
+        "en": "14B parameters. Outperforms Gemini 1.0 Pro. Achieves 78% on MMLU."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct",
+      "requirements": {
+        "minVram": "30GB",
+        "notes": "INT4: 10GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3-medium 128K Instruct",
+      "slug": "phi-3-medium-128k-instruct",
+      "parameters": "14B",
+      "description": {
+        "ja": "14Bパラメータ、128Kコンテキスト。",
+        "en": "14B parameters, 128K context."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
+      "requirements": {
+        "minVram": "30GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Phi-3-vision 128K Instruct",
+      "slug": "phi-3-vision-128k-instruct",
+      "parameters": "4.2B",
+      "description": {
+        "ja": "4.2Bパラメータ。マルチモーダル対応。Claude-3 Haikuを上回る。",
+        "en": "4.2B parameters. Multimodal capable. Outperforms Claude-3 Haiku."
+      },
+      "huggingface": "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct",
+      "requirements": {
+        "minVram": "10GB"
+      },
+      "gguf": []
+    }
+  ]
+}

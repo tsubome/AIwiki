@@ -1,0 +1,20 @@
+{
+  "name": "Phi",
+  "slug": "phi",
+  "developer": "Microsoft Research",
+  "description": {
+    "ja": "Microsoft Researchが開発するSmall Language Models（SLM）シリーズ。「Textbooks Are All You Need」コンセプトのもと、高品質合成データと教科書品質データで学習し、パラメータ数の数倍大きなモデルに匹敵する性能を実現。デバイス上での実行、低レイテンシ推論、プライバシー優先のアプリケーションに最適化。MIT Licenseでオープンソース。",
+    "en": "Small Language Models (SLM) series developed by Microsoft Research. Based on the 'Textbooks Are All You Need' concept, trained on high-quality synthetic and textbook-quality data to achieve performance rivaling models several times larger. Optimized for on-device execution, low-latency inference, and privacy-first applications. Open source under MIT License."
+  },
+  "website": "https://azure.microsoft.com/en-us/products/phi",
+  "versions": [
+    "phi-1",
+    "phi-2",
+    "phi-3",
+    "phi-3-5",
+    "phi-4",
+    "phi-4-mini",
+    "phi-4-multimodal",
+    "phi-4-reasoning"
+  ]
+}
