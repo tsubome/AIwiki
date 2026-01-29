@@ -6,7 +6,10 @@
   "license": "Non-commercial Research License",
   "modelType": "BASE",
 
-  "description": "2023年2月24日公開。Metaの初代大規模言語モデル。公開データのみで学習し、LLaMA-13BがGPT-3 (175B)を多くのベンチマークで上回る効率性を実証。オープンソースLLM革命の起点となった歴史的モデル。Chinchillaスケーリング則に基づく「オーバー・トレーニング」アプローチを採用。",
+  "description": {
+    "ja": "2023年2月24日公開。Metaの初代大規模言語モデル。公開データのみで学習し、LLaMA-13BがGPT-3 (175B)を多くのベンチマークで上回る効率性を実証。オープンソースLLM革命の起点となった歴史的モデル。Chinchillaスケーリング則に基づく「オーバー・トレーニング」アプローチを採用。",
+    "en": "Released February 24, 2023. Meta's first large language model. Trained on publicly available data only, demonstrating that LLaMA-13B outperforms GPT-3 (175B) on many benchmarks. A historic model that sparked the open-source LLM revolution. Adopted an 'over-training' approach based on Chinchilla scaling laws."
+  },
 
   "specs": {
     "contextLength": 2048,
@@ -26,28 +29,40 @@
       "name": "LLaMA 7B",
       "slug": "llama-1-7b",
       "parameters": "6.7B",
-      "description": "軽量モデル。単一GPU推論が可能。1兆トークンで学習。",
+      "description": {
+        "ja": "軽量モデル。単一GPU推論が可能。1兆トークンで学習。",
+        "en": "Lightweight model. Single GPU inference possible. Trained on 1 trillion tokens."
+      },
       "gguf": []
     },
     {
       "name": "LLaMA 13B",
       "slug": "llama-1-13b",
       "parameters": "13B",
-      "description": "GPT-3 (175B)を多くのベンチマークで上回る性能を実証。1兆トークンで学習。",
+      "description": {
+        "ja": "GPT-3 (175B)を多くのベンチマークで上回る性能を実証。1兆トークンで学習。",
+        "en": "Demonstrated superior performance to GPT-3 (175B) on many benchmarks. Trained on 1 trillion tokens."
+      },
       "gguf": []
     },
     {
       "name": "LLaMA 33B",
       "slug": "llama-1-33b",
       "parameters": "32.5B",
-      "description": "大規模モデル。1.4兆トークンで学習。30B表記も使用される。",
+      "description": {
+        "ja": "大規模モデル。1.4兆トークンで学習。30B表記も使用される。",
+        "en": "Large-scale model. Trained on 1.4 trillion tokens. Also referred to as 30B."
+      },
       "gguf": []
     },
     {
       "name": "LLaMA 65B",
       "slug": "llama-1-65b",
       "parameters": "65.2B",
-      "description": "最大モデル。Chinchilla 70B相当の性能。1.4兆トークンで学習。",
+      "description": {
+        "ja": "最大モデル。Chinchilla 70B相当の性能。1.4兆トークンで学習。",
+        "en": "Largest model. Performance comparable to Chinchilla 70B. Trained on 1.4 trillion tokens."
+      },
       "gguf": []
     }
   ]

@@ -9,7 +9,10 @@
   "baseModel": "meta-llama/Llama-2-7b",
   "tags": ["japanese", "multilingual"],
 
-  "description": "東京工業大学と産業技術総合研究所が開発した日本語特化モデル。Llama 2をベースに日本語データで継続事前学習を行い、日本語性能を大幅に向上。",
+  "description": {
+    "ja": "東京工業大学と産業技術総合研究所が開発した日本語特化モデル。Llama 2をベースに日本語データで継続事前学習を行い、日本語性能を大幅に向上。",
+    "en": "Japanese-specialized model developed by Tokyo Institute of Technology and AIST. Based on Llama 2 with continued pre-training on Japanese data, significantly improving Japanese language performance."
+  },
 
   "specs": {
     "contextLength": 4096,
@@ -26,7 +29,10 @@
       "name": "Swallow 7B",
       "slug": "swallow-7b-llama2",
       "parameters": "7B",
-      "description": "Llama 2 7Bベースの日本語特化モデル。",
+      "description": {
+        "ja": "Llama 2 7Bベースの日本語特化モデル。",
+        "en": "Japanese-specialized model based on Llama 2 7B."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Swallow-7b-hf",
       "requirements": {
         "minVram": "6GB",
@@ -39,7 +45,10 @@
       "name": "Swallow 13B",
       "slug": "swallow-13b-llama2",
       "parameters": "13B",
-      "description": "Llama 2 13Bベースの日本語特化モデル。",
+      "description": {
+        "ja": "Llama 2 13Bベースの日本語特化モデル。",
+        "en": "Japanese-specialized model based on Llama 2 13B."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Swallow-13b-hf",
       "requirements": {
         "minVram": "10GB",
@@ -52,7 +61,10 @@
       "name": "Swallow 70B",
       "slug": "swallow-70b-llama2",
       "parameters": "70B",
-      "description": "Llama 2 70Bベースの日本語特化モデル。高い日本語性能。",
+      "description": {
+        "ja": "Llama 2 70Bベースの日本語特化モデル。高い日本語性能。",
+        "en": "Japanese-specialized model based on Llama 2 70B. High Japanese language performance."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Swallow-70b-hf",
       "requirements": {
         "minVram": "40GB",

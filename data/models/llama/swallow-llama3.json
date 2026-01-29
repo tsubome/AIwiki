@@ -9,7 +9,10 @@
   "baseModel": "meta-llama/Meta-Llama-3-8B",
   "tags": ["japanese", "multilingual"],
 
-  "description": "Llama 3をベースにした日本語特化モデル。GQA採用により効率的な推論が可能。",
+  "description": {
+    "ja": "Llama 3をベースにした日本語特化モデル。GQA採用により効率的な推論が可能。",
+    "en": "Japanese-specialized model based on Llama 3. Efficient inference enabled by GQA architecture."
+  },
 
   "specs": {
     "contextLength": 8192,
@@ -33,7 +36,10 @@
       "name": "Swallow 8B",
       "slug": "swallow-8b-llama3",
       "parameters": "8B",
-      "description": "Llama 3 8Bベースの日本語特化モデル。",
+      "description": {
+        "ja": "Llama 3 8Bベースの日本語特化モデル。",
+        "en": "Japanese-specialized model based on Llama 3 8B."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Llama-3-Swallow-8B-v0.1",
       "requirements": {
         "minVram": "6GB",
@@ -46,7 +52,10 @@
       "name": "Swallow 70B",
       "slug": "swallow-70b-llama3",
       "parameters": "70B",
-      "description": "Llama 3 70Bベースの日本語特化モデル。",
+      "description": {
+        "ja": "Llama 3 70Bベースの日本語特化モデル。",
+        "en": "Japanese-specialized model based on Llama 3 70B."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Llama-3-Swallow-70B-v0.1",
       "requirements": {
         "minVram": "40GB",

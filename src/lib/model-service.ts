@@ -23,6 +23,10 @@ import type {
   ResolvedVariant,
   GGUFFile,
 } from '@/types/model-data'
+import { getLocalizedString } from '@/types/model-data'
+
+// Default locale for fallback
+const DEFAULT_LOCALE = 'ja'
 
 // ============================================
 // Types for Page Components
@@ -103,12 +107,12 @@ export interface ModelForTree {
 // Converters
 // ============================================
 
-function toModelForList(model: ResolvedModel): ModelForList {
+function toModelForList(model: ResolvedModel, locale: string = DEFAULT_LOCALE): ModelForList {
   return {
     id: model.id,
     name: model.name,
     slug: model.slug,
-    description: model.description || null,
+    description: getLocalizedString(model.description, locale) || null,
     developer: model.developer || null,
     modelType: model.modelType,
     releaseDate: model.releaseDate ? new Date(model.releaseDate) : null,
@@ -116,14 +120,14 @@ function toModelForList(model: ResolvedModel): ModelForList {
   }
 }
 
-function toVariantForDetail(variant: ResolvedVariant, index: number): VariantForDetail {
+function toVariantForDetail(variant: ResolvedVariant, index: number, locale: string = DEFAULT_LOCALE): VariantForDetail {
   return {
     id: variant.id,
     name: variant.name,
     slug: variant.slug,
     parameters: variant.parameters,
     parameterDetails: variant.parameterDetails,
-    description: variant.description || null,
+    description: getLocalizedString(variant.description, locale) || null,
     huggingface: variant.huggingface || null,
     ggufFiles: (variant.gguf || []).map((file, i) => ({
       id: `${variant.id}-gguf-${i}`,
@@ -131,24 +135,24 @@ function toVariantForDetail(variant: ResolvedVariant, index: number): VariantFor
       size: file.size || null,
       url: file.url,
       recommended: file.recommended || false,
-      description: file.description || null,
+      description: getLocalizedString(file.description, locale) || null,
     })),
   }
 }
 
-function toModelForDetail(model: ResolvedModel): ModelForDetail {
+function toModelForDetail(model: ResolvedModel, locale: string = DEFAULT_LOCALE): ModelForDetail {
   return {
     id: model.id,
     name: model.name,
     slug: model.slug,
-    description: model.description || null,
+    description: getLocalizedString(model.description, locale) || null,
     developer: model.developer || null,
     license: model.license || null,
     modelType: model.modelType,
     releaseDate: model.releaseDate ? new Date(model.releaseDate) : null,
     specs: model.specs || null,
     links: model.links || null,
-    variants: model.variants.map((v, i) => toVariantForDetail(v, i)),
+    variants: model.variants.map((v, i) => toVariantForDetail(v, i, locale)),
   }
 }
 
@@ -182,19 +186,22 @@ export interface TreeNode {
 
 /**
  * Get all models for the list page
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getModelsForList(): ModelForList[] {
-  return getAllModels().map(toModelForList)
+export function getModelsForList(locale: string = DEFAULT_LOCALE): ModelForList[] {
+  return getAllModels().map(m => toModelForList(m, locale))
 }
 
 /**
  * Get a model by slug for the detail page
  * Returns null if not found
+ * @param slug - Model slug
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getModelBySlug(slug: string): ModelForDetail | null {
+export function getModelBySlug(slug: string, locale: string = DEFAULT_LOCALE): ModelForDetail | null {
   const model = findModelBySlug(slug)
   if (!model) return null
-  return toModelForDetail(model)
+  return toModelForDetail(model, locale)
 }
 
 /**
@@ -212,9 +219,11 @@ export function getParentModelSlug(slug: string): string | null {
 
 /**
  * Get sibling models (same family) for related models section
+ * @param modelSlug - Model slug
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getSiblingVersions(modelSlug: string): ModelForList[] {
-  return getSiblingModels(modelSlug).map(toModelForList)
+export function getSiblingVersions(modelSlug: string, locale: string = DEFAULT_LOCALE): ModelForList[] {
+  return getSiblingModels(modelSlug).map(m => toModelForList(m, locale))
 }
 
 /**
@@ -339,8 +348,10 @@ export function getFamilyTreeByFamilySlug(familySlug: string): TreeNode[] {
 
 /**
  * Get GGUF files grouped by variant (for backward compatibility)
+ * @param modelSlug - Model slug
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getVersionGgufFiles(modelSlug: string): { parameter: string; files: GGUFFileForDetail[] }[] {
+export function getVersionGgufFiles(modelSlug: string, locale: string = DEFAULT_LOCALE): { parameter: string; files: GGUFFileForDetail[] }[] {
   const model = findModelBySlug(modelSlug)
   if (!model) return []
 
@@ -352,7 +363,7 @@ export function getVersionGgufFiles(modelSlug: string): { parameter: string; fil
       size: file.size || null,
       url: file.url,
       recommended: file.recommended || false,
-      description: file.description || null,
+      description: getLocalizedString(file.description, locale) || null,
     })),
   }))
 }
@@ -382,8 +393,10 @@ export interface FamilyForDetail {
 
 /**
  * Get family by slug for the detail page
+ * @param slug - Family slug
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getFamilyBySlug(slug: string): FamilyForDetail | null {
+export function getFamilyBySlug(slug: string, locale: string = DEFAULT_LOCALE): FamilyForDetail | null {
   const family = loadFamily(slug)
   if (!family) return null
 
@@ -391,8 +404,8 @@ export function getFamilyBySlug(slug: string): FamilyForDetail | null {
     slug: family.slug,
     name: family.name,
     developer: family.developer || null,
-    description: family.description || null,
-    models: family.models.map(toModelForList),
+    description: getLocalizedString(family.description, locale) || null,
+    models: family.models.map(m => toModelForList(m, locale)),
   }
 }
 
@@ -429,13 +442,13 @@ export interface ModelWithChildren {
 
 const DEFAULT_TIMESTAMP = new Date('2024-01-01')
 
-function toLegacyModel(model: ResolvedModel, parentId: string | null = null): ModelWithChildren {
+function toLegacyModel(model: ResolvedModel, parentId: string | null = null, locale: string = DEFAULT_LOCALE): ModelWithChildren {
   const releaseDate = model.releaseDate ? new Date(model.releaseDate) : null
   return {
     id: model.id,
     name: model.name,
     slug: model.slug,
-    description: model.description || null,
+    description: getLocalizedString(model.description, locale) || null,
     parameters: null, // Version nodes don't have parameters directly
     releaseDate,
     developer: model.developer || null,
@@ -460,19 +473,20 @@ function toLegacyModel(model: ResolvedModel, parentId: string | null = null): Mo
 
 /**
  * Legacy: Get root models with children
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getRootModelsWithChildren(): ModelWithChildren[] {
+export function getRootModelsWithChildren(locale: string = DEFAULT_LOCALE): ModelWithChildren[] {
   const families = loadAllFamilies()
 
   return families.map(family => {
     // Pass family.slug as parentId for each child model
-    const children = family.models.map(m => toLegacyModel(m, family.slug))
+    const children = family.models.map(m => toLegacyModel(m, family.slug, locale))
 
     return {
       id: family.slug,
       name: family.name,
       slug: family.slug,
-      description: family.description || null,
+      description: getLocalizedString(family.description, locale) || null,
       parameters: null,
       releaseDate: null,
       developer: family.developer || null,
@@ -490,9 +504,11 @@ export function getRootModelsWithChildren(): ModelWithChildren[] {
 
 /**
  * Legacy: Get model by slug
+ * @param slug - Model slug
+ * @param locale - Language code ('ja' or 'en')
  */
-export function getLegacyModelBySlug(slug: string): ModelWithChildren | null {
+export function getLegacyModelBySlug(slug: string, locale: string = DEFAULT_LOCALE): ModelWithChildren | null {
   const model = findModelBySlug(slug)
   if (!model) return null
-  return toLegacyModel(model)
+  return toLegacyModel(model, null, locale)
 }

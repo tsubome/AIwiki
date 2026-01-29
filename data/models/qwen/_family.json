@@ -1,0 +1,25 @@
+{
+  "name": "Qwen",
+  "slug": "qwen",
+  "developer": "Alibaba Cloud / Qwen Team",
+  "description": {
+    "ja": "Alibaba Cloudが開発する大規模言語モデルシリーズ「通義千問」。2023年の初代Qwenから2025年のQwen3世代まで急速に進化し、119言語対応・256Kコンテキストを実現。テキスト生成のコアモデル（Qwen1.5→Qwen2→Qwen2.5→Qwen3）に加え、ビジョン（Qwen-VL）、コーディング（Qwen-Coder）、推論（QwQ）、数学（Qwen-Math）、埋め込み（Qwen-Embedding）など専門特化モデルを展開。Apache 2.0ライセンスで商用利用可能。",
+    "en": "A large language model series 'Tongyi Qianwen' developed by Alibaba Cloud. Rapidly evolved from the original Qwen in 2023 to Qwen3 generation in 2025, achieving 119 language support and 256K context. In addition to core text generation models (Qwen1.5→Qwen2→Qwen2.5→Qwen3), specialized models include Vision (Qwen-VL), Coding (Qwen-Coder), Reasoning (QwQ), Math (Qwen-Math), and Embedding (Qwen-Embedding). Commercially available under Apache 2.0 license."
+  },
+  "website": "https://qwen.ai/",
+  "versions": [
+    "qwen1-5",
+    "codeqwen",
+    "qwen2",
+    "qwen2-5",
+    "qwen2-5-coder",
+    "qwen2-5-math",
+    "qwen2-5-vl",
+    "qwq",
+    "qwen3",
+    "qwen3-coder",
+    "qwen3-embedding",
+    "qwen3-vl",
+    "qwen3-next"
+  ]
+}

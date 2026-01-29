@@ -4,6 +4,40 @@
 
 ---
 
+## 多言語対応（LocalizedString）
+
+AIwikiは日本語と英語の両方に対応しています。`description` フィールドは多言語形式で記述します。
+
+### LocalizedString 型
+
+```typescript
+type LocalizedString = string | {
+  ja?: string  // 日本語
+  en?: string  // 英語
+}
+```
+
+### 記述例
+
+```json
+"description": {
+  "ja": "日本語の説明文",
+  "en": "English description"
+}
+```
+
+### 後方互換性
+
+従来の単一文字列形式も引き続きサポートされています（日本語として扱われます）：
+
+```json
+"description": "日本語の説明文"
+```
+
+**推奨**: 新規データは多言語形式で記述してください。
+
+---
+
 ## ディレクトリ構造
 
 ```
@@ -35,7 +69,7 @@ data/
 | フィールド | 型 | 説明 |
 |-----------|------|------|
 | `developer` | string | 開発元（例: "Meta"） |
-| `description` | string | ファミリーの説明 |
+| `description` | LocalizedString | ファミリーの説明（多言語対応） |
 | `website` | string | 公式サイトURL |
 
 ### 例
@@ -45,7 +79,10 @@ data/
   "name": "Llama",
   "slug": "llama",
   "developer": "Meta",
-  "description": "Metaが開発する大規模言語モデルシリーズ。",
+  "description": {
+    "ja": "Metaが開発する大規模言語モデルシリーズ。",
+    "en": "A large language model series developed by Meta."
+  },
   "website": "https://llama.meta.com",
   "versions": [
     "llama-3",
@@ -88,7 +125,7 @@ data/
 | `releaseDate` | string | リリース日（"YYYY-MM-DD"） |
 | `developer` | string | 開発元 |
 | `license` | string | ライセンス名 |
-| `description` | string | モデルの説明 |
+| `description` | LocalizedString | モデルの説明（多言語対応） |
 | `baseModel` | string | ベースモデル（FINETUNEの場合） |
 | `mergedFrom` | string[] | マージ元モデル一覧（MERGEの場合） |
 | `tags` | string[] | タグ一覧（下記参照） |
@@ -252,7 +289,10 @@ data/
     "source": "Meta Official Model Card 2024-12"
   },
 
-  "description": "70Bパラメータで405Bモデルに匹敵する性能を実現。",
+  "description": {
+    "ja": "70Bパラメータで405Bモデルに匹敵する性能を実現。",
+    "en": "Achieves performance comparable to the 405B model with 70B parameters."
+  },
 
   "specs": {
     "contextLength": 128000,
@@ -276,7 +316,10 @@ data/
       "name": "Llama 3.3 70B Instruct",
       "slug": "llama-3.3-70b",
       "parameters": "70B",
-      "description": "70Bパラメータで405Bモデルに匹敵する性能を実現。",
+      "description": {
+        "ja": "70Bパラメータで405Bモデルに匹敵する性能を実現。",
+        "en": "Achieves performance comparable to the 405B model with 70B parameters."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
       "requirements": {
         "minVram": "40GB",
@@ -304,7 +347,10 @@ data/
   "baseModel": "meta-llama/Llama-2-7b",
   "tags": ["japanese", "multilingual"],
 
-  "description": "Llamaシリーズをベースに日本語データで継続事前学習を行った日本語特化モデル。",
+  "description": {
+    "ja": "Llamaシリーズをベースに日本語データで継続事前学習を行った日本語特化モデル。",
+    "en": "Japanese-specialized model with continued pre-training on Japanese data based on Llama series."
+  },
 
   "specs": {
     "languages": ["ja", "en"],
@@ -326,7 +372,10 @@ data/
       "name": "Swallow 8B (Llama 3)",
       "slug": "swallow-8b-llama3",
       "parameters": "8B",
-      "description": "Llama 3 8Bベースの日本語特化モデル。",
+      "description": {
+        "ja": "Llama 3 8Bベースの日本語特化モデル。",
+        "en": "Japanese-specialized model based on Llama 3 8B."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Llama-3-Swallow-8B-v0.1",
       "requirements": {
         "minVram": "6GB",
@@ -358,7 +407,7 @@ data/
 
 | フィールド | 型 | 説明 |
 |-----------|------|------|
-| `description` | string | バリエーションの説明 |
+| `description` | LocalizedString | バリエーションの説明（多言語対応） |
 | `huggingface` | string | Hugging Face URL |
 | `requirements` | object | ハードウェア要件（下記参照） |
 | `parameterDetails` | object | MoEモデル用の詳細情報 |
@@ -399,7 +448,10 @@ data/
     "name": "Llama 3 8B",
     "slug": "llama-3-8b",
     "parameters": "8B",
-    "description": "軽量版。ローカル実行に最適。",
+    "description": {
+      "ja": "軽量版。ローカル実行に最適。",
+      "en": "Lightweight version. Ideal for local execution."
+    },
     "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
     "requirements": {
       "minVram": "6GB",
@@ -412,7 +464,10 @@ data/
     "name": "Llama 3 70B",
     "slug": "llama-3-70b",
     "parameters": "70B",
-    "description": "高性能版。",
+    "description": {
+      "ja": "高性能版。",
+      "en": "High-performance version."
+    },
     "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B",
     "requirements": {
       "minVram": "40GB",
@@ -439,7 +494,7 @@ data/
 | `url` | string | Yes | ダウンロードURL |
 | `size` | string | No | ファイルサイズ（例: "4.9GB"） |
 | `recommended` | boolean | No | 推奨フラグ |
-| `description` | string | No | 説明 |
+| `description` | LocalizedString | No | 説明（多言語対応） |
 
 ### 例
 
@@ -450,13 +505,19 @@ data/
     "size": "4.9GB",
     "url": "https://huggingface.co/.../model-Q4_K_M.gguf",
     "recommended": true,
-    "description": "バランス型。多くの環境で推奨"
+    "description": {
+      "ja": "バランス型。多くの環境で推奨",
+      "en": "Balanced. Recommended for most environments"
+    }
   },
   {
     "name": "Q8_0",
     "size": "8.5GB",
     "url": "https://huggingface.co/.../model-Q8_0.gguf",
-    "description": "高品質版"
+    "description": {
+      "ja": "高品質版",
+      "en": "High quality version"
+    }
   }
 ]
 ```
@@ -480,7 +541,10 @@ data/models/gemini/
   "name": "Gemini",
   "slug": "gemini",
   "developer": "Google",
-  "description": "Googleが開発するマルチモーダルAIモデルシリーズ。",
+  "description": {
+    "ja": "Googleが開発するマルチモーダルAIモデルシリーズ。",
+    "en": "A multimodal AI model series developed by Google."
+  },
   "website": "https://deepmind.google/technologies/gemini/",
   "versions": [
     "gemini-1.0",
@@ -503,7 +567,10 @@ data/models/gemini/
   "license": "Proprietary",
   "modelType": "BASE",
 
-  "description": "Googleの最新マルチモーダルAIモデル。",
+  "description": {
+    "ja": "Googleの最新マルチモーダルAIモデル。",
+    "en": "Google's latest multimodal AI model."
+  },
 
   "specs": {
     "contextLength": 1000000,
@@ -520,14 +587,20 @@ data/models/gemini/
       "name": "Gemini 2.0 Flash",
       "slug": "gemini-2.0-flash",
       "parameters": "不明",
-      "description": "高速推論版。",
+      "description": {
+        "ja": "高速推論版。",
+        "en": "Fast inference version."
+      },
       "gguf": []
     },
     {
       "name": "Gemini 2.0 Pro",
       "slug": "gemini-2.0-pro",
       "parameters": "不明",
-      "description": "高性能版。",
+      "description": {
+        "ja": "高性能版。",
+        "en": "High-performance version."
+      },
       "gguf": []
     }
   ]
@@ -586,7 +659,7 @@ wsl npm run deploy:cloudflare
 2. **ファイル名 = slug** - `llama-3.json` なら `slug: "llama-3"`
 3. **フォルダ名 = ファミリーslug** - `llama/` なら `slug: "llama"`
 4. **versions の順番** - 表示順に影響するので時系列推奨
-5. **日本語OK** - description などは日本語で記述可
+5. **多言語対応** - description は `{ "ja": "...", "en": "..." }` 形式で記述（後方互換のため文字列も可）
 6. **空配列に注意** - `gguf: []` は必須（空でもOK）
 
 ---
@@ -637,6 +710,11 @@ Get-Content data/models/llama/llama-3.3.json | ConvertFrom-Json
 
   "tags": ["official", "multilingual"],
 
+  "description": {
+    "ja": "モデルの説明（日本語）",
+    "en": "Model description (English)"
+  },
+
   "specs": {
     "contextLength": 8192,
     "languages": ["en", "ja"],
@@ -654,6 +732,10 @@ Get-Content data/models/llama/llama-3.3.json | ConvertFrom-Json
       "name": "Model Name 8B",
       "slug": "model-slug-8b",
       "parameters": "8B",
+      "description": {
+        "ja": "バリエーションの説明（日本語）",
+        "en": "Variant description (English)"
+      },
       "huggingface": "https://huggingface.co/...",
       "requirements": {
         "minVram": "6GB",

@@ -1,0 +1,148 @@
+{
+  "name": "Qwen3-Next",
+  "slug": "qwen3-next",
+  "releaseDate": "2025-09-10",
+  "developer": "Alibaba Cloud / Qwen Team",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "multilingual", "long-context", "moe"],
+
+  "benchmarks": {
+    "mmlupro": 80.6,
+    "gpqa": 72.9,
+    "ifeval": 87.6,
+    "custom": {
+      "mmlu-redux": 90.9,
+      "livecodebnech-v6": 56.6,
+      "arena-hard-v2": 82.7,
+      "ruler-1m": 80.3
+    },
+    "source": "Qwen3-Next HuggingFace Model Card"
+  },
+
+  "description": {
+    "ja": "2025年9月10日公開。革新的なHybrid Transformer-Mambaアーキテクチャを採用。80Bパラメータながら3Bのみアクティブで高効率。256Kネイティブコンテキスト（1Mまで拡張可能）。Gated DeltaNet（線形アテンション）とHigh-Sparsity MoE（512エキスパート、10アクティブ）を組み合わせ、Multi-Token Prediction（MTP）も実装。",
+    "en": "Released September 10, 2025. Adopts innovative Hybrid Transformer-Mamba architecture. Highly efficient with only 3B active out of 80B total parameters. 256K native context (extendable to 1M). Combines Gated DeltaNet (linear attention) with High-Sparsity MoE (512 experts, 10 active), and implements Multi-Token Prediction (MTP)."
+  },
+
+  "specs": {
+    "contextLength": 262144,
+    "trainingTokens": "15T",
+    "knowledgeCutoff": "2025-H1",
+    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi", "pt", "it", "hi", "id"],
+    "architecture": "Hybrid Transformer-Mamba, Gated DeltaNet, High-Sparsity MoE (512 experts), Multi-Token Prediction",
+    "promptTemplate": {
+      "format": "chatml-thinking",
+      "system": "<|im_start|>system\n{system}<|im_end|>",
+      "user": "<|im_start|>user\n{prompt}<|im_end|>",
+      "assistant": "<|im_start|>assistant\n<think>\n{thinking}</think>\n{response}<|im_end|>",
+      "stopTokens": ["<|im_end|>", "</s>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/collections/Qwen/qwen3-next",
+    "paper": "https://arxiv.org/abs/2505.09388",
+    "github": "https://github.com/QwenLM/Qwen3",
+    "website": "https://qwen.ai/"
+  },
+
+  "variants": [
+    {
+      "name": "Qwen3-Next 80B-A3B Base",
+      "slug": "qwen3-next-80b-a3b-base",
+      "parameters": "80B/3B",
+      "parameterDetails": {
+        "active": "3B",
+        "total": "80B",
+        "experts": 512
+      },
+      "description": {
+        "ja": "ベースモデル。Hybrid Transformer-Mamba。",
+        "en": "Base model. Hybrid Transformer-Mamba architecture."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Base",
+      "requirements": {
+        "minVram": "160GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen3-Next 80B-A3B Instruct",
+      "slug": "qwen3-next-80b-a3b-instruct",
+      "parameters": "80B/3B",
+      "parameterDetails": {
+        "active": "3B",
+        "total": "80B",
+        "experts": 512
+      },
+      "description": {
+        "ja": "Instruct版。指示追従に最適化。",
+        "en": "Instruct variant. Optimized for instruction following."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "requirements": {
+        "minVram": "160GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen3-Next 80B-A3B Thinking",
+      "slug": "qwen3-next-80b-a3b-thinking",
+      "parameters": "80B/3B",
+      "parameterDetails": {
+        "active": "3B",
+        "total": "80B",
+        "experts": 512
+      },
+      "description": {
+        "ja": "Thinking版。深い推論に最適化。",
+        "en": "Thinking variant. Optimized for deep reasoning."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking",
+      "requirements": {
+        "minVram": "160GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen3-Next 80B-A3B Instruct-FP8",
+      "slug": "qwen3-next-80b-a3b-instruct-fp8",
+      "parameters": "80B/3B",
+      "parameterDetails": {
+        "active": "3B",
+        "total": "80B",
+        "experts": 512
+      },
+      "description": {
+        "ja": "FP8量子化版Instruct。VRAM削減。",
+        "en": "FP8 quantized Instruct. Reduced VRAM requirements."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct-FP8",
+      "requirements": {
+        "minVram": "82GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen3-Next 80B-A3B Thinking-FP8",
+      "slug": "qwen3-next-80b-a3b-thinking-fp8",
+      "parameters": "80B/3B",
+      "parameterDetails": {
+        "active": "3B",
+        "total": "80B",
+        "experts": 512
+      },
+      "description": {
+        "ja": "FP8量子化版Thinking。VRAM削減。",
+        "en": "FP8 quantized Thinking. Reduced VRAM requirements."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking-FP8",
+      "requirements": {
+        "minVram": "82GB"
+      },
+      "gguf": []
+    }
+  ]
+}

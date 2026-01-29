@@ -1,0 +1,155 @@
+{
+  "name": "Qwen2.5",
+  "slug": "qwen2-5",
+  "releaseDate": "2024-09-19",
+  "developer": "Alibaba Cloud / Qwen Team",
+  "license": "Apache 2.0 (0.5B-32B), Qwen Research (3B), Qwen License (72B)",
+  "modelType": "BASE",
+
+  "tags": ["official", "multilingual", "long-context", "coding", "math"],
+
+  "benchmarks": {
+    "mmlu": 86.1,
+    "mmlupro": 58.1,
+    "gpqa": 45.9,
+    "humaneval": 59.1,
+    "math": 62.1,
+    "ifeval": 84.1,
+    "source": "Qwen2.5 Technical Report (arXiv:2412.15115)"
+  },
+
+  "description": {
+    "ja": "2024年9月19日公開。18兆トークンで学習し、29言語以上に対応。7B以上は128Kコンテキストをサポート。YARN + Dual Chunk Attentionによる長文脈処理。コーディング・数学・指示追従能力が大幅に向上。Qwen2.5シリーズの基盤モデル。",
+    "en": "Released September 19, 2024. Trained on 18 trillion tokens with support for 29+ languages. 7B and above support 128K context. Long context processing via YARN + Dual Chunk Attention. Significantly improved coding, math, and instruction following capabilities. Foundation model for the Qwen2.5 series."
+  },
+
+  "specs": {
+    "contextLength": 131072,
+    "trainingTokens": "18T",
+    "knowledgeCutoff": "2024-H1",
+    "languages": ["zh", "en", "fr", "es", "pt", "de", "it", "ru", "ja", "ko", "vi", "th", "ar", "id"],
+    "architecture": "Dense Decoder-only, GQA with QKV bias, RoPE, YARN + Dual Chunk Attention, SwiGLU, RMSNorm",
+    "promptTemplate": {
+      "format": "chatml",
+      "system": "<|im_start|>system\n{system}<|im_end|>",
+      "user": "<|im_start|>user\n{prompt}<|im_end|>",
+      "assistant": "<|im_start|>assistant\n",
+      "stopTokens": ["<|im_end|>", "<|endoftext|>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/Qwen",
+    "paper": "https://arxiv.org/abs/2412.15115",
+    "github": "https://github.com/QwenLM/Qwen2.5",
+    "website": "https://qwenlm.github.io/blog/qwen2.5/"
+  },
+
+  "variants": [
+    {
+      "name": "Qwen2.5 0.5B",
+      "slug": "qwen2-5-0.5b",
+      "parameters": "0.5B",
+      "description": {
+        "ja": "最軽量モデル。32Kコンテキスト。",
+        "en": "Lightest model. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-0.5B",
+      "requirements": {
+        "minVram": "1GB",
+        "recommendedVram": "2GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5 1.5B",
+      "slug": "qwen2-5-1.5b",
+      "parameters": "1.5B",
+      "description": {
+        "ja": "軽量モデル。32Kコンテキスト。",
+        "en": "Lightweight model. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-1.5B",
+      "requirements": {
+        "minVram": "4GB",
+        "recommendedVram": "6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5 3B",
+      "slug": "qwen2-5-3b",
+      "parameters": "3B",
+      "description": {
+        "ja": "コンパクトモデル。32Kコンテキスト。",
+        "en": "Compact model. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-3B",
+      "requirements": {
+        "minVram": "7GB",
+        "recommendedVram": "10GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5 7B",
+      "slug": "qwen2-5-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "標準サイズ。128Kコンテキストをサポート。",
+        "en": "Standard size. Supports 128K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-7B",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "20GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5 14B",
+      "slug": "qwen2-5-14b",
+      "parameters": "14B",
+      "description": {
+        "ja": "中型モデル。128Kコンテキスト。",
+        "en": "Medium model. 128K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-14B",
+      "requirements": {
+        "minVram": "32GB",
+        "recommendedVram": "40GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5 32B",
+      "slug": "qwen2-5-32b",
+      "parameters": "32B",
+      "description": {
+        "ja": "大型モデル。128Kコンテキスト。",
+        "en": "Large model. 128K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-32B",
+      "requirements": {
+        "minVram": "70GB",
+        "recommendedVram": "85GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5 72B",
+      "slug": "qwen2-5-72b",
+      "parameters": "72B",
+      "description": {
+        "ja": "フラッグシップモデル。128Kコンテキスト。",
+        "en": "Flagship model. 128K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-72B",
+      "requirements": {
+        "minVram": "150GB",
+        "recommendedVram": "170GB"
+      },
+      "gguf": []
+    }
+  ]
+}

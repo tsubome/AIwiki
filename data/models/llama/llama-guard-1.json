@@ -9,7 +9,10 @@
   "baseModel": "meta-llama/Llama-2-7b",
   "tags": ["official"],
 
-  "description": "Purple Llamaプロジェクトの初代安全性分類器。Llama 2-7Bをベースに、有害な入出力を7つのカテゴリで分類。",
+  "description": {
+    "ja": "Purple Llamaプロジェクトの初代安全性分類器。Llama 2-7Bをベースに、有害な入出力を7つのカテゴリで分類。",
+    "en": "The first safety classifier from the Purple Llama project. Based on Llama 2-7B, classifies harmful inputs and outputs into 7 categories."
+  },
 
   "specs": {
     "languages": ["en"],
@@ -27,7 +30,10 @@
       "name": "Llama Guard 1 7B",
       "slug": "llama-guard-1-7b",
       "parameters": "7B",
-      "description": "Llama 2-7Bベース。7つの安全性カテゴリを検出。",
+      "description": {
+        "ja": "Llama 2-7Bベース。7つの安全性カテゴリを検出。",
+        "en": "Based on Llama 2-7B. Detects 7 safety categories."
+      },
       "huggingface": "https://huggingface.co/meta-llama/LlamaGuard-7b",
       "gguf": []
     }

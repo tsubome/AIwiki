@@ -2,7 +2,10 @@
   "name": "Llama",
   "slug": "llama",
   "developer": "Meta",
-  "description": "Metaが開発する大規模言語モデル（LLM）シリーズ。2023年2月のLLaMA 1から始まり、オープンソースLLM革命を牽引。Llama 4ではMixture of Experts（MoE）とネイティブマルチモーダルを採用し、最大10Mトークンのコンテキストを実現。派生モデルとしてCode Llama（コード特化）、Llama Guard（安全性分類）も提供。",
+  "description": {
+    "ja": "Metaが開発する大規模言語モデル（LLM）シリーズ。2023年2月のLLaMA 1から始まり、オープンソースLLM革命を牽引。Llama 4ではMixture of Experts（MoE）とネイティブマルチモーダルを採用し、最大10Mトークンのコンテキストを実現。派生モデルとしてCode Llama（コード特化）、Llama Guard（安全性分類）も提供。",
+    "en": "A large language model (LLM) series developed by Meta. Starting with LLaMA 1 in February 2023, it has led the open-source LLM revolution. Llama 4 adopts Mixture of Experts (MoE) and native multimodal capabilities, achieving up to 10M token context. Derivative models include Code Llama (code-specialized) and Llama Guard (safety classification)."
+  },
   "website": "https://llama.meta.com",
   "versions": [
     "llama-1",

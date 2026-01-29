@@ -6,7 +6,10 @@
   "license": "Llama 2 Community License",
   "modelType": "BASE",
 
-  "description": "2023年7月18日公開。商用利用を解禁した第2世代モデル。コンテキスト長を4Kに倍増、2兆トークンで学習。70Bモデルには推論効率向上のためGQA（Grouped-Query Attention）を初採用。Chat版はSFT+RLHFで人間の好みに合わせて調整。学習データにMeta製品・サービスのデータは含まない。",
+  "description": {
+    "ja": "2023年7月18日公開。商用利用を解禁した第2世代モデル。コンテキスト長を4Kに倍増、2兆トークンで学習。70Bモデルには推論効率向上のためGQA（Grouped-Query Attention）を初採用。Chat版はSFT+RLHFで人間の好みに合わせて調整。学習データにMeta製品・サービスのデータは含まない。",
+    "en": "Released July 18, 2023. Second generation model with commercial use permitted. Context length doubled to 4K, trained on 2 trillion tokens. GQA (Grouped-Query Attention) first adopted for 70B model to improve inference efficiency. Chat version fine-tuned with SFT+RLHF. Training data does not include Meta product/service data."
+  },
 
   "specs": {
     "contextLength": 4096,
@@ -28,7 +31,10 @@
       "name": "Llama 2 7B",
       "slug": "llama-2-7b",
       "parameters": "7B",
-      "description": "軽量ベースモデル。効率的なローカル実行に最適。",
+      "description": {
+        "ja": "軽量ベースモデル。効率的なローカル実行に最適。",
+        "en": "Lightweight base model. Ideal for efficient local execution."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-2-7b-hf",
       "gguf": []
     },
@@ -36,7 +42,10 @@
       "name": "Llama 2 7B Chat",
       "slug": "llama-2-7b-chat",
       "parameters": "7B",
-      "description": "対話最適化版。SFT+RLHFで調整。",
+      "description": {
+        "ja": "対話最適化版。SFT+RLHFで調整。",
+        "en": "Chat-optimized version. Fine-tuned with SFT+RLHF."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-2-7b-chat-hf",
       "gguf": []
     },
@@ -44,7 +53,10 @@
       "name": "Llama 2 13B",
       "slug": "llama-2-13b",
       "parameters": "13B",
-      "description": "中規模ベースモデル。バランスの取れた性能。",
+      "description": {
+        "ja": "中規模ベースモデル。バランスの取れた性能。",
+        "en": "Medium-sized base model. Well-balanced performance."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-2-13b-hf",
       "gguf": []
     },
@@ -52,7 +64,10 @@
       "name": "Llama 2 13B Chat",
       "slug": "llama-2-13b-chat",
       "parameters": "13B",
-      "description": "対話最適化版。SFT+RLHFで調整。",
+      "description": {
+        "ja": "対話最適化版。SFT+RLHFで調整。",
+        "en": "Chat-optimized version. Fine-tuned with SFT+RLHF."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-2-13b-chat-hf",
       "gguf": []
     },
@@ -60,7 +75,10 @@
       "name": "Llama 2 70B",
       "slug": "llama-2-70b",
       "parameters": "70B",
-      "description": "大規模ベースモデル。GQA採用で推論効率を向上。",
+      "description": {
+        "ja": "大規模ベースモデル。GQA採用で推論効率を向上。",
+        "en": "Large-scale base model. Improved inference efficiency with GQA."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-2-70b-hf",
       "gguf": []
     },
@@ -68,7 +86,10 @@
       "name": "Llama 2 70B Chat",
       "slug": "llama-2-70b-chat",
       "parameters": "70B",
-      "description": "対話最適化版。GQA採用、SFT+RLHFで調整。",
+      "description": {
+        "ja": "対話最適化版。GQA採用、SFT+RLHFで調整。",
+        "en": "Chat-optimized version. Uses GQA, fine-tuned with SFT+RLHF."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-2-70b-chat-hf",
       "gguf": []
     }

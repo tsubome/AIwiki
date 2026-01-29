@@ -6,7 +6,10 @@
   "license": "Llama 4 Community License",
   "modelType": "BASE",
 
-  "description": "2025年4月5日公開。Mixture of Experts（MoE）アーキテクチャとEarly Fusionによるネイティブマルチモーダルを採用した第4世代。Scout（16エキスパート、10Mコンテキスト）とMaverick（128エキスパート、1Mコンテキスト）を公開。学習データには公開データに加え、Instagram/Facebookの公開投稿やMeta AIとの対話などMetaプロダクト由来情報を含む。EUでのマルチモーダル利用に制限あり。",
+  "description": {
+    "ja": "2025年4月5日公開。Mixture of Experts（MoE）アーキテクチャとEarly Fusionによるネイティブマルチモーダルを採用した第4世代。Scout（16エキスパート、10Mコンテキスト）とMaverick（128エキスパート、1Mコンテキスト）を公開。学習データには公開データに加え、Instagram/Facebookの公開投稿やMeta AIとの対話などMetaプロダクト由来情報を含む。EUでのマルチモーダル利用に制限あり。",
+    "en": "Released on April 5, 2025. Fourth generation adopting Mixture of Experts (MoE) architecture and native multimodal via Early Fusion. Released Scout (16 experts, 10M context) and Maverick (128 experts, 1M context). Training data includes public data plus Meta product-derived information such as public Instagram/Facebook posts and Meta AI conversations. Multimodal usage restricted in the EU."
+  },
 
   "specs": {
     "knowledgeCutoff": "2024-08",
@@ -29,7 +32,10 @@
         "total": "109B",
         "experts": 16
       },
-      "description": "17Bアクティブ/109B総パラメータ。16エキスパート構成。10Mトークンの超長コンテキスト。約40兆トークンで学習。画像・動画・テキストのネイティブマルチモーダル。",
+      "description": {
+        "ja": "17Bアクティブ/109B総パラメータ。16エキスパート構成。10Mトークンの超長コンテキスト。約40兆トークンで学習。画像・動画・テキストのネイティブマルチモーダル。",
+        "en": "17B active / 109B total parameters. 16-expert configuration. Ultra-long 10M token context. Trained on approximately 40 trillion tokens. Native multimodal for images, videos, and text."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
       "gguf": []
     },
@@ -42,7 +48,10 @@
         "total": "400B",
         "experts": 128
       },
-      "description": "17Bアクティブ/400B総パラメータ。128エキスパート構成。1Mトークンのコンテキスト。約22兆トークンで学習。高密度な知識と複雑な推論に特化。",
+      "description": {
+        "ja": "17Bアクティブ/400B総パラメータ。128エキスパート構成。1Mトークンのコンテキスト。約22兆トークンで学習。高密度な知識と複雑な推論に特化。",
+        "en": "17B active / 400B total parameters. 128-expert configuration. 1M token context. Trained on approximately 22 trillion tokens. Specialized for dense knowledge and complex reasoning."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
       "gguf": []
     },
@@ -54,7 +63,10 @@
         "active": "288B",
         "total": "2T"
       },
-      "description": "288Bアクティブ/2T総パラメータを持つLlama史上最大のMoEモデル。プレビュー段階。STEMベンチマークでGPT-4.5、Claude Sonnetを上回る性能を目標。",
+      "description": {
+        "ja": "288Bアクティブ/2T総パラメータを持つLlama史上最大のMoEモデル。プレビュー段階。STEMベンチマークでGPT-4.5、Claude Sonnetを上回る性能を目標。",
+        "en": "The largest MoE model in Llama history with 288B active / 2T total parameters. In preview stage. Targets performance exceeding GPT-4.5 and Claude Sonnet on STEM benchmarks."
+      },
       "huggingface": "https://huggingface.co/meta-llama",
       "gguf": []
     }

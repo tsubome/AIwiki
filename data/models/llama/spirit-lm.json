@@ -9,7 +9,10 @@
   "baseModel": "meta-llama/Llama-2-7b",
   "tags": ["official", "multilingual"],
 
-  "description": "Metaが開発したマルチモーダル言語モデル。テキストと音声を自由に混在して処理可能。Llama 2をベースに、音声トークンを追加学習することで、テキストから音声、音声からテキストへのシームレスな変換を実現。表現豊かな音声生成が可能。",
+  "description": {
+    "ja": "Metaが開発したマルチモーダル言語モデル。テキストと音声を自由に混在して処理可能。Llama 2をベースに、音声トークンを追加学習することで、テキストから音声、音声からテキストへのシームレスな変換を実現。表現豊かな音声生成が可能。",
+    "en": "Multimodal language model developed by Meta. Capable of freely mixing and processing text and speech. Built on Llama 2, with additional training on speech tokens enabling seamless conversion between text-to-speech and speech-to-text. Capable of expressive speech generation."
+  },
 
   "specs": {
     "languages": ["en"],
@@ -25,7 +28,10 @@
       "name": "Spirit-LM Base 7B",
       "slug": "spirit-lm-base-7b",
       "parameters": "7B",
-      "description": "テキストと音声の相互変換が可能なマルチモーダルモデル。セマンティック音声トークンを使用。",
+      "description": {
+        "ja": "テキストと音声の相互変換が可能なマルチモーダルモデル。セマンティック音声トークンを使用。",
+        "en": "Multimodal model capable of bidirectional text-speech conversion. Uses semantic speech tokens."
+      },
       "huggingface": "https://huggingface.co/facebook/spirit-lm-base-7b",
       "gguf": []
     },
@@ -33,7 +39,10 @@
       "name": "Spirit-LM Expressive 7B",
       "slug": "spirit-lm-expressive-7b",
       "parameters": "7B",
-      "description": "表現豊かな音声生成に特化したバリエーション。ピッチやスタイルトークンを使用。",
+      "description": {
+        "ja": "表現豊かな音声生成に特化したバリエーション。ピッチやスタイルトークンを使用。",
+        "en": "Variation specialized for expressive speech generation. Uses pitch and style tokens."
+      },
       "huggingface": "https://huggingface.co/facebook/spirit-lm-expressive-7b",
       "gguf": []
     }

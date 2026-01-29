@@ -9,7 +9,10 @@
   "baseModel": "meta-llama/Llama-3.3-70B",
   "tags": ["japanese", "multilingual", "long-context"],
 
-  "description": "Llama 3.3 70Bをベースにした最新の日本語特化モデル。高い性能と128Kコンテキスト対応。",
+  "description": {
+    "ja": "Llama 3.3 70Bをベースにした最新の日本語特化モデル。高い性能と128Kコンテキスト対応。",
+    "en": "The latest Japanese-specialized model based on Llama 3.3 70B. High performance with 128K context support."
+  },
 
   "specs": {
     "contextLength": 128000,
@@ -33,7 +36,10 @@
       "name": "Swallow 70B",
       "slug": "swallow-70b-llama3.3",
       "parameters": "70B",
-      "description": "Llama 3.3 70Bベースの日本語特化モデル。最新のSwallowモデル。",
+      "description": {
+        "ja": "Llama 3.3 70Bベースの日本語特化モデル。最新のSwallowモデル。",
+        "en": "Japanese-specialized model based on Llama 3.3 70B. The latest Swallow model."
+      },
       "huggingface": "https://huggingface.co/tokyotech-llm/Llama-3.3-Swallow-70B-v0.1",
       "requirements": {
         "minVram": "40GB",

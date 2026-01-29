@@ -9,7 +9,10 @@
   "baseModel": "meta-llama/Llama-2",
   "tags": ["official", "coding"],
 
-  "description": "2023年8月24日公開（70Bは2024年1月追加）。Llama 2をベースに500億コードトークンで追加学習したコード特化モデル。16Kトークンで学習し、推論時は最大100Kトークンをサポート。Base、Python特化、Instructの3バリエーション。Infilling（FIM：コード穴埋め）機能対応（7B/13B/70B）。HumanEval最大67.8%、MBPP最大65.6%達成。",
+  "description": {
+    "ja": "2023年8月24日公開（70Bは2024年1月追加）。Llama 2をベースに500億コードトークンで追加学習したコード特化モデル。16Kトークンで学習し、推論時は最大100Kトークンをサポート。Base、Python特化、Instructの3バリエーション。Infilling（FIM：コード穴埋め）機能対応（7B/13B/70B）。HumanEval最大67.8%、MBPP最大65.6%達成。",
+    "en": "Released on August 24, 2023 (70B added in January 2024). Code-specialized model trained on 50 billion additional code tokens based on Llama 2. Trained with 16K tokens, supports up to 100K tokens at inference. Three variations: Base, Python-specialized, and Instruct. Infilling (FIM: Fill-in-the-Middle) support (7B/13B/70B). Achieves up to 67.8% on HumanEval and 65.6% on MBPP."
+  },
 
   "specs": {
     "contextLength": 100000,
@@ -29,7 +32,10 @@
       "name": "Code Llama 7B",
       "slug": "code-llama-7b",
       "parameters": "7B",
-      "description": "軽量コーディングモデル。Infilling対応。Base/Python/Instructの3バリエーション。",
+      "description": {
+        "ja": "軽量コーディングモデル。Infilling対応。Base/Python/Instructの3バリエーション。",
+        "en": "Lightweight coding model. Supports Infilling. Available in 3 variations: Base/Python/Instruct."
+      },
       "huggingface": "https://huggingface.co/codellama/CodeLlama-7b-hf",
       "gguf": []
     },
@@ -37,7 +43,10 @@
       "name": "Code Llama 13B",
       "slug": "code-llama-13b",
       "parameters": "13B",
-      "description": "中規模コーディングモデル。Infilling対応。Base/Python/Instructの3バリエーション。",
+      "description": {
+        "ja": "中規模コーディングモデル。Infilling対応。Base/Python/Instructの3バリエーション。",
+        "en": "Mid-size coding model. Supports Infilling. Available in 3 variations: Base/Python/Instruct."
+      },
       "huggingface": "https://huggingface.co/codellama/CodeLlama-13b-hf",
       "gguf": []
     },
@@ -45,7 +54,10 @@
       "name": "Code Llama 34B",
       "slug": "code-llama-34b",
       "parameters": "34B",
-      "description": "大規模コーディングモデル。Infilling非対応。HumanEval 51.8%、MBPP 55%達成。Base/Python/Instructの3バリエーション。",
+      "description": {
+        "ja": "大規模コーディングモデル。Infilling非対応。HumanEval 51.8%、MBPP 55%達成。Base/Python/Instructの3バリエーション。",
+        "en": "Large-scale coding model. Does not support Infilling. Achieves 51.8% on HumanEval and 55% on MBPP. Available in 3 variations: Base/Python/Instruct."
+      },
       "huggingface": "https://huggingface.co/codellama/CodeLlama-34b-hf",
       "gguf": []
     },
@@ -53,7 +65,10 @@
       "name": "Code Llama 70B",
       "slug": "code-llama-70b",
       "parameters": "70B",
-      "description": "最大コーディングモデル。2024年1月追加。1兆トークンで学習。Infilling対応。HumanEval 67.8%達成。",
+      "description": {
+        "ja": "最大コーディングモデル。2024年1月追加。1兆トークンで学習。Infilling対応。HumanEval 67.8%達成。",
+        "en": "Largest coding model. Added in January 2024. Trained on 1 trillion tokens. Supports Infilling. Achieves 67.8% on HumanEval."
+      },
       "huggingface": "https://huggingface.co/codellama/CodeLlama-70b-hf",
       "gguf": []
     }

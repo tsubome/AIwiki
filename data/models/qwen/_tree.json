@@ -1,0 +1,18 @@
+{
+  "description": "Qwenファミリーのモデル関係図",
+  "relationships": [
+    { "child": "qwen1-5", "parent": null, "type": "evolution" },
+    { "child": "codeqwen", "parent": "qwen1-5", "type": "official-derivative" },
+    { "child": "qwen2", "parent": "qwen1-5", "type": "evolution" },
+    { "child": "qwen2-5", "parent": "qwen2", "type": "evolution" },
+    { "child": "qwen2-5-coder", "parent": "qwen2-5", "type": "official-derivative" },
+    { "child": "qwen2-5-math", "parent": "qwen2-5", "type": "official-derivative" },
+    { "child": "qwen2-5-vl", "parent": "qwen2-5", "type": "official-derivative" },
+    { "child": "qwq", "parent": "qwen2-5", "type": "official-derivative" },
+    { "child": "qwen3", "parent": "qwen2-5", "type": "evolution" },
+    { "child": "qwen3-coder", "parent": "qwen3", "type": "official-derivative" },
+    { "child": "qwen3-embedding", "parent": "qwen3", "type": "official-derivative" },
+    { "child": "qwen3-vl", "parent": "qwen3", "type": "official-derivative" },
+    { "child": "qwen3-next", "parent": "qwen3", "type": "evolution" }
+  ]
+}

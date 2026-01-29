@@ -6,7 +6,10 @@
   "license": "Llama 3 Community License",
   "modelType": "FINETUNE",
 
-  "description": "ELYZA社が開発した日本語特化モデル。Llama 3をベースに日本語データで追加学習を行い、日本語での自然な対話や文章生成に優れた性能を発揮。商用利用可能。",
+  "description": {
+    "ja": "ELYZA社が開発した日本語特化モデル。Llama 3をベースに日本語データで追加学習を行い、日本語での自然な対話や文章生成に優れた性能を発揮。商用利用可能。",
+    "en": "Japanese-specialized model developed by ELYZA Inc. Based on Llama 3 with additional training on Japanese data, excelling at natural Japanese conversation and text generation. Available for commercial use."
+  },
 
   "specs": {
     "languages": ["ja", "en"],
@@ -22,7 +25,10 @@
       "name": "ELYZA Japanese Llama 3 8B",
       "slug": "elyza-jp-8b",
       "parameters": "8B",
-      "description": "Llama 3 8Bベースの日本語特化モデル。軽量で高品質な日本語生成が可能。",
+      "description": {
+        "ja": "Llama 3 8Bベースの日本語特化モデル。軽量で高品質な日本語生成が可能。",
+        "en": "Japanese-specialized model based on Llama 3 8B. Lightweight with high-quality Japanese generation capabilities."
+      },
       "huggingface": "https://huggingface.co/elyza/ELYZA-japanese-Llama-3-8B",
       "gguf": []
     }

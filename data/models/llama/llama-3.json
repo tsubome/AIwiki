@@ -8,7 +8,10 @@
 
   "tags": ["official", "multilingual"],
 
-  "description": "2024年4月18日公開。語彙サイズを128Kトークンに4倍拡大し、15兆トークン以上で学習した第3世代モデル。全サイズでGQA採用。8Bモデルで従来のLlama 2 70Bに匹敵する性能を実現。事前学習・微調整ともにMetaユーザーデータを含まないことを明言。",
+  "description": {
+    "ja": "2024年4月18日公開。語彙サイズを128Kトークンに4倍拡大し、15兆トークン以上で学習した第3世代モデル。全サイズでGQA採用。8Bモデルで従来のLlama 2 70Bに匹敵する性能を実現。事前学習・微調整ともにMetaユーザーデータを含まないことを明言。",
+    "en": "Released April 18, 2024. Third generation model with 4x vocabulary expansion to 128K tokens, trained on over 15 trillion tokens. GQA adopted across all sizes. 8B model achieves performance comparable to Llama 2 70B. Explicitly confirmed that neither pre-training nor fine-tuning includes Meta user data."
+  },
 
   "specs": {
     "contextLength": 8192,
@@ -36,7 +39,10 @@
       "name": "Meta Llama 3 8B",
       "slug": "llama-3-8b",
       "parameters": "8B",
-      "description": "軽量ベースモデル。GQA採用で推論効率向上。",
+      "description": {
+        "ja": "軽量ベースモデル。GQA採用で推論効率向上。",
+        "en": "Lightweight base model. Improved inference efficiency with GQA."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
       "requirements": {
         "minVram": "6GB",
@@ -49,7 +55,10 @@
       "name": "Meta Llama 3 8B Instruct",
       "slug": "llama-3-8b-instruct",
       "parameters": "8B",
-      "description": "指示追従最適化版。SFT+RLHFで調整。",
+      "description": {
+        "ja": "指示追従最適化版。SFT+RLHFで調整。",
+        "en": "Instruction-following optimized version. Fine-tuned with SFT+RLHF."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct",
       "requirements": {
         "minVram": "6GB",
@@ -62,7 +71,10 @@
       "name": "Meta Llama 3 70B",
       "slug": "llama-3-70b",
       "parameters": "70B",
-      "description": "大規模ベースモデル。多くのベンチマークでGPT-4に迫る性能。",
+      "description": {
+        "ja": "大規模ベースモデル。多くのベンチマークでGPT-4に迫る性能。",
+        "en": "Large-scale base model. Performance approaching GPT-4 on many benchmarks."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B",
       "requirements": {
         "minVram": "40GB",
@@ -76,7 +88,10 @@
       "name": "Meta Llama 3 70B Instruct",
       "slug": "llama-3-70b-instruct",
       "parameters": "70B",
-      "description": "指示追従最適化版。SFT+RLHFで調整。",
+      "description": {
+        "ja": "指示追従最適化版。SFT+RLHFで調整。",
+        "en": "Instruction-following optimized version. Fine-tuned with SFT+RLHF."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct",
       "requirements": {
         "minVram": "40GB",

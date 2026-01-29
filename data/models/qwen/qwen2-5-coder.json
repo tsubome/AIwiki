@@ -1,0 +1,135 @@
+{
+  "name": "Qwen2.5-Coder",
+  "slug": "qwen2-5-coder",
+  "releaseDate": "2024-11-12",
+  "developer": "Alibaba Cloud / Qwen Team",
+  "license": "Apache 2.0 (0.5B-32B except 3B), Qwen Research (3B)",
+  "modelType": "BASE",
+
+  "baseModel": "Qwen2.5",
+  "tags": ["official", "coding"],
+
+  "benchmarks": {
+    "humaneval": 92.7,
+    "custom": {
+      "humaneval-plus": 87.6,
+      "mbpp": 90,
+      "aider": 73.7,
+      "mceval": 65.9
+    },
+    "source": "Qwen2.5-Coder Technical Report (arXiv:2409.12186)"
+  },
+
+  "description": {
+    "ja": "2024年11月12日公開。5.5兆トークン（70%コード、20%テキスト、10%数学）で学習したコード特化モデル。92言語のプログラミング言語をサポート。7B以上は128Kコンテキスト対応。HumanEval 92.7%、BigCodeBench・LiveCodeBenchでSOTA達成。",
+    "en": "Released November 12, 2024. Code-specialized model trained on 5.5 trillion tokens (70% code, 20% text, 10% math). Supports 92 programming languages. 7B and above support 128K context. Achieves 92.7% on HumanEval and SOTA on BigCodeBench/LiveCodeBench."
+  },
+
+  "specs": {
+    "contextLength": 131072,
+    "trainingTokens": "5.5T",
+    "languages": ["Python", "JavaScript", "TypeScript", "Java", "C++", "C", "Go", "Rust", "PHP", "Ruby"],
+    "architecture": "Transformer, RoPE, SwiGLU, RMSNorm, GQA with QKV bias",
+    "promptTemplate": {
+      "format": "chatml",
+      "system": "<|im_start|>system\n{system}<|im_end|>",
+      "user": "<|im_start|>user\n{prompt}<|im_end|>",
+      "assistant": "<|im_start|>assistant\n",
+      "stopTokens": ["<|im_end|>", "<|endoftext|>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/Qwen",
+    "paper": "https://arxiv.org/abs/2409.12186",
+    "github": "https://github.com/QwenLM/Qwen2.5-Coder",
+    "website": "https://qwenlm.github.io/blog/qwen2.5-coder-family/"
+  },
+
+  "variants": [
+    {
+      "name": "Qwen2.5-Coder 0.5B",
+      "slug": "qwen2-5-coder-0.5b",
+      "parameters": "0.5B",
+      "description": {
+        "ja": "最軽量版。32Kコンテキスト。",
+        "en": "Lightest variant. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Coder-0.5B",
+      "requirements": {
+        "minVram": "1.5GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5-Coder 1.5B",
+      "slug": "qwen2-5-coder-1.5b",
+      "parameters": "1.5B",
+      "description": {
+        "ja": "軽量版。32Kコンテキスト。",
+        "en": "Lightweight variant. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B",
+      "requirements": {
+        "minVram": "4GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5-Coder 3B",
+      "slug": "qwen2-5-coder-3b",
+      "parameters": "3B",
+      "description": {
+        "ja": "コンパクト版。32Kコンテキスト。",
+        "en": "Compact variant. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Coder-3B",
+      "requirements": {
+        "minVram": "7GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5-Coder 7B",
+      "slug": "qwen2-5-coder-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "標準版。128Kコンテキスト。",
+        "en": "Standard variant. 128K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B",
+      "requirements": {
+        "minVram": "17GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5-Coder 14B",
+      "slug": "qwen2-5-coder-14b",
+      "parameters": "14B",
+      "description": {
+        "ja": "中型版。128Kコンテキスト。",
+        "en": "Medium variant. 128K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Coder-14B",
+      "requirements": {
+        "minVram": "32GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Qwen2.5-Coder 32B",
+      "slug": "qwen2-5-coder-32b",
+      "parameters": "32B",
+      "description": {
+        "ja": "フラッグシップ版。128Kコンテキスト。HumanEval 92.7%。",
+        "en": "Flagship variant. 128K context. 92.7% on HumanEval."
+      },
+      "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Coder-32B",
+      "requirements": {
+        "minVram": "70GB"
+      },
+      "gguf": []
+    }
+  ]
+}

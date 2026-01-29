@@ -2,6 +2,33 @@
 // Refactored: 1 model = 1 JSON file with all variants
 
 // ============================================
+// Localization Support
+// ============================================
+
+/**
+ * Localized string - supports multiple languages
+ * Can be either a plain string (legacy) or an object with language keys
+ */
+export type LocalizedString = string | {
+  ja?: string
+  en?: string
+  [key: string]: string | undefined
+}
+
+/**
+ * Helper to get localized value
+ */
+export function getLocalizedString(
+  value: LocalizedString | undefined,
+  locale: string,
+  fallbackLocale: string = 'ja'
+): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  return value[locale] || value[fallbackLocale] || Object.values(value).find(v => v) || ''
+}
+
+// ============================================
 // GGUF Files
 // ============================================
 
@@ -10,7 +37,7 @@ export interface GGUFFile {
   size?: string          // "4.9GB"
   url: string            // Download URL
   recommended?: boolean  // Recommended flag
-  description?: string   // "バランス型。多くの環境で推奨"
+  description?: LocalizedString   // "バランス型。多くの環境で推奨" or { ja: "...", en: "..." }
 }
 
 // ============================================
@@ -66,7 +93,7 @@ export interface ModelVariant {
   slug: string           // "llama-3-8b"
   parameters: string     // "8B" or "17B/109B"
   parameterDetails?: ParameterDetails
-  description?: string
+  description?: LocalizedString  // { ja: "...", en: "..." }
   huggingface?: string
   requirements?: HardwareRequirements  // Hardware requirements for this variant
   gguf: GGUFFile[]
@@ -128,7 +155,7 @@ export interface ModelData {
   developer?: string     // "Meta"
   license?: string       // "Llama 3 Community License"
   modelType: ModelType
-  description?: string
+  description?: LocalizedString  // { ja: "...", en: "..." }
 
   // New fields for local LLM users
   baseModel?: string     // "meta-llama/Meta-Llama-3-8B" (for finetunes)
@@ -149,7 +176,7 @@ export interface FamilyData {
   name: string           // "Llama"
   slug: string           // "llama"
   developer?: string     // "Meta"
-  description?: string
+  description?: LocalizedString  // { ja: "...", en: "..." }
   website?: string
   versions: string[]     // ["llama-1", "llama-2", "llama-3", ...]
 }

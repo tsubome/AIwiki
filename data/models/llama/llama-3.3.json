@@ -19,7 +19,10 @@
     "source": "Meta Official Model Card 2024-12"
   },
 
-  "description": "2024年12月6日公開。70Bパラメータで405Bモデルに匹敵する性能を実現した効率特化モデル。Llama 3.1 405Bからの蒸留技術と最新のポストトレーニング技術を70Bサイズに凝縮。Instruction-tuned版のみ提供。MATH (CoT)では77.0%とLlama 3.1 405Bの73.8%を上回る。",
+  "description": {
+    "ja": "2024年12月6日公開。70Bパラメータで405Bモデルに匹敵する性能を実現した効率特化モデル。Llama 3.1 405Bからの蒸留技術と最新のポストトレーニング技術を70Bサイズに凝縮。Instruction-tuned版のみ提供。MATH (CoT)では77.0%とLlama 3.1 405Bの73.8%を上回る。",
+    "en": "Released on December 6, 2024. An efficiency-focused model achieving performance comparable to 405B models with only 70B parameters. Condenses distillation techniques from Llama 3.1 405B and state-of-the-art post-training techniques into a 70B size. Only instruction-tuned version available. Achieves 77.0% on MATH (CoT), surpassing Llama 3.1 405B's 73.8%."
+  },
 
   "specs": {
     "contextLength": 128000,
@@ -46,7 +49,10 @@
       "name": "Llama 3.3 70B Instruct",
       "slug": "llama-3.3-70b-instruct",
       "parameters": "70B",
-      "description": "70Bで405B相当の性能。Instructのみ提供。",
+      "description": {
+        "ja": "70Bで405B相当の性能。Instructのみ提供。",
+        "en": "Achieves 405B-level performance with 70B parameters. Only instruction-tuned version available."
+      },
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
       "requirements": {
         "minVram": "40GB",

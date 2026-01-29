@@ -1,0 +1,79 @@
+{
+  "name": "QwQ",
+  "slug": "qwq",
+  "releaseDate": "2025-03-06",
+  "developer": "Alibaba Cloud / Qwen Team",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+
+  "baseModel": "Qwen2.5-32B",
+  "tags": ["official", "math"],
+
+  "benchmarks": {
+    "gpqa": 65.2,
+    "ifeval": 83.9,
+    "custom": {
+      "aime24": 79.5,
+      "livecodebnech": 63.4,
+      "livebench": 73.1,
+      "math-500": 90.6
+    },
+    "source": "QwQ Blog 2025-03"
+  },
+
+  "description": {
+    "ja": "2025年3月6日公開（Preview: 2024年11月28日）。推論特化モデル「Qwen with Questions」。o1-miniを大幅に上回る性能（AIME24: 79.5% vs 63.6%、LiveCodeBench: 63.4% vs 53.8%）。Chain-of-Thought推論で複雑な問題を段階的に解決。128Kコンテキスト、29言語以上対応。",
+    "en": "Released March 6, 2025 (Preview: November 28, 2024). Reasoning-specialized model 'Qwen with Questions'. Significantly outperforms o1-mini (AIME24: 79.5% vs 63.6%, LiveCodeBench: 63.4% vs 53.8%). Solves complex problems step-by-step via Chain-of-Thought reasoning. 128K context, 29+ languages."
+  },
+
+  "specs": {
+    "contextLength": 131072,
+    "knowledgeCutoff": "2024-12",
+    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi", "pt", "it", "hi", "id"],
+    "architecture": "32.5B parameters, Transformer decoder-only, RoPE, SwiGLU, RMSNorm, GQA, YaRN",
+    "promptTemplate": {
+      "format": "chatml-reasoning",
+      "system": "<|im_start|>system\nYou are a helpful and harmless assistant. You are Qwen developed by Alibaba. You should think step-by-step.<|im_end|>",
+      "user": "<|im_start|>user\n{prompt}<|im_end|>",
+      "assistant": "<|im_start|>assistant\n<think>\n{reasoning}</think>\n{response}<|im_end|>",
+      "stopTokens": ["<|im_start|>", "<|im_end|>"]
+    }
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/Qwen/QwQ-32B",
+    "github": "https://github.com/QwenLM/QwQ",
+    "website": "https://qwenlm.github.io/blog/qwq-32b/"
+  },
+
+  "variants": [
+    {
+      "name": "QwQ-32B",
+      "slug": "qwq-32b",
+      "parameters": "32B",
+      "description": {
+        "ja": "正式版。128Kコンテキスト。o1-mini超えの推論能力。",
+        "en": "Official release. 128K context. Reasoning capability surpassing o1-mini."
+      },
+      "huggingface": "https://huggingface.co/Qwen/QwQ-32B",
+      "requirements": {
+        "minVram": "65GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "QwQ-32B-Preview",
+      "slug": "qwq-32b-preview",
+      "parameters": "32B",
+      "description": {
+        "ja": "プレビュー版。32Kコンテキスト。",
+        "en": "Preview release. 32K context."
+      },
+      "huggingface": "https://huggingface.co/Qwen/QwQ-32B-Preview",
+      "requirements": {
+        "minVram": "65GB"
+      },
+      "gguf": []
+    }
+  ]
+}
