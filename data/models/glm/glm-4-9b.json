@@ -1,0 +1,85 @@
+{
+  "name": "GLM-4-9B",
+  "slug": "glm-4-9b",
+  "releaseDate": "2024-06-05",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "multilingual", "function-calling"],
+
+  "description": {
+    "ja": "多言語対応（26言語）を実現した9Bパラメータモデル。128Kコンテキスト、1M版も提供。Berkeley Function Calling LeaderboardでGPT-4 Turbo (2024-04-09)と同等性能。日本語を含む26言語対応。",
+    "en": "9B parameter model with multilingual support (26 languages). 128K context, 1M version also available. Achieves GPT-4 Turbo (2024-04-09) level performance on Berkeley Function Calling Leaderboard. Supports 26 languages including Japanese."
+  },
+
+  "benchmarks": {
+    "mmlu": 74.7,
+    "humaneval": 70.1,
+    "math": 30.4,
+    "source": "GLM-4 Technical Report"
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["zh", "en", "ja", "ko", "de", "fr", "es"],
+    "architecture": "GLM-4 Transformer"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2406.12793",
+    "github": "https://github.com/THUDM/GLM-4",
+    "huggingface": "https://huggingface.co/THUDM/glm-4-9b"
+  },
+
+  "variants": [
+    {
+      "name": "GLM-4-9B",
+      "slug": "glm-4-9b-base",
+      "parameters": "9B",
+      "description": {
+        "ja": "ベースモデル。26言語対応。",
+        "en": "Base model. Supports 26 languages."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-4-9b",
+      "requirements": {
+        "minVram": "19GB",
+        "recommendedVram": "24GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-4-9B-Chat",
+      "slug": "glm-4-9b-chat",
+      "parameters": "9B",
+      "description": {
+        "ja": "対話版。128Kコンテキスト対応。Function Call対応。",
+        "en": "Chat version. 128K context support. Function Call enabled."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-4-9b-chat",
+      "requirements": {
+        "minVram": "19GB",
+        "recommendedVram": "24GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-4-9B-Chat-1M",
+      "slug": "glm-4-9b-chat-1m",
+      "parameters": "9B",
+      "description": {
+        "ja": "1Mコンテキスト対応版。約200万中国語文字を処理可能。",
+        "en": "1M context version. Can process approximately 2 million Chinese characters."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-4-9b-chat-1m",
+      "requirements": {
+        "minVram": "32GB",
+        "recommendedVram": "48GB",
+        "ram": "64GB"
+      },
+      "gguf": []
+    }
+  ]
+}

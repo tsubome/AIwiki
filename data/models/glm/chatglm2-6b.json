@@ -1,0 +1,89 @@
+{
+  "name": "ChatGLM2-6B",
+  "slug": "chatglm2-6b",
+  "releaseDate": "2023-06-25",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+
+  "tags": ["official", "bilingual", "dialogue"],
+
+  "description": {
+    "ja": "ChatGLM-6Bの第2世代。FlashAttentionによる長文対応（32Kトークン）、大幅な性能向上を実現。1.4兆トークンで学習。MMLUで+23%、GSM8Kで+571%の性能向上。",
+    "en": "Second generation of ChatGLM-6B. Features FlashAttention for long context (32K tokens) and significant performance improvements. Trained on 1.4T tokens. +23% on MMLU, +571% on GSM8K."
+  },
+
+  "benchmarks": {
+    "mmlu": 45.2,
+    "source": "ChatGLM2 Technical Report"
+  },
+
+  "specs": {
+    "contextLength": 32768,
+    "trainingTokens": "1.4T",
+    "languages": ["zh", "en"],
+    "architecture": "GLM Transformer with FlashAttention",
+    "promptTemplate": {
+      "format": "chatglm2",
+      "user": "[Round {n}]\n\n问：{prompt}\n\n",
+      "assistant": "答：",
+      "stopTokens": ["</s>"]
+    }
+  },
+
+  "links": {
+    "github": "https://github.com/THUDM/ChatGLM2-6B",
+    "huggingface": "https://huggingface.co/THUDM/chatglm2-6b"
+  },
+
+  "variants": [
+    {
+      "name": "ChatGLM2-6B",
+      "slug": "chatglm2-6b-base",
+      "parameters": "6.2B",
+      "description": {
+        "ja": "標準版。8Kトークンで学習、推論時32Kまで対応。",
+        "en": "Standard version. Trained on 8K tokens, supports up to 32K at inference."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm2-6b",
+      "requirements": {
+        "minVram": "13GB",
+        "recommendedVram": "16GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ChatGLM2-6B INT4",
+      "slug": "chatglm2-6b-int4",
+      "parameters": "6.2B",
+      "description": {
+        "ja": "INT4量子化版。6GB VRAMで推論可能。",
+        "en": "INT4 quantized version. Inference possible with 6GB VRAM."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm2-6b-int4",
+      "requirements": {
+        "minVram": "6GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ChatGLM2-6B-32K",
+      "slug": "chatglm2-6b-32k",
+      "parameters": "6.2B",
+      "description": {
+        "ja": "32Kコンテキスト対応版。長文処理に最適化。",
+        "en": "32K context version. Optimized for long document processing."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm2-6b-32k",
+      "requirements": {
+        "minVram": "16GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    }
+  ]
+}

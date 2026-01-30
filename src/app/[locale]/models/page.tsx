@@ -23,8 +23,8 @@ export default async function ModelsPage({ params }: { params: Promise<{ locale:
 
   const t = await getTranslations('models')
 
-  // Load families from directory-based data
-  const families = getRootModelsWithChildren()
+  // Load families from directory-based data (with locale for descriptions)
+  const families = getRootModelsWithChildren(locale)
 
   console.log('[ModelsPage] Families loaded:', families.length)
   families.forEach(f => {
@@ -33,11 +33,11 @@ export default async function ModelsPage({ params }: { params: Promise<{ locale:
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+      <div className="mb-4 sm:mb-6 lg:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-1 sm:mb-2">
           {t('title')}
         </h1>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
           {t('description')}
         </p>
       </div>

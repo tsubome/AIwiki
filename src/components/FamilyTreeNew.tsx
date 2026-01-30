@@ -700,19 +700,19 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
 
   const containerClass = isFullscreen
     ? 'fixed inset-0 z-50 bg-gray-50 dark:bg-gray-900'
-    : 'relative h-[500px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900'
+    : 'relative h-[350px] sm:h-[500px] w-full border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900'
 
   const hasFinetuned = models.some(m => m.modelType === 'FINETUNE')
 
   return (
     <div ref={containerRef} className={containerClass}>
-      <div className="absolute top-2 right-2 z-10 flex items-center gap-2">
-        {/* Export buttons */}
-        <div className="flex items-center gap-1">
+      <div className="absolute top-2 right-2 z-10 flex items-center gap-1 sm:gap-2">
+        {/* Export buttons - hidden on mobile to save space */}
+        <div className="hidden sm:flex items-center gap-1">
           <button
             onClick={() => handleExport('png')}
             disabled={isExporting}
-            className="px-2 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+            className="px-2 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 transition-colors disabled:opacity-50"
             title={tTree('saveAsPng')}
           >
             {isExporting ? '...' : 'PNG'}
@@ -720,7 +720,7 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
           <button
             onClick={() => handleExport('pdf')}
             disabled={isExporting}
-            className="px-2 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+            className="px-2 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 transition-colors disabled:opacity-50"
             title={tTree('saveAsPdf')}
           >
             {isExporting ? '...' : 'PDF'}
@@ -729,7 +729,7 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
         {hasFinetuned && (
           <button
             onClick={() => setShowFinetuned(!showFinetuned)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+            className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium rounded-lg transition-colors ${
               showFinetuned
                 ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                 : 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
@@ -740,7 +740,7 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
         )}
         <button
           onClick={() => setIsFullscreen(!isFullscreen)}
-          className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          className="p-1.5 sm:p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 transition-colors"
         >
           {isFullscreen ? (
             <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -785,25 +785,25 @@ function FamilyTreeInner({ models, currentModelId }: Props) {
         />
       </ReactFlow>
 
-      {/* Legend */}
-      <div className={`absolute bottom-2 left-14 z-10 ${
+      {/* Legend - hidden on mobile, shown on sm+ */}
+      <div className={`absolute bottom-2 left-2 sm:left-14 z-10 ${
         isDark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
-      } border rounded-lg px-3 py-2 text-xs`}>
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-          <div className="flex items-center gap-1.5">
-            <div className={`w-4 h-4 rounded border-2 border-blue-500 ${isDark ? 'bg-blue-900' : 'bg-blue-100'}`} />
+      } border rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs hidden sm:block`}>
+        <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1">
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded border-2 border-blue-500 ${isDark ? 'bg-blue-900' : 'bg-blue-100'}`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendBase')}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className={`w-4 h-4 rounded border-2 border-green-500 ${isDark ? 'bg-green-900' : 'bg-green-100'}`} />
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded border-2 border-green-500 ${isDark ? 'bg-green-900' : 'bg-green-100'}`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendFinetune')}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className={`w-4 h-4 rounded border-2 border-purple-500 ${isDark ? 'bg-purple-900' : 'bg-purple-100'}`} />
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded border-2 border-purple-500 ${isDark ? 'bg-purple-900' : 'bg-purple-100'}`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendDerivative')}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className={`w-4 h-4 rounded border-2 border-red-500 ${isDark ? 'bg-blue-900' : 'bg-blue-100'} shadow-[0_0_0_2px_rgba(239,68,68,0.3)]`} />
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded border-2 border-red-500 ${isDark ? 'bg-blue-900' : 'bg-blue-100'} shadow-[0_0_0_2px_rgba(239,68,68,0.3)]`} />
             <span className={isDark ? 'text-gray-300' : 'text-gray-600'}>{tTree('legendCurrent')}</span>
           </div>
         </div>

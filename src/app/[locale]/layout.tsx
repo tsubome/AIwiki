@@ -34,10 +34,10 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <Header />
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
               {children}
             </main>
-            <footer className="border-t border-gray-200 dark:border-gray-700 mt-16 py-8 text-center text-gray-500 dark:text-gray-400 text-sm">
+            <footer className="border-t border-gray-200 dark:border-gray-700 mt-8 sm:mt-16 py-6 sm:py-8 text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm px-4">
               AIwiki - Local LLM Information Wiki
             </footer>
           </NextIntlClientProvider>

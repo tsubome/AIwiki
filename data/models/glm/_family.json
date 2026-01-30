@@ -1,0 +1,29 @@
+{
+  "name": "GLM",
+  "slug": "glm",
+  "developer": "Zhipu AI / Tsinghua University",
+  "description": {
+    "ja": "清華大学KEGラボと智譜AI（Zhipu AI）が共同開発した大規模言語モデルファミリー。2022年のGLM-130Bから始まり、対話（ChatGLM）、コード生成（CodeGeeX）、マルチモーダル（CogVLM）、エージェント等多様なタスクに対応。双方向アーキテクチャとバイリンガル（中国語・英語）対応が特徴。GLM-4.7ではオープンソースモデルで初めてClaude Sonnet 4.5に匹敵する性能を達成。",
+    "en": "A large language model family jointly developed by Tsinghua University KEG Lab and Zhipu AI. Starting with GLM-130B in 2022, it has expanded to cover dialogue (ChatGLM), code generation (CodeGeeX), multimodal (CogVLM), and agents. Features bidirectional architecture and bilingual (Chinese-English) support. GLM-4.7 became the first open-source model to match Claude Sonnet 4.5 performance."
+  },
+  "website": "https://z.ai",
+  "versions": [
+    "codegeex",
+    "glm-130b",
+    "chatglm-6b",
+    "chatglm2-6b",
+    "codegeex2-6b",
+    "chatglm3-6b",
+    "cogvlm",
+    "cogagent",
+    "cogvlm2",
+    "glm-4-9b",
+    "glm-4v-9b",
+    "codegeex4-9b",
+    "glm-4-32b",
+    "glm-z1",
+    "glm-4.5",
+    "glm-4.6",
+    "glm-4.7"
+  ]
+}

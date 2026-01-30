@@ -1,0 +1,108 @@
+{
+  "name": "ChatGLM3-6B",
+  "slug": "chatglm3-6b",
+  "releaseDate": "2023-10-27",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+
+  "tags": ["official", "bilingual", "dialogue", "function-calling", "agent"],
+
+  "description": {
+    "ja": "ネイティブFunction Call、Code Interpreter、Agent機能を初搭載。MMLUで61.4、HumanEvalで58.5と大幅性能向上。32K/128Kコンテキスト対応版も提供。同サイズモデルで最高性能を達成。",
+    "en": "First to feature native Function Call, Code Interpreter, and Agent capabilities. Achieved 61.4 on MMLU and 58.5 on HumanEval. Also available in 32K/128K context versions. Achieved best performance among same-size models."
+  },
+
+  "benchmarks": {
+    "mmlu": 61.4,
+    "humaneval": 58.5,
+    "math": 25.7,
+    "source": "ChatGLM3 Technical Report"
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "languages": ["zh", "en"],
+    "architecture": "GLM Transformer with Multi-Head Attention",
+    "promptTemplate": {
+      "format": "chatglm3",
+      "system": "<|system|>\n{system}",
+      "user": "<|user|>\n{prompt}",
+      "assistant": "<|assistant|>\n",
+      "stopTokens": ["<|user|>", "<|observation|>"]
+    }
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2406.12793",
+    "github": "https://github.com/THUDM/ChatGLM3",
+    "huggingface": "https://huggingface.co/THUDM/chatglm3-6b"
+  },
+
+  "variants": [
+    {
+      "name": "ChatGLM3-6B",
+      "slug": "chatglm3-6b-chat",
+      "parameters": "6B",
+      "description": {
+        "ja": "標準対話版。Function Call、Code Interpreter対応。",
+        "en": "Standard dialogue version. Supports Function Call and Code Interpreter."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm3-6b",
+      "requirements": {
+        "minVram": "13GB",
+        "recommendedVram": "16GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ChatGLM3-6B-Base",
+      "slug": "chatglm3-6b-base",
+      "parameters": "6B",
+      "description": {
+        "ja": "ベースモデル。ファインチューニング用。",
+        "en": "Base model for fine-tuning."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm3-6b-base",
+      "requirements": {
+        "minVram": "13GB",
+        "recommendedVram": "16GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ChatGLM3-6B-32K",
+      "slug": "chatglm3-6b-32k",
+      "parameters": "6B",
+      "description": {
+        "ja": "32Kコンテキスト対応版。",
+        "en": "32K context version."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm3-6b-32k",
+      "requirements": {
+        "minVram": "16GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "ChatGLM3-6B-128K",
+      "slug": "chatglm3-6b-128k",
+      "parameters": "6B",
+      "description": {
+        "ja": "128Kコンテキスト対応版。超長文処理に最適化。",
+        "en": "128K context version. Optimized for ultra-long document processing."
+      },
+      "huggingface": "https://huggingface.co/THUDM/chatglm3-6b-128k",
+      "requirements": {
+        "minVram": "24GB",
+        "recommendedVram": "32GB",
+        "ram": "48GB"
+      },
+      "gguf": []
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "description": "GLM model family relationships",
+  "relationships": [
+    {
+      "parent": "glm-130b",
+      "child": "chatglm-6b",
+      "type": "evolution"
+    },
+    {
+      "parent": "chatglm-6b",
+      "child": "chatglm2-6b",
+      "type": "evolution"
+    },
+    {
+      "parent": "chatglm2-6b",
+      "child": "chatglm3-6b",
+      "type": "evolution"
+    },
+    {
+      "parent": "chatglm2-6b",
+      "child": "codegeex2-6b",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "codegeex",
+      "child": "codegeex2-6b",
+      "type": "evolution"
+    },
+    {
+      "parent": "chatglm3-6b",
+      "child": "glm-4-9b",
+      "type": "evolution"
+    },
+    {
+      "parent": "glm-4-9b",
+      "child": "glm-4v-9b",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "glm-4-9b",
+      "child": "codegeex4-9b",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "glm-4-9b",
+      "child": "glm-4-32b",
+      "type": "evolution"
+    },
+    {
+      "parent": "glm-4-32b",
+      "child": "glm-z1",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "glm-4-32b",
+      "child": "glm-4.5",
+      "type": "evolution"
+    },
+    {
+      "parent": "glm-4.5",
+      "child": "glm-4.6",
+      "type": "evolution"
+    },
+    {
+      "parent": "glm-4.6",
+      "child": "glm-4.7",
+      "type": "evolution"
+    },
+    {
+      "parent": "chatglm-6b",
+      "child": "cogvlm",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "cogvlm",
+      "child": "cogagent",
+      "type": "evolution"
+    },
+    {
+      "parent": "cogvlm",
+      "child": "cogvlm2",
+      "type": "evolution"
+    }
+  ]
+}

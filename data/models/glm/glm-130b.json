@@ -1,0 +1,85 @@
+{
+  "name": "GLM-130B",
+  "slug": "glm-130b",
+  "releaseDate": "2022-07-01",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0 + Model License",
+  "modelType": "BASE",
+
+  "tags": ["official", "bilingual", "foundation"],
+
+  "description": {
+    "ja": "GLMファミリーの起源となるモデル。100B級のオープンソースモデルとしてGPT-3を上回る性能を初めて実現。双方向Dense TransformerアーキテクチャとAutoregressive Blank Infilling目的関数を採用。ICLR 2023に採択。INT4量子化でRTX 3090×4での推論が可能。",
+    "en": "The foundational model of the GLM family. The first 100B+ scale open-source model to surpass GPT-3 performance. Adopts bidirectional Dense Transformer architecture with Autoregressive Blank Infilling objective. Accepted at ICLR 2023. Supports inference on RTX 3090×4 with INT4 quantization."
+  },
+
+  "benchmarks": {
+    "mmlu": 44.8,
+    "source": "GLM-130B Paper (ICLR 2023)"
+  },
+
+  "specs": {
+    "contextLength": 2048,
+    "trainingTokens": "400B (200B English + 200B Chinese)",
+    "languages": ["zh", "en"],
+    "architecture": "Bidirectional Dense Transformer (70 layers, 12288 hidden, 96 heads)"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2210.02414",
+    "github": "https://github.com/THUDM/GLM-130B",
+    "huggingface": "https://huggingface.co/THUDM/glm-130b"
+  },
+
+  "variants": [
+    {
+      "name": "GLM-130B",
+      "slug": "glm-130b-base",
+      "parameters": "130B",
+      "description": {
+        "ja": "フル精度版。96×DGX-A100で約60日間学習。",
+        "en": "Full precision version. Trained on 96×DGX-A100 for approximately 60 days."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-130b",
+      "requirements": {
+        "minVram": "260GB",
+        "recommendedVram": "320GB (A100×4)",
+        "ram": "500GB",
+        "notes": "BF16 requires 8×A100 (40GB)"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-130B INT8",
+      "slug": "glm-130b-int8",
+      "parameters": "130B",
+      "description": {
+        "ja": "INT8量子化版。A100 (40G×4)で推論可能。",
+        "en": "INT8 quantized version. Inference possible on A100 (40G×4)."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-130b",
+      "requirements": {
+        "minVram": "140GB",
+        "recommendedVram": "160GB (A100×4)",
+        "ram": "280GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-130B INT4",
+      "slug": "glm-130b-int4",
+      "parameters": "130B",
+      "description": {
+        "ja": "INT4量子化版。RTX 3090 (24G×4)または RTX 2080 Ti (11G×8)で推論可能。",
+        "en": "INT4 quantized version. Inference possible on RTX 3090 (24G×4) or RTX 2080 Ti (11G×8)."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-130b",
+      "requirements": {
+        "minVram": "70GB",
+        "recommendedVram": "96GB (RTX 3090×4)",
+        "ram": "140GB"
+      },
+      "gguf": []
+    }
+  ]
+}

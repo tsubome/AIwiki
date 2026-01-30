@@ -1,0 +1,62 @@
+{
+  "name": "GLM-4-32B-0414",
+  "slug": "glm-4-32b",
+  "releaseDate": "2025-04-14",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "MIT License",
+  "modelType": "BASE",
+
+  "tags": ["official", "multilingual", "agent"],
+
+  "description": {
+    "ja": "32Bパラメータでエージェント機能を強化。15兆トークン（推論型合成データ含む）で学習。OpenAI GPT系、DeepSeek V3/R1に匹敵する性能。RLHF調整済み。YaRN拡張でコンテキスト延長可能。",
+    "en": "32B parameter model with enhanced agent capabilities. Trained on 15T tokens including reasoning-type synthetic data. Performance comparable to OpenAI GPT series and DeepSeek V3/R1. RLHF tuned. Context extendable with YaRN."
+  },
+
+  "specs": {
+    "contextLength": 32000,
+    "trainingTokens": "15T",
+    "languages": ["zh", "en"],
+    "architecture": "GLM-4 Transformer (32B Dense)"
+  },
+
+  "links": {
+    "github": "https://github.com/THUDM/GLM-4",
+    "huggingface": "https://huggingface.co/THUDM/GLM-4-32B-0414"
+  },
+
+  "variants": [
+    {
+      "name": "GLM-4-32B-Base-0414",
+      "slug": "glm-4-32b-base-0414",
+      "parameters": "32B",
+      "description": {
+        "ja": "ベースモデル。15Tデータで事前学習、推論型合成データ含む。",
+        "en": "Base model. Pre-trained on 15T data including reasoning-type synthetic data."
+      },
+      "huggingface": "https://huggingface.co/THUDM/GLM-4-32B-Base-0414",
+      "requirements": {
+        "minVram": "65GB",
+        "recommendedVram": "80GB",
+        "ram": "128GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-4-32B-0414",
+      "slug": "glm-4-32b-0414",
+      "parameters": "32B",
+      "description": {
+        "ja": "対話・エージェント用。RLHF調整済み。",
+        "en": "For dialogue and agents. RLHF tuned."
+      },
+      "huggingface": "https://huggingface.co/THUDM/GLM-4-32B-0414",
+      "requirements": {
+        "minVram": "65GB",
+        "recommendedVram": "80GB",
+        "ram": "128GB"
+      },
+      "gguf": []
+    }
+  ]
+}

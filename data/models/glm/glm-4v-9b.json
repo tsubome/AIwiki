@@ -1,0 +1,67 @@
+{
+  "name": "GLM-4V-9B",
+  "slug": "glm-4v-9b",
+  "releaseDate": "2024-06-05",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+  "baseModel": "glm-4-9b",
+
+  "tags": ["official", "multimodal", "vision", "bilingual"],
+
+  "description": {
+    "ja": "CogVLM2と同じ学習レシピでGLM-4-9Bをベースに開発。EVA-E (4B)ビジョンエンコーダ採用。1120×1120解像度対応。Visual Expert不採用でモデルサイズを13Bに削減。GLM-4.1V-Thinkingなど派生モデルも展開。",
+    "en": "Developed based on GLM-4-9B using the same training recipe as CogVLM2. Adopts EVA-E (4B) vision encoder. Supports 1120×1120 resolution. Model size reduced to 13B by not using Visual Expert. Derivative models like GLM-4.1V-Thinking also available."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "languages": ["zh", "en"],
+    "architecture": "GLM-4-9B + EVA-E (4B) Vision Encoder + 2×2 Downsampling"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2406.12793",
+    "github": "https://github.com/THUDM/GLM-4",
+    "huggingface": "https://huggingface.co/THUDM/glm-4v-9b"
+  },
+
+  "variants": [
+    {
+      "name": "GLM-4V-9B",
+      "slug": "glm-4v-9b-base",
+      "parameters": "13B",
+      "parameterDetails": {
+        "active": "13B",
+        "total": "13B"
+      },
+      "description": {
+        "ja": "標準版。1120×1120解像度対応。バイリンガル。",
+        "en": "Standard version. Supports 1120×1120 resolution. Bilingual."
+      },
+      "huggingface": "https://huggingface.co/THUDM/glm-4v-9b",
+      "requirements": {
+        "minVram": "28GB",
+        "recommendedVram": "32GB",
+        "ram": "40GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-4.1V-9B-Thinking",
+      "slug": "glm-4.1v-9b-thinking",
+      "parameters": "9B",
+      "description": {
+        "ja": "Chain-of-Thought推論搭載。任意アスペクト比対応、最大4K解像度。28ベンチマーク中23タスクで10Bスケール1位。",
+        "en": "Features Chain-of-Thought reasoning. Supports arbitrary aspect ratios, up to 4K resolution. Ranks 1st among 10B scale models on 23 of 28 benchmarks."
+      },
+      "huggingface": "https://huggingface.co/THUDM/GLM-4.1V-9B-Thinking",
+      "requirements": {
+        "minVram": "20GB",
+        "recommendedVram": "24GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    }
+  ]
+}

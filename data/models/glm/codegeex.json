@@ -1,0 +1,48 @@
+{
+  "name": "CodeGeeX",
+  "slug": "codegeex",
+  "releaseDate": "2022-09-01",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "code", "multilingual"],
+
+  "description": {
+    "ja": "多言語コード生成モデル。23のプログラミング言語に対応。Huawei Ascend 910で学習。KDD 2023に採択。VS Code / JetBrains IDE拡張機能も提供。",
+    "en": "Multilingual code generation model. Supports 23 programming languages. Trained on Huawei Ascend 910. Accepted at KDD 2023. VS Code / JetBrains IDE extensions available."
+  },
+
+  "specs": {
+    "contextLength": 2048,
+    "trainingTokens": "850B (23 languages)",
+    "languages": ["code"],
+    "architecture": "Transformer (40 layers, 5120 hidden, 40 heads)"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2303.17568",
+    "github": "https://github.com/THUDM/CodeGeeX",
+    "huggingface": "https://huggingface.co/THUDM/codegeex-13b",
+    "website": "https://codegeex.cn"
+  },
+
+  "variants": [
+    {
+      "name": "CodeGeeX-13B",
+      "slug": "codegeex-13b",
+      "parameters": "13B",
+      "description": {
+        "ja": "多言語コード生成モデル。Python, C++, Java, JavaScript, Go等23言語対応。",
+        "en": "Multilingual code generation model. Supports 23 languages including Python, C++, Java, JavaScript, Go."
+      },
+      "huggingface": "https://huggingface.co/THUDM/codegeex-13b",
+      "requirements": {
+        "minVram": "27GB",
+        "recommendedVram": "32GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    }
+  ]
+}

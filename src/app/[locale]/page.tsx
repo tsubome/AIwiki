@@ -31,8 +31,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     return d.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'en-US')
   }
 
-  // Get latest models sorted by release date
-  const allModels = getModelsForList()
+  // Get latest models sorted by release date (with locale for descriptions)
+  const allModels = getModelsForList(locale)
   const latestModels = allModels
     .filter(m => m.releaseDate)
     .sort((a, b) => {
@@ -52,56 +52,56 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div>
-      <section className="text-center py-12">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <section className="text-center py-8 sm:py-12">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4">
           {t('title')}
         </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
           {t('subtitle')}
         </p>
       </section>
 
-      <section className="py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+      <section className="py-6 sm:py-8">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
             {t('latestModels')}
           </h2>
           <Link
             href="/models"
-            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
+            className="text-sm sm:text-base text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 active:text-primary-800 font-medium"
           >
             {t('viewAll')} &rarr;
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {latestModels.map((model) => (
             <Link
               key={model.id}
               href={`/models/${model.slug}`}
-              className="block bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg dark:hover:shadow-gray-900/50 transition-shadow"
+              className="block bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 hover:shadow-lg dark:hover:shadow-gray-900/50 active:bg-gray-50 dark:active:bg-gray-750 transition-all"
             >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{model.name}</h3>
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">{model.name}</h3>
                   {model.developer && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{model.developer}</p>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 truncate">{model.developer}</p>
                   )}
                 </div>
                 <span
-                  className={`px-2 py-1 text-xs font-medium rounded-full ${modelTypeColors[model.modelType] || modelTypeColors.BASE}`}
+                  className={`flex-shrink-0 px-2 py-0.5 sm:py-1 text-xs font-medium rounded-full ${modelTypeColors[model.modelType] || modelTypeColors.BASE}`}
                 >
                   {tType(model.modelType)}
                 </span>
               </div>
 
               {model.description && (
-                <p className="text-gray-600 dark:text-gray-300 mt-3 text-sm line-clamp-2">
+                <p className="text-gray-600 dark:text-gray-300 mt-2 sm:mt-3 text-xs sm:text-sm line-clamp-2">
                   {model.description}
                 </p>
               )}
 
-              <div className="mt-4 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+              <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                 <span className="flex items-center">
                   {tCommon('variants', { count: model.variantCount })}
                 </span>

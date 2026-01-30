@@ -1,0 +1,64 @@
+{
+  "name": "CodeGeeX2-6B",
+  "slug": "codegeex2-6b",
+  "releaseDate": "2023-07-01",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "chatglm2-6b",
+
+  "tags": ["official", "code", "multilingual"],
+
+  "description": {
+    "ja": "ChatGLM2-6Bベースの第2世代コードモデル。600Bコードトークンで追加学習。CodeGeeX比で+107%の性能向上。INT4量子化で6GB VRAMで推論可能。",
+    "en": "Second generation code model based on ChatGLM2-6B. Additional training on 600B code tokens. +107% performance improvement over CodeGeeX. Inference possible with 6GB VRAM using INT4."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "trainingTokens": "600B (code)",
+    "languages": ["code"],
+    "architecture": "ChatGLM2 Transformer"
+  },
+
+  "links": {
+    "github": "https://github.com/THUDM/CodeGeeX2",
+    "huggingface": "https://huggingface.co/THUDM/codegeex2-6b",
+    "website": "https://codegeex.cn"
+  },
+
+  "variants": [
+    {
+      "name": "CodeGeeX2-6B",
+      "slug": "codegeex2-6b-base",
+      "parameters": "6B",
+      "description": {
+        "ja": "標準版。HumanEval-X全言語で大幅性能向上（Python +57%、Rust +321%）。",
+        "en": "Standard version. Significant improvement on HumanEval-X across all languages (Python +57%, Rust +321%)."
+      },
+      "huggingface": "https://huggingface.co/THUDM/codegeex2-6b",
+      "requirements": {
+        "minVram": "13GB",
+        "recommendedVram": "16GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "CodeGeeX2-6B INT4",
+      "slug": "codegeex2-6b-int4",
+      "parameters": "6B",
+      "description": {
+        "ja": "INT4量子化版。6GB VRAMで推論可能。",
+        "en": "INT4 quantized version. Inference possible with 6GB VRAM."
+      },
+      "huggingface": "https://huggingface.co/THUDM/codegeex2-6b-int4",
+      "requirements": {
+        "minVram": "6GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    }
+  ]
+}

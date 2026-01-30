@@ -1,0 +1,62 @@
+{
+  "name": "CogVLM2",
+  "slug": "cogvlm2",
+  "releaseDate": "2024-05-01",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "Apache 2.0 + Model License",
+  "modelType": "BASE",
+
+  "tags": ["official", "multimodal", "vision", "video"],
+
+  "description": {
+    "ja": "GPT-4Vに匹敵するマルチモーダルモデル。Llama-3-8B-Instructベース。最大1344×1344解像度対応。2×2ダウンサンプリングとVisual Expertを継承。動画理解版（CogVLM2-Video）も提供。",
+    "en": "Multimodal model comparable to GPT-4V. Based on Llama-3-8B-Instruct. Supports up to 1344×1344 resolution. Inherits 2×2 downsampling and Visual Expert. Video understanding version (CogVLM2-Video) also available."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "languages": ["zh", "en"],
+    "architecture": "Llama-3-8B-Instruct + Visual Expert + 2×2 Downsampling"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2408.16500",
+    "github": "https://github.com/THUDM/CogVLM2",
+    "huggingface": "https://huggingface.co/THUDM/cogvlm2-llama3-chat-19B"
+  },
+
+  "variants": [
+    {
+      "name": "CogVLM2-Llama3-Chat-19B",
+      "slug": "cogvlm2-llama3-chat-19b",
+      "parameters": "19B",
+      "description": {
+        "ja": "Llama-3-8B-Instructベースの対話版。1344×1344解像度対応。",
+        "en": "Chat version based on Llama-3-8B-Instruct. Supports 1344×1344 resolution."
+      },
+      "huggingface": "https://huggingface.co/THUDM/cogvlm2-llama3-chat-19B",
+      "requirements": {
+        "minVram": "40GB",
+        "recommendedVram": "48GB",
+        "ram": "64GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "CogVLM2-Video-Llama3-Chat",
+      "slug": "cogvlm2-video-llama3-chat",
+      "parameters": "19B",
+      "description": {
+        "ja": "動画理解版。タイムスタンプ付きフレーム入力に対応。",
+        "en": "Video understanding version. Supports timestamped frame input."
+      },
+      "huggingface": "https://huggingface.co/THUDM/cogvlm2-video-llama3-chat",
+      "requirements": {
+        "minVram": "40GB",
+        "recommendedVram": "48GB",
+        "ram": "64GB"
+      },
+      "gguf": []
+    }
+  ]
+}

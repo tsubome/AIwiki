@@ -1,0 +1,90 @@
+{
+  "name": "GLM-4.5",
+  "slug": "glm-4.5",
+  "releaseDate": "2025-07-28",
+  "developer": "Zhipu AI / Tsinghua University",
+  "license": "MIT License",
+  "modelType": "BASE",
+
+  "tags": ["official", "moe", "agent", "reasoning", "coding"],
+
+  "description": {
+    "ja": "エージェント・推論・コーディング（ARC）に特化した次世代フラッグシップMoEモデル。355B総パラメータ、32B活性化。23兆トークンで学習。Thinking/Non-Thinkingモード切替対応。12ベンチマーク平均で全モデル中3位。",
+    "en": "Next-generation flagship MoE model specialized for Agent, Reasoning, and Coding (ARC). 355B total parameters, 32B active. Trained on 23T tokens. Supports Thinking/Non-Thinking mode switching. Ranks 3rd among all models on 12 benchmark average."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "trainingTokens": "23T",
+    "languages": ["zh", "en"],
+    "architecture": "Mixture of Experts (355B total / 32B active)"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2508.06471",
+    "huggingface": "https://huggingface.co/zai-org/GLM-4.5"
+  },
+
+  "variants": [
+    {
+      "name": "GLM-4.5",
+      "slug": "glm-4.5-base",
+      "parameters": "355B",
+      "parameterDetails": {
+        "active": "32B",
+        "total": "355B"
+      },
+      "description": {
+        "ja": "フラッグシップMoEモデル。Thinking/Non-Thinkingモード対応。",
+        "en": "Flagship MoE model. Supports Thinking/Non-Thinking modes."
+      },
+      "huggingface": "https://huggingface.co/zai-org/GLM-4.5",
+      "requirements": {
+        "minVram": "700GB",
+        "recommendedVram": "800GB (H100×8+)",
+        "ram": "1TB+"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-4.5-Air",
+      "slug": "glm-4.5-air",
+      "parameters": "106B",
+      "parameterDetails": {
+        "active": "12B",
+        "total": "106B"
+      },
+      "description": {
+        "ja": "軽量版MoEモデル。106B総パラメータ、12B活性化。",
+        "en": "Lightweight MoE model. 106B total parameters, 12B active."
+      },
+      "huggingface": "https://huggingface.co/zai-org/GLM-4.5-Air",
+      "requirements": {
+        "minVram": "220GB",
+        "recommendedVram": "256GB (A100×4)",
+        "ram": "400GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "GLM-4.5V",
+      "slug": "glm-4.5v",
+      "parameters": "106B",
+      "parameterDetails": {
+        "active": "12B",
+        "total": "106B"
+      },
+      "description": {
+        "ja": "ビジョン-言語モデル版。106Bパラメータ。",
+        "en": "Vision-Language model version. 106B parameters."
+      },
+      "huggingface": "https://huggingface.co/zai-org/GLM-4.5V",
+      "requirements": {
+        "minVram": "220GB",
+        "recommendedVram": "256GB",
+        "ram": "400GB"
+      },
+      "gguf": []
+    }
+  ]
+}
