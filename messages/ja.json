@@ -29,7 +29,20 @@
     "baseModelsOnly": "ベースモデルのみ",
     "allModels": "すべて表示",
     "variants": "バリエーション",
-    "totalModels": "{count}モデル"
+    "totalModels": "{count}モデル",
+    "displayMode": "表示",
+    "displayFamily": "ファミリー",
+    "displayModel": "モデル",
+    "sortBy": "並び替え",
+    "sort_newest": "新しい順",
+    "sort_oldest": "古い順",
+    "sort_params_desc": "パラメータ大きい順",
+    "sort_params_asc": "パラメータ小さい順",
+    "sort_name_asc": "名前順 (A→Z)",
+    "sort_name_desc": "名前順 (Z→A)",
+    "sort_developer": "開発元順",
+    "sort_context": "コンテキスト長順",
+    "sort_variants": "バリアント数順"
   },
   "model": {
     "developer": "開発者",

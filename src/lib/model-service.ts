@@ -467,6 +467,9 @@ export interface ModelWithChildren {
   children: ModelWithChildren[]
   parent?: ModelWithChildren | null
   ggufFiles: { id: string; name: string; size: string | null; url: string; recommended: boolean }[]
+  contextLength?: number
+  tags?: string[]
+  variants?: { parameters: string; parameterDetails?: { total?: string } }[]
 }
 
 const DEFAULT_TIMESTAMP = new Date('2024-01-01')
@@ -497,6 +500,12 @@ function toLegacyModel(model: ResolvedModel, parentId: string | null = null, loc
         recommended: f.recommended || false,
       }))
     ),
+    contextLength: model.specs?.contextLength,
+    tags: model.tags,
+    variants: model.variants.map(v => ({
+      parameters: v.parameters,
+      parameterDetails: v.parameterDetails ? { total: v.parameterDetails.total } : undefined,
+    })),
   }
 }
 

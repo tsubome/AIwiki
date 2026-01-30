@@ -29,7 +29,20 @@
     "baseModelsOnly": "Base Models Only",
     "allModels": "Show All",
     "variants": "Variants",
-    "totalModels": "{count} models"
+    "totalModels": "{count} models",
+    "displayMode": "Display",
+    "displayFamily": "Family",
+    "displayModel": "Model",
+    "sortBy": "Sort by",
+    "sort_newest": "Newest first",
+    "sort_oldest": "Oldest first",
+    "sort_params_desc": "Largest first",
+    "sort_params_asc": "Smallest first",
+    "sort_name_asc": "Name (A-Z)",
+    "sort_name_desc": "Name (Z-A)",
+    "sort_developer": "Developer",
+    "sort_context": "Context length",
+    "sort_variants": "Most variants"
   },
   "model": {
     "developer": "Developer",

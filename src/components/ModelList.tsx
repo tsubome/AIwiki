@@ -3,8 +3,11 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import type { ModelWithChildren } from '@/lib/model-service'
+import type { SortOption, DisplayMode } from '@/lib/sort-utils'
+import { sortFamilies, sortModels, flattenModels } from '@/lib/sort-utils'
 import ModelFamily from './ModelFamily'
 import ModelFilter from './ModelFilter'
+import ModelCard from './ModelCard'
 
 type Props = {
   families: ModelWithChildren[]
@@ -13,51 +16,90 @@ type Props = {
 export default function ModelList({ families }: Props) {
   const t = useTranslations('models')
   const [showAllModels, setShowAllModels] = useState(false)
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('family')
+  const [sortBy, setSortBy] = useState<SortOption>('newest')
 
   // Filter families based on showAllModels
-  // When showing base models only, also filter out families that have no base model children
-  const visibleFamilies = families.filter(family => {
-    if (showAllModels) return true
-    // Always show the family (root is always BASE), but children will be filtered in ModelFamily
-    return true
+  const filteredFamilies = families.map(family => {
+    if (showAllModels) return family
+    // Filter children to only BASE models
+    return {
+      ...family,
+      children: family.children.filter(child => child.modelType === 'BASE'),
+    }
   })
 
-  // Count total visible models (version nodes, not parameter variants)
-  // Filter first, then count (matching ModelFamily logic)
-  const totalModels = families.reduce((acc, family) => {
-    const allVersionNodes = family.children.filter(c => c.parentId === family.id && !c.parameters)
-    const filteredVersionNodes = showAllModels
-      ? allVersionNodes
-      : allVersionNodes.filter(c => c.modelType === 'BASE')
-    return acc + 1 + filteredVersionNodes.length
-  }, 0)
+  // Sort families
+  const sortedFamilies = sortFamilies(filteredFamilies, sortBy)
+
+  // For model mode, flatten and sort all models
+  const allModels = flattenModels(filteredFamilies)
+  const sortedModels = sortModels(
+    showAllModels ? allModels : allModels.filter(m => m.modelType === 'BASE'),
+    sortBy
+  )
+
+  // Count total visible models
+  const totalModels = displayMode === 'family'
+    ? sortedFamilies.reduce((acc, family) => {
+        const versionNodes = family.children.filter(c => c.parentId === family.id && !c.parameters)
+        return acc + 1 + versionNodes.length
+      }, 0)
+    : sortedModels.length
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <p className="text-gray-600">
-          {t('totalModels', { count: totalModels })}
-        </p>
+      <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            {t('totalModels', { count: totalModels })}
+          </p>
+        </div>
         <ModelFilter
           showAllModels={showAllModels}
           onFilterChange={setShowAllModels}
+          displayMode={displayMode}
+          onDisplayModeChange={setDisplayMode}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
       </div>
 
-      {visibleFamilies.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
-          {t('noModels')}
-        </div>
+      {displayMode === 'family' ? (
+        // Family mode
+        sortedFamilies.length === 0 ? (
+          <div className="text-center py-8 sm:py-12 text-gray-500 text-sm sm:text-base">
+            {t('noModels')}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            {sortedFamilies.map((family) => (
+              <ModelFamily
+                key={family.id}
+                family={family}
+                showAllModels={showAllModels}
+                sortBy={sortBy}
+              />
+            ))}
+          </div>
+        )
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {visibleFamilies.map((family) => (
-            <ModelFamily
-              key={family.id}
-              family={family}
-              showAllModels={showAllModels}
-            />
-          ))}
-        </div>
+        // Model mode
+        sortedModels.length === 0 ? (
+          <div className="text-center py-8 sm:py-12 text-gray-500 text-sm sm:text-base">
+            {t('noModels')}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortedModels.map((model) => (
+              <ModelCard
+                key={model.id}
+                model={model}
+                sortParam={sortBy}
+              />
+            ))}
+          </div>
+        )
       )}
     </div>
   )
