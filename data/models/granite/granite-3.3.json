@@ -1,0 +1,62 @@
+{
+  "name": "Granite 3.3",
+  "slug": "granite-3.3",
+  "releaseDate": "2025-04-01",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "granite-3.2",
+
+  "tags": ["official", "multilingual", "reasoning", "enterprise"],
+
+  "description": {
+    "ja": "推論・指示遵守能力のさらなる改善。AlpacaEval-2.0、Arena-Hardで大幅向上。数学・コーディング・指示遵守が改善。",
+    "en": "Further improvements in reasoning and instruction following. Significant gains on AlpacaEval-2.0 and Arena-Hard. Improved math, coding, and instruction following."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en", "de", "es", "fr", "ja", "pt", "ar", "cs", "it", "ko", "nl", "zh"],
+    "architecture": "Decoder-only Transformer"
+  },
+
+  "links": {
+    "github": "https://github.com/ibm-granite/granite-models",
+    "huggingface": "https://huggingface.co/ibm-granite/granite-3.3-8b-instruct"
+  },
+
+  "variants": [
+    {
+      "name": "Granite 3.3 8B Instruct",
+      "slug": "granite-3.3-8b-instruct",
+      "parameters": "8B",
+      "description": {
+        "ja": "改良版推論モデル。",
+        "en": "Improved reasoning model."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.3-8b-instruct",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "24GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.3 2B Instruct",
+      "slug": "granite-3.3-2b-instruct",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版改良推論モデル。",
+        "en": "Lightweight improved reasoning model."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    }
+  ]
+}

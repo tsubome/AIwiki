@@ -1,0 +1,50 @@
+{
+  "description": "IBM Granite model family relationships",
+  "relationships": [
+    {
+      "parent": "granite-3.0",
+      "child": "granite-3.1",
+      "type": "evolution"
+    },
+    {
+      "parent": "granite-3.1",
+      "child": "granite-3.2",
+      "type": "evolution"
+    },
+    {
+      "parent": "granite-3.2",
+      "child": "granite-3.3",
+      "type": "evolution"
+    },
+    {
+      "parent": "granite-3.3",
+      "child": "granite-4.0",
+      "type": "evolution"
+    },
+    {
+      "parent": "granite-3.0",
+      "child": "granite-guardian-3.0",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "granite-guardian-3.0",
+      "child": "granite-guardian-3.1",
+      "type": "evolution"
+    },
+    {
+      "parent": "granite-guardian-3.1",
+      "child": "granite-guardian-3.2",
+      "type": "evolution"
+    },
+    {
+      "parent": "granite-3.2",
+      "child": "granite-vision-3.2",
+      "type": "official-derivative"
+    },
+    {
+      "parent": "granite-vision-3.2",
+      "child": "granite-vision-3.3",
+      "type": "evolution"
+    }
+  ]
+}

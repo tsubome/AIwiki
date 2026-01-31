@@ -1,0 +1,26 @@
+{
+  "name": "Dolphin",
+  "slug": "dolphin",
+  "developer": "Eric Hartford / Cognitive Computations",
+
+  "description": {
+    "ja": "Eric Hartford氏が開発する検閲なしの指示調整済みモデルシリーズ。様々なベースモデル上でファインチューニングされ、高い従順性とコーディング能力を持つ。",
+    "en": "An uncensored instruct-tuned model series developed by Eric Hartford. Fine-tuned on various base models, featuring high compliance and strong coding capabilities."
+  },
+
+  "website": "https://erichartford.com/dolphin",
+
+  "versions": [
+    "dolphin3",
+    "dolphin-llama3",
+    "dolphin-mistral",
+    "dolphin-mixtral",
+    "dolphin-qwen",
+    "dolphin-nemo",
+    "dolphin-phi",
+    "dolphin-yi",
+    "tinydolphin",
+    "megadolphin",
+    "dolphincoder"
+  ]
+}

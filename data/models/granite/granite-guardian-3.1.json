@@ -1,0 +1,62 @@
+{
+  "name": "Granite Guardian 3.1",
+  "slug": "granite-guardian-3.1",
+  "releaseDate": "2024-12-18",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "granite-guardian-3.0",
+
+  "tags": ["official", "safety", "guardrail"],
+
+  "description": {
+    "ja": "Guardian 3.0の改良版。Function Call Hallucination検出機能を追加。ツール呼び出し時の幻覚を検出可能。",
+    "en": "Improved version of Guardian 3.0. Added Function Call Hallucination detection. Can detect hallucinations during tool calls."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer"
+  },
+
+  "links": {
+    "github": "https://github.com/ibm-granite/granite-guardian",
+    "huggingface": "https://huggingface.co/ibm-granite"
+  },
+
+  "variants": [
+    {
+      "name": "Granite Guardian 3.1 8B",
+      "slug": "granite-guardian-3.1-8b",
+      "parameters": "8B",
+      "description": {
+        "ja": "Function Call Hallucination検出対応。",
+        "en": "Supports Function Call Hallucination detection."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.1-8b",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Guardian 3.1 2B",
+      "slug": "granite-guardian-3.1-2b",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版。Function Call検出対応。",
+        "en": "Lightweight version with Function Call detection."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.1-2b",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "6GB",
+        "ram": "8GB"
+      },
+      "gguf": []
+    }
+  ]
+}

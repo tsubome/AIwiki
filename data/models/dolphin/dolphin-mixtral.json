@@ -1,0 +1,110 @@
+{
+  "name": "Dolphin Mixtral",
+  "slug": "dolphin-mixtral",
+  "releaseDate": "2023-12-15",
+  "developer": "Eric Hartford / Cognitive Computations",
+  "license": "Apache 2.0",
+  "modelType": "FINETUNE",
+  "baseModel": "mixtral-8x7b",
+
+  "tags": ["uncensored", "moe", "coding", "multilingual"],
+
+  "description": {
+    "ja": "Mixtral MoEアーキテクチャベースの検閲なしモデル。コーディングに特に優れる。qLoRAによる効率的なファインチューニング。",
+    "en": "Uncensored model based on Mixtral MoE architecture. Particularly strong at coding. Efficiently fine-tuned with qLoRA."
+  },
+
+  "specs": {
+    "contextLength": 32768,
+    "languages": ["en", "de", "es", "fr", "it", "pt"],
+    "architecture": "Mixture of Experts (8x7B)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.7-mixtral-8x7b",
+    "website": "https://erichartford.com/dolphin-25-mixtral-8x7b"
+  },
+
+  "variants": [
+    {
+      "name": "Dolphin 2.7 Mixtral 8x7B",
+      "slug": "dolphin-2.7-mixtral-8x7b",
+      "parameters": "46.7B",
+      "parameterDetails": {
+        "active": "12.9B",
+        "total": "46.7B"
+      },
+      "description": {
+        "ja": "最新版。安定性と性能のバランス。",
+        "en": "Latest version. Balance of stability and performance."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.7-mixtral-8x7b",
+      "requirements": {
+        "minVram": "90GB",
+        "recommendedVram": "100GB",
+        "ram": "128GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.6 Mixtral 8x7B",
+      "slug": "dolphin-2.6-mixtral-8x7b",
+      "parameters": "46.7B",
+      "parameterDetails": {
+        "active": "12.9B",
+        "total": "46.7B"
+      },
+      "description": {
+        "ja": "DPO適用版。",
+        "en": "Version with DPO applied."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.6-mixtral-8x7b",
+      "requirements": {
+        "minVram": "90GB",
+        "recommendedVram": "100GB",
+        "ram": "128GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.5 Mixtral 8x7B",
+      "slug": "dolphin-2.5-mixtral-8x7b",
+      "parameters": "46.7B",
+      "parameterDetails": {
+        "active": "12.9B",
+        "total": "46.7B"
+      },
+      "description": {
+        "ja": "初期版。広く利用されている。",
+        "en": "Initial version. Widely used."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.5-mixtral-8x7b",
+      "requirements": {
+        "minVram": "90GB",
+        "recommendedVram": "100GB",
+        "ram": "128GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.9 Mixtral 8x22B",
+      "slug": "dolphin-2.9-mixtral-8x22b",
+      "parameters": "141B",
+      "parameterDetails": {
+        "active": "39B",
+        "total": "141B"
+      },
+      "description": {
+        "ja": "大規模MoE版。最高性能。",
+        "en": "Large MoE version. Highest performance."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9-mixtral-8x22b",
+      "requirements": {
+        "minVram": "250GB",
+        "recommendedVram": "280GB",
+        "ram": "320GB"
+      },
+      "gguf": []
+    }
+  ]
+}

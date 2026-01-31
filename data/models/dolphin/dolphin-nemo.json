@@ -1,0 +1,45 @@
+{
+  "name": "Dolphin 2.9.3 Mistral Nemo",
+  "slug": "dolphin-nemo",
+  "releaseDate": "2024-08-01",
+  "developer": "Eric Hartford / Lucas Atkins / Fernando Fernandes / Cognitive Computations",
+  "license": "Apache 2.0",
+  "modelType": "FINETUNE",
+  "baseModel": "mistral-nemo",
+
+  "tags": ["uncensored", "multilingual", "coding", "long-context", "function-calling"],
+
+  "description": {
+    "ja": "Mistral Nemo（NVidia/Mistral AI共同開発）ベースの検閲なしモデル。128Kコンテキスト対応。指示追従、会話、コーディングスキルに優れる。",
+    "en": "Uncensored model based on Mistral Nemo (NVidia/Mistral AI collaboration). Supports 128K context. Excellent at instruction following, conversation, and coding."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en", "de", "es", "fr", "it", "pt", "ru", "zh"],
+    "architecture": "Mistral Nemo Transformer Decoder-only"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b"
+  },
+
+  "variants": [
+    {
+      "name": "Dolphin 2.9.3 Mistral Nemo 12B",
+      "slug": "dolphin-2.9.3-mistral-nemo-12b",
+      "parameters": "12B",
+      "description": {
+        "ja": "Mistral Nemoベース。128Kコンテキスト対応の高性能モデル。",
+        "en": "Based on Mistral Nemo. High-performance model with 128K context support."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.3-mistral-nemo-12b",
+      "requirements": {
+        "minVram": "24GB",
+        "recommendedVram": "30GB",
+        "ram": "48GB"
+      },
+      "gguf": []
+    }
+  ]
+}

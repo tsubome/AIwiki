@@ -1,0 +1,127 @@
+{
+  "name": "Granite Code",
+  "slug": "granite-code",
+  "releaseDate": "2024-05-01",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "code", "multilingual"],
+
+  "description": {
+    "ja": "116プログラミング言語対応のコード生成モデルファミリー。4兆トークンで学習。HumanEvalPackでMistral-7B、Llama-3-8Bを超える性能。Base版とInstruct版を提供。",
+    "en": "Code generation model family supporting 116 programming languages. Trained on 4T tokens. Outperforms Mistral-7B and Llama-3-8B on HumanEvalPack. Available in Base and Instruct versions."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "trainingTokens": "4T (code) + 500B (code+language)",
+    "languages": ["code"],
+    "architecture": "Decoder-only Transformer"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2405.04324",
+    "github": "https://github.com/ibm-granite/granite-code-models",
+    "huggingface": "https://huggingface.co/ibm-granite"
+  },
+
+  "variants": [
+    {
+      "name": "Granite Code 3B Base",
+      "slug": "granite-code-3b-base",
+      "parameters": "3B",
+      "description": {
+        "ja": "軽量コードモデル。2K/8Kコンテキスト対応。",
+        "en": "Lightweight code model. Supports 2K/8K context."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-base",
+      "requirements": {
+        "minVram": "7GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 3B Instruct",
+      "slug": "granite-code-3b-instruct",
+      "parameters": "3B",
+      "description": {
+        "ja": "指示追従版。コード生成・補完に最適化。",
+        "en": "Instruction-tuned version. Optimized for code generation and completion."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-instruct",
+      "requirements": {
+        "minVram": "7GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 8B Base",
+      "slug": "granite-code-8b-base",
+      "parameters": "8B",
+      "description": {
+        "ja": "標準サイズコードモデル。MBPPで同規模トップクラス。",
+        "en": "Standard size code model. Top-class performance on MBPP among same-size models."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-base",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 8B Instruct",
+      "slug": "granite-code-8b-instruct",
+      "parameters": "8B",
+      "description": {
+        "ja": "指示追従版。Function Calling対応。",
+        "en": "Instruction-tuned version. Supports Function Calling."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-instruct",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 20B Base",
+      "slug": "granite-code-20b-base",
+      "parameters": "20B",
+      "description": {
+        "ja": "大規模コードモデル。3兆トークンで学習。",
+        "en": "Large code model. Trained on 3T tokens."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-20b-code-base",
+      "requirements": {
+        "minVram": "42GB",
+        "recommendedVram": "48GB",
+        "ram": "64GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 34B Base",
+      "slug": "granite-code-34b-base",
+      "parameters": "34B",
+      "description": {
+        "ja": "最大コードモデル。1.4兆トークンで学習。",
+        "en": "Largest code model. Trained on 1.4T tokens."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-34b-code-base",
+      "requirements": {
+        "minVram": "70GB",
+        "recommendedVram": "80GB",
+        "ram": "128GB"
+      },
+      "gguf": []
+    }
+  ]
+}

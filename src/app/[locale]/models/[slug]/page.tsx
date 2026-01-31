@@ -499,8 +499,8 @@ export default async function ModelDetailPage({ params }: Props) {
                   </p>
                 )}
 
-                {/* MoE Details & Requirements */}
-                {(variant.parameterDetails || variant.requirements) && (
+                {/* MoE Details & Requirements & Base Model */}
+                {(variant.parameterDetails || variant.requirements || variant.baseModel) && (
                   <div className="flex flex-wrap gap-2 sm:gap-3 mb-3">
                     {variant.parameterDetails && (
                       <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-purple-50 dark:bg-purple-900/30 text-xs">
@@ -522,6 +522,15 @@ export default async function ModelDetailPage({ params }: Props) {
                         <span className="text-green-600 dark:text-green-400 font-medium">RAM</span>
                         <span className="text-gray-600 dark:text-gray-400">{variant.requirements.ram}</span>
                       </div>
+                    )}
+                    {variant.baseModel && (
+                      <Link
+                        href={`/models/${variant.baseModel}`}
+                        className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-orange-50 dark:bg-orange-900/30 text-xs hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                      >
+                        <span className="text-orange-600 dark:text-orange-400 font-medium">{t('baseModel')}</span>
+                        <span className="text-gray-600 dark:text-gray-400">{variant.baseModel}</span>
+                      </Link>
                     )}
                   </div>
                 )}

@@ -1,0 +1,15 @@
+{
+  "description": "Dolphin model family relationships",
+  "relationships": [
+    {
+      "parent": "dolphin-llama3",
+      "child": "dolphin3",
+      "type": "evolution"
+    },
+    {
+      "parent": "dolphin-mixtral",
+      "child": "megadolphin",
+      "type": "merge"
+    }
+  ]
+}

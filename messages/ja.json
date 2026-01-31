@@ -112,6 +112,22 @@
     "ftOff": "FT: OFF"
   },
   "footer": {
-    "copyright": "AIwiki - ローカルLLM情報Wiki"
+    "copyright": "AIwiki - ローカルLLM情報Wiki",
+    "privacy": "プライバシーポリシー"
+  },
+  "privacy": {
+    "title": "プライバシーポリシー",
+    "description": "AIwikiのプライバシーポリシー",
+    "lastUpdated": "最終更新日",
+    "section1Title": "収集する情報",
+    "section1Content": "当サイトでは、Cloudflare Web Analyticsを使用してアクセス解析を行っています。これにより、訪問者数、ページビュー、リファラー情報などの匿名化されたデータを収集しています。個人を特定できる情報は収集していません。",
+    "section2Title": "Cookieの使用",
+    "section2Content": "当サイトでは、サイトの機能向上のためにCookieを使用する場合があります。Cookieはブラウザの設定で無効にすることができます。",
+    "section3Title": "第三者サービス",
+    "section3Content": "当サイトは、Cloudflare Pagesでホスティングされています。また、将来的に広告サービスを導入する可能性があります。その場合、このポリシーを更新します。",
+    "section4Title": "ポリシーの変更",
+    "section4Content": "このプライバシーポリシーは、必要に応じて更新される場合があります。重要な変更がある場合は、サイト上でお知らせします。",
+    "section5Title": "お問い合わせ",
+    "section5Content": "プライバシーポリシーに関するご質問は、GitHubリポジトリのIssueからお問い合わせください。"
   }
 }

@@ -1,0 +1,77 @@
+{
+  "name": "Dolphin 2.8 Mistral",
+  "slug": "dolphin-mistral",
+  "releaseDate": "2024-03-25",
+  "developer": "Eric Hartford / Cognitive Computations",
+  "license": "Apache 2.0",
+  "modelType": "FINETUNE",
+  "baseModel": "mistral-7b",
+
+  "tags": ["uncensored", "multilingual", "coding", "long-context"],
+
+  "description": {
+    "ja": "Mistral-7B-v0.2ベースの検閲なしモデル。32Kコンテキスト対応。指示、会話、コーディングスキルに優れる。",
+    "en": "Uncensored model based on Mistral-7B-v0.2. Supports 32K context. Excellent at instructions, conversation, and coding."
+  },
+
+  "specs": {
+    "contextLength": 32768,
+    "languages": ["en", "de", "es", "fr", "it", "pt", "nl", "ru"],
+    "architecture": "Mistral Transformer Decoder-only"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.8-mistral-7b-v02"
+  },
+
+  "variants": [
+    {
+      "name": "Dolphin 2.8 Mistral 7B v0.2",
+      "slug": "dolphin-2.8-mistral-7b-v02",
+      "parameters": "7B",
+      "description": {
+        "ja": "最新版。Mistral 7B v0.2ベース。",
+        "en": "Latest version based on Mistral 7B v0.2."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.8-mistral-7b-v02",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.6 Mistral 7B DPO",
+      "slug": "dolphin-2.6-mistral-7b-dpo",
+      "parameters": "7B",
+      "description": {
+        "ja": "DPO（Direct Preference Optimization）適用版。",
+        "en": "Version with DPO (Direct Preference Optimization) applied."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.6-mistral-7b-dpo",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.5 Mistral 7B",
+      "slug": "dolphin-2.5-mistral-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "安定版。広く利用されている。",
+        "en": "Stable version. Widely used."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.5-mistral-7b",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    }
+  ]
+}

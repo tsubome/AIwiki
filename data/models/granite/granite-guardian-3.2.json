@@ -1,0 +1,66 @@
+{
+  "name": "Granite Guardian 3.2",
+  "slug": "granite-guardian-3.2",
+  "releaseDate": "2025-02-01",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "granite-guardian-3.1",
+
+  "tags": ["official", "safety", "guardrail", "reasoning"],
+
+  "description": {
+    "ja": "30%サイズ削減（8B→5B）でより効率的に。Verbalized Confidence（High/Low）出力、Thinking Mode対応。MoE版（3B-A800M）も提供。LLM-Aggrefactトップ3。",
+    "en": "30% size reduction (8B→5B) for better efficiency. Supports Verbalized Confidence (High/Low) output and Thinking Mode. MoE version (3B-A800M) also available. Top 3 on LLM-Aggrefact."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer / MoE"
+  },
+
+  "links": {
+    "github": "https://github.com/ibm-granite/granite-guardian",
+    "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-5b"
+  },
+
+  "variants": [
+    {
+      "name": "Granite Guardian 3.2 5B",
+      "slug": "granite-guardian-3.2-5b",
+      "parameters": "5B",
+      "description": {
+        "ja": "30%サイズ削減版。Verbalized Confidence、Thinking Mode対応。",
+        "en": "30% size reduced version. Supports Verbalized Confidence and Thinking Mode."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-5b",
+      "requirements": {
+        "minVram": "11GB",
+        "recommendedVram": "14GB",
+        "ram": "18GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Guardian 3.2 3B-A800M",
+      "slug": "granite-guardian-3.2-3b-a800m",
+      "parameters": "3B",
+      "parameterDetails": {
+        "active": "800M",
+        "total": "3B"
+      },
+      "description": {
+        "ja": "MoE版。超高効率なリスク検出。",
+        "en": "MoE version. Ultra-efficient risk detection."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-3b-a800m",
+      "requirements": {
+        "minVram": "7GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    }
+  ]
+}

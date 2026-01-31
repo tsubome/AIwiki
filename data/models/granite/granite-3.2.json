@@ -1,0 +1,62 @@
+{
+  "name": "Granite 3.2",
+  "slug": "granite-3.2",
+  "releaseDate": "2025-02-26",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "granite-3.1",
+
+  "tags": ["official", "multilingual", "reasoning", "enterprise"],
+
+  "description": {
+    "ja": "Chain-of-Thought推論機能搭載（ON/OFF切替可能）。<think>タグで思考プロセスを出力。推論スケーリングでGPT-4o/Claude 3.5 Sonnet相当の性能。ArenaHard、AlpacaEvalで2桁改善。",
+    "en": "Features Chain-of-Thought reasoning (toggleable ON/OFF). Outputs thinking process with <think> tags. Achieves GPT-4o/Claude 3.5 Sonnet level performance with inference scaling. Double-digit improvement on ArenaHard and AlpacaEval."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en", "de", "es", "fr", "ja", "pt", "ar", "cs", "it", "ko", "nl", "zh"],
+    "architecture": "Decoder-only Transformer"
+  },
+
+  "links": {
+    "github": "https://github.com/ibm-granite/granite-models",
+    "huggingface": "https://huggingface.co/ibm-granite/granite-3.2-8b-instruct"
+  },
+
+  "variants": [
+    {
+      "name": "Granite 3.2 8B Instruct",
+      "slug": "granite-3.2-8b-instruct",
+      "parameters": "8B",
+      "description": {
+        "ja": "推論ON/OFF切替対応フラッグシップ。",
+        "en": "Flagship with reasoning ON/OFF toggle."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.2-8b-instruct",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "24GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.2 2B Instruct",
+      "slug": "granite-3.2-2b-instruct",
+      "parameters": "2B",
+      "description": {
+        "ja": "推論機能対応軽量版。",
+        "en": "Lightweight with reasoning capability."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.2-2b-instruct",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    }
+  ]
+}

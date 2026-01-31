@@ -1,0 +1,20 @@
+{
+  "description": "OLMo model family relationships",
+  "relationships": [
+    {
+      "parent": "olmo-1",
+      "child": "olmo-2",
+      "type": "evolution"
+    },
+    {
+      "parent": "olmo-2",
+      "child": "olmo-3",
+      "type": "evolution"
+    },
+    {
+      "parent": "molmo",
+      "child": "molmo-2",
+      "type": "evolution"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "name": "OLMo 1",
+  "slug": "olmo-1",
+  "releaseDate": "2024-02-01",
+  "developer": "Allen Institute for AI (AI2)",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "open-source", "research"],
+
+  "description": {
+    "ja": "AI2初の完全オープンソース大規模言語モデル。学習データ（Dolma）、コード、チェックポイント、ログすべてを公開した画期的なリリース。OLMo 1.7/April 2024とJuly 2024版も含む。",
+    "en": "AI2's first fully open-source large language model. Groundbreaking release with all training data (Dolma), code, checkpoints, and logs publicly available. Includes OLMo 1.7/April 2024 and July 2024 versions."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer"
+  },
+
+  "links": {
+    "github": "https://github.com/allenai/OLMo",
+    "huggingface": "https://huggingface.co/allenai",
+    "paper": "https://arxiv.org/abs/2402.00838"
+  },
+
+  "variants": [
+    {
+      "name": "OLMo 1B",
+      "slug": "olmo-1b",
+      "parameters": "1B",
+      "description": {
+        "ja": "軽量版。3Tトークンで学習。",
+        "en": "Lightweight version trained on 3T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-1B",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 7B",
+      "slug": "olmo-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "初代フラッグシップ。2.5Tトークンで学習。",
+        "en": "Original flagship trained on 2.5T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-7B",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 7B Instruct",
+      "slug": "olmo-7b-instruct",
+      "parameters": "7B",
+      "description": {
+        "ja": "指示調整版。",
+        "en": "Instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-7B-Instruct",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 7B 0424",
+      "slug": "olmo-7b-0424",
+      "parameters": "7B",
+      "description": {
+        "ja": "April 2024版。MMLU 28→52に改善。4Kコンテキスト。",
+        "en": "April 2024 version. MMLU improved from 28 to 52. 4K context."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-7B-0424",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 7B 0724",
+      "slug": "olmo-7b-0724-hf",
+      "parameters": "7B",
+      "description": {
+        "ja": "July 2024版。2段階カリキュラム適用。",
+        "en": "July 2024 version with 2-stage curriculum."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-7B-0724-hf",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 7B 0724 Instruct",
+      "slug": "olmo-7b-0724-instruct-hf",
+      "parameters": "7B",
+      "description": {
+        "ja": "July 2024版指示調整モデル。",
+        "en": "July 2024 instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-7B-0724-Instruct-hf",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    }
+  ]
+}

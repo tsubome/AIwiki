@@ -98,6 +98,7 @@ export interface VariantForDetail {
     experts?: number
   }
   description: string | null
+  baseModel?: string
   huggingface: string | null
   requirements?: {
     minVram?: string
@@ -153,6 +154,7 @@ function toVariantForDetail(variant: ResolvedVariant, index: number, locale: str
     parameters: variant.parameters,
     parameterDetails: variant.parameterDetails,
     description: getLocalizedString(variant.description, locale) || null,
+    baseModel: variant.baseModel,
     huggingface: variant.huggingface || null,
     requirements: variant.requirements,
     ggufFiles: (variant.gguf || []).map((file, i) => ({

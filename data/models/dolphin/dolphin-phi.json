@@ -1,0 +1,77 @@
+{
+  "name": "Dolphin Phi",
+  "slug": "dolphin-phi",
+  "releaseDate": "2024-01-15",
+  "developer": "Eric Hartford / Fernando Fernandes / Cognitive Computations",
+  "license": "MIT License",
+  "modelType": "FINETUNE",
+  "baseModel": "phi-2",
+
+  "tags": ["uncensored", "fast", "roleplay"],
+
+  "description": {
+    "ja": "Microsoft Phiシリーズベースの小型検閲なしモデル。軽量かつ高性能。Samanthaベースの共感データを含む。qLoRA + Axolotlで学習。",
+    "en": "Small uncensored model based on Microsoft Phi series. Lightweight yet powerful. Includes Samantha-based empathy data. Trained with qLoRA + Axolotl."
+  },
+
+  "specs": {
+    "contextLength": 2048,
+    "languages": ["en"],
+    "architecture": "Phi Transformer"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2_6-phi-2"
+  },
+
+  "variants": [
+    {
+      "name": "Dolphin 2.6 Phi-2",
+      "slug": "dolphin-2.6-phi-2",
+      "parameters": "2.78B",
+      "description": {
+        "ja": "Phi-2ベース。軽量高性能。ARC 59.81%、HellaSwag 74.65%。",
+        "en": "Based on Phi-2. Lightweight and powerful. ARC 59.81%, HellaSwag 74.65%."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2_6-phi-2",
+      "requirements": {
+        "minVram": "6GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.9.1 Phi-3 Kensho 4.5B",
+      "slug": "dolphin-2.9.1-phi-3-kensho-4.5b",
+      "parameters": "4.5B",
+      "description": {
+        "ja": "Phi-3 Mini 4Kベース。改良版。",
+        "en": "Based on Phi-3 Mini 4K. Improved version."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/Dolphin-2.9.1-Phi-3-Kensho-4.5B",
+      "requirements": {
+        "minVram": "10GB",
+        "recommendedVram": "12GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Dolphin 2.9.2 Phi-3 Medium",
+      "slug": "dolphin-2.9.2-phi-3-medium",
+      "parameters": "14B",
+      "description": {
+        "ja": "Phi-3 Mediumベース。最大のPhi版。",
+        "en": "Based on Phi-3 Medium. Largest Phi version."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.2-Phi-3-Medium",
+      "requirements": {
+        "minVram": "28GB",
+        "recommendedVram": "35GB",
+        "ram": "48GB"
+      },
+      "gguf": []
+    }
+  ]
+}

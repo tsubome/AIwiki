@@ -1,0 +1,159 @@
+{
+  "name": "OLMo 3",
+  "slug": "olmo-3",
+  "releaseDate": "2025-11-01",
+  "developer": "Allen Institute for AI (AI2)",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+  "baseModel": "olmo-2",
+
+  "tags": ["official", "open-source", "research", "reasoning", "long-context"],
+
+  "description": {
+    "ja": "完全オープンな「モデルフロー」を提供する最新世代。Base、Instruct、Thinkの3バリアントを持ち、推論能力が大幅に向上。65Kトークンのコンテキスト長をサポート。Dolma 3（6T）で学習。",
+    "en": "Latest generation providing fully open 'model flow'. Features Base, Instruct, and Think variants with significantly improved reasoning. Supports 65K token context length. Trained on Dolma 3 (6T)."
+  },
+
+  "specs": {
+    "contextLength": 65536,
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer with RMSNorm + QK-norm"
+  },
+
+  "links": {
+    "github": "https://github.com/allenai/OLMo",
+    "huggingface": "https://huggingface.co/allenai",
+    "website": "https://allenai.org/papers/olmo3"
+  },
+
+  "variants": [
+    {
+      "name": "OLMo 3 7B",
+      "slug": "olmo-3-1025-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "ベースモデル。6Tトークンで学習。",
+        "en": "Base model trained on 6T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3-1025-7B",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3 7B Instruct",
+      "slug": "olmo-3-7b-instruct",
+      "parameters": "7B",
+      "description": {
+        "ja": "指示調整版。マルチターンチャット、ツール使用に最適化。",
+        "en": "Instruction-tuned version optimized for multi-turn chat and tool use."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3-7B-Instruct",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3 7B Think",
+      "slug": "olmo-3-7b-think",
+      "parameters": "7B",
+      "description": {
+        "ja": "推論特化版。数学・コード・推論タスク向け長い思考連鎖を出力。",
+        "en": "Reasoning-focused version outputting long chain-of-thought for math, code, and reasoning tasks."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3-7B-Think",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3 32B",
+      "slug": "olmo-3-1125-32b",
+      "parameters": "32B",
+      "description": {
+        "ja": "大型ベースモデル。5.5Tトークンで学習。GQA採用。",
+        "en": "Large base model trained on 5.5T tokens. Uses GQA."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3-1125-32B",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3 32B Instruct",
+      "slug": "olmo-3-32b-instruct",
+      "parameters": "32B",
+      "description": {
+        "ja": "大型指示調整版。",
+        "en": "Large instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3-32B-Instruct",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3 32B Think",
+      "slug": "olmo-3-32b-think",
+      "parameters": "32B",
+      "description": {
+        "ja": "大型推論特化版。最高性能。",
+        "en": "Large reasoning-focused version. Highest performance."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3-32B-Think",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3.1 32B Think",
+      "slug": "olmo-3.1-32b-think",
+      "parameters": "32B",
+      "description": {
+        "ja": "拡張RL版Think。さらなる推論能力向上。",
+        "en": "Extended RL Think version with further reasoning improvements."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3.1-32B-Think",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 3.1 32B Instruct",
+      "slug": "olmo-3.1-32b-instruct",
+      "parameters": "32B",
+      "description": {
+        "ja": "拡張RL版Instruct。",
+        "en": "Extended RL Instruct version."
+      },
+      "huggingface": "https://huggingface.co/allenai/Olmo-3.1-32B-Instruct",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    }
+  ]
+}

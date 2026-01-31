@@ -1,0 +1,108 @@
+{
+  "name": "Granite 3.0",
+  "slug": "granite-3.0",
+  "releaseDate": "2024-10-01",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+
+  "tags": ["official", "multilingual", "enterprise"],
+
+  "description": {
+    "ja": "第3世代の汎用言語モデル。効率性とエンタープライズ用途に最適化。10兆トークン以上で学習。12言語対応（日本語含む）。MoE版（1B-A400M、3B-A800M）も提供。",
+    "en": "Third generation general-purpose language model. Optimized for efficiency and enterprise use. Trained on 10T+ tokens. Supports 12 languages including Japanese. MoE versions (1B-A400M, 3B-A800M) also available."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "trainingTokens": "10T+",
+    "languages": ["en", "de", "es", "fr", "ja", "pt", "ar", "cs", "it", "ko", "nl", "zh"],
+    "architecture": "Decoder-only Transformer / MoE",
+    "promptTemplate": {
+      "format": "granite",
+      "system": "<|start_of_role|>system<|end_of_role|>{system}<|end_of_text|>",
+      "user": "<|start_of_role|>user<|end_of_role|>{prompt}<|end_of_text|>",
+      "assistant": "<|start_of_role|>assistant<|end_of_role|}>"
+    }
+  },
+
+  "links": {
+    "github": "https://github.com/ibm-granite/granite-models",
+    "huggingface": "https://huggingface.co/ibm-granite"
+  },
+
+  "variants": [
+    {
+      "name": "Granite 3.0 8B Instruct",
+      "slug": "granite-3.0-8b-instruct",
+      "parameters": "8B",
+      "description": {
+        "ja": "フラッグシップモデル。128Kコンテキスト拡張可能。",
+        "en": "Flagship model. Expandable to 128K context."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.0-8b-instruct",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.0 2B Instruct",
+      "slug": "granite-3.0-2b-instruct",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版。エッジデバイス向け。",
+        "en": "Lightweight version for edge devices."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.0-2b-instruct",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "6GB",
+        "ram": "8GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.0 3B-A800M",
+      "slug": "granite-3.0-3b-a800m",
+      "parameters": "3B",
+      "parameterDetails": {
+        "active": "800M",
+        "total": "3B"
+      },
+      "description": {
+        "ja": "MoE版。800M活性化パラメータで低遅延を実現。",
+        "en": "MoE version. Achieves low latency with 800M active parameters."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.0-3b-a800m-instruct",
+      "requirements": {
+        "minVram": "7GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.0 1B-A400M",
+      "slug": "granite-3.0-1b-a400m",
+      "parameters": "1B",
+      "parameterDetails": {
+        "active": "400M",
+        "total": "1B"
+      },
+      "description": {
+        "ja": "超軽量MoE版。エッジ・IoT向け。",
+        "en": "Ultra-lightweight MoE version for edge/IoT devices."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.0-1b-a400m-instruct",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    }
+  ]
+}

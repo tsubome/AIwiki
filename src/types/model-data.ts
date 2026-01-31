@@ -94,6 +94,7 @@ export interface ModelVariant {
   parameters: string     // "8B" or "17B/109B"
   parameterDetails?: ParameterDetails
   description?: LocalizedString  // { ja: "...", en: "..." }
+  baseModel?: string     // "qwen2" (for variants based on external models)
   huggingface?: string
   requirements?: HardwareRequirements  // Hardware requirements for this variant
   gguf: GGUFFile[]

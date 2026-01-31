@@ -1,0 +1,110 @@
+{
+  "name": "OLMoE",
+  "slug": "olmoe",
+  "releaseDate": "2024-09-01",
+  "developer": "Allen Institute for AI (AI2)",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "open-source", "moe", "efficient"],
+
+  "description": {
+    "ja": "Mixture-of-Experts (MoE) アーキテクチャを採用した効率的なモデル。7Bの総パラメータ数で1Bのみをアクティブに使用し、同等コストのモデルを大幅に上回る性能を実現。8エキスパート、Top-2ルーティング。",
+    "en": "Efficient model using Mixture-of-Experts (MoE) architecture. Uses only 1B active parameters from 7B total, significantly outperforming models of equivalent cost. 8 experts with Top-2 routing."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "languages": ["en"],
+    "architecture": "Sparse Mixture-of-Experts (8 experts, Top-2)"
+  },
+
+  "links": {
+    "github": "https://github.com/allenai/OLMo",
+    "huggingface": "https://huggingface.co/allenai",
+    "paper": "https://arxiv.org/abs/2409.02060"
+  },
+
+  "variants": [
+    {
+      "name": "OLMoE 1B-7B 0924",
+      "slug": "olmoe-1b-7b-0924",
+      "parameters": "7B",
+      "parameterDetails": {
+        "active": "1B",
+        "total": "7B"
+      },
+      "description": {
+        "ja": "September 2024版。5Tトークンで学習。",
+        "en": "September 2024 version trained on 5T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0924",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMoE 1B-7B 0924 Instruct",
+      "slug": "olmoe-1b-7b-0924-instruct",
+      "parameters": "7B",
+      "parameterDetails": {
+        "active": "1B",
+        "total": "7B"
+      },
+      "description": {
+        "ja": "September 2024版指示調整モデル。SFT + DPO + RLVR。",
+        "en": "September 2024 instruction-tuned with SFT + DPO + RLVR."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0924-Instruct",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMoE 1B-7B 0125",
+      "slug": "olmoe-1b-7b-0125",
+      "parameters": "7B",
+      "parameterDetails": {
+        "active": "1B",
+        "total": "7B"
+      },
+      "description": {
+        "ja": "January 2025版。改良版学習データ。",
+        "en": "January 2025 version with improved training data."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0125",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMoE 1B-7B 0125 Instruct",
+      "slug": "olmoe-1b-7b-0125-instruct",
+      "parameters": "7B",
+      "parameterDetails": {
+        "active": "1B",
+        "total": "7B"
+      },
+      "description": {
+        "ja": "January 2025版指示調整モデル。",
+        "en": "January 2025 instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0125-Instruct",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    }
+  ]
+}

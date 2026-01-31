@@ -1,0 +1,63 @@
+{
+  "name": "Granite Guardian 3.0",
+  "slug": "granite-guardian-3.0",
+  "releaseDate": "2024-10-01",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "granite-3.0",
+
+  "tags": ["official", "safety", "guardrail"],
+
+  "description": {
+    "ja": "プロンプト・レスポンスのリスク検出に特化したガードレールモデル。Jailbreak、バイアス、暴力、不適切言語等を検出。LlamaGuard全世代を上回るF1スコア。",
+    "en": "Guardrail model specialized for risk detection in prompts and responses. Detects jailbreak, bias, violence, profanity, etc. Outperforms all LlamaGuard generations in F1 score."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer"
+  },
+
+  "links": {
+    "paper": "https://arxiv.org/abs/2412.07724",
+    "github": "https://github.com/ibm-granite/granite-guardian",
+    "huggingface": "https://huggingface.co/ibm-granite"
+  },
+
+  "variants": [
+    {
+      "name": "Granite Guardian 3.0 8B",
+      "slug": "granite-guardian-3.0-8b",
+      "parameters": "8B",
+      "description": {
+        "ja": "フルサイズ版。最高精度のリスク検出。",
+        "en": "Full-size version. Highest accuracy risk detection."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.0-8b",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "20GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Guardian 3.0 2B",
+      "slug": "granite-guardian-3.0-2b",
+      "parameters": "2B",
+      "description": {
+        "ja": "軽量版。高速なリスク検出。",
+        "en": "Lightweight version. Fast risk detection."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.0-2b",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "6GB",
+        "ram": "8GB"
+      },
+      "gguf": []
+    }
+  ]
+}

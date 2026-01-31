@@ -1,0 +1,23 @@
+{
+  "name": "Granite",
+  "slug": "granite",
+  "developer": "IBM",
+  "description": {
+    "ja": "IBMが開発したエンタープライズ向けオープンソースAIモデルファミリー。言語モデル、コードモデル、ビジョンモデル、エンベディング、安全性モデル（Guardian）、時系列予測など多様なタスクに対応。学習データの透明性とApache 2.0ライセンスが特徴。Granite 4.0ではMamba-2ハイブリッドアーキテクチャで70%以上のメモリ削減を実現。ISO 42001認証取得。",
+    "en": "Enterprise-focused open-source AI model family developed by IBM. Covers diverse tasks including language, code, vision, embedding, safety (Guardian), and time series forecasting. Features training data transparency and Apache 2.0 license. Granite 4.0 achieves 70%+ memory reduction with Mamba-2 hybrid architecture. ISO 42001 certified."
+  },
+  "website": "https://www.ibm.com/granite",
+  "versions": [
+    "granite-code",
+    "granite-3.0",
+    "granite-guardian-3.0",
+    "granite-3.1",
+    "granite-guardian-3.1",
+    "granite-3.2",
+    "granite-vision-3.2",
+    "granite-guardian-3.2",
+    "granite-3.3",
+    "granite-vision-3.3",
+    "granite-4.0"
+  ]
+}

@@ -112,6 +112,22 @@
     "ftOff": "FT: OFF"
   },
   "footer": {
-    "copyright": "AIwiki - Local LLM Information Wiki"
+    "copyright": "AIwiki - Local LLM Information Wiki",
+    "privacy": "Privacy Policy"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "AIwiki Privacy Policy",
+    "lastUpdated": "Last Updated",
+    "section1Title": "Information We Collect",
+    "section1Content": "We use Cloudflare Web Analytics to analyze site traffic. This collects anonymized data such as visitor counts, page views, and referrer information. We do not collect personally identifiable information.",
+    "section2Title": "Use of Cookies",
+    "section2Content": "We may use cookies to improve site functionality. You can disable cookies in your browser settings.",
+    "section3Title": "Third-Party Services",
+    "section3Content": "This site is hosted on Cloudflare Pages. We may introduce advertising services in the future, in which case this policy will be updated.",
+    "section4Title": "Policy Changes",
+    "section4Content": "This privacy policy may be updated as needed. We will notify you of any significant changes on the site.",
+    "section5Title": "Contact Us",
+    "section5Content": "For questions about this privacy policy, please contact us through the GitHub repository Issues."
   }
 }

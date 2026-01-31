@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+import { Link } from '@/i18n/routing'
 import Header from '@/components/Header'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import '../globals.css'
@@ -38,7 +39,20 @@ export default async function LocaleLayout({
               {children}
             </main>
             <footer className="border-t border-gray-200 dark:border-gray-700 mt-8 sm:mt-16 py-6 sm:py-8 text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm px-4">
-              AIwiki - Local LLM Information Wiki
+              <div className="mb-2">AIwiki - Local LLM Information Wiki</div>
+              <div className="flex justify-center gap-4">
+                <Link href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300">
+                  Privacy Policy
+                </Link>
+                <a
+                  href="https://github.com/tsubome/AIwiki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-700 dark:hover:text-gray-300"
+                >
+                  GitHub
+                </a>
+              </div>
             </footer>
           </NextIntlClientProvider>
         </ThemeProvider>

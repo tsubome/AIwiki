@@ -1,0 +1,61 @@
+{
+  "name": "DolphinCoder",
+  "slug": "dolphincoder",
+  "releaseDate": "2024-03-01",
+  "developer": "Eric Hartford / Cognitive Computations",
+  "license": "BigCode OpenRAIL-M",
+  "modelType": "FINETUNE",
+  "baseModel": "starcoder2",
+
+  "tags": ["uncensored", "coding"],
+
+  "description": {
+    "ja": "StarCoder2ベースのコーディング特化モデル。大量のコーディングデータで学習。ソフトウェアエンジニアリングに最適化。qLoRA + Axolotlで学習。",
+    "en": "Coding-focused model based on StarCoder2. Trained on extensive coding data. Optimized for software engineering. Trained with qLoRA + Axolotl."
+  },
+
+  "specs": {
+    "contextLength": 16384,
+    "languages": ["en"],
+    "architecture": "StarCoder2 Transformer"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/dolphincoder-starcoder2-15b"
+  },
+
+  "variants": [
+    {
+      "name": "DolphinCoder StarCoder2 7B",
+      "slug": "dolphincoder-starcoder2-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "軽量版。高速コード生成向け。",
+        "en": "Lightweight version for fast code generation."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphincoder-starcoder2-7b",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "DolphinCoder StarCoder2 15B",
+      "slug": "dolphincoder-starcoder2-15b",
+      "parameters": "15B",
+      "description": {
+        "ja": "大型版。高品質コード生成向け。",
+        "en": "Large version for high-quality code generation."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphincoder-starcoder2-15b",
+      "requirements": {
+        "minVram": "32GB",
+        "recommendedVram": "40GB",
+        "ram": "64GB"
+      },
+      "gguf": []
+    }
+  ]
+}

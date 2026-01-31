@@ -1,0 +1,102 @@
+{
+  "name": "Granite 3.1",
+  "slug": "granite-3.1",
+  "releaseDate": "2024-12-18",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "INSTRUCT",
+  "baseModel": "granite-3.0",
+
+  "tags": ["official", "multilingual", "long-context", "enterprise"],
+
+  "description": {
+    "ja": "128Kコンテキスト対応、性能大幅向上。OpenLLM Leaderboardトップクラス。IFEval（指示遵守）、MuSR（マルチステップ推論）で大幅改善。Samsung SDS、Lockheed Martinで導入。",
+    "en": "128K context support with significant performance improvements. Top-class on OpenLLM Leaderboard. Major improvements in IFEval (instruction following) and MuSR (multi-step reasoning). Deployed at Samsung SDS and Lockheed Martin."
+  },
+
+  "specs": {
+    "contextLength": 128000,
+    "languages": ["en", "de", "es", "fr", "ja", "pt", "ar", "cs", "it", "ko", "nl", "zh"],
+    "architecture": "Decoder-only Transformer / MoE"
+  },
+
+  "links": {
+    "github": "https://github.com/ibm-granite/granite-models",
+    "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-8b-instruct"
+  },
+
+  "variants": [
+    {
+      "name": "Granite 3.1 8B Instruct",
+      "slug": "granite-3.1-8b-instruct",
+      "parameters": "8B",
+      "description": {
+        "ja": "128Kコンテキスト対応フラッグシップ。",
+        "en": "Flagship with 128K context support."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
+      "requirements": {
+        "minVram": "17GB",
+        "recommendedVram": "24GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.1 2B Instruct",
+      "slug": "granite-3.1-2b-instruct",
+      "parameters": "2B",
+      "description": {
+        "ja": "128Kコンテキスト対応軽量版。",
+        "en": "Lightweight with 128K context support."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-2b-instruct",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.1 3B-A800M",
+      "slug": "granite-3.1-3b-a800m",
+      "parameters": "3B",
+      "parameterDetails": {
+        "active": "800M",
+        "total": "3B"
+      },
+      "description": {
+        "ja": "MoE版、128Kコンテキスト対応。",
+        "en": "MoE version with 128K context support."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-3b-a800m-instruct",
+      "requirements": {
+        "minVram": "7GB",
+        "recommendedVram": "10GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite 3.1 1B-A400M",
+      "slug": "granite-3.1-1b-a400m",
+      "parameters": "1B",
+      "parameterDetails": {
+        "active": "400M",
+        "total": "1B"
+      },
+      "description": {
+        "ja": "超軽量MoE版、128Kコンテキスト対応。",
+        "en": "Ultra-lightweight MoE with 128K context support."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-1b-a400m-instruct",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "5GB",
+        "ram": "8GB"
+      },
+      "gguf": []
+    }
+  ]
+}

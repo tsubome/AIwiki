@@ -1,0 +1,159 @@
+{
+  "name": "OLMo 2",
+  "slug": "olmo-2",
+  "releaseDate": "2024-11-01",
+  "developer": "Allen Institute for AI (AI2)",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+  "baseModel": "olmo-1",
+
+  "tags": ["official", "open-source", "research", "multilingual"],
+
+  "description": {
+    "ja": "最大6Tトークンで学習した新世代モデル。RMSNorm、Z-loss正則化、学習率アニーリングなど安定性向上技術を導入。Llama 3.1 8Bを上回る性能。Tülu 3パイプラインでポストトレーニング。",
+    "en": "New generation model trained on up to 6T tokens. Introduces stability improvements including RMSNorm, Z-loss regularization, and learning rate annealing. Outperforms Llama 3.1 8B. Post-trained with Tülu 3 pipeline."
+  },
+
+  "specs": {
+    "contextLength": 4096,
+    "languages": ["en"],
+    "architecture": "Decoder-only Transformer with RMSNorm"
+  },
+
+  "links": {
+    "github": "https://github.com/allenai/OLMo",
+    "huggingface": "https://huggingface.co/allenai",
+    "paper": "https://arxiv.org/abs/2501.00656"
+  },
+
+  "variants": [
+    {
+      "name": "OLMo 2 1B",
+      "slug": "olmo-2-0425-1b",
+      "parameters": "1B",
+      "description": {
+        "ja": "軽量版。4Tトークンで学習。",
+        "en": "Lightweight version trained on 4T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-0425-1B",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 1B Instruct",
+      "slug": "olmo-2-0425-1b-instruct",
+      "parameters": "1B",
+      "description": {
+        "ja": "軽量版指示調整モデル。",
+        "en": "Lightweight instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 7B",
+      "slug": "olmo-2-1124-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "主力モデル。MMLU 63.7%。4Tトークンで学習。",
+        "en": "Main model. MMLU 63.7%. Trained on 4T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-7B",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 7B Instruct",
+      "slug": "olmo-2-1124-7b-instruct",
+      "parameters": "7B",
+      "description": {
+        "ja": "指示調整版。SFT + DPO + RLVR。",
+        "en": "Instruction-tuned version with SFT + DPO + RLVR."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct",
+      "requirements": {
+        "minVram": "14GB",
+        "recommendedVram": "18GB",
+        "ram": "24GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 13B",
+      "slug": "olmo-2-1124-13b",
+      "parameters": "13B",
+      "description": {
+        "ja": "大型版。5Tトークンで学習。Qwen 2.5 7B超え。",
+        "en": "Large version trained on 5T tokens. Outperforms Qwen 2.5 7B."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-13B",
+      "requirements": {
+        "minVram": "26GB",
+        "recommendedVram": "32GB",
+        "ram": "48GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 13B Instruct",
+      "slug": "olmo-2-1124-13b-instruct",
+      "parameters": "13B",
+      "description": {
+        "ja": "大型版指示調整モデル。",
+        "en": "Large instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-13B-Instruct",
+      "requirements": {
+        "minVram": "26GB",
+        "recommendedVram": "32GB",
+        "ram": "48GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 32B",
+      "slug": "olmo-2-0325-32b",
+      "parameters": "32B",
+      "description": {
+        "ja": "最大版。6Tトークンで学習。",
+        "en": "Largest version trained on 6T tokens."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-0325-32B",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "OLMo 2 32B Instruct",
+      "slug": "olmo-2-0325-32b-instruct",
+      "parameters": "32B",
+      "description": {
+        "ja": "最大版指示調整モデル。",
+        "en": "Largest instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/allenai/OLMo-2-0325-32B-Instruct",
+      "requirements": {
+        "minVram": "64GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    }
+  ]
+}

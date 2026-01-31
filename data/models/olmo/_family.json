@@ -1,0 +1,21 @@
+{
+  "name": "OLMo",
+  "slug": "olmo",
+  "developer": "Allen Institute for AI (AI2)",
+
+  "description": {
+    "ja": "AI2が開発した完全オープンソースの大規模言語モデルファミリー。モデルの重み、学習データ（Dolma）、コード、評価方法、中間チェックポイントなどすべてが公開されている。OLMoE（MoE版）、Molmo（Vision-Language）も展開。",
+    "en": "Fully open-source large language model family developed by AI2. All model weights, training data (Dolma), code, evaluation methods, and intermediate checkpoints are publicly available. Also includes OLMoE (MoE) and Molmo (Vision-Language)."
+  },
+
+  "website": "https://allenai.org/olmo",
+
+  "versions": [
+    "olmo-1",
+    "olmo-2",
+    "olmo-3",
+    "olmoe",
+    "molmo",
+    "molmo-2"
+  ]
+}

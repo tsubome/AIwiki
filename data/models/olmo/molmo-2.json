@@ -1,0 +1,79 @@
+{
+  "name": "Molmo 2",
+  "slug": "molmo-2",
+  "releaseDate": "2025-12-01",
+  "developer": "Allen Institute for AI (AI2)",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "open-source", "multimodal", "vision", "video"],
+
+  "description": {
+    "ja": "ビデオ理解、マルチ画像推論、オブジェクトトラッキングに対応した次世代VLM。GPT-5やGemini 2.5 Proを上回る性能を一部タスクで達成。SigLIP 2ビジョンエンコーダ採用。最大128フレームのビデオ処理。",
+    "en": "Next-generation VLM supporting video understanding, multi-image reasoning, and object tracking. Outperforms GPT-5 and Gemini 2.5 Pro on some tasks. Uses SigLIP 2 vision encoder. Processes up to 128 video frames."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "languages": ["en"],
+    "architecture": "Vision-Language Model (SigLIP 2 + LLM)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/collections/allenai/molmo2"
+  },
+
+  "variants": [
+    {
+      "name": "Molmo 2 4B",
+      "slug": "molmo2-4b",
+      "parameters": "4B",
+      "description": {
+        "ja": "効率重視版。Qwen3ベース。",
+        "en": "Efficiency-focused version based on Qwen3."
+      },
+      "baseModel": "qwen3",
+      "huggingface": "https://huggingface.co/allenai/Molmo2-4B",
+      "requirements": {
+        "minVram": "10GB",
+        "recommendedVram": "12GB",
+        "ram": "16GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Molmo 2 8B",
+      "slug": "molmo2-8b",
+      "parameters": "8B",
+      "description": {
+        "ja": "ビデオグラウンディング・QA最適化版。Qwen3ベース。",
+        "en": "Optimized for video grounding and QA. Based on Qwen3."
+      },
+      "baseModel": "qwen3",
+      "huggingface": "https://huggingface.co/allenai/Molmo2-8B",
+      "requirements": {
+        "minVram": "18GB",
+        "recommendedVram": "24GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Molmo 2-O 7B",
+      "slug": "molmo2-o-7b",
+      "parameters": "7B",
+      "description": {
+        "ja": "完全オープン版。OLMoベースでエンドツーエンドオープン。",
+        "en": "Fully open version. End-to-end open based on OLMo."
+      },
+      "baseModel": "olmo-3",
+      "huggingface": "https://huggingface.co/allenai/Molmo2-O-7B",
+      "requirements": {
+        "minVram": "16GB",
+        "recommendedVram": "20GB",
+        "ram": "32GB"
+      },
+      "gguf": []
+    }
+  ]
+}

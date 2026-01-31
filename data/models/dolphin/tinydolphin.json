@@ -1,0 +1,77 @@
+{
+  "name": "TinyDolphin",
+  "slug": "tinydolphin",
+  "releaseDate": "2024-01-20",
+  "developer": "Kearm / Cognitive Computations",
+  "license": "Apache 2.0",
+  "modelType": "FINETUNE",
+  "baseModel": "tinyllama",
+
+  "tags": ["uncensored", "fast", "edge"],
+
+  "description": {
+    "ja": "TinyLlama（1.1B）ベースの超小型実験モデル。Dolphin 2.8データセットで学習。エッジデバイス向け。検閲なし。",
+    "en": "Ultra-small experimental model based on TinyLlama (1.1B). Trained on Dolphin 2.8 dataset. Designed for edge devices. Uncensored."
+  },
+
+  "specs": {
+    "contextLength": 2048,
+    "languages": ["en"],
+    "architecture": "TinyLlama (Llama 2 based)"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8-1.1b"
+  },
+
+  "variants": [
+    {
+      "name": "TinyDolphin 2.8 1.1B",
+      "slug": "tinydolphin-2.8-1.1b",
+      "parameters": "1.1B",
+      "description": {
+        "ja": "初期版。エッジデバイス向け超軽量モデル。",
+        "en": "Initial version. Ultra-lightweight model for edge devices."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8-1.1b",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "TinyDolphin 2.8.1 1.1B",
+      "slug": "tinydolphin-2.8.1-1.1b",
+      "parameters": "1.1B",
+      "description": {
+        "ja": "改良版。安定性向上。",
+        "en": "Improved version with better stability."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8.1-1.1b",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "TinyDolphin 2.8.2 1.1B LASER",
+      "slug": "tinydolphin-2.8.2-1.1b-laser",
+      "parameters": "1.1B",
+      "description": {
+        "ja": "LASER最適化版。さらなる効率化。",
+        "en": "LASER optimized version. Further efficiency improvements."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8.2-1.1b-laser",
+      "requirements": {
+        "minVram": "3GB",
+        "recommendedVram": "4GB",
+        "ram": "6GB"
+      },
+      "gguf": []
+    }
+  ]
+}

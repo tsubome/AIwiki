@@ -1,0 +1,45 @@
+{
+  "name": "Dolphin 2.2 Yi",
+  "slug": "dolphin-yi",
+  "releaseDate": "2023-12-01",
+  "developer": "Eric Hartford / Cognitive Computations",
+  "license": "Yi License",
+  "modelType": "FINETUNE",
+  "baseModel": "yi",
+
+  "tags": ["uncensored", "multilingual", "roleplay"],
+
+  "description": {
+    "ja": "01.ai Yi-34Bベースの検閲なしモデル。16Kコンテキストでファインチューニング。会話と共感能力に優れる（Samantha + WizardLM DNA）。",
+    "en": "Uncensored model based on 01.ai Yi-34B. Fine-tuned with 16K context. Excellent at conversation and empathy (Samantha + WizardLM DNA)."
+  },
+
+  "specs": {
+    "contextLength": 16384,
+    "languages": ["en", "zh"],
+    "architecture": "Yi Transformer Decoder-only"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2_2-yi-34b"
+  },
+
+  "variants": [
+    {
+      "name": "Dolphin 2.2 Yi 34B",
+      "slug": "dolphin-2.2-yi-34b",
+      "parameters": "34B",
+      "description": {
+        "ja": "Yi-34Bベース。高性能中国語・英語バイリンガル。",
+        "en": "Based on Yi-34B. High-performance Chinese-English bilingual."
+      },
+      "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2_2-yi-34b",
+      "requirements": {
+        "minVram": "68GB",
+        "recommendedVram": "80GB",
+        "ram": "96GB"
+      },
+      "gguf": []
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Granite Vision 3.2",
+  "slug": "granite-vision-3.2",
+  "releaseDate": "2025-02-26",
+  "developer": "IBM",
+  "license": "Apache 2.0",
+  "modelType": "BASE",
+
+  "tags": ["official", "multimodal", "vision", "document"],
+
+  "description": {
+    "ja": "ドキュメント理解特化のVision Language Model。85M PDFと26M合成QAペアで学習（DocFM）。DocVQA、ChartQA、OCRBenchでLlama 3.2 11B/Pixtral 12B相当の性能を2Bで達成。",
+    "en": "Vision Language Model specialized for document understanding. Trained on 85M PDFs and 26M synthetic QA pairs (DocFM). Achieves Llama 3.2 11B/Pixtral 12B level performance on DocVQA, ChartQA, OCRBench with just 2B parameters."
+  },
+
+  "specs": {
+    "contextLength": 8192,
+    "languages": ["en"],
+    "architecture": "Vision Language Model"
+  },
+
+  "links": {
+    "huggingface": "https://huggingface.co/ibm-granite/granite-vision-3.2-2b"
+  },
+
+  "variants": [
+    {
+      "name": "Granite Vision 3.2 2B",
+      "slug": "granite-vision-3.2-2b",
+      "parameters": "2B",
+      "description": {
+        "ja": "表・チャート・図表・インフォグラフィック解析に最適化。5倍大きいモデルと同等性能。",
+        "en": "Optimized for table, chart, diagram, and infographic analysis. Matches performance of 5x larger models."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-vision-3.2-2b",
+      "requirements": {
+        "minVram": "5GB",
+        "recommendedVram": "8GB",
+        "ram": "12GB"
+      },
+      "gguf": []
+    }
+  ]
+}
