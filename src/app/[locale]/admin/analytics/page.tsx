@@ -11,11 +11,9 @@ interface TimeData {
   uniques: number
 }
 
-interface CountryData {
-  country: string
-  pageViews: number
-  requests: number
-  uniques: number
+interface TopPageData {
+  path: string
+  count: number
 }
 
 interface AnalyticsData {
@@ -25,7 +23,7 @@ interface AnalyticsData {
     requests: number
     uniques: number
   }
-  countries: CountryData[]
+  topPages: TopPageData[]
   isHourly: boolean
 }
 
@@ -126,7 +124,32 @@ export default function AnalyticsPage() {
         { pageViews: 0, requests: 0, uniques: 0 }
       )
 
-      setData({ data: timeData, totals, countries: [], isHourly })
+      // Fetch top pages
+      let topPages: TopPageData[] = []
+      try {
+        const topPagesResponse = await fetch(`/api/analytics?metric=topPages&days=${days}`)
+        if (topPagesResponse.ok) {
+          const topPagesResult = await topPagesResponse.json()
+          const topPagesZones = topPagesResult.data?.viewer?.zones
+          if (topPagesZones && topPagesZones.length > 0) {
+            const groups = topPagesZones[0].httpRequestsAdaptiveGroups || []
+            topPages = groups
+              .filter((item: { dimensions: { clientRequestPath: string }; count: number }) =>
+                item.dimensions.clientRequestPath &&
+                item.dimensions.clientRequestPath.includes('/models/')
+              )
+              .slice(0, 10)
+              .map((item: { dimensions: { clientRequestPath: string }; count: number }) => ({
+                path: item.dimensions.clientRequestPath,
+                count: item.count,
+              }))
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load top pages:', err)
+      }
+
+      setData({ data: timeData, totals, topPages, isHourly })
     } catch (err) {
       console.error('Analytics error:', err)
       setError(err instanceof Error ? err.message : 'データの取得に失敗しました')
@@ -144,20 +167,27 @@ export default function AnalyticsPage() {
     return new Intl.NumberFormat('ja-JP').format(num)
   }
 
-  const formatDate = (dateStr: string, isHourly: boolean) => {
+  // Convert to JST and format
+  const toJST = (dateStr: string) => {
     const date = new Date(dateStr)
+    // Add 9 hours for JST (UTC+9)
+    return new Date(date.getTime() + 9 * 60 * 60 * 1000)
+  }
+
+  const formatDate = (dateStr: string, isHourly: boolean) => {
+    const date = toJST(dateStr)
     if (isHourly) {
-      return `${date.getHours()}:00`
+      return `${date.getUTCHours()}:00`
     }
-    return `${date.getMonth() + 1}/${date.getDate()}`
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}`
   }
 
   const formatFullDate = (dateStr: string, isHourly: boolean) => {
-    const date = new Date(dateStr)
+    const date = toJST(dateStr)
     if (isHourly) {
-      return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:00`
+      return `${date.getUTCMonth() + 1}/${date.getUTCDate()} ${date.getUTCHours()}:00 JST`
     }
-    return dateStr
+    return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')}`
   }
 
   const getPeriodLabel = () => {
@@ -325,6 +355,56 @@ export default function AnalyticsPage() {
                 <p className="text-gray-500 dark:text-gray-400">データがありません</p>
               )}
             </div>
+
+            {/* Popular Models Ranking */}
+            {data.topPages.length > 0 && (
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+                  人気モデルランキング
+                </h2>
+                <div className="space-y-3">
+                  {data.topPages.map((page, index) => {
+                    // Extract model info from path
+                    const pathMatch = page.path.match(/\/models\/([^/]+)\/([^/]+)/)
+                    const family = pathMatch ? pathMatch[1] : ''
+                    const model = pathMatch ? pathMatch[2] : page.path
+                    const maxCount = data.topPages[0]?.count || 1
+                    const percentage = (page.count / maxCount) * 100
+
+                    return (
+                      <div key={page.path} className="flex items-center gap-4">
+                        <div className="w-8 text-center">
+                          <span className={`font-bold ${index < 3 ? 'text-yellow-500' : 'text-gray-400'}`}>
+                            {index + 1}
+                          </span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between mb-1">
+                            <a
+                              href={page.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-blue-600 hover:underline truncate"
+                            >
+                              {family && model ? `${family} / ${model}` : page.path}
+                            </a>
+                            <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">
+                              {formatNumber(page.count)}
+                            </span>
+                          </div>
+                          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-blue-500 rounded-full transition-all"
+                              style={{ width: `${percentage}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Data Table */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">

@@ -125,17 +125,27 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         }
       `
     } else if (metric === 'topPages') {
-      // Top pages by page views
+      // Top pages by page views using adaptive groups
+      const dateEnd = new Date()
+      variables.dateEnd = dateEnd.toISOString()
+      variables.dateStart = dateStartStr + 'T00:00:00Z'
+
       query = `
-        query GetTopPages($zoneTag: String!, $dateStart: String!) {
+        query GetTopPages($zoneTag: String!, $dateStart: String!, $dateEnd: String!) {
           viewer {
             zones(filter: {zoneTag: $zoneTag}) {
-              httpRequests1dGroups(
-                filter: {date_geq: $dateStart}
-                limit: 1000
+              httpRequestsAdaptiveGroups(
+                filter: {
+                  datetime_geq: $dateStart
+                  datetime_lt: $dateEnd
+                }
+                limit: 50
+                orderBy: [count_DESC]
               ) {
-                sum { pageViews requests }
-                uniq { uniques }
+                count
+                dimensions {
+                  clientRequestPath
+                }
               }
             }
           }

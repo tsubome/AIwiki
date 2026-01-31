@@ -2,9 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
+import { getModelFamilies, getFamilyData, getRecentCommits, CommitInfo } from '@/lib/github-api'
 
 // GitHub OAuth configuration
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID || ''
+
+interface Stats {
+  families: number
+  models: number
+  variants: number
+}
 
 export default function AdminPage() {
   const router = useRouter()
@@ -13,6 +20,9 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState<{ login: string; avatar_url: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [stats, setStats] = useState<Stats>({ families: 0, models: 0, variants: 0 })
+  const [recentCommits, setRecentCommits] = useState<CommitInfo[]>([])
+  const [statsLoading, setStatsLoading] = useState(false)
 
   // Build redirect URI with locale
   const redirectUri = typeof window !== 'undefined'
@@ -43,6 +53,9 @@ export default function AdminPage() {
         if (authorizedUsers.includes(userData.login)) {
           setUser(userData)
           setIsAuthenticated(true)
+          // Load stats after authentication
+          loadStats()
+          loadRecentCommits()
         } else {
           localStorage.removeItem('github_token')
           alert('このユーザーは管理者権限がありません')
@@ -57,6 +70,53 @@ export default function AdminPage() {
     setIsLoading(false)
   }
 
+  const loadStats = async () => {
+    try {
+      setStatsLoading(true)
+      const families = await getModelFamilies()
+
+      let totalModels = 0
+      let totalVariants = 0
+
+      // Load each family's data to count models and variants
+      for (const family of families) {
+        try {
+          const familyData = await getFamilyData(family)
+          totalModels += familyData.models.length
+
+          // Count variants in each model
+          for (const model of familyData.models) {
+            const modelData = model.data as { variants?: unknown[] }
+            if (modelData.variants && Array.isArray(modelData.variants)) {
+              totalVariants += modelData.variants.length
+            }
+          }
+        } catch (err) {
+          console.error(`Failed to load family ${family}:`, err)
+        }
+      }
+
+      setStats({
+        families: families.length,
+        models: totalModels,
+        variants: totalVariants,
+      })
+    } catch (err) {
+      console.error('Failed to load stats:', err)
+    } finally {
+      setStatsLoading(false)
+    }
+  }
+
+  const loadRecentCommits = async () => {
+    try {
+      const commits = await getRecentCommits(5)
+      setRecentCommits(commits)
+    } catch (err) {
+      console.error('Failed to load commits:', err)
+    }
+  }
+
   const handleLogin = () => {
     const scope = 'repo' // Need repo access to commit changes
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`
@@ -67,6 +127,12 @@ export default function AdminPage() {
     localStorage.removeItem('github_token')
     setIsAuthenticated(false)
     setUser(null)
+  }
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr)
+    const jst = new Date(date.getTime() + 9 * 60 * 60 * 1000)
+    return `${jst.getUTCMonth() + 1}/${jst.getUTCDate()} ${jst.getUTCHours()}:${String(jst.getUTCMinutes()).padStart(2, '0')}`
   }
 
   if (isLoading) {
@@ -183,6 +249,20 @@ export default function AdminPage() {
             </p>
           </a>
 
+          {/* Validation Card */}
+          <a
+            href={`/${locale}/admin/validation/`}
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+          >
+            <div className="text-3xl mb-3">🔍</div>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              データ整合性チェック
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              壊れたデータ・必須項目欠けを検出
+            </p>
+          </a>
+
           {/* Deploy Status Card */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
             <div className="text-3xl mb-3">🚀</div>
@@ -200,20 +280,66 @@ export default function AdminPage() {
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
             サイト統計
           </h2>
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600">10</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm">ファミリー</div>
+          {statsLoading ? (
+            <div className="text-center py-4">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+              <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm">統計を読み込み中...</p>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600">131</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm">モデル</div>
+          ) : (
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div className="text-3xl font-bold text-blue-600">{stats.families}</div>
+                <div className="text-gray-600 dark:text-gray-400 text-sm">ファミリー</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-green-600">{stats.models}</div>
+                <div className="text-gray-600 dark:text-gray-400 text-sm">モデル</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-purple-600">{stats.variants}</div>
+                <div className="text-gray-600 dark:text-gray-400 text-sm">バリアント</div>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">409</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm">バリアント</div>
+          )}
+        </div>
+
+        {/* Recent Changes */}
+        <div className="mt-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            最近の変更
+          </h2>
+          {recentCommits.length > 0 ? (
+            <div className="space-y-3">
+              {recentCommits.map((commit) => (
+                <a
+                  key={commit.sha}
+                  href={commit.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm text-gray-900 dark:text-gray-100 truncate">
+                        {commit.message}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded">
+                          {commit.sha}
+                        </span>
+                        {' '}by {commit.author}
+                      </p>
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                      {formatDate(commit.date)}
+                    </div>
+                  </div>
+                </a>
+              ))}
             </div>
-          </div>
+          ) : (
+            <p className="text-gray-500 dark:text-gray-400 text-sm">コミット履歴を読み込み中...</p>
+          )}
         </div>
       </main>
     </div>

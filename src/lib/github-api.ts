@@ -319,3 +319,38 @@ export function isAuthenticated(): boolean {
 export function logout(): void {
   localStorage.removeItem('github_token')
 }
+
+// Get recent commits
+export interface CommitInfo {
+  sha: string
+  message: string
+  author: string
+  date: string
+  url: string
+}
+
+export async function getRecentCommits(limit: number = 10): Promise<CommitInfo[]> {
+  const response = await githubFetch(
+    `/repos/${REPO_OWNER}/${REPO_NAME}/commits?sha=${BRANCH}&per_page=${limit}`
+  )
+
+  if (!response.ok) {
+    throw new Error(`Failed to get commits: ${response.statusText}`)
+  }
+
+  const commits = await response.json()
+  return commits.map((commit: {
+    sha: string
+    commit: {
+      message: string
+      author: { name: string; date: string }
+    }
+    html_url: string
+  }) => ({
+    sha: commit.sha.substring(0, 7),
+    message: commit.commit.message.split('\n')[0], // First line only
+    author: commit.commit.author.name,
+    date: commit.commit.author.date,
+    url: commit.html_url,
+  }))
+}
