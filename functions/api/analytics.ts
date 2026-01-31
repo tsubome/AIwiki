@@ -15,6 +15,11 @@ interface GraphQLResponse {
           sum: { pageViews: number; requests: number }
           uniq: { uniques: number }
         }>
+        httpRequests1hGroups?: Array<{
+          dimensions: { datetime?: string }
+          sum: { pageViews: number; requests: number }
+          uniq: { uniques: number }
+        }>
         httpRequestsAdaptiveGroups?: Array<{
           dimensions: { clientRequestPath?: string }
           sum: { pageViews: number; requests: number }
@@ -77,7 +82,30 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       dateStart: dateStartStr,
     }
 
-    if (metric === 'summary' || metric === 'daily') {
+    if (metric === 'hourly') {
+      // Hourly page views for the last 24 hours
+      const dateStart24h = new Date()
+      dateStart24h.setHours(dateStart24h.getHours() - 24)
+      variables.dateStart = dateStart24h.toISOString()
+
+      query = `
+        query GetHourlyAnalytics($zoneTag: String!, $dateStart: String!) {
+          viewer {
+            zones(filter: {zoneTag: $zoneTag}) {
+              httpRequests1hGroups(
+                filter: {datetime_geq: $dateStart}
+                orderBy: [datetime_ASC]
+                limit: 24
+              ) {
+                dimensions { datetime }
+                sum { pageViews requests }
+                uniq { uniques }
+              }
+            }
+          }
+        }
+      `
+    } else if (metric === 'summary' || metric === 'daily') {
       // Daily page views and unique visitors
       query = `
         query GetDailyAnalytics($zoneTag: String!, $dateStart: String!) {

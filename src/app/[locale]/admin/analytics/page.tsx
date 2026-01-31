@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { isAuthenticated, getCurrentUser, logout } from '@/lib/github-api'
 
-interface DailyData {
+interface TimeData {
   date: string
   pageViews: number
   requests: number
@@ -19,13 +19,14 @@ interface CountryData {
 }
 
 interface AnalyticsData {
-  daily: DailyData[]
+  data: TimeData[]
   totals: {
     pageViews: number
     requests: number
     uniques: number
   }
   countries: CountryData[]
+  isHourly: boolean
 }
 
 export default function AnalyticsPage() {
@@ -67,7 +68,9 @@ export default function AnalyticsPage() {
       setIsLoading(true)
       setError(null)
 
-      const response = await fetch(`/api/analytics?metric=daily&days=${days}`)
+      const isHourly = days === 1
+      const metric = isHourly ? 'hourly' : 'daily'
+      const response = await fetch(`/api/analytics?metric=${metric}&days=${days}`)
 
       if (!response.ok) {
         const errorData = await response.json()
@@ -85,22 +88,36 @@ export default function AnalyticsPage() {
         throw new Error('ゾーンデータが見つかりません')
       }
 
-      const groups = zones[0].httpRequests1dGroups || []
+      let timeData: TimeData[] = []
 
-      // Process daily data
-      const daily: DailyData[] = groups.map((item: {
-        dimensions: { date: string }
-        sum: { pageViews: number; requests: number }
-        uniq: { uniques: number }
-      }) => ({
-        date: item.dimensions.date,
-        pageViews: item.sum.pageViews,
-        requests: item.sum.requests,
-        uniques: item.uniq.uniques,
-      }))
+      if (isHourly) {
+        const groups = zones[0].httpRequests1hGroups || []
+        timeData = groups.map((item: {
+          dimensions: { datetime: string }
+          sum: { pageViews: number; requests: number }
+          uniq: { uniques: number }
+        }) => ({
+          date: item.dimensions.datetime,
+          pageViews: item.sum.pageViews,
+          requests: item.sum.requests,
+          uniques: item.uniq.uniques,
+        }))
+      } else {
+        const groups = zones[0].httpRequests1dGroups || []
+        timeData = groups.map((item: {
+          dimensions: { date: string }
+          sum: { pageViews: number; requests: number }
+          uniq: { uniques: number }
+        }) => ({
+          date: item.dimensions.date,
+          pageViews: item.sum.pageViews,
+          requests: item.sum.requests,
+          uniques: item.uniq.uniques,
+        }))
+      }
 
       // Calculate totals
-      const totals = daily.reduce(
+      const totals = timeData.reduce(
         (acc, item) => ({
           pageViews: acc.pageViews + item.pageViews,
           requests: acc.requests + item.requests,
@@ -109,11 +126,7 @@ export default function AnalyticsPage() {
         { pageViews: 0, requests: 0, uniques: 0 }
       )
 
-      // Country data would need a separate API call
-      // For now, set empty array
-      const countries: CountryData[] = []
-
-      setData({ daily, totals, countries })
+      setData({ data: timeData, totals, countries: [], isHourly })
     } catch (err) {
       console.error('Analytics error:', err)
       setError(err instanceof Error ? err.message : 'データの取得に失敗しました')
@@ -131,28 +144,46 @@ export default function AnalyticsPage() {
     return new Intl.NumberFormat('ja-JP').format(num)
   }
 
-  const formatDate = (dateStr: string) => {
+  const formatDate = (dateStr: string, isHourly: boolean) => {
     const date = new Date(dateStr)
+    if (isHourly) {
+      return `${date.getHours()}:00`
+    }
     return `${date.getMonth() + 1}/${date.getDate()}`
   }
 
+  const formatFullDate = (dateStr: string, isHourly: boolean) => {
+    const date = new Date(dateStr)
+    if (isHourly) {
+      return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:00`
+    }
+    return dateStr
+  }
+
+  const getPeriodLabel = () => {
+    if (days === 1) return '過去24時間'
+    return `過去${days}日間`
+  }
+
   // Simple bar chart component
-  const BarChart = ({ data, maxValue }: { data: DailyData[]; maxValue: number }) => {
+  const BarChart = ({ data, maxValue, isHourly }: { data: TimeData[]; maxValue: number; isHourly: boolean }) => {
     if (data.length === 0) return null
+
+    const displayData = isHourly ? data : data.slice(-30)
 
     return (
       <div className="flex items-end gap-1 h-40">
-        {data.slice(-30).map((item, index) => {
+        {displayData.map((item) => {
           const height = maxValue > 0 ? (item.pageViews / maxValue) * 100 : 0
           return (
             <div
               key={item.date}
               className="flex-1 bg-blue-500 hover:bg-blue-600 transition-colors rounded-t cursor-pointer group relative"
               style={{ height: `${Math.max(height, 2)}%` }}
-              title={`${item.date}: ${formatNumber(item.pageViews)} PV`}
+              title={`${formatFullDate(item.date, isHourly)}: ${formatNumber(item.pageViews)} PV`}
             >
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none z-10">
-                {item.date}<br />
+                {formatFullDate(item.date, isHourly)}<br />
                 {formatNumber(item.pageViews)} PV
               </div>
             </div>
@@ -201,7 +232,7 @@ export default function AnalyticsPage() {
         <div className="mb-6 flex items-center gap-4">
           <span className="text-gray-700 dark:text-gray-300 font-medium">期間:</span>
           <div className="flex gap-2">
-            {[7, 30, 90].map((d) => (
+            {[1, 7, 30, 90].map((d) => (
               <button
                 key={d}
                 onClick={() => setDays(d)}
@@ -211,7 +242,7 @@ export default function AnalyticsPage() {
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
-                過去{d}日
+                {d === 1 ? '24時間' : `${d}日`}
               </button>
             ))}
           </div>
@@ -244,7 +275,7 @@ export default function AnalyticsPage() {
                   {formatNumber(data.totals.pageViews)}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  過去{days}日間
+                  {getPeriodLabel()}
                 </div>
               </div>
 
@@ -256,7 +287,7 @@ export default function AnalyticsPage() {
                   {formatNumber(data.totals.uniques)}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  過去{days}日間
+                  {getPeriodLabel()}
                 </div>
               </div>
 
@@ -268,7 +299,7 @@ export default function AnalyticsPage() {
                   {formatNumber(data.totals.requests)}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  過去{days}日間
+                  {getPeriodLabel()}
                 </div>
               </div>
             </div>
@@ -276,17 +307,18 @@ export default function AnalyticsPage() {
             {/* Chart */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-                日別ページビュー
+                {data.isHourly ? '時間別ページビュー' : '日別ページビュー'}
               </h2>
-              {data.daily.length > 0 ? (
+              {data.data.length > 0 ? (
                 <>
                   <BarChart
-                    data={data.daily}
-                    maxValue={Math.max(...data.daily.map((d) => d.pageViews))}
+                    data={data.data}
+                    maxValue={Math.max(...data.data.map((d) => d.pageViews))}
+                    isHourly={data.isHourly}
                   />
                   <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-2">
-                    <span>{data.daily.length > 0 ? formatDate(data.daily[0].date) : ''}</span>
-                    <span>{data.daily.length > 0 ? formatDate(data.daily[data.daily.length - 1].date) : ''}</span>
+                    <span>{data.data.length > 0 ? formatDate(data.data[0].date, data.isHourly) : ''}</span>
+                    <span>{data.data.length > 0 ? formatDate(data.data[data.data.length - 1].date, data.isHourly) : ''}</span>
                   </div>
                 </>
               ) : (
@@ -294,17 +326,17 @@ export default function AnalyticsPage() {
               )}
             </div>
 
-            {/* Daily Table */}
+            {/* Data Table */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-6 pb-4">
-                日別データ
+                {data.isHourly ? '時間別データ' : '日別データ'}
               </h2>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gray-50 dark:bg-gray-700">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                        日付
+                        {data.isHourly ? '時間' : '日付'}
                       </th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                         ページビュー
@@ -318,10 +350,10 @@ export default function AnalyticsPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {[...data.daily].reverse().map((item) => (
+                    {[...data.data].reverse().map((item) => (
                       <tr key={item.date} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                          {item.date}
+                          {formatFullDate(item.date, data.isHourly)}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900 dark:text-gray-100">
                           {formatNumber(item.pageViews)}
