@@ -186,6 +186,37 @@ export async function getFamilyData(family: string): Promise<{
   }
 }
 
+// Get family metadata (just _family.json)
+export async function getFamilyMetadata(family: string): Promise<{
+  data: unknown
+  sha: string
+}> {
+  const file = await getFileContent(`data/models/${family}/_family.json`)
+  return {
+    data: JSON.parse(file.content),
+    sha: file.sha,
+  }
+}
+
+// Save family metadata
+export async function saveFamilyMetadata(
+  family: string,
+  data: unknown,
+  sha?: string
+): Promise<GitHubCommitResponse> {
+  const content = JSON.stringify(data, null, 2) + '\n'
+  const message = sha
+    ? `Update family: ${family}`
+    : `Add new family: ${family}`
+
+  return saveFile(
+    `data/models/${family}/_family.json`,
+    content,
+    message,
+    sha
+  )
+}
+
 // Get single model data
 export async function getModelData(family: string, modelSlug: string): Promise<{
   data: unknown
