@@ -112,6 +112,13 @@ function ModelsPageContent() {
     loadData()
   }, [router])
 
+  // Set initial family filter from URL if not editing
+  useEffect(() => {
+    if (!isEditing && editFamily) {
+      setSelectedFamily(editFamily)
+    }
+  }, [editFamily, isEditing])
+
   useEffect(() => {
     filterModels()
   }, [models, selectedFamily, searchQuery])

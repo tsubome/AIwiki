@@ -160,12 +160,9 @@ export default function FamiliesPage() {
                   className="hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
                   <td className="px-4 py-3">
-                    <a
-                      href={`/${locale}/admin/families/${family.slug}/`}
-                      className="font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600"
-                    >
+                    <span className="font-medium text-gray-900 dark:text-gray-100">
                       {family.name}
-                    </a>
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-gray-600 dark:text-gray-400">
                     <code className="px-2 py-1 bg-gray-100 dark:bg-gray-600 rounded text-sm">
@@ -180,10 +177,10 @@ export default function FamiliesPage() {
                   </td>
                   <td className="px-4 py-3">
                     <a
-                      href={`/${locale}/admin/families/${family.slug}/`}
+                      href={`/${locale}/admin/models/?family=${family.slug}`}
                       className="text-blue-600 hover:text-blue-800 dark:text-blue-400"
                     >
-                      編集
+                      モデル一覧
                     </a>
                   </td>
                 </tr>
