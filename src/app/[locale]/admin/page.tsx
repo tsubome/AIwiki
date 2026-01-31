@@ -169,6 +169,20 @@ export default function AdminPage() {
             </p>
           </a>
 
+          {/* Analytics Card */}
+          <a
+            href={`/${locale}/admin/analytics/`}
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+          >
+            <div className="text-3xl mb-3">📊</div>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              アナリティクス
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              PV・ユニークビジター・アクセス解析
+            </p>
+          </a>
+
           {/* Deploy Status Card */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
             <div className="text-3xl mb-3">🚀</div>
