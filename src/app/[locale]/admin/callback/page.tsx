@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export default function CallbackPage() {
+function CallbackContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
@@ -19,10 +19,6 @@ export default function CallbackPage() {
 
   const exchangeCodeForToken = async (code: string) => {
     try {
-      // Use a serverless function or proxy to exchange code for token
-      // Since we can't expose client_secret in the browser, we need a backend
-      // For now, we'll use a Cloudflare Worker or similar
-
       const response = await fetch('/api/auth/github', {
         method: 'POST',
         headers: {
@@ -73,5 +69,20 @@ export default function CallbackPage() {
         <p className="text-gray-600 dark:text-gray-400">認証中...</p>
       </div>
     </div>
+  )
+}
+
+export default function CallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-gray-100 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">読み込み中...</p>
+        </div>
+      </div>
+    }>
+      <CallbackContent />
+    </Suspense>
   )
 }
