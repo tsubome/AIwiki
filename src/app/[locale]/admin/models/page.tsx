@@ -240,7 +240,7 @@ function ModelsPageContent() {
   }
 
   const handleEdit = (family: string, slug: string) => {
-    router.push(`/admin/models/?family=${family}&slug=${slug}`)
+    router.push(`/${locale}/admin/models/?family=${family}&slug=${slug}`)
   }
 
   const handleCloseEditor = () => {
@@ -356,7 +356,7 @@ function ModelsPageContent() {
 
       // Refresh data
       if (editSlug === 'new') {
-        router.push(`/admin/models/?family=${editFamily}&slug=${formData.slug}`)
+        router.push(`/${locale}/admin/models/?family=${editFamily}&slug=${formData.slug}`)
       }
       loadData()
     } catch (err) {

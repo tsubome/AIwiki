@@ -161,7 +161,7 @@ export default function FamiliesPage() {
                 >
                   <td className="px-4 py-3">
                     <a
-                      href={`/admin/families/${family.slug}/`}
+                      href={`/${locale}/admin/families/${family.slug}/`}
                       className="font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600"
                     >
                       {family.name}
@@ -180,7 +180,7 @@ export default function FamiliesPage() {
                   </td>
                   <td className="px-4 py-3">
                     <a
-                      href={`/admin/families/${family.slug}/`}
+                      href={`/${locale}/admin/families/${family.slug}/`}
                       className="text-blue-600 hover:text-blue-800 dark:text-blue-400"
                     >
                       編集
