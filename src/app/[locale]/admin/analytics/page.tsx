@@ -195,6 +195,64 @@ export default function AnalyticsPage() {
     return `過去${days}日間`
   }
 
+  // Export to Markdown
+  const exportToMarkdown = () => {
+    if (!data) return
+
+    const now = new Date()
+    const jstNow = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+    const dateStr = `${jstNow.getUTCFullYear()}-${String(jstNow.getUTCMonth() + 1).padStart(2, '0')}-${String(jstNow.getUTCDate()).padStart(2, '0')}`
+    const timeStr = `${String(jstNow.getUTCHours()).padStart(2, '0')}:${String(jstNow.getUTCMinutes()).padStart(2, '0')}`
+
+    let md = `# AIwiki アナリティクスレポート\n\n`
+    md += `**生成日時:** ${dateStr} ${timeStr} JST\n`
+    md += `**期間:** ${getPeriodLabel()}\n\n`
+
+    // Summary
+    md += `## サマリー\n\n`
+    md += `| 指標 | 値 |\n`
+    md += `|------|----|\n`
+    md += `| ページビュー | ${formatNumber(data.totals.pageViews)} |\n`
+    md += `| ユニークビジター | ${formatNumber(data.totals.uniques)} |\n`
+    md += `| リクエスト数 | ${formatNumber(data.totals.requests)} |\n\n`
+
+    // Popular Models
+    if (data.topPages.length > 0) {
+      md += `## 人気モデルランキング\n\n`
+      md += `| 順位 | ページ | アクセス数 |\n`
+      md += `|------|--------|------------|\n`
+      data.topPages.forEach((page, index) => {
+        const pathMatch = page.path.match(/\/models\/([^/]+)\/([^/]+)/)
+        const displayName = pathMatch ? `${pathMatch[1]} / ${pathMatch[2]}` : page.path
+        md += `| ${index + 1} | ${displayName} | ${formatNumber(page.count)} |\n`
+      })
+      md += `\n`
+    }
+
+    // Daily/Hourly Data
+    md += `## ${data.isHourly ? '時間別' : '日別'}データ\n\n`
+    md += `| ${data.isHourly ? '時間' : '日付'} | PV | UV | リクエスト |\n`
+    md += `|------|----|----|------------|\n`
+    ;[...data.data].reverse().forEach((item) => {
+      md += `| ${formatFullDate(item.date, data.isHourly)} | ${formatNumber(item.pageViews)} | ${formatNumber(item.uniques)} | ${formatNumber(item.requests)} |\n`
+    })
+    md += `\n`
+
+    md += `---\n`
+    md += `*このレポートは AIwiki 管理パネルから自動生成されました*\n`
+
+    // Download
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `aiwiki-analytics-${dateStr}.md`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
   // Simple bar chart component
   const BarChart = ({ data, maxValue, isHourly }: { data: TimeData[]; maxValue: number; isHourly: boolean }) => {
     if (data.length === 0) return null
@@ -259,23 +317,36 @@ export default function AnalyticsPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Period Selector */}
-        <div className="mb-6 flex items-center gap-4">
-          <span className="text-gray-700 dark:text-gray-300 font-medium">期間:</span>
-          <div className="flex gap-2">
-            {[1, 7, 30, 90].map((d) => (
-              <button
-                key={d}
-                onClick={() => setDays(d)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  days === d
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-                }`}
-              >
-                {d === 1 ? '24時間' : `${d}日`}
-              </button>
-            ))}
+        <div className="mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span className="text-gray-700 dark:text-gray-300 font-medium">期間:</span>
+            <div className="flex gap-2">
+              {[1, 7, 30, 90].map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setDays(d)}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    days === d
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {d === 1 ? '24時間' : `${d}日`}
+                </button>
+              ))}
+            </div>
           </div>
+          {data && (
+            <button
+              onClick={exportToMarkdown}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              MDでエクスポート
+            </button>
+          )}
         </div>
 
         {error && (
