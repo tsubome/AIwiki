@@ -390,6 +390,66 @@ function ModelsPageContent() {
     }
   }
 
+  const exportModelsToMarkdown = async () => {
+    const now = new Date()
+    const jstNow = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+    const dateStr = `${jstNow.getUTCFullYear()}-${String(jstNow.getUTCMonth() + 1).padStart(2, '0')}-${String(jstNow.getUTCDate()).padStart(2, '0')}`
+    const timeStr = `${String(jstNow.getUTCHours()).padStart(2, '0')}:${String(jstNow.getUTCMinutes()).padStart(2, '0')}`
+
+    let md = `# AIwiki モデル一覧\n\n`
+    md += `**生成日時:** ${dateStr} ${timeStr} JST\n\n`
+
+    // Summary
+    const totalVariants = models.reduce((sum, m) => sum + m.variantCount, 0)
+    md += `## サマリー\n\n`
+    md += `| 項目 | 数 |\n`
+    md += `|------|----|\n`
+    md += `| ファミリー | ${families.length} |\n`
+    md += `| モデル | ${models.length} |\n`
+    md += `| バリアント | ${totalVariants} |\n\n`
+
+    // Group by family
+    const familyGroups: Record<string, ModelInfo[]> = {}
+    models.forEach(model => {
+      if (!familyGroups[model.family]) {
+        familyGroups[model.family] = []
+      }
+      familyGroups[model.family].push(model)
+    })
+
+    // Output by family
+    for (const family of families) {
+      const familyModels = familyGroups[family] || []
+      if (familyModels.length === 0) continue
+
+      const familyVariants = familyModels.reduce((sum, m) => sum + m.variantCount, 0)
+      md += `## ${family}\n\n`
+      md += `**モデル数:** ${familyModels.length} / **バリアント数:** ${familyVariants}\n\n`
+
+      md += `| モデル名 | 開発者 | リリース日 | バリアント数 |\n`
+      md += `|----------|--------|------------|------------|\n`
+      familyModels.forEach(model => {
+        md += `| ${model.name} | ${model.developer || '-'} | ${model.releaseDate || '-'} | ${model.variantCount} |\n`
+      })
+      md += `\n`
+    }
+
+    md += `---\n`
+    md += `*このリストは AIwiki 管理パネルから自動生成されました*\n`
+    md += `*サイト: https://aiwiki.ara-tech.jp*\n`
+
+    // Download
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `aiwiki-models-${dateStr}.md`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
@@ -805,7 +865,16 @@ function ModelsPageContent() {
                 ))}
               </select>
             </div>
-            <div>
+            <div className="flex gap-2">
+              <button
+                onClick={exportModelsToMarkdown}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                MDエクスポート
+              </button>
               <a
                 href={`/${locale}/admin/models/new/`}
                 className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"

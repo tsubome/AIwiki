@@ -212,42 +212,78 @@ export default function AnalyticsPage() {
     const dateStr = `${jstNow.getUTCFullYear()}-${String(jstNow.getUTCMonth() + 1).padStart(2, '0')}-${String(jstNow.getUTCDate()).padStart(2, '0')}`
     const timeStr = `${String(jstNow.getUTCHours()).padStart(2, '0')}:${String(jstNow.getUTCMinutes()).padStart(2, '0')}`
 
+    // Calculate statistics
+    const avgPV = data.data.length > 0 ? Math.round(data.totals.pageViews / data.data.length) : 0
+    const avgUV = data.data.length > 0 ? Math.round(data.totals.uniques / data.data.length) : 0
+    const maxPV = data.data.length > 0 ? Math.max(...data.data.map(d => d.pageViews)) : 0
+    const minPV = data.data.length > 0 ? Math.min(...data.data.map(d => d.pageViews)) : 0
+    const peakData = data.data.find(d => d.pageViews === maxPV)
+
     let md = `# AIwiki アナリティクスレポート\n\n`
     md += `**生成日時:** ${dateStr} ${timeStr} JST\n`
-    md += `**期間:** ${getPeriodLabel()}\n\n`
+    md += `**期間:** ${getPeriodLabel()}\n`
+    md += `**データ件数:** ${data.data.length}${data.isHourly ? '時間' : '日'}\n\n`
 
     // Summary
     md += `## サマリー\n\n`
+    md += `### 合計\n\n`
     md += `| 指標 | 値 |\n`
     md += `|------|----|\n`
     md += `| ページビュー | ${formatNumber(data.totals.pageViews)} |\n`
     md += `| ユニークビジター | ${formatNumber(data.totals.uniques)} |\n`
     md += `| リクエスト数 | ${formatNumber(data.totals.requests)} |\n\n`
 
+    md += `### 平均値（${data.isHourly ? '1時間あたり' : '1日あたり'}）\n\n`
+    md += `| 指標 | 値 |\n`
+    md += `|------|----|\n`
+    md += `| 平均PV | ${formatNumber(avgPV)} |\n`
+    md += `| 平均UV | ${formatNumber(avgUV)} |\n\n`
+
+    md += `### ピーク\n\n`
+    md += `| 指標 | 値 |\n`
+    md += `|------|----|\n`
+    md += `| 最大PV | ${formatNumber(maxPV)} |\n`
+    md += `| 最小PV | ${formatNumber(minPV)} |\n`
+    if (peakData) {
+      md += `| ピーク${data.isHourly ? '時間' : '日'} | ${formatFullDate(peakData.date, data.isHourly)} |\n`
+    }
+    md += `\n`
+
     // Popular Models
     if (data.topPages.length > 0) {
-      md += `## 人気モデルランキング\n\n`
-      md += `| 順位 | ページ | アクセス数 |\n`
-      md += `|------|--------|------------|\n`
+      md += `## 人気モデルランキング（Top ${data.topPages.length}）\n\n`
+      md += `| 順位 | ページ | アクセス数 | 全体比率 |\n`
+      md += `|------|--------|------------|----------|\n`
+      const totalTopPages = data.topPages.reduce((sum, p) => sum + p.count, 0)
       data.topPages.forEach((page, index) => {
         const pathMatch = page.path.match(/\/models\/([^/]+)\/([^/]+)/)
         const displayName = pathMatch ? `${pathMatch[1]} / ${pathMatch[2]}` : page.path
-        md += `| ${index + 1} | ${displayName} | ${formatNumber(page.count)} |\n`
+        const ratio = totalTopPages > 0 ? ((page.count / totalTopPages) * 100).toFixed(1) : '0'
+        md += `| ${index + 1} | ${displayName} | ${formatNumber(page.count)} | ${ratio}% |\n`
       })
       md += `\n`
     }
 
-    // Daily/Hourly Data
-    md += `## ${data.isHourly ? '時間別' : '日別'}データ\n\n`
-    md += `| ${data.isHourly ? '時間' : '日付'} | PV | UV | リクエスト |\n`
-    md += `|------|----|----|------------|\n`
-    ;[...data.data].reverse().forEach((item) => {
-      md += `| ${formatFullDate(item.date, data.isHourly)} | ${formatNumber(item.pageViews)} | ${formatNumber(item.uniques)} | ${formatNumber(item.requests)} |\n`
+    // Daily/Hourly Data - Full table
+    md += `## ${data.isHourly ? '時間別' : '日別'}詳細データ\n\n`
+    md += `| ${data.isHourly ? '時間' : '日付'} | PV | UV | リクエスト | PV前日比 |\n`
+    md += `|------|----|----|------------|----------|\n`
+    const reversedData = [...data.data].reverse()
+    reversedData.forEach((item, index) => {
+      const prevItem = reversedData[index + 1]
+      let change = '-'
+      if (prevItem) {
+        const diff = item.pageViews - prevItem.pageViews
+        const pct = prevItem.pageViews > 0 ? ((diff / prevItem.pageViews) * 100).toFixed(1) : '0'
+        change = diff >= 0 ? `+${pct}%` : `${pct}%`
+      }
+      md += `| ${formatFullDate(item.date, data.isHourly)} | ${formatNumber(item.pageViews)} | ${formatNumber(item.uniques)} | ${formatNumber(item.requests)} | ${change} |\n`
     })
     md += `\n`
 
     md += `---\n`
     md += `*このレポートは AIwiki 管理パネルから自動生成されました*\n`
+    md += `*サイト: https://aiwiki.ara-tech.jp*\n`
 
     // Download
     const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' })
