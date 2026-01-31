@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+
+// Required for static export - admin pages are client-side only
+export function generateStaticParams() {
+  return []
+}
 import {
   getModelData,
   saveModelData,
