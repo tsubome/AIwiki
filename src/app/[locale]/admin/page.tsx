@@ -1,19 +1,23 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 
 // GitHub OAuth configuration
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID || ''
-const GITHUB_REDIRECT_URI = typeof window !== 'undefined'
-  ? `${window.location.origin}/admin/callback/`
-  : ''
 
 export default function AdminPage() {
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState<{ login: string; avatar_url: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+
+  // Build redirect URI with locale
+  const redirectUri = typeof window !== 'undefined'
+    ? `${window.location.origin}/${locale}/admin/callback/`
+    : ''
 
   useEffect(() => {
     // Check if user is already authenticated
@@ -55,7 +59,7 @@ export default function AdminPage() {
 
   const handleLogin = () => {
     const scope = 'repo' // Need repo access to commit changes
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(GITHUB_REDIRECT_URI)}&scope=${scope}`
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`
     window.location.href = authUrl
   }
 
