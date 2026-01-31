@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense, useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, useParams } from 'next/navigation'
 import {
   getModelFamilies,
   getFamilyData,
@@ -73,6 +73,8 @@ interface ModelData {
 
 function ModelsPageContent() {
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
   const searchParams = useSearchParams()
   const editFamily = searchParams.get('family')
   const editSlug = searchParams.get('slug')
@@ -104,7 +106,7 @@ function ModelsPageContent() {
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      router.push('/admin/')
+      router.push(`/${locale}/admin/`)
       return
     }
     loadData()
@@ -234,7 +236,7 @@ function ModelsPageContent() {
 
   const handleLogout = () => {
     logout()
-    router.push('/admin/')
+    router.push(`/${locale}/admin/`)
   }
 
   const handleEdit = (family: string, slug: string) => {
@@ -242,7 +244,7 @@ function ModelsPageContent() {
   }
 
   const handleCloseEditor = () => {
-    router.push('/admin/models/')
+    router.push(`/${locale}/admin/models/`)
   }
 
   const handleInputChange = (
@@ -373,7 +375,7 @@ function ModelsPageContent() {
     try {
       if (editingSha) {
         await deleteModel(editFamily, editSlug, editingSha)
-        router.push('/admin/models/')
+        router.push(`/${locale}/admin/models/`)
         loadData()
       }
     } catch (err) {
@@ -738,7 +740,7 @@ function ModelsPageContent() {
       <header className="bg-white dark:bg-gray-800 shadow">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <a href="/admin/" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+            <a href={`/${locale}/admin/`} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
               ← ダッシュボード
             </a>
             <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
@@ -798,7 +800,7 @@ function ModelsPageContent() {
             </div>
             <div>
               <a
-                href="/admin/models/new/"
+                href={`/${locale}/admin/models/new/`}
                 className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 + 新規作成

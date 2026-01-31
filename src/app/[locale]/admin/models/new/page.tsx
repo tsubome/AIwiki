@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import {
   getModelFamilies,
   isAuthenticated,
@@ -11,6 +11,8 @@ import {
 
 export default function NewModelPage() {
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
   const [families, setFamilies] = useState<string[]>([])
   const [selectedFamily, setSelectedFamily] = useState<string>('')
   const [newFamily, setNewFamily] = useState<string>('')
@@ -21,7 +23,7 @@ export default function NewModelPage() {
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      router.push('/admin/')
+      router.push(`/${locale}/admin/`)
       return
     }
     loadData()
@@ -53,12 +55,12 @@ export default function NewModelPage() {
       setError('ファミリーを選択または入力してください')
       return
     }
-    router.push(`/admin/models/${family}/new/`)
+    router.push(`/${locale}/admin/models/?family=${family}&slug=new`)
   }
 
   const handleLogout = () => {
     logout()
-    router.push('/admin/')
+    router.push(`/${locale}/admin/`)
   }
 
   if (isLoading) {
@@ -79,7 +81,7 @@ export default function NewModelPage() {
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <a
-              href="/admin/models/"
+              href={`/${locale}/admin/models/`}
               className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
             >
               ← モデル一覧
@@ -188,7 +190,7 @@ export default function NewModelPage() {
               続ける
             </button>
             <a
-              href="/admin/models/"
+              href={`/${locale}/admin/models/`}
               className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
             >
               キャンセル

@@ -1,11 +1,13 @@
 'use client'
 
 import { Suspense, useEffect, useState } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams, useRouter, useParams } from 'next/navigation'
 
 function CallbackContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -35,7 +37,7 @@ function CallbackContent() {
 
       if (data.access_token) {
         localStorage.setItem('github_token', data.access_token)
-        router.push('/admin/')
+        router.push(`/${locale}/admin/`)
       } else {
         throw new Error(data.error || '認証に失敗しました')
       }
@@ -52,7 +54,7 @@ function CallbackContent() {
           <div className="text-red-600 text-xl mb-4">認証エラー</div>
           <p className="text-gray-600 dark:text-gray-400 mb-6">{error}</p>
           <a
-            href="/admin/"
+            href={`/${locale}/admin/`}
             className="inline-block bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800"
           >
             ログイン画面に戻る

@@ -143,7 +143,7 @@ export default function AdminPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Models Card */}
           <a
-            href="/admin/models/"
+            href={`/${locale}/admin/models/`}
             className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
           >
             <div className="text-3xl mb-3">📦</div>
@@ -157,7 +157,7 @@ export default function AdminPage() {
 
           {/* Families Card */}
           <a
-            href="/admin/families/"
+            href={`/${locale}/admin/families/`}
             className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
           >
             <div className="text-3xl mb-3">📁</div>

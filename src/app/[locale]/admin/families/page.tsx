@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import {
   getModelFamilies,
   getFamilyData,
@@ -19,6 +19,8 @@ interface FamilyInfo {
 
 export default function FamiliesPage() {
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
   const [families, setFamilies] = useState<FamilyInfo[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -26,7 +28,7 @@ export default function FamiliesPage() {
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      router.push('/admin/')
+      router.push(`/${locale}/admin/`)
       return
     }
     loadData()
@@ -74,7 +76,7 @@ export default function FamiliesPage() {
 
   const handleLogout = () => {
     logout()
-    router.push('/admin/')
+    router.push(`/${locale}/admin/`)
   }
 
   if (isLoading) {
@@ -94,7 +96,7 @@ export default function FamiliesPage() {
       <header className="bg-white dark:bg-gray-800 shadow">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <a href="/admin/" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+            <a href={`/${locale}/admin/`} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
               ← ダッシュボード
             </a>
             <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
