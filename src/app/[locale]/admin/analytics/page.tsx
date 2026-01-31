@@ -132,17 +132,25 @@ export default function AnalyticsPage() {
           const topPagesResult = await topPagesResponse.json()
           const topPagesZones = topPagesResult.data?.viewer?.zones
           if (topPagesZones && topPagesZones.length > 0) {
-            const groups = topPagesZones[0].httpRequestsAdaptiveGroups || []
-            topPages = groups
-              .filter((item: { dimensions: { clientRequestPath: string }; count: number }) =>
-                item.dimensions.clientRequestPath &&
-                item.dimensions.clientRequestPath.includes('/models/')
-              )
+            const groups = topPagesZones[0].httpRequests1dGroups || []
+
+            // Aggregate by path
+            const pathCounts: Record<string, number> = {}
+            groups.forEach((item: {
+              dimensions: { clientRequestPath: string }
+              sum: { requests: number; pageViews: number }
+            }) => {
+              const path = item.dimensions?.clientRequestPath
+              if (path && path.includes('/models/')) {
+                pathCounts[path] = (pathCounts[path] || 0) + (item.sum?.pageViews || item.sum?.requests || 0)
+              }
+            })
+
+            // Sort and take top 10
+            topPages = Object.entries(pathCounts)
+              .sort((a, b) => b[1] - a[1])
               .slice(0, 10)
-              .map((item: { dimensions: { clientRequestPath: string }; count: number }) => ({
-                path: item.dimensions.clientRequestPath,
-                count: item.count,
-              }))
+              .map(([path, count]) => ({ path, count }))
           }
         }
       } catch (err) {
