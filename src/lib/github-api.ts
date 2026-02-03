@@ -4,6 +4,51 @@ const REPO_OWNER = 'tsubome'
 const REPO_NAME = 'AIwiki'
 const BRANCH = 'master'
 
+// Cache configuration (in milliseconds)
+const CACHE_DURATION = {
+  families: 5 * 60 * 1000, // 5 minutes
+  familyData: 5 * 60 * 1000, // 5 minutes
+  commits: 2 * 60 * 1000, // 2 minutes
+}
+
+interface CacheEntry<T> {
+  data: T
+  timestamp: number
+}
+
+// Cache utilities
+function getCached<T>(key: string, maxAge: number): T | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const cached = localStorage.getItem(`cache_${key}`)
+    if (!cached) return null
+    const entry: CacheEntry<T> = JSON.parse(cached)
+    if (Date.now() - entry.timestamp > maxAge) {
+      localStorage.removeItem(`cache_${key}`)
+      return null
+    }
+    return entry.data
+  } catch {
+    return null
+  }
+}
+
+function setCache<T>(key: string, data: T): void {
+  if (typeof window === 'undefined') return
+  try {
+    const entry: CacheEntry<T> = { data, timestamp: Date.now() }
+    localStorage.setItem(`cache_${key}`, JSON.stringify(entry))
+  } catch {
+    // localStorage might be full, ignore
+  }
+}
+
+export function clearCache(): void {
+  if (typeof window === 'undefined') return
+  const keys = Object.keys(localStorage).filter(k => k.startsWith('cache_'))
+  keys.forEach(k => localStorage.removeItem(k))
+}
+
 interface GitHubFile {
   name: string
   path: string
@@ -142,18 +187,32 @@ export async function deleteFile(
   }
 }
 
-// Get all model families
+// Get all model families (with caching)
 export async function getModelFamilies(): Promise<string[]> {
+  const cacheKey = 'families'
+  const cached = getCached<string[]>(cacheKey, CACHE_DURATION.families)
+  if (cached) return cached
+
   const files = await listFiles('data/models')
-  return files.filter(f => f.type === 'dir').map(f => f.name)
+  const result = files.filter(f => f.type === 'dir').map(f => f.name)
+  setCache(cacheKey, result)
+  return result
 }
 
-// Get family data
+// Get family data (with caching)
 export async function getFamilyData(family: string): Promise<{
   family: unknown
   tree: unknown | null
   models: Array<{ name: string; slug: string; data: unknown }>
 }> {
+  const cacheKey = `familyData_${family}`
+  const cached = getCached<{
+    family: unknown
+    tree: unknown | null
+    models: Array<{ name: string; slug: string; data: unknown }>
+  }>(cacheKey, CACHE_DURATION.familyData)
+  if (cached) return cached
+
   // Get _family.json
   const familyFile = await getFileContent(`data/models/${family}/_family.json`)
   const familyData = JSON.parse(familyFile.content)
@@ -184,11 +243,13 @@ export async function getFamilyData(family: string): Promise<{
     })
   )
 
-  return {
+  const result = {
     family: familyData,
     tree: treeData,
     models,
   }
+  setCache(cacheKey, result)
+  return result
 }
 
 // Get family metadata (just _family.json)
@@ -330,6 +391,10 @@ export interface CommitInfo {
 }
 
 export async function getRecentCommits(limit: number = 10): Promise<CommitInfo[]> {
+  const cacheKey = `commits_${limit}`
+  const cached = getCached<CommitInfo[]>(cacheKey, CACHE_DURATION.commits)
+  if (cached) return cached
+
   const response = await githubFetch(
     `/repos/${REPO_OWNER}/${REPO_NAME}/commits?sha=${BRANCH}&per_page=${limit}`
   )
@@ -339,7 +404,7 @@ export async function getRecentCommits(limit: number = 10): Promise<CommitInfo[]
   }
 
   const commits = await response.json()
-  return commits.map((commit: {
+  const result = commits.map((commit: {
     sha: string
     commit: {
       message: string
@@ -353,4 +418,6 @@ export async function getRecentCommits(limit: number = 10): Promise<CommitInfo[]
     date: commit.commit.author.date,
     url: commit.html_url,
   }))
+  setCache(cacheKey, result)
+  return result
 }
