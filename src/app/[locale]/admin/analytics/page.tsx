@@ -549,7 +549,7 @@ export default function AnalyticsPage() {
                 <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
                   人気モデルランキング
                 </h2>
-                <span className="text-xs text-gray-500 dark:text-gray-400">過去24時間</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">過去23時間</span>
               </div>
               {data.topPages.length > 0 ? (
                 <div className="space-y-3">

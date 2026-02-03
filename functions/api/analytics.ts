@@ -127,9 +127,10 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     } else if (metric === 'topPages') {
       // Top pages by requests - using httpRequestsAdaptiveGroups for path data
       // Note: Free plan only allows 1 day (86400s) of data for this endpoint
-      const dateStart24h = new Date()
-      dateStart24h.setHours(dateStart24h.getHours() - 24)
-      variables.dateStart = dateStart24h.toISOString()
+      // Use 23 hours to have safety margin
+      const dateStart23h = new Date()
+      dateStart23h.setHours(dateStart23h.getHours() - 23)
+      variables.dateStart = dateStart23h.toISOString()
 
       query = `
         query GetTopPages($zoneTag: String!, $dateStart: String!) {
