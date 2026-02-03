@@ -190,13 +190,23 @@ export default function AnalyticsPage() {
                 dimensions: { clientRequestPath: string }
               }) => {
                 const rawPath = item.dimensions?.clientRequestPath
-                if (rawPath && rawPath.includes('/models/')) {
-                  // Normalize path: remove locale prefix (/ja/, /en/) and trailing slash
-                  const normalizedPath = rawPath
-                    .replace(/^\/(ja|en)\//, '/')
-                    .replace(/\/$/, '')
-                  pathCounts[normalizedPath] = (pathCounts[normalizedPath] || 0) + (item.count || 0)
-                }
+                if (!rawPath) return
+
+                // Skip non-page requests (assets, txt files, etc.)
+                if (rawPath.match(/\.(txt|json|js|css|ico|png|jpg|svg|woff2?)$/)) return
+
+                // Only include model pages (not index pages)
+                if (!rawPath.includes('/models/')) return
+
+                // Normalize path: remove locale prefix (/ja/, /en/) and trailing slash
+                const normalizedPath = rawPath
+                  .replace(/^\/(ja|en)\//, '/')
+                  .replace(/\/$/, '')
+
+                // Skip if it's just the models index
+                if (normalizedPath === '/models') return
+
+                pathCounts[normalizedPath] = (pathCounts[normalizedPath] || 0) + (item.count || 0)
               })
 
               // Sort and take top 10
