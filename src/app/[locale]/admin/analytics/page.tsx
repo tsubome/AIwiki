@@ -545,9 +545,12 @@ export default function AnalyticsPage() {
 
             {/* Popular Models Ranking */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-                人気モデルランキング
-              </h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  人気モデルランキング
+                </h2>
+                <span className="text-xs text-gray-500 dark:text-gray-400">過去24時間</span>
+              </div>
               {data.topPages.length > 0 ? (
                 <div className="space-y-3">
                   {data.topPages.map((page, index) => {

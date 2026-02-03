@@ -126,13 +126,18 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       `
     } else if (metric === 'topPages') {
       // Top pages by requests - using httpRequestsAdaptiveGroups for path data
+      // Note: Free plan only allows 1 day (86400s) of data for this endpoint
+      const dateStart24h = new Date()
+      dateStart24h.setHours(dateStart24h.getHours() - 24)
+      variables.dateStart = dateStart24h.toISOString()
+
       query = `
         query GetTopPages($zoneTag: String!, $dateStart: String!) {
           viewer {
             zones(filter: {zoneTag: $zoneTag}) {
               httpRequestsAdaptiveGroups(
                 filter: {
-                  date_geq: $dateStart
+                  datetime_geq: $dateStart
                   requestSource: "eyeball"
                   clientRequestPath_like: "/models/%"
                 }
@@ -202,4 +207,3 @@ export const onRequestOptions: PagesFunction = async () => {
     },
   })
 }
-// Force redeploy: 2026年 2月  4日 水曜日 06:13:11    
