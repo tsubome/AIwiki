@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { getModelFamilies, getFamilyData, getRecentCommits, CommitInfo } from '@/lib/github-api'
+import { getModelFamilies, getFamilyData, getRecentCommits, clearCache, CommitInfo } from '@/lib/github-api'
 
 // GitHub OAuth configuration
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID || ''
@@ -129,6 +129,14 @@ export default function AdminPage() {
     setUser(null)
   }
 
+  const handleRefreshCache = () => {
+    clearCache()
+    setStats({ families: 0, models: 0, variants: 0 })
+    setRecentCommits([])
+    loadStats()
+    loadRecentCommits()
+  }
+
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr)
     const jst = new Date(date.getTime() + 9 * 60 * 60 * 1000)
@@ -194,6 +202,15 @@ export default function AdminPage() {
                 <span className="text-gray-700 dark:text-gray-300">{user.login}</span>
               </div>
             )}
+            <button
+              onClick={handleRefreshCache}
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              title="キャッシュをクリアして再読み込み"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
             <button
               onClick={handleLogout}
               className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
@@ -264,15 +281,20 @@ export default function AdminPage() {
           </a>
 
           {/* Deploy Status Card */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+          <a
+            href="https://dash.cloudflare.com/?to=/:account/pages/view/aiwiki"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+          >
             <div className="text-3xl mb-3">🚀</div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
               デプロイ状況
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              変更を保存すると自動でデプロイされます
+              Cloudflare Pagesでデプロイ状況を確認
             </p>
-          </div>
+          </a>
         </div>
 
         {/* Quick Stats */}

@@ -21,8 +21,8 @@ interface GraphQLResponse {
           uniq: { uniques: number }
         }>
         httpRequestsAdaptiveGroups?: Array<{
+          count: number
           dimensions: { clientRequestPath?: string }
-          sum: { pageViews: number; requests: number }
         }>
       }>
     }
@@ -125,21 +125,22 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         }
       `
     } else if (metric === 'topPages') {
-      // Top pages by requests - aggregate by path
+      // Top pages by requests - using httpRequestsAdaptiveGroups for path data
       query = `
         query GetTopPages($zoneTag: String!, $dateStart: String!) {
           viewer {
             zones(filter: {zoneTag: $zoneTag}) {
-              httpRequests1dGroups(
-                filter: {date_geq: $dateStart}
-                limit: 10000
-              ) {
-                sum {
-                  requests
-                  pageViews
+              httpRequestsAdaptiveGroups(
+                filter: {
+                  date_geq: $dateStart
+                  requestSource: "eyeball"
+                  clientRequestPath_like: "/models/%"
                 }
+                orderBy: [count_DESC]
+                limit: 50
+              ) {
+                count
                 dimensions {
-                  clientRequestHTTPHost
                   clientRequestPath
                 }
               }
@@ -201,3 +202,4 @@ export const onRequestOptions: PagesFunction = async () => {
     },
   })
 }
+// Force redeploy: 2026年 2月  4日 水曜日 06:13:11    

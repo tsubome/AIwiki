@@ -24,7 +24,40 @@ interface AnalyticsData {
     uniques: number
   }
   topPages: TopPageData[]
+  topPagesError?: string
   isHourly: boolean
+}
+
+// Cache key and duration
+const CACHE_KEY = 'aiwiki_analytics_cache'
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
+interface CacheEntry {
+  data: AnalyticsData
+  days: number
+  timestamp: number
+}
+
+function getCache(days: number): AnalyticsData | null {
+  try {
+    const cached = sessionStorage.getItem(CACHE_KEY)
+    if (!cached) return null
+    const entry: CacheEntry = JSON.parse(cached)
+    if (entry.days !== days) return null
+    if (Date.now() - entry.timestamp > CACHE_DURATION) return null
+    return entry.data
+  } catch {
+    return null
+  }
+}
+
+function setCache(days: number, data: AnalyticsData): void {
+  try {
+    const entry: CacheEntry = { data, days, timestamp: Date.now() }
+    sessionStorage.setItem(CACHE_KEY, JSON.stringify(entry))
+  } catch {
+    // Ignore storage errors
+  }
 }
 
 export default function AnalyticsPage() {
@@ -61,7 +94,17 @@ export default function AnalyticsPage() {
     }
   }
 
-  const loadAnalytics = async () => {
+  const loadAnalytics = async (forceRefresh = false) => {
+    // Check cache first
+    if (!forceRefresh) {
+      const cached = getCache(days)
+      if (cached) {
+        setData(cached)
+        setIsLoading(false)
+        return
+      }
+    }
+
     try {
       setIsLoading(true)
       setError(null)
@@ -126,38 +169,54 @@ export default function AnalyticsPage() {
 
       // Fetch top pages
       let topPages: TopPageData[] = []
+      let topPagesError: string | undefined
       try {
         const topPagesResponse = await fetch(`/api/analytics?metric=topPages&days=${days}`)
         if (topPagesResponse.ok) {
           const topPagesResult = await topPagesResponse.json()
-          const topPagesZones = topPagesResult.data?.viewer?.zones
-          if (topPagesZones && topPagesZones.length > 0) {
-            const groups = topPagesZones[0].httpRequests1dGroups || []
 
-            // Aggregate by path
-            const pathCounts: Record<string, number> = {}
-            groups.forEach((item: {
-              dimensions: { clientRequestPath: string }
-              sum: { requests: number; pageViews: number }
-            }) => {
-              const path = item.dimensions?.clientRequestPath
-              if (path && path.includes('/models/')) {
-                pathCounts[path] = (pathCounts[path] || 0) + (item.sum?.pageViews || item.sum?.requests || 0)
-              }
-            })
+          // Check for GraphQL errors
+          if (topPagesResult.errors && topPagesResult.errors.length > 0) {
+            topPagesError = topPagesResult.errors[0].message
+          } else {
+            const topPagesZones = topPagesResult.data?.viewer?.zones
+            if (topPagesZones && topPagesZones.length > 0) {
+              const groups = topPagesZones[0].httpRequestsAdaptiveGroups || []
 
-            // Sort and take top 10
-            topPages = Object.entries(pathCounts)
-              .sort((a, b) => b[1] - a[1])
-              .slice(0, 10)
-              .map(([path, count]) => ({ path, count }))
+              // Aggregate by path (removing locale and trailing slash)
+              const pathCounts: Record<string, number> = {}
+              groups.forEach((item: {
+                count: number
+                dimensions: { clientRequestPath: string }
+              }) => {
+                const rawPath = item.dimensions?.clientRequestPath
+                if (rawPath && rawPath.includes('/models/')) {
+                  // Normalize path: remove locale prefix (/ja/, /en/) and trailing slash
+                  const normalizedPath = rawPath
+                    .replace(/^\/(ja|en)\//, '/')
+                    .replace(/\/$/, '')
+                  pathCounts[normalizedPath] = (pathCounts[normalizedPath] || 0) + (item.count || 0)
+                }
+              })
+
+              // Sort and take top 10
+              topPages = Object.entries(pathCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10)
+                .map(([path, count]) => ({ path, count }))
+            }
           }
+        } else {
+          topPagesError = 'APIリクエストに失敗しました'
         }
       } catch (err) {
         console.error('Failed to load top pages:', err)
+        topPagesError = err instanceof Error ? err.message : 'データ取得エラー'
       }
 
-      setData({ data: timeData, totals, topPages, isHourly })
+      const analyticsData: AnalyticsData = { data: timeData, totals, topPages, topPagesError, isHourly }
+      setData(analyticsData)
+      setCache(days, analyticsData)
     } catch (err) {
       console.error('Analytics error:', err)
       setError(err instanceof Error ? err.message : 'データの取得に失敗しました')
@@ -380,17 +439,30 @@ export default function AnalyticsPage() {
               ))}
             </div>
           </div>
-          {data && (
+          <div className="flex gap-2">
             <button
-              onClick={exportToMarkdown}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              onClick={() => loadAnalytics(true)}
+              disabled={isLoading}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
+              title="キャッシュを無視して再取得"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <svg className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
-              MDでエクスポート
+              更新
             </button>
-          )}
+            {data && (
+              <button
+                onClick={exportToMarkdown}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                MDでエクスポート
+              </button>
+            )}
+          </div>
         </div>
 
         {error && (
@@ -472,11 +544,11 @@ export default function AnalyticsPage() {
             </div>
 
             {/* Popular Models Ranking */}
-            {data.topPages.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-                  人気モデルランキング
-                </h2>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+                人気モデルランキング
+              </h2>
+              {data.topPages.length > 0 ? (
                 <div className="space-y-3">
                   {data.topPages.map((page, index) => {
                     // Extract model info from path
@@ -518,8 +590,17 @@ export default function AnalyticsPage() {
                     )
                   })}
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+                  <p className="mb-2">データを取得できませんでした</p>
+                  {data.topPagesError ? (
+                    <p className="text-xs text-red-500">{data.topPagesError}</p>
+                  ) : (
+                    <p className="text-xs">Cloudflare Pro プラン以上が必要な可能性があります</p>
+                  )}
+                </div>
+              )}
+            </div>
 
             {/* Data Table */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
