@@ -140,10 +140,9 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
                 filter: {
                   datetime_geq: $dateStart
                   requestSource: "eyeball"
-                  clientRequestPath_like: "/models/%"
                 }
                 orderBy: [count_DESC]
-                limit: 50
+                limit: 100
               ) {
                 count
                 dimensions {
