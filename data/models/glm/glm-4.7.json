@@ -18,17 +18,24 @@
     "en": "Latest flagship model. First open-source model to match Claude Sonnet 4.5. Top open-source performance in coding and agent capabilities. Features 3 thinking modes (Interleaved/Preserved/Turn-level). 1500+ tokens/s inference on Cerebras. Achieved 73.8% on SWE-bench Verified and 84.9 on LiveCodeBench."
   },
   "benchmarks": {
-    "gpqa": 86,
+    "gpqa": 85.7,
     "humaneval": 84.9,
-    "source": "GLM-4.7 Release Notes"
+    "custom": {
+      "SWE-bench Verified": 73.8,
+      "AIME 2025": 95.7,
+      "MMLU-Pro": 84.3,
+      "tau2-Bench": 87.4,
+      "BrowseComp": 52.0
+    },
+    "source": "GLM-4.7 Release Notes (2025-12-22)"
   },
   "specs": {
-    "contextLength": 205000,
+    "contextLength": 202752,
     "languages": [
       "zh",
       "en"
     ],
-    "architecture": "Mixture of Experts (355B-400B total / 32B active)"
+    "architecture": "Mixture of Experts with Multi-Headed Latent Attention (MLA)"
   },
   "links": {
     "huggingface": "https://huggingface.co/zai-org/GLM-4.7"
@@ -37,19 +44,17 @@
     {
       "name": "GLM-4.7",
       "slug": "glm-4.7-base",
-      "parameters": "400B",
+      "parameters": "355B",
       "parameterDetails": {
         "active": "32B",
-        "total": "355B-400B"
+        "total": "355B",
+        "experts": 64
       },
       "description": {
-        "ja": "最新フラッグシップ。202K-205Kコンテキスト、最大128K出力。3種の思考モード搭載。",
-        "en": "Latest flagship. 202K-205K context, up to 128K output. Features 3 thinking modes."
+        "ja": "フラッグシップMoEモデル。355B総パラメータ/32Bアクティブ。200Kコンテキスト入力、最大128K出力。3種の思考モード搭載。",
+        "en": "Flagship MoE model. 355B total / 32B active parameters. 200K context input, up to 128K output. Features 3 thinking modes."
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.7",
-      "requirements": {
-        "ram": "1TB+"
-      },
       "gguf": []
     },
     {
@@ -57,17 +62,15 @@
       "slug": "glm-4.7-flash",
       "parameters": "31B",
       "parameterDetails": {
-        "active": "32B",
-        "total": "355B-400B"
+        "active": "3B",
+        "total": "31B",
+        "experts": 64
       },
       "description": {
-        "ja": "高速推論版。同等規模でより高速な推論を実現。",
-        "en": "Fast inference version. Achieves faster inference at similar scale."
+        "ja": "軽量MoEモデル（31B総パラメータ/3Bアクティブ）。消費者向けGPU（RTX 3090等）やApple Siliconで動作可能。2026年1月19日公開。SWE-bench Verifiedで59.2%達成。",
+        "en": "Lightweight MoE model (31B total / 3B active). Runs on consumer GPUs (RTX 3090+) and Apple Silicon. Released January 19, 2026. Achieved 59.2% on SWE-bench Verified."
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "requirements": {
-        "ram": "1TB+"
-      },
       "gguf": []
     }
   ]
