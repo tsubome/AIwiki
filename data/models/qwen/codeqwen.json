@@ -5,10 +5,11 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
   "baseModel": "Qwen1.5-7B",
-  "tags": ["official", "coding"],
-
+  "tags": [
+    "official",
+    "coding"
+  ],
   "benchmarks": {
     "humaneval": 83.5,
     "custom": {
@@ -19,30 +20,39 @@
     },
     "source": "CodeQwen1.5 Blog 2024-04"
   },
-
   "description": {
     "ja": "2024年4月16日公開。Qwen1.5-7Bベースのコード特化モデル。約3兆トークンのコード関連データで学習。92言語のプログラミング言語をサポート。64Kコンテキスト対応。Fill-in-the-Middle（FIM）によるコード補完をサポート。HumanEval 83.5%（Chat版）、SWE-BenchでGPT-3.5超え。",
     "en": "Released April 16, 2024. Code-specialized model based on Qwen1.5-7B. Trained on ~3 trillion tokens of code-related data. Supports 92 programming languages. 64K context support. Supports code completion via Fill-in-the-Middle (FIM). 83.5% on HumanEval (Chat), surpasses GPT-3.5 on SWE-Bench."
   },
-
   "specs": {
     "contextLength": 65536,
     "trainingTokens": "~3T",
-    "languages": ["Python", "JavaScript", "TypeScript", "Java", "C++", "C", "Go", "Rust", "PHP", "Ruby"],
+    "languages": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "Java",
+      "C++",
+      "C",
+      "Go",
+      "Rust",
+      "PHP",
+      "Ruby"
+    ],
     "architecture": "Qwen1.5 base, GQA",
     "promptTemplate": {
       "format": "fim",
       "user": "<fim_prefix>{prefix}<fim_suffix>{suffix}<fim_middle>",
-      "stopTokens": ["<|endoftext|>"]
+      "stopTokens": [
+        "<|endoftext|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/Qwen",
     "github": "https://github.com/QwenLM/CodeQwen1.5",
     "website": "https://qwenlm.github.io/blog/codeqwen1.5/"
   },
-
   "variants": [
     {
       "name": "CodeQwen1.5 7B Base",
@@ -53,9 +63,6 @@
         "en": "Base model. Supports FIM code completion."
       },
       "huggingface": "https://huggingface.co/Qwen/CodeQwen1.5-7B",
-      "requirements": {
-        "minVram": "14GB"
-      },
       "gguf": []
     },
     {
@@ -67,9 +74,6 @@
         "en": "Chat variant. 83.5% on HumanEval."
       },
       "huggingface": "https://huggingface.co/Qwen/CodeQwen1.5-7B-Chat",
-      "requirements": {
-        "minVram": "14GB"
-      },
       "gguf": []
     }
   ]

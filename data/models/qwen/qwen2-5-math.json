@@ -5,50 +5,53 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
   "baseModel": "Qwen2.5",
-  "tags": ["official", "math"],
-
+  "tags": [
+    "official",
+    "math"
+  ],
   "benchmarks": {
     "math": 85.9,
     "custom": {
       "gsm8k": 95.2,
       "mmlu-stem": 81.5,
-      "olympiadbench": 44.0,
+      "olympiadbench": 44,
       "aime24": 21,
       "cmath": 92.3,
       "gaokao-math": 72.8
     },
     "source": "Qwen2.5-Math Technical Report (arXiv:2409.12122)"
   },
-
   "description": {
     "ja": "2024年9月19日公開。1兆トークン以上（Qwen Math Corpus v2）で学習した数学特化モデル。Chain-of-Thought（CoT）推論とTool-integrated Reasoning（TIR、Pythonインタプリタ使用）をサポート。中国語・英語バイリンガル。MATH 85.9%（Greedy）、TIR使用時は92.9%（RM@8）を達成。",
     "en": "Released September 19, 2024. Math-specialized model trained on 1T+ tokens (Qwen Math Corpus v2). Supports Chain-of-Thought (CoT) reasoning and Tool-integrated Reasoning (TIR using Python interpreter). Bilingual in Chinese and English. Achieves 85.9% on MATH (Greedy), 92.9% with TIR (RM@8)."
   },
-
   "specs": {
     "contextLength": 4096,
     "trainingTokens": "1T+",
     "knowledgeCutoff": "2024",
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "Qwen2.5 base, Chain-of-Thought reasoning, Tool-integrated Reasoning (TIR)",
     "promptTemplate": {
       "format": "chatml-math",
       "system": "<|im_start|>system\nPlease reason step by step, and put your final answer within \\boxed{}.<|im_end|>",
       "user": "<|im_start|>user\n{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n",
-      "stopTokens": ["<|im_start|>", "<|im_end|>"]
+      "stopTokens": [
+        "<|im_start|>",
+        "<|im_end|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Math-72B-Instruct",
     "paper": "https://arxiv.org/abs/2409.12122",
     "github": "https://github.com/QwenLM/Qwen2.5-Math",
     "website": "https://qwenlm.github.io/blog/qwen2.5-math/"
   },
-
   "variants": [
     {
       "name": "Qwen2.5-Math 1.5B",
@@ -59,9 +62,6 @@
         "en": "Lightweight variant. For basic math reasoning."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Math-1.5B",
-      "requirements": {
-        "minVram": "4GB"
-      },
       "gguf": []
     },
     {
@@ -73,9 +73,6 @@
         "en": "Standard variant. For advanced math reasoning."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Math-7B",
-      "requirements": {
-        "minVram": "16GB"
-      },
       "gguf": []
     },
     {
@@ -87,9 +84,6 @@
         "en": "Flagship variant. 85.9% on MATH."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Math-72B",
-      "requirements": {
-        "minVram": "150GB"
-      },
       "gguf": []
     },
     {
@@ -101,9 +95,6 @@
         "en": "Reward Model variant. For TIR evaluation."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2.5-Math-RM-72B",
-      "requirements": {
-        "minVram": "150GB"
-      },
       "gguf": []
     }
   ]

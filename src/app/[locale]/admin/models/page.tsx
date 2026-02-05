@@ -35,8 +35,6 @@ interface Variant {
   baseModel?: string
   huggingface?: string
   requirements?: {
-    minVram?: string
-    recommendedVram?: string
     ram?: string
   }
   gguf: Array<{
@@ -730,14 +728,23 @@ function ModelsPageContent() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">最小VRAM</label>
-                        <input
-                          type="text"
-                          value={variant.requirements?.minVram || ''}
-                          onChange={e => updateVariantNested(i, 'requirements', 'minVram', e.target.value)}
-                          placeholder="16GB"
-                          className="w-full px-2 py-1 border rounded text-sm dark:bg-gray-600 dark:border-gray-500 dark:text-gray-100"
-                        />
+                        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">最小VRAM (自動計算)</label>
+                        <div className="w-full px-2 py-1 border rounded text-sm bg-gray-100 dark:bg-gray-700 dark:border-gray-500 dark:text-gray-300 text-gray-500">
+                          {(() => {
+                            const params = variant.parameters || ''
+                            const paramsMatch = params.match(/([\d.]+)\s*B/i)
+                            if (!paramsMatch) return '-'
+                            const paramsB = parseFloat(paramsMatch[1])
+                            const totalStr = variant.parameterDetails?.total
+                            const totalMatch = totalStr?.match(/([\d.]+)\s*B/i)
+                            const effectiveB = totalMatch ? parseFloat(totalMatch[1]) : paramsB
+                            const vram = effectiveB * 0.55 + 0.3
+                            if (vram >= 1000) return `${Math.round(vram / 100) / 10}TB`
+                            if (vram >= 10) return `${Math.round(vram)}GB`
+                            const rounded = Math.round(vram * 2) / 2
+                            return `${rounded}GB`
+                          })()}
+                        </div>
                       </div>
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-3">

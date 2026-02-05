@@ -6,25 +6,27 @@
   "license": "Gemma Terms of Use",
   "modelType": "INSTRUCT",
   "baseModel": "gemma3",
-
-  "tags": ["official", "function-calling", "tool-use", "edge"],
-
+  "tags": [
+    "official",
+    "function-calling",
+    "tool-use",
+    "edge"
+  ],
   "description": {
     "ja": "2025年8月14日公開。Gemma 3ベースの関数呼び出し特化モデル。ツール使用・API呼び出しに最適化。270Mパラメータの超軽量設計でエッジデバイスでの関数呼び出しを実現。",
     "en": "Released August 14, 2025. Gemma 3-based function calling specialized model. Optimized for tool use and API calls. Ultra-lightweight 270M parameter design enables function calling on edge devices."
   },
-
   "specs": {
     "contextLength": 32000,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Gemma 3 base, Function calling fine-tuning"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/google",
     "website": "https://ai.google.dev/gemma"
   },
-
   "variants": [
     {
       "name": "FunctionGemma 270M",
@@ -35,9 +37,6 @@
         "en": "Ultra-lightweight function calling model. For edge devices."
       },
       "huggingface": "https://huggingface.co/google/functiongemma-270m",
-      "requirements": {
-        "minVram": "1GB"
-      },
       "gguf": []
     }
   ]

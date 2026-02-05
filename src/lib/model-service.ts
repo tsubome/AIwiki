@@ -29,6 +29,58 @@ import { getLocalizedString } from '@/types/model-data'
 const DEFAULT_LOCALE = 'ja'
 
 // ============================================
+// VRAM Auto-Calculation
+// ============================================
+
+/**
+ * パラメータ文字列から数値（十億単位）を抽出
+ * "8B" -> 8, "70B" -> 70, "671B (+14B MTP)" -> 671
+ */
+function parseParamBillions(params: string): number {
+  const match = params.match(/([\d.]+)\s*B/i)
+  if (match) return parseFloat(match[1])
+  return 0
+}
+
+/**
+ * パラメータ数から最小VRAM（4bit量子化、コンテキスト長4096前提）を自動計算
+ *
+ * 計算式: VRAM(GB) = パラメータ数(B) × 0.55 + 0.3
+ *   - モデル重み: パラメータ数 × 0.5 bytes (4bit)
+ *   - KVキャッシュ: パラメータ数 × 0.05 (4096トークン時の概算)
+ *   - オーバーヘッド: 0.3GB (CUDAコンテキスト等)
+ *
+ * MoEモデルの場合は全パラメータ数（total）を使用
+ */
+export function calculateMinVram(
+  parameters: string,
+  parameterDetails?: { active: string; total: string; experts?: number }
+): string {
+  // MoEモデルはtotalパラメータを使用（全エキスパートの重みがVRAMに載るため）
+  const paramStr = parameterDetails?.total || parameters
+  const paramsB = parseParamBillions(paramStr)
+
+  if (paramsB <= 0) return ''
+
+  const vramGB = paramsB * 0.55 + 0.3
+
+  // フォーマット
+  if (vramGB >= 1000) {
+    const tb = vramGB / 1000
+    return `${Math.round(tb * 10) / 10}TB`
+  }
+  if (vramGB >= 10) {
+    return `${Math.round(vramGB)}GB`
+  }
+  // 0.5GB単位で丸める
+  const rounded = Math.round(vramGB * 2) / 2
+  if (rounded === Math.floor(rounded)) {
+    return `${rounded}GB`
+  }
+  return `${rounded}GB`
+}
+
+// ============================================
 // Types for Page Components
 // ============================================
 
@@ -100,12 +152,7 @@ export interface VariantForDetail {
   description: string | null
   baseModel?: string
   huggingface: string | null
-  requirements?: {
-    minVram?: string
-    recommendedVram?: string
-    ram?: string
-    notes?: string
-  }
+  minVram: string
   ggufFiles: GGUFFileForDetail[]
 }
 
@@ -156,7 +203,7 @@ function toVariantForDetail(variant: ResolvedVariant, index: number, locale: str
     description: getLocalizedString(variant.description, locale) || null,
     baseModel: variant.baseModel,
     huggingface: variant.huggingface || null,
-    requirements: variant.requirements,
+    minVram: calculateMinVram(variant.parameters, variant.parameterDetails),
     ggufFiles: (variant.gguf || []).map((file, i) => ({
       id: `${variant.id}-gguf-${i}`,
       name: file.name,

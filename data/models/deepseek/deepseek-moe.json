@@ -5,26 +5,26 @@
   "developer": "DeepSeek AI",
   "license": "DeepSeek Model License",
   "modelType": "BASE",
-
-  "tags": ["official", "text-generation", "moe", "efficient"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "moe",
+    "efficient"
+  ],
   "description": {
     "ja": "DeepSeek AIのMixture-of-Experts（MoE）アーキテクチャ実証モデル。2024年1月11日公開。細粒度エキスパート分割と共有エキスパート分離という革新的技術を導入。16Bの総パラメータで27億のみ活性化し、7B Denseモデルに匹敵する性能を実現。後のV2、V3シリーズの基盤となるアーキテクチャ。",
     "en": "DeepSeek AI's Mixture-of-Experts (MoE) architecture demonstration model. Released January 11, 2024. Introduces innovative fine-grained expert segmentation and shared expert isolation techniques. With 16B total parameters activating only 2.7B, achieves performance comparable to 7B dense models. Foundation architecture for later V2 and V3 series."
   },
-
   "specs": {
     "contextLength": 4096,
     "knowledgeCutoff": "2024-Q1",
     "architecture": "Sparse MoE, Fine-grained expert segmentation, Shared expert isolation, Always-active shared experts + routed experts, Reduced knowledge redundancy"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
     "paper": "https://arxiv.org/abs/2401.06066",
     "github": "https://github.com/deepseek-ai/DeepSeek-MoE"
   },
-
   "variants": [
     {
       "name": "DeepSeekMoE 16B",
@@ -40,7 +40,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-moe-16b-base",
       "requirements": {
-        "minVram": "35GB",
         "notes": "INT4: 10GB (loads full model but activates only 2.7B)"
       },
       "gguf": []
@@ -58,9 +57,6 @@
         "en": "16B MoE chat-tuned variant."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-moe-16b-chat",
-      "requirements": {
-        "minVram": "35GB"
-      },
       "gguf": []
     }
   ]

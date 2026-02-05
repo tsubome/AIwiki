@@ -5,26 +5,27 @@
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "open-source", "research"],
-
+  "tags": [
+    "official",
+    "open-source",
+    "research"
+  ],
   "description": {
     "ja": "AI2初の完全オープンソース大規模言語モデル。学習データ（Dolma）、コード、チェックポイント、ログすべてを公開した画期的なリリース。OLMo 1.7/April 2024とJuly 2024版も含む。",
     "en": "AI2's first fully open-source large language model. Groundbreaking release with all training data (Dolma), code, checkpoints, and logs publicly available. Includes OLMo 1.7/April 2024 and July 2024 versions."
   },
-
   "specs": {
     "contextLength": 4096,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Decoder-only Transformer"
   },
-
   "links": {
     "github": "https://github.com/allenai/OLMo",
     "huggingface": "https://huggingface.co/allenai",
     "paper": "https://arxiv.org/abs/2402.00838"
   },
-
   "variants": [
     {
       "name": "OLMo 1B",
@@ -36,8 +37,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-1B",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -52,8 +51,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-7B",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -68,8 +65,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-7B-Instruct",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -84,8 +79,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-7B-0424",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -100,8 +93,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-7B-0724-hf",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -116,8 +107,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-7B-0724-Instruct-hf",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []

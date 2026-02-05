@@ -6,24 +6,25 @@
   "license": "MIT License",
   "modelType": "FINETUNE",
   "baseModel": "phi-2",
-
-  "tags": ["uncensored", "fast", "roleplay"],
-
+  "tags": [
+    "uncensored",
+    "fast",
+    "roleplay"
+  ],
   "description": {
     "ja": "Microsoft Phiシリーズベースの小型検閲なしモデル。軽量かつ高性能。Samanthaベースの共感データを含む。qLoRA + Axolotlで学習。",
     "en": "Small uncensored model based on Microsoft Phi series. Lightweight yet powerful. Includes Samantha-based empathy data. Trained with qLoRA + Axolotl."
   },
-
   "specs": {
     "contextLength": 2048,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Phi Transformer"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2_6-phi-2"
   },
-
   "variants": [
     {
       "name": "Dolphin 2.6 Phi-2",
@@ -35,8 +36,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2_6-phi-2",
       "requirements": {
-        "minVram": "6GB",
-        "recommendedVram": "8GB",
         "ram": "12GB"
       },
       "gguf": []
@@ -51,8 +50,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/Dolphin-2.9.1-Phi-3-Kensho-4.5B",
       "requirements": {
-        "minVram": "10GB",
-        "recommendedVram": "12GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -67,8 +64,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.2-Phi-3-Medium",
       "requirements": {
-        "minVram": "28GB",
-        "recommendedVram": "35GB",
         "ram": "48GB"
       },
       "gguf": []

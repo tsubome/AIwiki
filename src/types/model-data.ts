@@ -57,10 +57,9 @@ export interface PromptTemplate {
 // ============================================
 
 export interface HardwareRequirements {
-  minVram?: string       // "6GB" (minimum VRAM for quantized)
-  recommendedVram?: string // "8GB" (recommended VRAM)
   ram?: string           // "16GB" (RAM for CPU inference)
   notes?: string         // "Q4_K_M量子化で24GB×2枚構成推奨"
+  // minVram is auto-calculated from parameter count in model-service.ts
 }
 
 // ============================================

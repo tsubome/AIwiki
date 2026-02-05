@@ -6,9 +6,16 @@
   "license": "Gemma Terms of Use",
   "modelType": "BASE",
   "baseModel": "gemma3",
-
-  "tags": ["official", "text-generation", "vision", "audio", "video", "multilingual", "mobile", "edge"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "vision",
+    "audio",
+    "video",
+    "multilingual",
+    "mobile",
+    "edge"
+  ],
   "benchmarks": {
     "custom": {
       "lmarena-elo": 1300,
@@ -17,25 +24,37 @@
     },
     "source": "https://developers.googleblog.com/en/introducing-gemma-3n-developer-guide/"
   },
-
   "description": {
     "ja": "2025年6月26日公開（プレビュー5月20日）。モバイルファースト設計のマルチモーダルモデル。MatFormer（Matryoshka Transformer）採用でエラスティック推論を実現。Per-Layer Embeddings（PLE）でCPU効率化。テキスト+画像+音声+動画に対応。140+言語（テキスト）、35言語（マルチモーダル）対応。10B未満で初のLMArena Elo 1300+達成。Pixelデバイスで60FPS動画処理可能。",
     "en": "Released June 26, 2025 (preview May 20). Mobile-first multimodal model. Features MatFormer (Matryoshka Transformer) for elastic inference and Per-Layer Embeddings (PLE) for CPU efficiency. Supports text + image + audio + video. 140+ languages (text), 35 languages (multimodal). First sub-10B model to achieve LMArena Elo 1300+. 60 FPS video processing on Pixel devices."
   },
-
   "specs": {
     "contextLength": 32000,
     "knowledgeCutoff": "2025",
-    "languages": ["en", "zh", "ja", "ko", "de", "fr", "es", "pt", "it", "ru", "ar", "hi", "th", "vi", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "ja",
+      "ko",
+      "de",
+      "fr",
+      "es",
+      "pt",
+      "it",
+      "ru",
+      "ar",
+      "hi",
+      "th",
+      "vi",
+      "id"
+    ],
     "architecture": "MatFormer (Matryoshka Transformer), Per-Layer Embeddings (PLE), LAuReL, AltUp, KV Cache Sharing, MobileNet-V5-300M vision encoder, USM audio encoder"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/collections/google/gemma-3n",
     "github": "https://github.com/google-deepmind/gemma",
     "website": "https://ai.google.dev/gemma/docs/gemma-3n"
   },
-
   "variants": [
     {
       "name": "Gemma 3n E2B Instruct",
@@ -51,7 +70,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3n-E2B-it",
       "requirements": {
-        "minVram": "2GB",
         "ram": "2GB"
       },
       "gguf": []
@@ -70,7 +88,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3n-E4B-it",
       "requirements": {
-        "minVram": "3GB",
         "ram": "3GB"
       },
       "gguf": []

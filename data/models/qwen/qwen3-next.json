@@ -5,9 +5,12 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "multilingual", "long-context", "moe"],
-
+  "tags": [
+    "official",
+    "multilingual",
+    "long-context",
+    "moe"
+  ],
   "benchmarks": {
     "mmlupro": 80.6,
     "gpqa": 72.9,
@@ -20,34 +23,49 @@
     },
     "source": "Qwen3-Next HuggingFace Model Card"
   },
-
   "description": {
     "ja": "2025年9月10日公開。革新的なHybrid Transformer-Mambaアーキテクチャを採用。80Bパラメータながら3Bのみアクティブで高効率。256Kネイティブコンテキスト（1Mまで拡張可能）。Gated DeltaNet（線形アテンション）とHigh-Sparsity MoE（512エキスパート、10アクティブ）を組み合わせ、Multi-Token Prediction（MTP）も実装。",
     "en": "Released September 10, 2025. Adopts innovative Hybrid Transformer-Mamba architecture. Highly efficient with only 3B active out of 80B total parameters. 256K native context (extendable to 1M). Combines Gated DeltaNet (linear attention) with High-Sparsity MoE (512 experts, 10 active), and implements Multi-Token Prediction (MTP)."
   },
-
   "specs": {
     "contextLength": 262144,
     "trainingTokens": "15T",
     "knowledgeCutoff": "2025-H1",
-    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi", "pt", "it", "hi", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "es",
+      "fr",
+      "de",
+      "ar",
+      "ru",
+      "ko",
+      "ja",
+      "th",
+      "vi",
+      "pt",
+      "it",
+      "hi",
+      "id"
+    ],
     "architecture": "Hybrid Transformer-Mamba, Gated DeltaNet, High-Sparsity MoE (512 experts), Multi-Token Prediction",
     "promptTemplate": {
       "format": "chatml-thinking",
       "system": "<|im_start|>system\n{system}<|im_end|>",
       "user": "<|im_start|>user\n{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n<think>\n{thinking}</think>\n{response}<|im_end|>",
-      "stopTokens": ["<|im_end|>", "</s>"]
+      "stopTokens": [
+        "<|im_end|>",
+        "</s>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/collections/Qwen/qwen3-next",
     "paper": "https://arxiv.org/abs/2505.09388",
     "github": "https://github.com/QwenLM/Qwen3",
     "website": "https://qwen.ai/"
   },
-
   "variants": [
     {
       "name": "Qwen3-Next 80B-A3B Base",
@@ -63,9 +81,6 @@
         "en": "Base model. Hybrid Transformer-Mamba architecture."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Base",
-      "requirements": {
-        "minVram": "160GB"
-      },
       "gguf": []
     },
     {
@@ -82,9 +97,6 @@
         "en": "Instruct variant. Optimized for instruction following."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct",
-      "requirements": {
-        "minVram": "160GB"
-      },
       "gguf": []
     },
     {
@@ -101,9 +113,6 @@
         "en": "Thinking variant. Optimized for deep reasoning."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking",
-      "requirements": {
-        "minVram": "160GB"
-      },
       "gguf": []
     },
     {
@@ -120,9 +129,6 @@
         "en": "FP8 quantized Instruct. Reduced VRAM requirements."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct-FP8",
-      "requirements": {
-        "minVram": "82GB"
-      },
       "gguf": []
     },
     {
@@ -139,9 +145,6 @@
         "en": "FP8 quantized Thinking. Reduced VRAM requirements."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking-FP8",
-      "requirements": {
-        "minVram": "82GB"
-      },
       "gguf": []
     }
   ]

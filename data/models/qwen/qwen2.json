@@ -5,9 +5,11 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0 (0.5B-57B), Qwen License (72B)",
   "modelType": "BASE",
-
-  "tags": ["official", "multilingual", "long-context"],
-
+  "tags": [
+    "official",
+    "multilingual",
+    "long-context"
+  ],
   "benchmarks": {
     "mmlu": 84.2,
     "mmlupro": 55.6,
@@ -17,34 +19,45 @@
     "ifeval": 77.6,
     "source": "Qwen2 Technical Report (arXiv:2407.10671)"
   },
-
   "description": {
     "ja": "2024年6月7日公開。7兆トークンで学習し、約30言語に対応。7Bと72Bは128Kコンテキストをサポート（YaRN + Dual Chunk Attention）。GQA、RoPE、SwiGLU、RMSNormを採用したDecoder-onlyアーキテクチャ。MoE版（57B-A14B）も提供。",
     "en": "Released June 7, 2024. Trained on 7 trillion tokens with support for approximately 30 languages. 7B and 72B models support 128K context (YaRN + Dual Chunk Attention). Features Decoder-only architecture with GQA, RoPE, SwiGLU, and RMSNorm. MoE variant (57B-A14B) also available."
   },
-
   "specs": {
     "contextLength": 131072,
     "trainingTokens": "7T",
     "knowledgeCutoff": "2024-Q1",
-    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi"],
+    "languages": [
+      "en",
+      "zh",
+      "es",
+      "fr",
+      "de",
+      "ar",
+      "ru",
+      "ko",
+      "ja",
+      "th",
+      "vi"
+    ],
     "architecture": "Decoder-only, GQA, RoPE with YARN, Dual Chunk Attention, SwiGLU, RMSNorm",
     "promptTemplate": {
       "format": "chatml",
       "system": "<|im_start|>system\n{system}<|im_end|>",
       "user": "<|im_start|>user\n{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n",
-      "stopTokens": ["<|im_end|>", "<|endoftext|>"]
+      "stopTokens": [
+        "<|im_end|>",
+        "<|endoftext|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/Qwen",
     "paper": "https://arxiv.org/abs/2407.10671",
     "github": "https://github.com/QwenLM/Qwen2",
     "website": "https://qwenlm.github.io/blog/qwen2/"
   },
-
   "variants": [
     {
       "name": "Qwen2 0.5B",
@@ -55,9 +68,6 @@
         "en": "Lightest model. 32K context, trained on 12 trillion tokens."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2-0.5B",
-      "requirements": {
-        "minVram": "1.5GB"
-      },
       "gguf": []
     },
     {
@@ -69,9 +79,6 @@
         "en": "Lightweight model. 32K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2-1.5B",
-      "requirements": {
-        "minVram": "4GB"
-      },
       "gguf": []
     },
     {
@@ -83,9 +90,6 @@
         "en": "Standard size. Supports 128K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2-7B",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -97,9 +101,6 @@
         "en": "Flagship model. 128K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2-72B",
-      "requirements": {
-        "minVram": "150GB"
-      },
       "gguf": []
     },
     {
@@ -116,9 +117,6 @@
         "en": "Mixture of Experts variant. Highly efficient with 14B active parameters."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen2-57B-A14B",
-      "requirements": {
-        "minVram": "120GB"
-      },
       "gguf": []
     }
   ]

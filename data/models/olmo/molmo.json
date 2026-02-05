@@ -5,25 +5,27 @@
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "open-source", "multimodal", "vision"],
-
+  "tags": [
+    "official",
+    "open-source",
+    "multimodal",
+    "vision"
+  ],
   "description": {
     "ja": "AI2初の完全オープンマルチモーダルモデル。独自のPixMoデータセットで学習し、プロプライエタリモデルへの依存なしにGPT-4Vに匹敵する性能を達成。画像のポインティング機能が特徴。",
     "en": "AI2's first fully open multimodal model. Trained on proprietary PixMo dataset, achieving GPT-4V comparable performance without relying on proprietary models. Features image pointing capability."
   },
-
   "specs": {
     "contextLength": 4096,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Vision-Language Model (CLIP ViT-L/14 + LLM)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/allenai",
     "paper": "https://arxiv.org/abs/2409.17146"
   },
-
   "variants": [
     {
       "name": "MolmoE 1B",
@@ -40,8 +42,6 @@
       "baseModel": "olmoe",
       "huggingface": "https://huggingface.co/allenai/MolmoE-1B-0924",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -57,8 +57,6 @@
       "baseModel": "olmo-1",
       "huggingface": "https://huggingface.co/allenai/Molmo-7B-O-0924",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -74,8 +72,6 @@
       "baseModel": "qwen2",
       "huggingface": "https://huggingface.co/allenai/Molmo-7B-D-0924",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -91,8 +87,6 @@
       "baseModel": "qwen2",
       "huggingface": "https://huggingface.co/allenai/Molmo-72B-0924",
       "requirements": {
-        "minVram": "144GB",
-        "recommendedVram": "160GB",
         "ram": "192GB"
       },
       "gguf": []

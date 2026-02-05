@@ -5,9 +5,10 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0 (0.5B-32B), Qwen License (72B, 110B)",
   "modelType": "BASE",
-
-  "tags": ["official", "multilingual"],
-
+  "tags": [
+    "official",
+    "multilingual"
+  ],
   "benchmarks": {
     "mmlu": 77.5,
     "humaneval": 41.5,
@@ -18,33 +19,45 @@
     },
     "source": "Qwen Blog 2024-02"
   },
-
   "description": {
     "ja": "2024年2月4日公開。Qwenシリーズの改良版で、GQA、SwiGLU、RMSNormを採用したDecoder-onlyアーキテクチャ。3兆トークンで学習し、32Kコンテキストをサポート。0.5Bから110Bまでの幅広いサイズラインナップとMoE版も提供。12言語に対応し、ChatML形式のプロンプトフォーマットを使用。",
     "en": "Released February 4, 2024. An improved version of the Qwen series featuring Decoder-only architecture with GQA, SwiGLU, and RMSNorm. Trained on 3 trillion tokens with 32K context support. Offers a wide range of sizes from 0.5B to 110B and an MoE variant. Supports 12 languages and uses ChatML prompt format."
   },
-
   "specs": {
     "contextLength": 32768,
     "trainingTokens": "3T",
     "knowledgeCutoff": "2023",
-    "languages": ["zh", "en", "fr", "es", "de", "ru", "ja", "ko", "vi", "th", "ar", "id"],
+    "languages": [
+      "zh",
+      "en",
+      "fr",
+      "es",
+      "de",
+      "ru",
+      "ja",
+      "ko",
+      "vi",
+      "th",
+      "ar",
+      "id"
+    ],
     "architecture": "Decoder-only Transformer, GQA with QKV bias, RoPE, SwiGLU, RMSNorm",
     "promptTemplate": {
       "format": "chatml",
       "system": "<|im_start|>system\n{system}<|im_end|>",
       "user": "<|im_start|>user\n{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n",
-      "stopTokens": ["<|im_end|>", "<|endoftext|>"]
+      "stopTokens": [
+        "<|im_end|>",
+        "<|endoftext|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/Qwen",
     "github": "https://github.com/QwenLM/Qwen1.5",
     "website": "https://qwenlm.github.io/blog/qwen1.5/"
   },
-
   "variants": [
     {
       "name": "Qwen1.5 0.5B",
@@ -55,10 +68,6 @@
         "en": "Lightest model. For embedded/edge devices."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-0.5B",
-      "requirements": {
-        "minVram": "1GB",
-        "recommendedVram": "2GB"
-      },
       "gguf": []
     },
     {
@@ -70,10 +79,6 @@
         "en": "Lightweight model. For mobile/IoT devices."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-1.8B",
-      "requirements": {
-        "minVram": "4GB",
-        "recommendedVram": "6GB"
-      },
       "gguf": []
     },
     {
@@ -85,10 +90,6 @@
         "en": "Balanced lightweight model."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-4B",
-      "requirements": {
-        "minVram": "8GB",
-        "recommendedVram": "12GB"
-      },
       "gguf": []
     },
     {
@@ -100,10 +101,6 @@
         "en": "Standard size model. Ideal for general use."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-7B",
-      "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB"
-      },
       "gguf": []
     },
     {
@@ -115,10 +112,6 @@
         "en": "Medium model. High reasoning capability."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-14B",
-      "requirements": {
-        "minVram": "28GB",
-        "recommendedVram": "35GB"
-      },
       "gguf": []
     },
     {
@@ -130,10 +123,6 @@
         "en": "Large model. Handles complex tasks."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-32B",
-      "requirements": {
-        "minVram": "65GB",
-        "recommendedVram": "80GB"
-      },
       "gguf": []
     },
     {
@@ -145,10 +134,6 @@
         "en": "Flagship model. Top performance."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-72B",
-      "requirements": {
-        "minVram": "145GB",
-        "recommendedVram": "160GB"
-      },
       "gguf": []
     },
     {
@@ -160,10 +145,6 @@
         "en": "Largest model. For research and enterprise."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-110B",
-      "requirements": {
-        "minVram": "220GB",
-        "recommendedVram": "250GB"
-      },
       "gguf": []
     },
     {
@@ -180,10 +161,6 @@
         "en": "Mixture of Experts variant. Highly efficient."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen1.5-MoE-A2.7B",
-      "requirements": {
-        "minVram": "28GB",
-        "recommendedVram": "35GB"
-      },
       "gguf": []
     }
   ]

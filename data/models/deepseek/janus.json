@@ -6,35 +6,39 @@
   "license": "MIT",
   "modelType": "FINETUNE",
   "baseModel": "deepseek-llm",
-
-  "tags": ["official", "multimodal", "image-generation", "image-understanding", "unified", "open-source"],
-
+  "tags": [
+    "official",
+    "multimodal",
+    "image-generation",
+    "image-understanding",
+    "unified",
+    "open-source"
+  ],
   "benchmarks": {
     "custom": {
-      "geneval-pro-7b": 80.0,
+      "geneval-pro-7b": 80,
       "dpg-bench-pro-7b": 84.2,
       "mmbench-pro-7b": 79.2
     },
     "source": "https://arxiv.org/abs/2501.17811"
   },
-
   "description": {
     "ja": "DeepSeek AIの統合マルチモーダルモデル。画像理解と画像生成を単一モデルで実現。2024年10月にJanus公開、2025年1月にJanus-Pro公開。分離型ビジュアルエンコーディング（理解: SigLIP-L、生成: VQトークナイザー）を採用。Janus-Pro-7BはGenEval 80.0%でDALL-E 3（67%）を上回る。MITライセンス。",
     "en": "DeepSeek AI's unified multimodal model. Achieves both image understanding and generation in a single model. Janus released October 2024, Janus-Pro released January 2025. Uses decoupled visual encoding (understanding: SigLIP-L, generation: VQ tokenizer). Janus-Pro-7B achieves 80.0% on GenEval, surpassing DALL-E 3 (67%). MIT license."
   },
-
   "specs": {
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["en", "zh"],
+    "languages": [
+      "en",
+      "zh"
+    ],
     "architecture": "Unified multimodal Transformer, Decoupled visual encoding, Understanding: SigLIP-L vision encoder (384x384), Generation: VQ tokenizer (downsample rate 16)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
     "paper": "https://arxiv.org/abs/2501.17811",
     "github": "https://github.com/deepseek-ai/Janus"
   },
-
   "variants": [
     {
       "name": "Janus-1.3B",
@@ -46,7 +50,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/Janus-1.3B",
       "requirements": {
-        "minVram": "4GB",
         "notes": "INT4: 1.5GB"
       },
       "gguf": []
@@ -61,7 +64,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/Janus-Pro-1B",
       "requirements": {
-        "minVram": "3GB",
         "notes": "INT4: 1GB"
       },
       "gguf": []
@@ -76,7 +78,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/Janus-Pro-7B",
       "requirements": {
-        "minVram": "17GB",
         "notes": "INT4: 5GB"
       },
       "gguf": []

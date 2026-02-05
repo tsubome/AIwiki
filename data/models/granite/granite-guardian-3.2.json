@@ -6,25 +6,27 @@
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
   "baseModel": "granite-guardian-3.1",
-
-  "tags": ["official", "safety", "guardrail", "reasoning"],
-
+  "tags": [
+    "official",
+    "safety",
+    "guardrail",
+    "reasoning"
+  ],
   "description": {
     "ja": "30%サイズ削減（8B→5B）でより効率的に。Verbalized Confidence（High/Low）出力、Thinking Mode対応。MoE版（3B-A800M）も提供。LLM-Aggrefactトップ3。",
     "en": "30% size reduction (8B→5B) for better efficiency. Supports Verbalized Confidence (High/Low) output and Thinking Mode. MoE version (3B-A800M) also available. Top 3 on LLM-Aggrefact."
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Decoder-only Transformer / MoE"
   },
-
   "links": {
     "github": "https://github.com/ibm-granite/granite-guardian",
     "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-5b"
   },
-
   "variants": [
     {
       "name": "Granite Guardian 3.2 5B",
@@ -36,8 +38,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-5b",
       "requirements": {
-        "minVram": "11GB",
-        "recommendedVram": "14GB",
         "ram": "18GB"
       },
       "gguf": []
@@ -56,8 +56,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-3b-a800m",
       "requirements": {
-        "minVram": "7GB",
-        "recommendedVram": "8GB",
         "ram": "12GB"
       },
       "gguf": []

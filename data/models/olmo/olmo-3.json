@@ -6,26 +6,29 @@
   "license": "Apache 2.0",
   "modelType": "BASE",
   "baseModel": "olmo-2",
-
-  "tags": ["official", "open-source", "research", "reasoning", "long-context"],
-
+  "tags": [
+    "official",
+    "open-source",
+    "research",
+    "reasoning",
+    "long-context"
+  ],
   "description": {
     "ja": "完全オープンな「モデルフロー」を提供する最新世代。Base、Instruct、Thinkの3バリアントを持ち、推論能力が大幅に向上。65Kトークンのコンテキスト長をサポート。Dolma 3（6T）で学習。",
     "en": "Latest generation providing fully open 'model flow'. Features Base, Instruct, and Think variants with significantly improved reasoning. Supports 65K token context length. Trained on Dolma 3 (6T)."
   },
-
   "specs": {
     "contextLength": 65536,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Decoder-only Transformer with RMSNorm + QK-norm"
   },
-
   "links": {
     "github": "https://github.com/allenai/OLMo",
     "huggingface": "https://huggingface.co/allenai",
     "website": "https://allenai.org/papers/olmo3"
   },
-
   "variants": [
     {
       "name": "OLMo 3 7B",
@@ -37,8 +40,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-1025-7B",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -53,8 +54,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-7B-Instruct",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -69,8 +68,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-7B-Think",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -85,8 +82,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-1125-32B",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []
@@ -101,8 +96,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-32B-Instruct",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []
@@ -117,8 +110,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-32B-Think",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []
@@ -133,8 +124,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3.1-32B-Think",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []
@@ -149,8 +138,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3.1-32B-Instruct",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []

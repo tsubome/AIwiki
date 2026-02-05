@@ -6,31 +6,31 @@
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
   "baseModel": "glm-4-9b",
-
-  "tags": ["official", "code", "function-calling"],
-
+  "tags": [
+    "official",
+    "code",
+    "function-calling"
+  ],
   "description": {
     "ja": "10B以下最強のコード生成モデル。GLM-4-9Bベース。128Kコンテキスト、300+言語対応。コードモデル唯一のFunction Call実装（成功率90%+）。BigCodeBenchで20B以下最高スコア。",
     "en": "Best code generation model under 10B. Based on GLM-4-9B. 128K context, 300+ language support. Only code model with Function Call implementation (90%+ success rate). Highest score on BigCodeBench among <20B models."
   },
-
   "benchmarks": {
     "humaneval": 82.3,
     "source": "CodeGeeX4 Technical Report"
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["code"],
+    "languages": [
+      "code"
+    ],
     "architecture": "GLM-4-9B fine-tuned for code"
   },
-
   "links": {
     "github": "https://github.com/THUDM/CodeGeeX4",
     "huggingface": "https://huggingface.co/THUDM/codegeex4-all-9b",
     "website": "https://codegeex.cn"
   },
-
   "variants": [
     {
       "name": "CodeGeeX4-ALL-9B",
@@ -42,8 +42,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/codegeex4-all-9b",
       "requirements": {
-        "minVram": "19GB",
-        "recommendedVram": "24GB",
         "ram": "24GB"
       },
       "gguf": []

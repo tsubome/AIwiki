@@ -5,24 +5,27 @@
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "open-source", "multimodal", "vision", "video"],
-
+  "tags": [
+    "official",
+    "open-source",
+    "multimodal",
+    "vision",
+    "video"
+  ],
   "description": {
     "ja": "ビデオ理解、マルチ画像推論、オブジェクトトラッキングに対応した次世代VLM。GPT-5やGemini 2.5 Proを上回る性能を一部タスクで達成。SigLIP 2ビジョンエンコーダ採用。最大128フレームのビデオ処理。",
     "en": "Next-generation VLM supporting video understanding, multi-image reasoning, and object tracking. Outperforms GPT-5 and Gemini 2.5 Pro on some tasks. Uses SigLIP 2 vision encoder. Processes up to 128 video frames."
   },
-
   "specs": {
     "contextLength": 8192,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Vision-Language Model (SigLIP 2 + LLM)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/collections/allenai/molmo2"
   },
-
   "variants": [
     {
       "name": "Molmo 2 4B",
@@ -35,8 +38,6 @@
       "baseModel": "qwen3",
       "huggingface": "https://huggingface.co/allenai/Molmo2-4B",
       "requirements": {
-        "minVram": "10GB",
-        "recommendedVram": "12GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -52,8 +53,6 @@
       "baseModel": "qwen3",
       "huggingface": "https://huggingface.co/allenai/Molmo2-8B",
       "requirements": {
-        "minVram": "18GB",
-        "recommendedVram": "24GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -69,8 +68,6 @@
       "baseModel": "olmo-3",
       "huggingface": "https://huggingface.co/allenai/Molmo2-O-7B",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []

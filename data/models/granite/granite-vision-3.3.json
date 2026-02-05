@@ -6,24 +6,26 @@
   "license": "Apache 2.0",
   "modelType": "BASE",
   "baseModel": "granite-vision-3.2",
-
-  "tags": ["official", "multimodal", "vision", "document"],
-
+  "tags": [
+    "official",
+    "multimodal",
+    "vision",
+    "document"
+  ],
   "description": {
     "ja": "Vision 3.2の改良版。新ビジョンエンコーダ、追加学習データ。OCRBench Leaderboard 2位、ViDoRe 2 Leaderboard 5位（2025年10月時点）。",
     "en": "Improved version of Vision 3.2. New vision encoder with additional training data. Ranks 2nd on OCRBench Leaderboard and 5th on ViDoRe 2 Leaderboard (as of October 2025)."
   },
-
   "specs": {
     "contextLength": 8192,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Vision Language Model (improved encoder)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/ibm-granite/granite-vision-3.3-2b"
   },
-
   "variants": [
     {
       "name": "Granite Vision 3.3 2B",
@@ -35,8 +37,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-vision-3.3-2b",
       "requirements": {
-        "minVram": "5GB",
-        "recommendedVram": "8GB",
         "ram": "12GB"
       },
       "gguf": []

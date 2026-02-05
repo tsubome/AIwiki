@@ -5,29 +5,32 @@
   "developer": "Zhipu AI / Tsinghua University",
   "license": "MIT License",
   "modelType": "BASE",
-
-  "tags": ["official", "moe", "agent", "reasoning", "coding"],
-
+  "tags": [
+    "official",
+    "moe",
+    "agent",
+    "reasoning",
+    "coding"
+  ],
   "description": {
     "ja": "GLM-4.5の改良版。コンテキスト128K→200Kに拡張。コーディング・推論能力強化。Claude Code、Cline、Roo Code等で検証済み。GPQA (with tools)で82.9%達成。",
     "en": "Improved version of GLM-4.5. Context expanded from 128K to 200K. Enhanced coding and reasoning capabilities. Verified with Claude Code, Cline, Roo Code, etc. Achieved 82.9% on GPQA (with tools)."
   },
-
   "benchmarks": {
     "gpqa": 82.9,
     "source": "GLM-4.6 Release Notes"
   },
-
   "specs": {
     "contextLength": 200000,
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "Mixture of Experts (357B total / 32B active)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/zai-org/GLM-4.6"
   },
-
   "variants": [
     {
       "name": "GLM-4.6",
@@ -43,8 +46,6 @@
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.6",
       "requirements": {
-        "minVram": "720GB",
-        "recommendedVram": "800GB (H100×8+)",
         "ram": "1TB+"
       },
       "gguf": []
@@ -63,8 +64,6 @@
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.6V",
       "requirements": {
-        "minVram": "720GB",
-        "recommendedVram": "800GB",
         "ram": "1TB+"
       },
       "gguf": []

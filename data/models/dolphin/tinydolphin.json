@@ -6,24 +6,25 @@
   "license": "Apache 2.0",
   "modelType": "FINETUNE",
   "baseModel": "tinyllama",
-
-  "tags": ["uncensored", "fast", "edge"],
-
+  "tags": [
+    "uncensored",
+    "fast",
+    "edge"
+  ],
   "description": {
     "ja": "TinyLlama（1.1B）ベースの超小型実験モデル。Dolphin 2.8データセットで学習。エッジデバイス向け。検閲なし。",
     "en": "Ultra-small experimental model based on TinyLlama (1.1B). Trained on Dolphin 2.8 dataset. Designed for edge devices. Uncensored."
   },
-
   "specs": {
     "contextLength": 2048,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "TinyLlama (Llama 2 based)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8-1.1b"
   },
-
   "variants": [
     {
       "name": "TinyDolphin 2.8 1.1B",
@@ -35,8 +36,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8-1.1b",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -51,8 +50,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8.1-1.1b",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -67,8 +64,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/TinyDolphin-2.8.2-1.1b-laser",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []

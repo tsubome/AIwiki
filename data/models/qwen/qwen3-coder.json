@@ -5,10 +5,12 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
-
   "baseModel": "Qwen3",
-  "tags": ["official", "coding", "moe"],
-
+  "tags": [
+    "official",
+    "coding",
+    "moe"
+  ],
   "benchmarks": {
     "custom": {
       "aider-polyglot": 61.8,
@@ -18,32 +20,41 @@
     },
     "source": "Qwen3-Coder Blog 2025-07"
   },
-
   "description": {
     "ja": "2025年7月22日公開。7.5兆トークン（70%コード）で学習したコード特化MoEモデル。100以上のプログラミング言語をサポート。256Kネイティブコンテキスト（1Mまで拡張可能）。SWE-Bench Verifiedで67-69.6%を達成しオープンSOTA。160エキスパート、8選択のMoEアーキテクチャ。",
     "en": "Released July 22, 2025. Code-specialized MoE model trained on 7.5 trillion tokens (70% code). Supports 100+ programming languages. 256K native context (extendable to 1M). Achieves 67-69.6% on SWE-Bench Verified (Open SOTA). MoE architecture with 160 experts, 8 selected per token."
   },
-
   "specs": {
     "contextLength": 262144,
     "trainingTokens": "7.5T",
-    "languages": ["Python", "JavaScript", "TypeScript", "Java", "C++", "C", "Go", "Rust", "PHP", "Ruby"],
+    "languages": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "Java",
+      "C++",
+      "C",
+      "Go",
+      "Rust",
+      "PHP",
+      "Ruby"
+    ],
     "architecture": "MoE (160 experts, 8 selected per token)",
     "promptTemplate": {
       "format": "chatml",
       "system": "<|im_start|>system\n{system}<|im_end|>",
       "user": "<|im_start|>user\n{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n",
-      "stopTokens": ["<|im_end|>"]
+      "stopTokens": [
+        "<|im_end|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/Qwen",
     "github": "https://github.com/QwenLM/Qwen3-Coder",
     "website": "https://qwenlm.github.io/blog/qwen3-coder/"
   },
-
   "variants": [
     {
       "name": "Qwen3-Coder 30B-A3B",
@@ -59,9 +70,6 @@
         "en": "Lightweight MoE variant. Highly efficient with 3.3B active parameters."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
-      "requirements": {
-        "minVram": "60GB"
-      },
       "gguf": []
     },
     {
@@ -78,9 +86,6 @@
         "en": "Flagship MoE variant. 69.6% on SWE-Bench Verified (Open SOTA)."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
-      "requirements": {
-        "minVram": "250GB"
-      },
       "gguf": []
     }
   ]

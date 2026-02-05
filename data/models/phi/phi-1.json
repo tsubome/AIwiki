@@ -5,9 +5,13 @@
   "developer": "Microsoft Research",
   "license": "MIT",
   "modelType": "BASE",
-
-  "tags": ["official", "code-generation", "textbook-quality-data", "efficient", "open-source"],
-
+  "tags": [
+    "official",
+    "code-generation",
+    "textbook-quality-data",
+    "efficient",
+    "open-source"
+  ],
   "benchmarks": {
     "humaneval": 50.6,
     "custom": {
@@ -15,24 +19,23 @@
     },
     "source": "https://arxiv.org/abs/2306.11644"
   },
-
   "description": {
     "ja": "Microsoft Research初の「Textbooks Are All You Need」モデル。2023年6月公開。1.3Bパラメータながら、Pythonコード生成で当時の最高水準を達成。Webから抽出した教科書品質コードデータ60億+GPT-3.5生成の合成データ10億トークンで学習。高品質データキュレーションの重要性を実証。",
     "en": "Microsoft Research's first 'Textbooks Are All You Need' model. Released June 2023. Despite 1.3B parameters, achieved state-of-the-art Python code generation. Trained on 6B textbook-quality web code + 1B synthetic tokens from GPT-3.5. Demonstrated importance of high-quality data curation."
   },
-
   "specs": {
     "trainingTokens": "7B",
     "knowledgeCutoff": "2023",
-    "languages": ["en", "code"],
+    "languages": [
+      "en",
+      "code"
+    ],
     "architecture": "Dense decoder-only Transformer, 24 layers, hidden size 2048, Python code specialized"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/microsoft",
     "paper": "https://arxiv.org/abs/2306.11644"
   },
-
   "variants": [
     {
       "name": "Phi-1",
@@ -44,7 +47,6 @@
       },
       "huggingface": "https://huggingface.co/microsoft/phi-1",
       "requirements": {
-        "minVram": "3GB",
         "notes": "INT4: 1GB"
       },
       "gguf": []
@@ -58,9 +60,6 @@
         "en": "Released September 2023. General-purpose extension. Enhanced common-sense reasoning and language understanding with NLP synthetic text. Outperforms LLaMA 2 7B on many benchmarks."
       },
       "huggingface": "https://huggingface.co/microsoft/phi-1_5",
-      "requirements": {
-        "minVram": "3GB"
-      },
       "gguf": []
     }
   ]

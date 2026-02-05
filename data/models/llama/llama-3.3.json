@@ -5,45 +5,57 @@
   "developer": "Meta",
   "license": "Llama 3.3 Community License",
   "modelType": "INSTRUCT",
-
   "baseModel": "meta-llama/Llama-3.1-70B",
-  "tags": ["official", "coding", "math", "multilingual", "long-context"],
-
+  "tags": [
+    "official",
+    "coding",
+    "math",
+    "multilingual",
+    "long-context"
+  ],
   "benchmarks": {
-    "mmlu": 86.0,
-    "mmlupro": 55.0,
+    "mmlu": 86,
+    "mmlupro": 55,
     "humaneval": 88.4,
-    "math": 77.0,
+    "math": 77,
     "gpqa": 50.5,
     "ifeval": 92.1,
     "source": "Meta Official Model Card 2024-12"
   },
-
   "description": {
     "ja": "2024年12月6日公開。70Bパラメータで405Bモデルに匹敵する性能を実現した効率特化モデル。Llama 3.1 405Bからの蒸留技術と最新のポストトレーニング技術を70Bサイズに凝縮。Instruction-tuned版のみ提供。MATH (CoT)では77.0%とLlama 3.1 405Bの73.8%を上回る。",
     "en": "Released on December 6, 2024. An efficiency-focused model achieving performance comparable to 405B models with only 70B parameters. Condenses distillation techniques from Llama 3.1 405B and state-of-the-art post-training techniques into a 70B size. Only instruction-tuned version available. Achieves 77.0% on MATH (CoT), surpassing Llama 3.1 405B's 73.8%."
   },
-
   "specs": {
     "contextLength": 128000,
     "trainingTokens": "15T+",
     "knowledgeCutoff": "2023-12",
-    "languages": ["en", "de", "fr", "it", "pt", "hi", "es", "th"],
+    "languages": [
+      "en",
+      "de",
+      "fr",
+      "it",
+      "pt",
+      "hi",
+      "es",
+      "th"
+    ],
     "architecture": "Auto-regressive Transformer (GQA, SFT + RLHF)",
     "promptTemplate": {
       "format": "llama-3",
       "system": "<|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|>",
       "user": "<|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|>",
       "assistant": "<|start_header_id|>assistant<|end_header_id|>\n\n",
-      "stopTokens": ["<|eot_id|>", "<|end_of_text|>"]
+      "stopTokens": [
+        "<|eot_id|>",
+        "<|end_of_text|>"
+      ]
     }
   },
-
   "links": {
     "github": "https://github.com/meta-llama/llama-models",
     "huggingface": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
   },
-
   "variants": [
     {
       "name": "Llama 3.3 70B Instruct",
@@ -55,8 +67,6 @@
       },
       "huggingface": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
       "requirements": {
-        "minVram": "40GB",
-        "recommendedVram": "48GB",
         "ram": "140GB",
         "notes": "Q4_K_M量子化で24GB×2枚、Q8で48GB推奨"
       },

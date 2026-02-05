@@ -5,39 +5,56 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
-
   "baseModel": "Qwen3",
-  "tags": ["official", "vision", "multilingual", "moe"],
-
+  "tags": [
+    "official",
+    "vision",
+    "multilingual",
+    "moe"
+  ],
   "benchmarks": {
     "source": "Qwen3-VL Technical Report (arXiv:2511.21631)"
   },
-
   "description": {
     "ja": "2025年9月23日公開。Qwen3ベースのビジョン言語モデル。ネイティブ動的解像度ViT（16ピクセルパッチ）、Interleaved-MRoPE、DeepStack fusionを採用。1時間以上の動画理解、32言語以上のOCRに対応。256Kコンテキスト（1Mまで拡張可能）。Dense版とMoE版を提供。",
     "en": "Released September 23, 2025. Vision-language model based on Qwen3. Features native dynamic-resolution ViT (16-pixel patch), Interleaved-MRoPE, and DeepStack fusion. Supports 1+ hour video understanding and OCR for 32+ languages. 256K context (extendable to 1M). Offers Dense and MoE variants."
   },
-
   "specs": {
     "contextLength": 262144,
-    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi", "pt", "it", "hi", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "es",
+      "fr",
+      "de",
+      "ar",
+      "ru",
+      "ko",
+      "ja",
+      "th",
+      "vi",
+      "pt",
+      "it",
+      "hi",
+      "id"
+    ],
     "architecture": "Vision Encoder (Native dynamic-resolution ViT, 16-pixel patch), Interleaved-MRoPE, DeepStack fusion, Window Attention",
     "promptTemplate": {
       "format": "chatml-vision",
       "system": "<|im_start|>system\n{system}<|im_end|>",
       "user": "<|im_start|>user\n<|vision_start|><|image_pad|><|vision_end|>{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n",
-      "stopTokens": ["<|im_end|>"]
+      "stopTokens": [
+        "<|im_end|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/collections/Qwen/qwen3-vl-68d2a7c1b8a8afce4ebd2dbe",
     "paper": "https://arxiv.org/abs/2511.21631",
     "github": "https://github.com/QwenLM/Qwen3-VL",
     "website": "https://chat.qwen.ai"
   },
-
   "variants": [
     {
       "name": "Qwen3-VL 2B",
@@ -48,9 +65,6 @@
         "en": "Lightest Dense variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct",
-      "requirements": {
-        "minVram": "6GB"
-      },
       "gguf": []
     },
     {
@@ -62,9 +76,6 @@
         "en": "Compact Dense variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct",
-      "requirements": {
-        "minVram": "10GB"
-      },
       "gguf": []
     },
     {
@@ -76,9 +87,6 @@
         "en": "Standard Dense variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
-      "requirements": {
-        "minVram": "18GB"
-      },
       "gguf": []
     },
     {
@@ -90,9 +98,6 @@
         "en": "Large Dense variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct",
-      "requirements": {
-        "minVram": "70GB"
-      },
       "gguf": []
     },
     {
@@ -109,9 +114,6 @@
         "en": "Lightweight MoE variant. Highly efficient."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct",
-      "requirements": {
-        "minVram": "60GB"
-      },
       "gguf": []
     },
     {
@@ -128,9 +130,6 @@
         "en": "Flagship MoE variant. SOTA on MMMU, MathVista, MathVision."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct",
-      "requirements": {
-        "minVram": "470GB"
-      },
       "gguf": []
     }
   ]

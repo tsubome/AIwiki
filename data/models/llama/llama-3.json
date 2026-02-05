@@ -5,35 +5,38 @@
   "developer": "Meta",
   "license": "Meta Llama 3 Community License",
   "modelType": "BASE",
-
-  "tags": ["official", "multilingual"],
-
+  "tags": [
+    "official",
+    "multilingual"
+  ],
   "description": {
     "ja": "2024年4月18日公開。語彙サイズを128Kトークンに4倍拡大し、15兆トークン以上で学習した第3世代モデル。全サイズでGQA採用。8Bモデルで従来のLlama 2 70Bに匹敵する性能を実現。事前学習・微調整ともにMetaユーザーデータを含まないことを明言。",
     "en": "Released April 18, 2024. Third generation model with 4x vocabulary expansion to 128K tokens, trained on over 15 trillion tokens. GQA adopted across all sizes. 8B model achieves performance comparable to Llama 2 70B. Explicitly confirmed that neither pre-training nor fine-tuning includes Meta user data."
   },
-
   "specs": {
     "contextLength": 8192,
     "trainingTokens": "15T+",
     "knowledgeCutoff": "2023-03 (8B) / 2023-12 (70B)",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Auto-regressive Decoder-only Transformer (全モデルGQA)",
     "promptTemplate": {
       "format": "llama-3",
       "system": "<|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|>",
       "user": "<|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|>",
       "assistant": "<|start_header_id|>assistant<|end_header_id|>\n\n",
-      "stopTokens": ["<|eot_id|>", "<|end_of_text|>"]
+      "stopTokens": [
+        "<|eot_id|>",
+        "<|end_of_text|>"
+      ]
     }
   },
-
   "links": {
     "paper": "https://arxiv.org/abs/2407.21783",
     "github": "https://github.com/meta-llama/llama3",
     "huggingface": "https://huggingface.co/meta-llama"
   },
-
   "variants": [
     {
       "name": "Meta Llama 3 8B",
@@ -45,8 +48,6 @@
       },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
       "requirements": {
-        "minVram": "6GB",
-        "recommendedVram": "8GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -61,8 +62,6 @@
       },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct",
       "requirements": {
-        "minVram": "6GB",
-        "recommendedVram": "8GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -77,8 +76,6 @@
       },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B",
       "requirements": {
-        "minVram": "40GB",
-        "recommendedVram": "48GB",
         "ram": "140GB",
         "notes": "Q4_K_M量子化で24GB×2枚推奨"
       },
@@ -94,8 +91,6 @@
       },
       "huggingface": "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct",
       "requirements": {
-        "minVram": "40GB",
-        "recommendedVram": "48GB",
         "ram": "140GB",
         "notes": "Q4_K_M量子化で24GB×2枚推奨"
       },

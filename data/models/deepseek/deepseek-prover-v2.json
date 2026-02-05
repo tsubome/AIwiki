@@ -6,31 +6,35 @@
   "license": "MIT",
   "modelType": "FINETUNE",
   "baseModel": "deepseek-v3",
-
-  "tags": ["official", "theorem-proving", "lean4", "formal-verification", "long-context", "open-source"],
-
+  "tags": [
+    "official",
+    "theorem-proving",
+    "lean4",
+    "formal-verification",
+    "long-context",
+    "open-source"
+  ],
   "benchmarks": {
     "custom": {
       "minif2f": 88.9
     }
   },
-
   "description": {
     "ja": "DeepSeek AIの第2世代定理証明器。2025年4月公開。Lean 4形式言語対応。163,840トークンの超長コンテキスト。7Bと671Bの2サイズ展開。MiniF2F 88.9%達成。MITライセンス。",
     "en": "DeepSeek AI's second-generation theorem prover. Released April 2025. Supports Lean 4 formal language. Ultra-long 163,840 token context. Available in 7B and 671B sizes. Achieves 88.9% on MiniF2F. MIT license."
   },
-
   "specs": {
     "contextLength": 163840,
     "knowledgeCutoff": "2025-Q2",
-    "languages": ["en", "lean4"],
+    "languages": [
+      "en",
+      "lean4"
+    ],
     "architecture": "Formal theorem proving for Lean 4, Ultra-long context"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai"
   },
-
   "variants": [
     {
       "name": "DeepSeek-Prover-V2-7B",
@@ -42,7 +46,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-7B",
       "requirements": {
-        "minVram": "17GB",
         "notes": "INT4: 5GB"
       },
       "gguf": []
@@ -61,7 +64,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
       "requirements": {
-        "minVram": "1.4TB",
         "notes": "8xH200 141GB recommended"
       },
       "gguf": []

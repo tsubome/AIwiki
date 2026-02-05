@@ -6,9 +6,12 @@
   "license": "Gemma Terms of Use",
   "modelType": "INSTRUCT",
   "baseModel": "gemma",
-
-  "tags": ["official", "coding", "fill-in-middle", "instruction-tuned"],
-
+  "tags": [
+    "official",
+    "coding",
+    "fill-in-middle",
+    "instruction-tuned"
+  ],
   "benchmarks": {
     "humaneval": 60.4,
     "custom": {
@@ -18,33 +21,34 @@
     },
     "source": "https://arxiv.org/abs/2406.11409"
   },
-
   "description": {
     "ja": "2024年4月9日公開（v1.1は5月）。Gemmaベースのコーディング特化モデル。Fill-in-the-Middle（FIM）学習（80% FIM率、50-50 PSM/SPM）採用。Dependency Graph-based Packing、Unit Test-based Lexical Packingで効率化。C++、C#、Go、Java、JavaScript、Kotlin、Python、Rust等対応。",
     "en": "Released April 9, 2024 (v1.1 in May). Gemma-based coding specialized model. Features Fill-in-the-Middle (FIM) training (80% FIM rate, 50-50 PSM/SPM). Optimized with Dependency Graph-based Packing and Unit Test-based Lexical Packing. Supports C++, C#, Go, Java, JavaScript, Kotlin, Python, Rust, etc."
   },
-
   "specs": {
     "contextLength": 8192,
     "trainingTokens": "500B-1T (code/math)",
     "knowledgeCutoff": "2024",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Gemma base, Fill-in-the-Middle (FIM), Dependency Graph-based Packing",
     "promptTemplate": {
       "format": "gemma-fim",
       "user": "<start_of_turn>user\n{user_message}<end_of_turn>",
       "assistant": "<start_of_turn>model\n{assistant_response}<end_of_turn>",
-      "stopTokens": ["<end_of_turn>", "<|file_separator|>"]
+      "stopTokens": [
+        "<end_of_turn>",
+        "<|file_separator|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/google",
     "paper": "https://arxiv.org/abs/2406.11409",
     "github": "https://github.com/google-deepmind/codegemma",
     "website": "https://ai.google.dev/gemma/docs/codegemma"
   },
-
   "variants": [
     {
       "name": "CodeGemma 2B",
@@ -55,9 +59,6 @@
         "en": "Lightweight FIM version. Optimal for code completion."
       },
       "huggingface": "https://huggingface.co/google/codegemma-2b",
-      "requirements": {
-        "minVram": "5GB"
-      },
       "gguf": []
     },
     {
@@ -69,9 +70,6 @@
         "en": "Standard FIM version. High-accuracy code completion."
       },
       "huggingface": "https://huggingface.co/google/codegemma-7b",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -83,9 +81,6 @@
         "en": "7B instruction-tuned variant. Optimal for code generation and explanation."
       },
       "huggingface": "https://huggingface.co/google/codegemma-7b-it",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -97,9 +92,6 @@
         "en": "v1.1 instruction-tuned variant. Improved version."
       },
       "huggingface": "https://huggingface.co/google/codegemma-1.1-7b-it",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     }
   ]

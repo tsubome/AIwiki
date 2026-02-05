@@ -6,24 +6,31 @@
   "license": "Commercial",
   "modelType": "FINETUNE",
   "baseModel": "mistral-small",
-
-  "tags": ["official", "audio", "speech", "transcription", "translation"],
-
+  "tags": [
+    "official",
+    "audio",
+    "speech",
+    "transcription",
+    "translation"
+  ],
   "description": {
     "ja": "Mistral AIの音声入力モデル。2025年7月公開。Mistral Small 3に最先端の音声入力機能を追加。音声文字起こし、翻訳、音声理解に優れる。テキスト性能を維持しつつ音声機能を統合。",
     "en": "Mistral AI's audio input model. Released July 2025. Adds state-of-the-art audio input capabilities to Mistral Small 3. Excels at transcription, translation, and audio understanding. Integrates audio while maintaining text performance."
   },
-
   "specs": {
     "knowledgeCutoff": "2025-Q2",
-    "languages": ["en", "fr", "de", "es", "it"],
+    "languages": [
+      "en",
+      "fr",
+      "de",
+      "es",
+      "it"
+    ],
     "architecture": "Multimodal Transformer, Audio encoder"
   },
-
   "links": {
     "website": "https://mistral.ai"
   },
-
   "variants": [
     {
       "name": "Voxtral Mini",
@@ -47,7 +54,6 @@
         "en": "Based on Mistral Small 3. Transcription, translation, audio understanding."
       },
       "requirements": {
-        "minVram": "60GB",
         "notes": "Includes audio encoder"
       },
       "gguf": []

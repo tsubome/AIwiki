@@ -6,26 +6,46 @@
   "license": "Gemma Terms of Use",
   "modelType": "INSTRUCT",
   "baseModel": "gemma3",
-
-  "tags": ["official", "translation", "multilingual", "vision"],
-
+  "tags": [
+    "official",
+    "translation",
+    "multilingual",
+    "vision"
+  ],
   "description": {
     "ja": "2025年1月14日公開。Gemma 3ベースの翻訳特化モデル。55言語ペア対応。SigLIP vision encoder搭載で画像翻訳にも対応。4.3B SFT + 10.2M RLトークンでファインチューニング。12Bモデルは27B Gemma 3ベースラインを上回る翻訳性能を達成。",
     "en": "Released January 14, 2025. Gemma 3-based translation specialized model. Supports 55 language pairs. Image translation capable via SigLIP vision encoder. Fine-tuned with 4.3B SFT + 10.2M RL tokens. 12B model outperforms 27B Gemma 3 baseline in translation."
   },
-
   "specs": {
     "contextLength": 128000,
     "trainingTokens": "4.3B (SFT) + 10.2M (RL)",
-    "languages": ["en", "zh", "ja", "ko", "de", "fr", "es", "pt", "it", "ru", "ar", "hi", "cs", "nl", "pl", "tr", "vi", "th", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "ja",
+      "ko",
+      "de",
+      "fr",
+      "es",
+      "pt",
+      "it",
+      "ru",
+      "ar",
+      "hi",
+      "cs",
+      "nl",
+      "pl",
+      "tr",
+      "vi",
+      "th",
+      "id"
+    ],
     "architecture": "Gemma 3 base, Translation fine-tuning, SigLIP vision encoder"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/google",
     "website": "https://blog.google/innovation-and-ai/technology/developers-tools/translategemma/"
   },
-
   "variants": [
     {
       "name": "TranslateGemma 4B Instruct",
@@ -36,9 +56,6 @@
         "en": "For mobile/edge. Lightweight translation model."
       },
       "huggingface": "https://huggingface.co/google/translategemma-4b-it",
-      "requirements": {
-        "minVram": "10GB"
-      },
       "gguf": []
     },
     {
@@ -50,9 +67,6 @@
         "en": "For consumer laptops. Outperforms 27B Gemma 3 in translation."
       },
       "huggingface": "https://huggingface.co/google/translategemma-12b-it",
-      "requirements": {
-        "minVram": "28GB"
-      },
       "gguf": []
     },
     {
@@ -64,9 +78,6 @@
         "en": "For cloud (H100/TPU). Highest accuracy translation."
       },
       "huggingface": "https://huggingface.co/google/translategemma-27b-it",
-      "requirements": {
-        "minVram": "65GB"
-      },
       "gguf": []
     }
   ]

@@ -5,9 +5,12 @@
   "developer": "DeepSeek AI",
   "license": "DeepSeek Model License",
   "modelType": "BASE",
-
-  "tags": ["official", "code-generation", "fill-in-middle", "multilingual-code"],
-
+  "tags": [
+    "official",
+    "code-generation",
+    "fill-in-middle",
+    "multilingual-code"
+  ],
   "benchmarks": {
     "humaneval": 56.1,
     "custom": {
@@ -16,26 +19,25 @@
     },
     "source": "https://arxiv.org/abs/2401.14196"
   },
-
   "description": {
     "ja": "DeepSeek AIのコード特化LLM。2023年11月2日公開。2兆トークン（87%コード、13%自然言語）で学習。87プログラミング言語対応。Fill-in-the-Middle（FIM）学習でコード補完に対応。16Kコンテキスト。",
     "en": "DeepSeek AI's code-specialized LLM. Released November 2, 2023. Trained on 2 trillion tokens (87% code, 13% natural language). Supports 87 programming languages. Fill-in-the-Middle (FIM) training enables code completion. 16K context."
   },
-
   "specs": {
     "contextLength": 16384,
     "trainingTokens": "2T",
     "knowledgeCutoff": "2023",
-    "languages": ["en", "code"],
+    "languages": [
+      "en",
+      "code"
+    ],
     "architecture": "LLaMA-style decoder-only Transformer, Fill-in-the-Middle (FIM) training, Repository-level code understanding, 87 programming languages"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
     "paper": "https://arxiv.org/abs/2401.14196",
     "github": "https://github.com/deepseek-ai/DeepSeek-Coder"
   },
-
   "variants": [
     {
       "name": "DeepSeek-Coder 1.3B Base",
@@ -47,7 +49,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-1.3b-base",
       "requirements": {
-        "minVram": "4GB",
         "notes": "INT4: 1GB"
       },
       "gguf": []
@@ -61,9 +62,6 @@
         "en": "1.3B instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-1.3b-instruct",
-      "requirements": {
-        "minVram": "4GB"
-      },
       "gguf": []
     },
     {
@@ -76,7 +74,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-5.7bmqa-base",
       "requirements": {
-        "minVram": "14GB",
         "notes": "INT4: 4GB"
       },
       "gguf": []
@@ -91,7 +88,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-6.7b-base",
       "requirements": {
-        "minVram": "17GB",
         "notes": "INT4: 5GB"
       },
       "gguf": []
@@ -105,9 +101,6 @@
         "en": "6.7B instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-6.7b-instruct",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -120,7 +113,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-base",
       "requirements": {
-        "minVram": "70GB",
         "notes": "INT4: 20GB"
       },
       "gguf": []
@@ -134,9 +126,6 @@
         "en": "33B instruction-tuned variant. Achieves 78.7% on HumanEval."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-instruct",
-      "requirements": {
-        "minVram": "70GB"
-      },
       "gguf": []
     }
   ]

@@ -5,27 +5,28 @@
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "code", "multilingual"],
-
+  "tags": [
+    "official",
+    "code",
+    "multilingual"
+  ],
   "description": {
     "ja": "116プログラミング言語対応のコード生成モデルファミリー。4兆トークンで学習。HumanEvalPackでMistral-7B、Llama-3-8Bを超える性能。Base版とInstruct版を提供。",
     "en": "Code generation model family supporting 116 programming languages. Trained on 4T tokens. Outperforms Mistral-7B and Llama-3-8B on HumanEvalPack. Available in Base and Instruct versions."
   },
-
   "specs": {
     "contextLength": 8192,
     "trainingTokens": "4T (code) + 500B (code+language)",
-    "languages": ["code"],
+    "languages": [
+      "code"
+    ],
     "architecture": "Decoder-only Transformer"
   },
-
   "links": {
     "paper": "https://arxiv.org/abs/2405.04324",
     "github": "https://github.com/ibm-granite/granite-code-models",
     "huggingface": "https://huggingface.co/ibm-granite"
   },
-
   "variants": [
     {
       "name": "Granite Code 3B Base",
@@ -37,8 +38,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-base",
       "requirements": {
-        "minVram": "7GB",
-        "recommendedVram": "8GB",
         "ram": "12GB"
       },
       "gguf": []
@@ -53,8 +52,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-instruct",
       "requirements": {
-        "minVram": "7GB",
-        "recommendedVram": "8GB",
         "ram": "12GB"
       },
       "gguf": []
@@ -69,8 +66,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-base",
       "requirements": {
-        "minVram": "17GB",
-        "recommendedVram": "20GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -85,8 +80,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-instruct",
       "requirements": {
-        "minVram": "17GB",
-        "recommendedVram": "20GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -101,8 +94,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-20b-code-base",
       "requirements": {
-        "minVram": "42GB",
-        "recommendedVram": "48GB",
         "ram": "64GB"
       },
       "gguf": []
@@ -117,8 +108,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-34b-code-base",
       "requirements": {
-        "minVram": "70GB",
-        "recommendedVram": "80GB",
         "ram": "128GB"
       },
       "gguf": []

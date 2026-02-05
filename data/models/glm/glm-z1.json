@@ -6,25 +6,27 @@
   "license": "MIT License",
   "modelType": "INSTRUCT",
   "baseModel": "glm-4-32b",
-
-  "tags": ["official", "reasoning", "deep-thinking"],
-
+  "tags": [
+    "official",
+    "reasoning",
+    "deep-thinking"
+  ],
   "description": {
     "ja": "深層推論に特化したGLM-4-32Bの派生モデル。数学・コード・論理推論を強化。GLM-Z1-Ruminationは検索ツール統合による熟考モデルでDeep Research対抗。Cold Start + Extended RL、Pairwise Ranking Feedbackで学習。",
     "en": "GLM-4-32B derivative specialized for deep reasoning. Enhanced math, code, and logical reasoning. GLM-Z1-Rumination is a deliberation model with search tool integration, competing with Deep Research. Trained with Cold Start + Extended RL and Pairwise Ranking Feedback."
   },
-
   "specs": {
     "contextLength": 32000,
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "GLM-4-32B with Reasoning Enhancement"
   },
-
   "links": {
     "github": "https://github.com/THUDM/GLM-4",
     "huggingface": "https://huggingface.co/THUDM/GLM-Z1-32B-0414"
   },
-
   "variants": [
     {
       "name": "GLM-Z1-32B-0414",
@@ -36,8 +38,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/GLM-Z1-32B-0414",
       "requirements": {
-        "minVram": "65GB",
-        "recommendedVram": "80GB",
         "ram": "128GB"
       },
       "gguf": []
@@ -52,8 +52,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/GLM-Z1-Rumination-32B-0414",
       "requirements": {
-        "minVram": "65GB",
-        "recommendedVram": "80GB",
         "ram": "128GB"
       },
       "gguf": []
@@ -68,8 +66,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/GLM-Z1-9B-0414",
       "requirements": {
-        "minVram": "19GB",
-        "recommendedVram": "24GB",
         "ram": "24GB"
       },
       "gguf": []

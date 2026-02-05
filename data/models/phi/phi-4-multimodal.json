@@ -6,27 +6,39 @@
   "license": "MIT",
   "modelType": "BASE",
   "baseModel": "phi-4-mini",
-
-  "tags": ["official", "multimodal", "vision", "audio", "speech", "mixture-of-loras", "open-source"],
-
+  "tags": [
+    "official",
+    "multimodal",
+    "vision",
+    "audio",
+    "speech",
+    "mixture-of-loras",
+    "open-source"
+  ],
   "description": {
     "ja": "2025年2月公開。テキスト+画像+音声の3モーダル対応。5.6Bパラメータ。Phi-4-mini（3.8B）バックボーン+SigLIPビジョンエンコーダー（440M）+Conformerスピーチエンコーダー。Mixture-of-LoRAs設計でモダリティ干渉なしに複数推論モードを実現。初のオープンソース音声要約モデル。OpenASR Leaderboard 1位、WhisperV3超のASR性能。",
     "en": "Released February 2025. Text+Image+Audio trimodal. 5.6B parameters. Phi-4-mini (3.8B) backbone + SigLIP vision encoder (440M) + Conformer speech encoder. Mixture-of-LoRAs design enables multiple inference modes without modality interference. First open-source audio summarization model. #1 on OpenASR Leaderboard, exceeds WhisperV3 ASR."
   },
-
   "specs": {
     "contextLength": 128000,
     "trainingTokens": "5T text + 1.1T image-text + 2.3M hours audio",
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["en", "zh", "de", "fr", "it", "ja", "es", "pt"],
+    "languages": [
+      "en",
+      "zh",
+      "de",
+      "fr",
+      "it",
+      "ja",
+      "es",
+      "pt"
+    ],
     "architecture": "Phi-4-mini backbone, SigLIP-400M vision encoder, Conformer speech encoder, Mixture-of-LoRAs"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/microsoft",
     "paper": "https://arxiv.org/abs/2503.01743"
   },
-
   "variants": [
     {
       "name": "Phi-4-multimodal Instruct",
@@ -38,7 +50,6 @@
       },
       "huggingface": "https://huggingface.co/microsoft/Phi-4-multimodal-instruct",
       "requirements": {
-        "minVram": "12GB",
         "notes": "INT4: 5GB, Edge device compatible"
       },
       "gguf": []

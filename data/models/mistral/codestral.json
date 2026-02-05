@@ -5,36 +5,40 @@
   "developer": "Mistral AI",
   "license": "Mistral AI Non-Production License",
   "modelType": "BASE",
-
-  "tags": ["official", "code-generation", "fill-in-middle", "multilingual-code"],
-
+  "tags": [
+    "official",
+    "code-generation",
+    "fill-in-middle",
+    "multilingual-code"
+  ],
   "benchmarks": {
     "humaneval": 81.1,
     "source": "https://mistral.ai/news/codestral"
   },
-
   "description": {
     "ja": "Mistral AIのコード特化モデル。2024年5月29日公開。80以上のプログラミング言語対応。Fill-in-the-Middle（FIM）対応でコード補完、テスト生成、コード修正に特化。32Kコンテキスト。Codestral 25.01で2.5倍高速化。",
     "en": "Mistral AI's code-specialized model. Released May 29, 2024. Supports 80+ programming languages. Fill-in-the-Middle (FIM) support for code completion, test generation, and code fixes. 32K context. Codestral 25.01 is 2.5x faster."
   },
-
   "specs": {
     "contextLength": 32768,
     "knowledgeCutoff": "2024-Q2",
-    "languages": ["en", "code"],
+    "languages": [
+      "en",
+      "code"
+    ],
     "architecture": "Dense Transformer, Fill-in-the-Middle (FIM), 80+ programming languages",
     "promptTemplate": {
       "format": "codestral-fim",
       "user": "[PREFIX]{prefix}[SUFFIX]{suffix}[MIDDLE]",
-      "stopTokens": ["</s>"]
+      "stopTokens": [
+        "</s>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
     "website": "https://mistral.ai/news/codestral"
   },
-
   "variants": [
     {
       "name": "Codestral 22B v0.1",
@@ -46,7 +50,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Codestral-22B-v0.1",
       "requirements": {
-        "minVram": "50GB",
         "notes": "INT4: 14GB"
       },
       "gguf": []
@@ -60,7 +63,6 @@
         "en": "Released January 2025. 2.5x faster with architecture improvements. Improved tokenizer."
       },
       "requirements": {
-        "minVram": "50GB",
         "notes": "API and download available"
       },
       "gguf": []

@@ -6,24 +6,33 @@
   "license": "Apache 2.0",
   "modelType": "FINETUNE",
   "baseModel": "mistral-7b",
-
-  "tags": ["uncensored", "multilingual", "coding", "long-context"],
-
+  "tags": [
+    "uncensored",
+    "multilingual",
+    "coding",
+    "long-context"
+  ],
   "description": {
     "ja": "Mistral-7B-v0.2ベースの検閲なしモデル。32Kコンテキスト対応。指示、会話、コーディングスキルに優れる。",
     "en": "Uncensored model based on Mistral-7B-v0.2. Supports 32K context. Excellent at instructions, conversation, and coding."
   },
-
   "specs": {
     "contextLength": 32768,
-    "languages": ["en", "de", "es", "fr", "it", "pt", "nl", "ru"],
+    "languages": [
+      "en",
+      "de",
+      "es",
+      "fr",
+      "it",
+      "pt",
+      "nl",
+      "ru"
+    ],
     "architecture": "Mistral Transformer Decoder-only"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.8-mistral-7b-v02"
   },
-
   "variants": [
     {
       "name": "Dolphin 2.8 Mistral 7B v0.2",
@@ -35,8 +44,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.8-mistral-7b-v02",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -51,8 +58,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.6-mistral-7b-dpo",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -67,8 +72,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.5-mistral-7b",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []

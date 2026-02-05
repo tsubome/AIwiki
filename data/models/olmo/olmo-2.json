@@ -6,26 +6,28 @@
   "license": "Apache 2.0",
   "modelType": "BASE",
   "baseModel": "olmo-1",
-
-  "tags": ["official", "open-source", "research", "multilingual"],
-
+  "tags": [
+    "official",
+    "open-source",
+    "research",
+    "multilingual"
+  ],
   "description": {
     "ja": "最大6Tトークンで学習した新世代モデル。RMSNorm、Z-loss正則化、学習率アニーリングなど安定性向上技術を導入。Llama 3.1 8Bを上回る性能。Tülu 3パイプラインでポストトレーニング。",
     "en": "New generation model trained on up to 6T tokens. Introduces stability improvements including RMSNorm, Z-loss regularization, and learning rate annealing. Outperforms Llama 3.1 8B. Post-trained with Tülu 3 pipeline."
   },
-
   "specs": {
     "contextLength": 4096,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Decoder-only Transformer with RMSNorm"
   },
-
   "links": {
     "github": "https://github.com/allenai/OLMo",
     "huggingface": "https://huggingface.co/allenai",
     "paper": "https://arxiv.org/abs/2501.00656"
   },
-
   "variants": [
     {
       "name": "OLMo 2 1B",
@@ -37,8 +39,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-0425-1B",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -53,8 +53,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -69,8 +67,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-7B",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -85,8 +81,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -101,8 +95,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-13B",
       "requirements": {
-        "minVram": "26GB",
-        "recommendedVram": "32GB",
         "ram": "48GB"
       },
       "gguf": []
@@ -117,8 +109,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-1124-13B-Instruct",
       "requirements": {
-        "minVram": "26GB",
-        "recommendedVram": "32GB",
         "ram": "48GB"
       },
       "gguf": []
@@ -133,8 +123,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-0325-32B",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []
@@ -149,8 +137,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-2-0325-32B-Instruct",
       "requirements": {
-        "minVram": "64GB",
-        "recommendedVram": "80GB",
         "ram": "96GB"
       },
       "gguf": []

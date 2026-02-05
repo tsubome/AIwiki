@@ -5,10 +5,11 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
   "baseModel": "Qwen3",
-  "tags": ["official", "multilingual"],
-
+  "tags": [
+    "official",
+    "multilingual"
+  ],
   "benchmarks": {
     "custom": {
       "mteb-multilingual": 70.58,
@@ -17,19 +18,33 @@
       "mteb-code": 80.68,
       "retrieval": 70.88,
       "sts": 81.08,
-      "classification": 74.00
+      "classification": 74
     },
     "source": "Qwen3-Embedding Technical Report (arXiv:2506.05176)"
   },
-
   "description": {
     "ja": "2025年6月5日公開。Qwen3ベースの埋め込みモデル。MTEB Multilingual Overallで#1（70.58）を達成。100以上の自然言語・プログラミング言語をサポート。Matryoshka Representation Learning（MRL）による可変次元埋め込み、LoRAファインチューニングに対応。Rerankerモデルも提供。",
     "en": "Released June 5, 2025. Embedding model based on Qwen3. Achieves #1 on MTEB Multilingual Overall (70.58). Supports 100+ natural and programming languages. Features variable-dimension embeddings via Matryoshka Representation Learning (MRL) and LoRA fine-tuning support. Reranker models also available."
   },
-
   "specs": {
     "contextLength": 32768,
-    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi", "pt", "it", "hi", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "es",
+      "fr",
+      "de",
+      "ar",
+      "ru",
+      "ko",
+      "ja",
+      "th",
+      "vi",
+      "pt",
+      "it",
+      "hi",
+      "id"
+    ],
     "architecture": "Dense Transformer decoder (Qwen3), Dual-encoder, Last token pooling (EOS), Matryoshka Representation Learning (MRL)",
     "promptTemplate": {
       "format": "instruct-embedding",
@@ -37,14 +52,12 @@
       "stopTokens": []
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
     "paper": "https://arxiv.org/abs/2506.05176",
     "github": "https://github.com/QwenLM/Qwen3-Embedding",
     "website": "https://qwenlm.github.io/blog/qwen3-embedding/"
   },
-
   "variants": [
     {
       "name": "Qwen3-Embedding 0.6B",
@@ -55,9 +68,6 @@
         "en": "Lightweight variant. 1024-dim embeddings."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
-      "requirements": {
-        "minVram": "2GB"
-      },
       "gguf": []
     },
     {
@@ -69,9 +79,6 @@
         "en": "Standard variant. 2560-dim embeddings."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Embedding-4B",
-      "requirements": {
-        "minVram": "10GB"
-      },
       "gguf": []
     },
     {
@@ -83,9 +90,6 @@
         "en": "Flagship variant. 4096-dim embeddings. MTEB #1."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
-      "requirements": {
-        "minVram": "18GB"
-      },
       "gguf": []
     },
     {
@@ -97,9 +101,6 @@
         "en": "Lightweight Reranker variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Reranker-0.6B",
-      "requirements": {
-        "minVram": "2GB"
-      },
       "gguf": []
     },
     {
@@ -111,9 +112,6 @@
         "en": "Standard Reranker variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Reranker-4B",
-      "requirements": {
-        "minVram": "10GB"
-      },
       "gguf": []
     },
     {
@@ -125,9 +123,6 @@
         "en": "Flagship Reranker variant."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-Reranker-8B",
-      "requirements": {
-        "minVram": "18GB"
-      },
       "gguf": []
     }
   ]

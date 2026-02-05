@@ -6,37 +6,39 @@
   "license": "Apache-2.0",
   "modelType": "BASE",
   "baseModel": "mistral-nemo",
-
-  "tags": ["official", "multimodal", "vision", "variable-resolution", "open-source"],
-
+  "tags": [
+    "official",
+    "multimodal",
+    "vision",
+    "variable-resolution",
+    "open-source"
+  ],
   "benchmarks": {
     "custom": {
       "mmmu-cot": 52.5,
-      "mathvista-cot": 58.0,
+      "mathvista-cot": 58,
       "chartqa-cot": 81.8,
       "docvqa-anls": 90.7,
       "vqav2": 78.6
     },
     "source": "https://mistral.ai/news/pixtral-12b"
   },
-
   "description": {
     "ja": "Mistral AIの初のマルチモーダルモデル。2024年9月17日公開。テキスト12B+ビジョンエンコーダー400Mパラメータ。スクラッチから学習した新規ビジョンエンコーダーで可変解像度・アスペクト比対応。128Kコンテキストで任意の数の画像を処理可能。Mistral NeMo 12Bのドロップイン置き換え。",
     "en": "Mistral AI's first multimodal model. Released September 17, 2024. 12B text + 400M vision encoder parameters. Scratch-trained vision encoder supports variable resolution and aspect ratios. Processes arbitrary number of images in 128K context. Drop-in replacement for Mistral NeMo 12B."
   },
-
   "specs": {
     "contextLength": 128000,
     "knowledgeCutoff": "2024-Q3",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Multimodal Transformer, Variable-resolution vision encoder, 128K context"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
     "website": "https://mistral.ai/news/pixtral-12b"
   },
-
   "variants": [
     {
       "name": "Pixtral 12B (2409)",
@@ -52,7 +54,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Pixtral-12B-2409",
       "requirements": {
-        "minVram": "30GB",
         "notes": "INT4: 10GB"
       },
       "gguf": []

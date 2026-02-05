@@ -6,32 +6,36 @@
   "license": "Apache-2.0",
   "modelType": "FINETUNE",
   "baseModel": "deepseek-v3-2",
-
-  "tags": ["official", "math", "reasoning", "self-verification", "competition-math", "open-source"],
-
+  "tags": [
+    "official",
+    "math",
+    "reasoning",
+    "self-verification",
+    "competition-math",
+    "open-source"
+  ],
   "benchmarks": {
     "custom": {
       "putnam-2024": 118
     },
     "source": "https://arxiv.org/abs/2511.22570"
   },
-
   "description": {
     "ja": "DeepSeek AIの第2世代数学推論モデル。2025年11月27日公開。自己検証型数学推論を導入。IMO 2025金メダル（6問中5問解決）、CMO 2024金メダル、Putnam 2024で118/120点（人間最高90点）を達成。685Bパラメータ。Apache 2.0ライセンス。",
     "en": "DeepSeek AI's second-generation math reasoning model. Released November 27, 2025. Introduces self-verification math reasoning. Achieves IMO 2025 Gold (5/6 solved), CMO 2024 Gold, and 118/120 on Putnam 2024 (human top: 90). 685B parameters. Apache 2.0 license."
   },
-
   "specs": {
     "knowledgeCutoff": "2025-Q4",
-    "languages": ["en", "zh"],
+    "languages": [
+      "en",
+      "zh"
+    ],
     "architecture": "Self-verification math reasoning, LLM-based proof verification with meta-verification"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
     "paper": "https://arxiv.org/abs/2511.22570"
   },
-
   "variants": [
     {
       "name": "DeepSeekMath-V2",
@@ -47,7 +51,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/DeepSeekMath-V2",
       "requirements": {
-        "minVram": "1.4TB",
         "notes": "8xH200 141GB recommended"
       },
       "gguf": []

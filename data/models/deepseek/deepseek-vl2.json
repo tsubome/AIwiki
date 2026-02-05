@@ -6,37 +6,41 @@
   "license": "DeepSeek Model License",
   "modelType": "FINETUNE",
   "baseModel": "deepseek-v2",
-
-  "tags": ["official", "vision", "multimodal", "moe", "ocr", "document-understanding"],
-
+  "tags": [
+    "official",
+    "vision",
+    "multimodal",
+    "moe",
+    "ocr",
+    "document-understanding"
+  ],
   "benchmarks": {
     "custom": {
       "mmstar-tiny": 45.9,
       "ocrbench-tiny": 809,
       "docvqa-tiny": 88.9,
-      "chartqa-tiny": 81.0,
+      "chartqa-tiny": 81,
       "mathvista-tiny": 53.6
     },
     "source": "https://arxiv.org/abs/2412.10302"
   },
-
   "description": {
     "ja": "DeepSeek AIの第2世代Vision-Language MoEモデル。2024年12月13日公開。384x384基本解像度で動的タイリング対応。Tiny（33.7B/10B活性化）、Small（161B/28B活性化）、フル（275B/45B活性化）の3サイズ展開。OCR、文書理解、チャート分析に強い。",
     "en": "DeepSeek AI's second-generation Vision-Language MoE model. Released December 13, 2024. Supports dynamic tiling from 384x384 base resolution. Available in Tiny (33.7B/10B active), Small (161B/28B active), and full (275B/45B active) sizes. Strong in OCR, document understanding, and chart analysis."
   },
-
   "specs": {
     "knowledgeCutoff": "2024-Q4",
-    "languages": ["en", "zh"],
+    "languages": [
+      "en",
+      "zh"
+    ],
     "architecture": "Vision-Language MoE, 384x384 base resolution, Dynamic tiling"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
     "paper": "https://arxiv.org/abs/2412.10302",
     "github": "https://github.com/deepseek-ai/DeepSeek-VL2"
   },
-
   "variants": [
     {
       "name": "DeepSeek-VL2-Tiny",
@@ -52,7 +56,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl2-tiny",
       "requirements": {
-        "minVram": "70GB",
         "notes": "INT4: 20GB"
       },
       "gguf": []
@@ -71,7 +74,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl2-small",
       "requirements": {
-        "minVram": "350GB",
         "notes": "4x80GB GPU recommended"
       },
       "gguf": []
@@ -90,7 +92,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl2",
       "requirements": {
-        "minVram": "600GB",
         "notes": "8x80GB GPU recommended"
       },
       "gguf": []

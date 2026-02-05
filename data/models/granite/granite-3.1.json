@@ -6,25 +6,38 @@
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
   "baseModel": "granite-3.0",
-
-  "tags": ["official", "multilingual", "long-context", "enterprise"],
-
+  "tags": [
+    "official",
+    "multilingual",
+    "long-context",
+    "enterprise"
+  ],
   "description": {
     "ja": "128Kコンテキスト対応、性能大幅向上。OpenLLM Leaderboardトップクラス。IFEval（指示遵守）、MuSR（マルチステップ推論）で大幅改善。Samsung SDS、Lockheed Martinで導入。",
     "en": "128K context support with significant performance improvements. Top-class on OpenLLM Leaderboard. Major improvements in IFEval (instruction following) and MuSR (multi-step reasoning). Deployed at Samsung SDS and Lockheed Martin."
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["en", "de", "es", "fr", "ja", "pt", "ar", "cs", "it", "ko", "nl", "zh"],
+    "languages": [
+      "en",
+      "de",
+      "es",
+      "fr",
+      "ja",
+      "pt",
+      "ar",
+      "cs",
+      "it",
+      "ko",
+      "nl",
+      "zh"
+    ],
     "architecture": "Decoder-only Transformer / MoE"
   },
-
   "links": {
     "github": "https://github.com/ibm-granite/granite-models",
     "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-8b-instruct"
   },
-
   "variants": [
     {
       "name": "Granite 3.1 8B Instruct",
@@ -36,8 +49,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-8b-instruct",
       "requirements": {
-        "minVram": "17GB",
-        "recommendedVram": "24GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -52,8 +63,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-2b-instruct",
       "requirements": {
-        "minVram": "5GB",
-        "recommendedVram": "8GB",
         "ram": "12GB"
       },
       "gguf": []
@@ -72,8 +81,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-3b-a800m-instruct",
       "requirements": {
-        "minVram": "7GB",
-        "recommendedVram": "10GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -92,8 +99,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3.1-1b-a400m-instruct",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "5GB",
         "ram": "8GB"
       },
       "gguf": []

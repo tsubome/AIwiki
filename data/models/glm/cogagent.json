@@ -5,26 +5,30 @@
   "developer": "Zhipu AI / Tsinghua University",
   "license": "Apache 2.0 + Model License",
   "modelType": "BASE",
-
-  "tags": ["official", "multimodal", "vision", "agent", "gui"],
-
+  "tags": [
+    "official",
+    "multimodal",
+    "vision",
+    "agent",
+    "gui"
+  ],
   "description": {
     "ja": "GUI操作に特化したVision-Language Agent。1120×1120高解像度対応。PC・Android両方のGUI操作が可能。9つのVLMベンチマークでSOTA。CVPR 2024 Highlightに採択。GLM-PCプロダクトの基盤モデル。",
     "en": "Vision-Language Agent specialized for GUI operations. Supports 1120×1120 high resolution. Capable of GUI operations on both PC and Android. SOTA on 9 VLM benchmarks. Accepted as CVPR 2024 Highlight. Foundation model for GLM-PC product."
   },
-
   "specs": {
     "contextLength": 2048,
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "High-Resolution Cross-Module + EVA-CLIP"
   },
-
   "links": {
     "paper": "https://arxiv.org/abs/2312.08914",
     "github": "https://github.com/THUDM/CogAgent",
     "huggingface": "https://huggingface.co/THUDM/CogAgent"
   },
-
   "variants": [
     {
       "name": "CogAgent-18B",
@@ -40,8 +44,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/CogAgent",
       "requirements": {
-        "minVram": "37GB",
-        "recommendedVram": "48GB",
         "ram": "64GB"
       },
       "gguf": []
@@ -56,8 +58,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/cogagent-9b-20241220",
       "requirements": {
-        "minVram": "20GB",
-        "recommendedVram": "24GB",
         "ram": "32GB"
       },
       "gguf": []

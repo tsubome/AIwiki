@@ -6,25 +6,32 @@
   "license": "Meta Llama 3 Community License",
   "modelType": "FINETUNE",
   "baseModel": "llama-3",
-
-  "tags": ["uncensored", "multilingual", "coding", "roleplay"],
-
+  "tags": [
+    "uncensored",
+    "multilingual",
+    "coding",
+    "roleplay"
+  ],
   "description": {
     "ja": "Llama 3ベースの検閲なしモデル。指示追従、会話、コーディングスキルに優れる。初期的なエージェント能力と関数呼び出しをサポート。256Kコンテキスト版も利用可能。",
     "en": "Uncensored model based on Llama 3. Excellent at instruction following, conversation, and coding. Supports early agent capabilities and function calling. 256K context version available."
   },
-
   "specs": {
     "contextLength": 8192,
-    "languages": ["en", "de", "es", "fr", "ja", "zh"],
+    "languages": [
+      "en",
+      "de",
+      "es",
+      "fr",
+      "ja",
+      "zh"
+    ],
     "architecture": "Llama 3 Transformer Decoder-only"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations",
     "website": "https://erichartford.com/dolphin"
   },
-
   "variants": [
     {
       "name": "Dolphin 2.9 Llama 3 8B",
@@ -36,8 +43,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9-llama3-8b",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -52,8 +57,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.1-llama-3-8b",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -68,8 +71,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9-llama3-70b",
       "requirements": {
-        "minVram": "140GB",
-        "recommendedVram": "160GB",
         "ram": "256GB"
       },
       "gguf": []
@@ -84,8 +85,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.4-llama3.1-8b",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []

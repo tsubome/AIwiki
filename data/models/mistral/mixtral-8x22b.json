@@ -6,9 +6,15 @@
   "license": "Apache-2.0",
   "modelType": "BASE",
   "baseModel": "mixtral-8x7b",
-
-  "tags": ["official", "text-generation", "moe", "sparse-moe", "function-calling", "multilingual", "open-source"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "moe",
+    "sparse-moe",
+    "function-calling",
+    "multilingual",
+    "open-source"
+  ],
   "benchmarks": {
     "mmlu": 77.8,
     "humaneval": 45.1,
@@ -19,24 +25,26 @@
     },
     "source": "https://mistral.ai/news/mixtral-8x22b"
   },
-
   "description": {
     "ja": "Mistral AIの大型MoEモデル。2024年4月17日公開。8エキスパート×22B構成。総パラメータ141B、活性化39B。ネイティブ関数呼び出し、制約付き出力モード対応。ChatGPT 3.5をMMLUとWinoGrandeで上回る。65Kコンテキスト。",
     "en": "Mistral AI's large MoE model. Released April 17, 2024. 8 experts × 22B configuration. 141B total, 39B active parameters. Native function calling, constrained output mode. Outperforms ChatGPT 3.5 on MMLU and WinoGrande. 65K context."
   },
-
   "specs": {
     "contextLength": 65536,
     "knowledgeCutoff": "2024-Q1",
-    "languages": ["en", "fr", "it", "de", "es"],
+    "languages": [
+      "en",
+      "fr",
+      "it",
+      "de",
+      "es"
+    ],
     "architecture": "Sparse MoE, 8 experts × 22B, Top-2 routing, Native function calling"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
     "website": "https://mistral.ai/news/mixtral-8x22b"
   },
-
   "variants": [
     {
       "name": "Mixtral 8x22B v0.1",
@@ -52,7 +60,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Mixtral-8x22B-v0.1",
       "requirements": {
-        "minVram": "300GB",
         "notes": "INT4: 80GB"
       },
       "gguf": []
@@ -70,9 +77,6 @@
         "en": "Instruction-tuned variant. Function calling support. Achieves 90.8% on GSM8K, 44.6% on MATH."
       },
       "huggingface": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1",
-      "requirements": {
-        "minVram": "300GB"
-      },
       "gguf": []
     }
   ]

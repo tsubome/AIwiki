@@ -6,25 +6,28 @@
   "license": "Gemma Terms of Use",
   "modelType": "INSTRUCT",
   "baseModel": "gemma3",
-
-  "tags": ["official", "safety", "content-moderation", "classifier", "vision"],
-
+  "tags": [
+    "official",
+    "safety",
+    "content-moderation",
+    "classifier",
+    "vision"
+  ],
   "description": {
     "ja": "2025年3月12日公開。Gemma 3 4Bベースの画像安全性分類モデル。SigLIP vision encoder搭載。3カテゴリ分類：危険なコンテンツ、性的コンテンツ、暴力。テキスト版ShieldGemmaの画像対応進化版。",
     "en": "Released March 12, 2025. Gemma 3 4B-based image safety classifier. Features SigLIP vision encoder. Classifies 3 categories: Dangerous Content, Sexually Explicit, Violence. Image-capable evolution of text-based ShieldGemma."
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Gemma 3 4B base, SigLIP vision encoder"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/google",
     "website": "https://ai.google.dev/gemma/docs/shieldgemma"
   },
-
   "variants": [
     {
       "name": "ShieldGemma 2 4B",
@@ -35,9 +38,6 @@
         "en": "Image safety classifier. Features SigLIP vision encoder."
       },
       "huggingface": "https://huggingface.co/google/shieldgemma-2-4b",
-      "requirements": {
-        "minVram": "10GB"
-      },
       "gguf": []
     }
   ]

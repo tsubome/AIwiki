@@ -6,9 +6,14 @@
   "license": "Apache-2.0",
   "modelType": "BASE",
   "baseModel": "mistral-7b",
-
-  "tags": ["official", "text-generation", "moe", "sparse-moe", "multilingual", "open-source"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "moe",
+    "sparse-moe",
+    "multilingual",
+    "open-source"
+  ],
   "benchmarks": {
     "mmlu": 70.6,
     "custom": {
@@ -18,25 +23,27 @@
     },
     "source": "https://arxiv.org/abs/2401.04088"
   },
-
   "description": {
     "ja": "Mistral AIの初のMoEモデル。2023年12月11日公開。8エキスパート構成でトークンごとに2つを選択（Top-2ルーティング）。総パラメータ47B、活性化13B。LLaMA 2 70Bを上回り、GPT-3.5に匹敵。32Kコンテキスト。英語、フランス語、イタリア語、ドイツ語、スペイン語対応。",
     "en": "Mistral AI's first MoE model. Released December 11, 2023. 8 experts with Top-2 routing per token. 47B total parameters, 13B active. Outperforms LLaMA 2 70B, rivals GPT-3.5. 32K context. Supports English, French, Italian, German, Spanish."
   },
-
   "specs": {
     "contextLength": 32768,
     "knowledgeCutoff": "2023",
-    "languages": ["en", "fr", "it", "de", "es"],
+    "languages": [
+      "en",
+      "fr",
+      "it",
+      "de",
+      "es"
+    ],
     "architecture": "Sparse MoE, 8 experts per layer, Top-2 routing, SWA, GQA"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
     "paper": "https://arxiv.org/abs/2401.04088",
     "website": "https://mistral.ai/news/mixtral-of-experts"
   },
-
   "variants": [
     {
       "name": "Mixtral 8x7B v0.1",
@@ -52,7 +59,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Mixtral-8x7B-v0.1",
       "requirements": {
-        "minVram": "100GB",
         "notes": "INT4: 26GB"
       },
       "gguf": []
@@ -70,9 +76,6 @@
         "en": "Instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1",
-      "requirements": {
-        "minVram": "100GB"
-      },
       "gguf": []
     }
   ]

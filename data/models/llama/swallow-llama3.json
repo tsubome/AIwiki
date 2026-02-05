@@ -5,32 +5,36 @@
   "developer": "東京工業大学 / 産総研",
   "license": "Llama 3 Community License",
   "modelType": "FINETUNE",
-
   "baseModel": "meta-llama/Meta-Llama-3-8B",
-  "tags": ["japanese", "multilingual"],
-
+  "tags": [
+    "japanese",
+    "multilingual"
+  ],
   "description": {
     "ja": "Llama 3をベースにした日本語特化モデル。GQA採用により効率的な推論が可能。",
     "en": "Japanese-specialized model based on Llama 3. Efficient inference enabled by GQA architecture."
   },
-
   "specs": {
     "contextLength": 8192,
-    "languages": ["ja", "en"],
+    "languages": [
+      "ja",
+      "en"
+    ],
     "architecture": "Transformer with GQA",
     "promptTemplate": {
       "format": "llama-3",
       "system": "<|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|>",
       "user": "<|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|>",
       "assistant": "<|start_header_id|>assistant<|end_header_id|>\n\n",
-      "stopTokens": ["<|eot_id|>", "<|end_of_text|>"]
+      "stopTokens": [
+        "<|eot_id|>",
+        "<|end_of_text|>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/tokyotech-llm"
   },
-
   "variants": [
     {
       "name": "Swallow 8B",
@@ -42,8 +46,6 @@
       },
       "huggingface": "https://huggingface.co/tokyotech-llm/Llama-3-Swallow-8B-v0.1",
       "requirements": {
-        "minVram": "6GB",
-        "recommendedVram": "8GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -58,8 +60,6 @@
       },
       "huggingface": "https://huggingface.co/tokyotech-llm/Llama-3-Swallow-70B-v0.1",
       "requirements": {
-        "minVram": "40GB",
-        "recommendedVram": "48GB",
         "ram": "140GB"
       },
       "gguf": []

@@ -6,9 +6,13 @@
   "license": "MIT",
   "modelType": "BASE",
   "baseModel": "phi-1",
-
-  "tags": ["official", "text-generation", "knowledge-transfer", "efficient", "open-source"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "knowledge-transfer",
+    "efficient",
+    "open-source"
+  ],
   "benchmarks": {
     "mmlu": 56.7,
     "humaneval": 47.6,
@@ -21,29 +25,29 @@
     },
     "source": "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/"
   },
-
   "description": {
     "ja": "2023年12月公開（Microsoft Ignite 2023）。2.7Bパラメータ。1.4兆トークンで学習。知識転移技術によりPhi-1.5の知識を継承。Mistral 7B、LLaMA 2 13Bを多くのベンチマークで上回り、LLaMA-2-70Bを多段階推論タスクで上回る。",
     "en": "Released December 2023 (Microsoft Ignite 2023). 2.7B parameters. Trained on 1.4T tokens. Inherits Phi-1.5 knowledge via knowledge transfer. Outperforms Mistral 7B, LLaMA 2 13B on many benchmarks, and LLaMA-2-70B on multi-step reasoning."
   },
-
   "specs": {
     "trainingTokens": "1.4T",
     "knowledgeCutoff": "2023",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Dense decoder-only Transformer, 32 layers, hidden size 2560, Knowledge transfer from Phi-1.5",
     "promptTemplate": {
       "format": "phi-2",
       "user": "Instruct: {user_message}\nOutput:",
-      "stopTokens": ["\n\n"]
+      "stopTokens": [
+        "\n\n"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/microsoft",
     "website": "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/"
   },
-
   "variants": [
     {
       "name": "Phi-2",
@@ -55,7 +59,6 @@
       },
       "huggingface": "https://huggingface.co/microsoft/phi-2",
       "requirements": {
-        "minVram": "6GB",
         "notes": "INT4: 2GB"
       },
       "gguf": []

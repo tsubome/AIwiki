@@ -6,26 +6,40 @@
   "license": "Apache-2.0",
   "modelType": "BASE",
   "baseModel": "mistral-large",
-
-  "tags": ["official", "text-generation", "multimodal", "moe", "granular-moe", "vision", "multilingual", "open-source"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "multimodal",
+    "moe",
+    "granular-moe",
+    "vision",
+    "multilingual",
+    "open-source"
+  ],
   "description": {
     "ja": "Mistral AIの最新フラッグシップモデル。2025年12月2日公開。Granular MoEアーキテクチャ採用。総パラメータ675B、活性化41B。2.5Bパラメータのビジョンエンコーダー搭載。256Kコンテキスト。3000台のNVIDIA H200 GPUでスクラッチから学習。GPT-4o、Gemini 2に匹敵。Ministral 3シリーズ（3B/8B/14B）も同時リリース。",
     "en": "Mistral AI's latest flagship model. Released December 2, 2025. Granular MoE architecture. 675B total, 41B active parameters. 2.5B vision encoder. 256K context. Trained from scratch on 3000 NVIDIA H200 GPUs. Rivals GPT-4o and Gemini 2. Ministral 3 series (3B/8B/14B) released simultaneously."
   },
-
   "specs": {
     "contextLength": 256000,
     "knowledgeCutoff": "2025-Q4",
-    "languages": ["en", "fr", "de", "es", "it", "pt", "zh", "ja", "ko"],
+    "languages": [
+      "en",
+      "fr",
+      "de",
+      "es",
+      "it",
+      "pt",
+      "zh",
+      "ja",
+      "ko"
+    ],
     "architecture": "Granular MoE, 2.5B vision encoder, FP8 native, 256K context"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
     "website": "https://mistral.ai/news/mistral-3"
   },
-
   "variants": [
     {
       "name": "Mistral Large 3 Base (2512)",
@@ -41,7 +55,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Base-2512",
       "requirements": {
-        "minVram": "1.4TB",
         "notes": "NVFP4: 8×A100/H100"
       },
       "gguf": []
@@ -59,9 +72,6 @@
         "en": "Instruction-tuned. Multimodal support. Rivals GPT-4o, Gemini 2."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
-      "requirements": {
-        "minVram": "1.4TB"
-      },
       "gguf": []
     },
     {
@@ -74,7 +84,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512",
       "requirements": {
-        "minVram": "8GB",
         "notes": "INT4: 2GB"
       },
       "gguf": []
@@ -89,7 +98,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512",
       "requirements": {
-        "minVram": "20GB",
         "notes": "INT4: 6GB"
       },
       "gguf": []
@@ -104,7 +112,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512",
       "requirements": {
-        "minVram": "35GB",
         "notes": "INT4: 10GB"
       },
       "gguf": []
@@ -118,9 +125,6 @@
         "en": "Reasoning specialized. Achieves 85% on AIME '25."
       },
       "huggingface": "https://huggingface.co/mistralai/Ministral-3-14B-Reasoning-2512",
-      "requirements": {
-        "minVram": "35GB"
-      },
       "gguf": []
     }
   ]

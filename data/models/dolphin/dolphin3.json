@@ -5,26 +5,36 @@
   "developer": "Eric Hartford / Cognitive Computations",
   "license": "Base Model License (Llama: Llama 3.1 Community, Qwen: Apache 2.0)",
   "modelType": "FINETUNE",
-
-  "tags": ["uncensored", "multilingual", "coding", "math", "function-calling", "agent"],
-
+  "tags": [
+    "uncensored",
+    "multilingual",
+    "coding",
+    "math",
+    "function-calling",
+    "agent"
+  ],
   "description": {
     "ja": "次世代汎用ローカルモデル。コーディング、数学、エージェント、関数呼び出しに最適化。DeepSeek-V3でデータ補完、RLHFlowの報酬モデルでフィルタリング。ChatML形式。",
     "en": "Next-generation general-purpose local model. Optimized for coding, math, agents, and function calling. Data augmented with DeepSeek-V3 and filtered with RLHFlow reward model. Uses ChatML format."
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["en", "de", "es", "fr", "ja", "zh", "ko"],
+    "languages": [
+      "en",
+      "de",
+      "es",
+      "fr",
+      "ja",
+      "zh",
+      "ko"
+    ],
     "architecture": "Transformer Decoder-only (Llama 3.1 / Qwen 2.5 base)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/dphn",
     "github": "https://github.com/cognitivecomputations",
     "website": "https://erichartford.com/dolphin"
   },
-
   "variants": [
     {
       "name": "Dolphin 3.0 Qwen2.5 0.5B",
@@ -37,8 +47,6 @@
       "baseModel": "qwen2-5",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Qwen2.5-0.5B",
       "requirements": {
-        "minVram": "1GB",
-        "recommendedVram": "2GB",
         "ram": "4GB"
       },
       "gguf": []
@@ -54,8 +62,6 @@
       "baseModel": "llama-3.2",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Llama3.2-1B",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -71,8 +77,6 @@
       "baseModel": "qwen2-5",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Qwen2.5-1.5B",
       "requirements": {
-        "minVram": "4GB",
-        "recommendedVram": "6GB",
         "ram": "8GB"
       },
       "gguf": []
@@ -88,8 +92,6 @@
       "baseModel": "qwen2-5",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Qwen2.5-3b",
       "requirements": {
-        "minVram": "7GB",
-        "recommendedVram": "9GB",
         "ram": "12GB"
       },
       "gguf": []
@@ -105,8 +107,6 @@
       "baseModel": "llama-3.2",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Llama3.2-3B",
       "requirements": {
-        "minVram": "7GB",
-        "recommendedVram": "10GB",
         "ram": "12GB"
       },
       "gguf": []
@@ -122,8 +122,6 @@
       "baseModel": "llama-3.1",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Llama3.1-8B",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "32GB"
       },
       "gguf": []
@@ -139,8 +137,6 @@
       "baseModel": "mistral-small",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-Mistral-24B",
       "requirements": {
-        "minVram": "48GB",
-        "recommendedVram": "60GB",
         "ram": "96GB"
       },
       "gguf": []
@@ -156,8 +152,6 @@
       "baseModel": "mistral-small",
       "huggingface": "https://huggingface.co/dphn/Dolphin3.0-R1-Mistral-24B",
       "requirements": {
-        "minVram": "48GB",
-        "recommendedVram": "60GB",
         "ram": "96GB"
       },
       "gguf": []

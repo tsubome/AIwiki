@@ -6,27 +6,31 @@
   "license": "MIT",
   "modelType": "FINETUNE",
   "baseModel": "phi-4",
-
-  "tags": ["official", "reasoning", "chain-of-thought", "o3-distillation", "math", "open-source"],
-
+  "tags": [
+    "official",
+    "reasoning",
+    "chain-of-thought",
+    "o3-distillation",
+    "math",
+    "open-source"
+  ],
   "description": {
     "ja": "2025年4月公開。Phi-4ベースの推論特化モデル。o3-miniの推論デモンストレーションでSFT学習。14Bパラメータで671BのDeepSeek-R1に匹敵。o1-miniを大半のベンチマークで上回り、Claude 3.7 Sonnet、Gemini 2 Flash Thinkingを上回る。Phi-4-reasoning-plusは強化学習（RL）による追加最適化版。",
     "en": "Released April 2025. Reasoning-specialized model based on Phi-4. SFT trained on o3-mini reasoning demonstrations. 14B parameters rivaling 671B DeepSeek-R1. Outperforms o1-mini on most benchmarks, Claude 3.7 Sonnet, Gemini 2 Flash Thinking. Phi-4-reasoning-plus adds RL optimization."
   },
-
   "specs": {
     "contextLength": 16000,
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Dense Transformer, SFT on o3-mini reasoning traces, Chain-of-Thought"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/microsoft",
     "paper": "https://arxiv.org/abs/2504.21318",
     "website": "https://www.microsoft.com/en-us/research/articles/phi-reasoning-once-again-redefining-what-is-possible-with-small-and-efficient-ai/"
   },
-
   "variants": [
     {
       "name": "Phi-4-reasoning",
@@ -38,7 +42,6 @@
       },
       "huggingface": "https://huggingface.co/microsoft/Phi-4-reasoning",
       "requirements": {
-        "minVram": "30GB",
         "notes": "INT4: 10GB"
       },
       "gguf": []
@@ -52,9 +55,6 @@
         "en": "RL enhanced. Outperforms DeepSeek-R1. Exceeds o3-mini with parallel test-time scaling."
       },
       "huggingface": "https://huggingface.co/microsoft/Phi-4-reasoning-plus",
-      "requirements": {
-        "minVram": "30GB"
-      },
       "gguf": []
     }
   ]

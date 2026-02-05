@@ -5,24 +5,25 @@
   "developer": "Eric Hartford / Cognitive Computations",
   "license": "Llama 2 Community License",
   "modelType": "MERGE",
-
-  "tags": ["uncensored", "merged", "roleplay"],
-
+  "tags": [
+    "uncensored",
+    "merged",
+    "roleplay"
+  ],
   "description": {
     "ja": "Dolphin 2.2-70Bを自己インターリーブした超大規模マージモデル（120B）。Venus-120bにインスパイア。会話と共感能力に優れる（Samantha + WizardLM DNA）。Charles GoddardのMergeKitで約5分で作成。",
     "en": "Ultra-large merge model (120B) created by self-interleaving Dolphin 2.2-70B. Inspired by Venus-120b. Excellent at conversation and empathy (Samantha + WizardLM DNA). Created with Charles Goddard's MergeKit in about 5 minutes."
   },
-
   "specs": {
     "contextLength": 16384,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Llama 2 Transformer (Merged)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations/MegaDolphin-120b"
   },
-
   "variants": [
     {
       "name": "MegaDolphin 120B",
@@ -34,8 +35,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/MegaDolphin-120b",
       "requirements": {
-        "minVram": "240GB",
-        "recommendedVram": "280GB",
         "ram": "320GB"
       },
       "gguf": []

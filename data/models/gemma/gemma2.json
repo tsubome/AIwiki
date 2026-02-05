@@ -6,46 +6,50 @@
   "license": "Gemma Terms of Use",
   "modelType": "BASE",
   "baseModel": "gemma",
-
-  "tags": ["official", "text-generation", "instruction-tuned", "knowledge-distillation"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "instruction-tuned",
+    "knowledge-distillation"
+  ],
   "benchmarks": {
     "mmlu": 75.2,
     "humaneval": 51.8,
     "math": 46.6,
     "custom": {
-      "gsm8k": 74.0,
+      "gsm8k": 74,
       "arc-c": 71.4
     },
     "source": "https://ai.google.dev/gemma/docs/model_card_2"
   },
-
   "description": {
     "ja": "2024年6月27日公開。Gemmaの後継モデル。13T（27B）/8T（9B）トークン学習。Interleaved Local-Global Sliding Window Attention、Logit Soft-capping、GQA採用。2B/9Bは知識蒸留で学習。",
     "en": "Released June 27, 2024. Successor to Gemma. Trained on 13T (27B) / 8T (9B) tokens. Features Interleaved Local-Global Sliding Window Attention, Logit Soft-capping, and GQA. 2B/9B models trained via knowledge distillation."
   },
-
   "specs": {
     "contextLength": 8192,
     "trainingTokens": "13T (27B), 8T (9B)",
     "knowledgeCutoff": "2024-Q1",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Decoder-only Transformer, Interleaved Local-Global Sliding Window Attention, Logit Soft-capping, GQA, RoPE, SwiGLU, RMSNorm, Vocab 256K",
     "promptTemplate": {
       "format": "gemma",
       "user": "<start_of_turn>user\n{user_message}<end_of_turn>",
       "assistant": "<start_of_turn>model\n{assistant_response}<end_of_turn>",
-      "stopTokens": ["<end_of_turn>", "<eos>"]
+      "stopTokens": [
+        "<end_of_turn>",
+        "<eos>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/google",
     "paper": "https://arxiv.org/abs/2408.00118",
     "github": "https://github.com/google-deepmind/gemma",
     "website": "https://ai.google.dev/gemma"
   },
-
   "variants": [
     {
       "name": "Gemma 2 2B",
@@ -57,7 +61,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-2-2b",
       "requirements": {
-        "minVram": "5GB",
         "notes": "INT8: 3GB, INT4: 2GB"
       },
       "gguf": []
@@ -71,9 +74,6 @@
         "en": "2B instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/google/gemma-2-2b-it",
-      "requirements": {
-        "minVram": "5GB"
-      },
       "gguf": []
     },
     {
@@ -86,7 +86,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-2-9b",
       "requirements": {
-        "minVram": "22GB",
         "notes": "INT8: 11GB, INT4: 6GB"
       },
       "gguf": []
@@ -100,9 +99,6 @@
         "en": "9B instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/google/gemma-2-9b-it",
-      "requirements": {
-        "minVram": "22GB"
-      },
       "gguf": []
     },
     {
@@ -115,7 +111,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-2-27b",
       "requirements": {
-        "minVram": "65GB",
         "notes": "INT8: 32GB, INT4: 17GB"
       },
       "gguf": []
@@ -129,9 +124,6 @@
         "en": "27B instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/google/gemma-2-27b-it",
-      "requirements": {
-        "minVram": "65GB"
-      },
       "gguf": []
     }
   ]

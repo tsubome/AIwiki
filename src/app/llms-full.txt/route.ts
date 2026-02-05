@@ -1,5 +1,6 @@
 import { loadAllFamilies } from '@/lib/model-loader'
 import { getLocalizedString } from '@/types/model-data'
+import { calculateMinVram } from '@/lib/model-service'
 
 export const dynamic = 'force-static'
 
@@ -113,7 +114,7 @@ ${model.tags.map(t => `\`${t}\``).join(', ')}
 |------|------------|------|-------------|
 `
         for (const variant of model.variants) {
-          const vram = variant.requirements?.minVram || 'N/A'
+          const vram = calculateMinVram(variant.parameters, variant.parameterDetails) || 'N/A'
           const hf = variant.huggingface || 'N/A'
           content += `| ${variant.name} | ${variant.parameters} | ${vram} | ${hf} |\n`
         }

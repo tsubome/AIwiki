@@ -6,47 +6,67 @@
   "license": "Gemma Terms of Use",
   "modelType": "BASE",
   "baseModel": "gemma2",
-
-  "tags": ["official", "text-generation", "vision", "multilingual", "long-context", "instruction-tuned"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "vision",
+    "multilingual",
+    "long-context",
+    "instruction-tuned"
+  ],
   "benchmarks": {
     "mmlu": 76.9,
     "mmlupro": 67.5,
     "gpqa": 42.4,
     "humaneval": 87.8,
-    "math": 69.0,
+    "math": 69,
     "custom": {
       "mmmu": 64.9,
       "lmarena-elo": 1338
     },
     "source": "https://arxiv.org/abs/2503.19786"
   },
-
   "description": {
     "ja": "2025年3月12日公開。128Kコンテキスト（4B以上）、140+言語対応。SigLIP Vision Encoder（896x896）搭載でマルチモーダル対応（4B以上）。5:1 Local-to-Global Attention、QAT対応チェックポイント提供。LMArena Elo 1338達成。",
     "en": "Released March 12, 2025. 128K context (4B+), 140+ language support. Multimodal capability (4B+) via SigLIP Vision Encoder (896x896). Features 5:1 Local-to-Global Attention ratio and QAT checkpoints. Achieved LMArena Elo 1338."
   },
-
   "specs": {
     "contextLength": 128000,
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["en", "zh", "ja", "ko", "de", "fr", "es", "pt", "it", "ru", "ar", "hi", "th", "vi", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "ja",
+      "ko",
+      "de",
+      "fr",
+      "es",
+      "pt",
+      "it",
+      "ru",
+      "ar",
+      "hi",
+      "th",
+      "vi",
+      "id"
+    ],
     "architecture": "Decoder-only Transformer, 5:1 Local-to-Global Attention, RoPE (base freq 1M), SigLIP Vision Encoder, Pan & Scan, Bidirectional attention for images, QAT, Vocab 256K",
     "promptTemplate": {
       "format": "gemma3",
       "user": "<start_of_turn>user\n{user_message}<end_of_turn>",
       "assistant": "<start_of_turn>model\n{assistant_response}<end_of_turn>",
-      "stopTokens": ["<end_of_turn>", "<eos>"]
+      "stopTokens": [
+        "<end_of_turn>",
+        "<eos>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/collections/google/gemma-3",
     "paper": "https://arxiv.org/abs/2503.19786",
     "github": "https://github.com/google-deepmind/gemma",
     "website": "https://ai.google.dev/gemma/docs/core"
   },
-
   "variants": [
     {
       "name": "Gemma 3 270M",
@@ -58,7 +78,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3-270m",
       "requirements": {
-        "minVram": "1GB",
         "notes": "INT4: 0.3GB"
       },
       "gguf": []
@@ -72,9 +91,6 @@
         "en": "270M instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/google/gemma-3-270m-it",
-      "requirements": {
-        "minVram": "1GB"
-      },
       "gguf": []
     },
     {
@@ -87,7 +103,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3-1b",
       "requirements": {
-        "minVram": "3GB",
         "notes": "INT4: 1GB"
       },
       "gguf": []
@@ -101,9 +116,6 @@
         "en": "1B instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/google/gemma-3-1b-it",
-      "requirements": {
-        "minVram": "3GB"
-      },
       "gguf": []
     },
     {
@@ -116,7 +128,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3-4b",
       "requirements": {
-        "minVram": "10GB",
         "notes": "INT4: 3GB"
       },
       "gguf": []
@@ -130,9 +141,6 @@
         "en": "4B instruction-tuned variant. Vision-capable."
       },
       "huggingface": "https://huggingface.co/google/gemma-3-4b-it",
-      "requirements": {
-        "minVram": "10GB"
-      },
       "gguf": []
     },
     {
@@ -145,7 +153,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3-12b",
       "requirements": {
-        "minVram": "28GB",
         "notes": "INT4: 8GB"
       },
       "gguf": []
@@ -159,9 +166,6 @@
         "en": "12B instruction-tuned variant. Vision-capable."
       },
       "huggingface": "https://huggingface.co/google/gemma-3-12b-it",
-      "requirements": {
-        "minVram": "28GB"
-      },
       "gguf": []
     },
     {
@@ -174,7 +178,6 @@
       },
       "huggingface": "https://huggingface.co/google/gemma-3-27b",
       "requirements": {
-        "minVram": "65GB",
         "notes": "INT4: 17GB"
       },
       "gguf": []
@@ -188,9 +191,6 @@
         "en": "27B instruction-tuned variant. Vision-capable. Achieved LMArena Elo 1338."
       },
       "huggingface": "https://huggingface.co/google/gemma-3-27b-it",
-      "requirements": {
-        "minVram": "65GB"
-      },
       "gguf": []
     }
   ]

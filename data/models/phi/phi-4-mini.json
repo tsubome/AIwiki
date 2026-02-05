@@ -6,26 +6,38 @@
   "license": "MIT",
   "modelType": "BASE",
   "baseModel": "phi-4",
-
-  "tags": ["official", "text-generation", "function-calling", "multilingual", "long-context", "reasoning", "open-source"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "function-calling",
+    "multilingual",
+    "long-context",
+    "reasoning",
+    "open-source"
+  ],
   "description": {
     "ja": "2025年2月公開。3.8Bパラメータ。128Kコンテキスト。待望の関数呼び出し機能対応。語彙サイズ200K（32K→200K）でGQA追加、多言語サポート大幅強化。Llama 3.1 8B、Ministral-2410 8Bを上回る。mini-reasoning、mini-flash-reasoningなど推論特化バリアントも展開。",
     "en": "Released February 2025. 3.8B parameters. 128K context. Long-awaited function calling support. Vocabulary 200K (from 32K), GQA added, enhanced multilingual. Outperforms Llama 3.1 8B, Ministral-2410 8B. Reasoning variants include mini-reasoning and mini-flash-reasoning."
   },
-
   "specs": {
     "contextLength": 128000,
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["en", "fr", "de", "es", "it", "ja", "ko", "zh"],
+    "languages": [
+      "en",
+      "fr",
+      "de",
+      "es",
+      "it",
+      "ja",
+      "ko",
+      "zh"
+    ],
     "architecture": "32-layer Transformer, hidden 3072, GQA (24 Q / 8 KV heads), Vocab 200K, RoPE, Function calling"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/microsoft",
     "paper": "https://arxiv.org/abs/2503.01743"
   },
-
   "variants": [
     {
       "name": "Phi-4-mini Instruct",
@@ -37,7 +49,6 @@
       },
       "huggingface": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
       "requirements": {
-        "minVram": "8GB",
         "notes": "INT4: 3GB"
       },
       "gguf": []
@@ -51,9 +62,6 @@
         "en": "Released May 2025. Lightweight reasoning model. 128K context."
       },
       "huggingface": "https://huggingface.co/microsoft/Phi-4-mini-reasoning",
-      "requirements": {
-        "minVram": "8GB"
-      },
       "gguf": []
     },
     {
@@ -66,7 +74,6 @@
       },
       "huggingface": "https://huggingface.co/microsoft/Phi-4-mini-flash-reasoning",
       "requirements": {
-        "minVram": "8GB",
         "notes": "Single A100-80GB efficient"
       },
       "gguf": []

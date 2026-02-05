@@ -5,40 +5,46 @@
   "developer": "Zhipu AI / Tsinghua University",
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
-
-  "tags": ["official", "bilingual", "dialogue", "function-calling", "agent"],
-
+  "tags": [
+    "official",
+    "bilingual",
+    "dialogue",
+    "function-calling",
+    "agent"
+  ],
   "description": {
     "ja": "ネイティブFunction Call、Code Interpreter、Agent機能を初搭載。MMLUで61.4、HumanEvalで58.5と大幅性能向上。32K/128Kコンテキスト対応版も提供。同サイズモデルで最高性能を達成。",
     "en": "First to feature native Function Call, Code Interpreter, and Agent capabilities. Achieved 61.4 on MMLU and 58.5 on HumanEval. Also available in 32K/128K context versions. Achieved best performance among same-size models."
   },
-
   "benchmarks": {
     "mmlu": 61.4,
     "humaneval": 58.5,
     "math": 25.7,
     "source": "ChatGLM3 Technical Report"
   },
-
   "specs": {
     "contextLength": 8192,
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "GLM Transformer with Multi-Head Attention",
     "promptTemplate": {
       "format": "chatglm3",
       "system": "<|system|>\n{system}",
       "user": "<|user|>\n{prompt}",
       "assistant": "<|assistant|>\n",
-      "stopTokens": ["<|user|>", "<|observation|>"]
+      "stopTokens": [
+        "<|user|>",
+        "<|observation|>"
+      ]
     }
   },
-
   "links": {
     "paper": "https://arxiv.org/abs/2406.12793",
     "github": "https://github.com/THUDM/ChatGLM3",
     "huggingface": "https://huggingface.co/THUDM/chatglm3-6b"
   },
-
   "variants": [
     {
       "name": "ChatGLM3-6B",
@@ -50,8 +56,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/chatglm3-6b",
       "requirements": {
-        "minVram": "13GB",
-        "recommendedVram": "16GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -66,8 +70,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/chatglm3-6b-base",
       "requirements": {
-        "minVram": "13GB",
-        "recommendedVram": "16GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -82,8 +84,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/chatglm3-6b-32k",
       "requirements": {
-        "minVram": "16GB",
-        "recommendedVram": "20GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -98,8 +98,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/chatglm3-6b-128k",
       "requirements": {
-        "minVram": "24GB",
-        "recommendedVram": "32GB",
         "ram": "48GB"
       },
       "gguf": []

@@ -5,26 +5,28 @@
   "developer": "Zhipu AI / Tsinghua University",
   "license": "Apache 2.0 + Model License",
   "modelType": "BASE",
-
-  "tags": ["official", "multimodal", "vision"],
-
+  "tags": [
+    "official",
+    "multimodal",
+    "vision"
+  ],
   "description": {
     "ja": "Visual Expert Moduleを導入した強力なVision-Language Model。言語能力を損なわずに深い視覚-言語融合を実現。10のVLMベンチマークでSOTA。NeurIPS 2024に採択。",
     "en": "Powerful Vision-Language Model with Visual Expert Module. Achieves deep vision-language fusion without compromising language capabilities. SOTA on 10 VLM benchmarks. Accepted at NeurIPS 2024."
   },
-
   "specs": {
     "contextLength": 2048,
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "EVA-CLIP Vision Encoder + Visual Expert Module"
   },
-
   "links": {
     "paper": "https://arxiv.org/abs/2311.03079",
     "github": "https://github.com/THUDM/CogVLM",
     "huggingface": "https://huggingface.co/THUDM/cogvlm-chat-hf"
   },
-
   "variants": [
     {
       "name": "CogVLM-17B",
@@ -40,8 +42,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/cogvlm-chat-hf",
       "requirements": {
-        "minVram": "35GB",
-        "recommendedVram": "40GB",
         "ram": "48GB"
       },
       "gguf": []
@@ -56,8 +56,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/cogvlm-chat-hf",
       "requirements": {
-        "minVram": "35GB",
-        "recommendedVram": "40GB",
         "ram": "48GB"
       },
       "gguf": []
@@ -72,8 +70,6 @@
       },
       "huggingface": "https://huggingface.co/THUDM/cogvlm-grounding-generalist-hf",
       "requirements": {
-        "minVram": "35GB",
-        "recommendedVram": "40GB",
         "ram": "48GB"
       },
       "gguf": []

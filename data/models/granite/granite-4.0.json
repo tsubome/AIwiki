@@ -5,25 +5,39 @@
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "moe", "mamba", "enterprise", "flagship"],
-
+  "tags": [
+    "official",
+    "moe",
+    "mamba",
+    "enterprise",
+    "flagship"
+  ],
   "description": {
     "ja": "Mamba-2/Transformerハイブリッドアーキテクチャ採用。70%以上のメモリ削減、2倍の推論速度を実現。ISO 42001認証取得（初のオープンモデル）。Nanoファミリー（350M〜1.5B）からSmall（32B/9B MoE）まで展開。",
     "en": "Adopts Mamba-2/Transformer hybrid architecture. Achieves 70%+ memory reduction and 2x inference speed. First open model family with ISO 42001 certification. Ranges from Nano (350M-1.5B) to Small (32B/9B MoE)."
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["en", "de", "es", "fr", "ja", "pt", "ar", "cs", "it", "ko", "nl", "zh"],
+    "languages": [
+      "en",
+      "de",
+      "es",
+      "fr",
+      "ja",
+      "pt",
+      "ar",
+      "cs",
+      "it",
+      "ko",
+      "nl",
+      "zh"
+    ],
     "architecture": "Mamba-2/Transformer Hybrid (9:1 ratio)"
   },
-
   "links": {
     "github": "https://github.com/ibm-granite/granite-models",
     "huggingface": "https://huggingface.co/ibm-granite"
   },
-
   "variants": [
     {
       "name": "Granite 4.0 H-Small",
@@ -39,8 +53,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
       "requirements": {
-        "minVram": "35GB",
-        "recommendedVram": "48GB",
         "ram": "64GB"
       },
       "gguf": []
@@ -59,8 +71,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
       "requirements": {
-        "minVram": "8GB",
-        "recommendedVram": "12GB",
         "ram": "16GB"
       },
       "gguf": []
@@ -75,8 +85,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
       "requirements": {
-        "minVram": "4GB",
-        "recommendedVram": "6GB",
         "ram": "8GB"
       },
       "gguf": []
@@ -91,8 +99,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-h-1b",
       "requirements": {
-        "minVram": "2GB",
-        "recommendedVram": "3GB",
         "ram": "4GB"
       },
       "gguf": []
@@ -107,8 +113,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-h-350m",
       "requirements": {
-        "minVram": "1GB",
-        "recommendedVram": "2GB",
         "ram": "2GB"
       },
       "gguf": []
@@ -123,8 +127,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-1b",
       "requirements": {
-        "minVram": "3GB",
-        "recommendedVram": "4GB",
         "ram": "6GB"
       },
       "gguf": []
@@ -139,8 +141,6 @@
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-4.0-350m",
       "requirements": {
-        "minVram": "1GB",
-        "recommendedVram": "2GB",
         "ram": "2GB"
       },
       "gguf": []

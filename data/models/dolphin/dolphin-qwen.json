@@ -6,24 +6,32 @@
   "license": "Apache 2.0",
   "modelType": "FINETUNE",
   "baseModel": "qwen2",
-
-  "tags": ["uncensored", "multilingual", "coding", "function-calling"],
-
+  "tags": [
+    "uncensored",
+    "multilingual",
+    "coding",
+    "function-calling"
+  ],
   "description": {
     "ja": "Qwen/Qwen2ベースの検閲なしモデル。指示追従、会話、コーディングスキルに優れる。初期的なエージェント能力と関数呼び出しをサポート。",
     "en": "Uncensored model based on Qwen/Qwen2. Excellent at instruction following, conversation, and coding. Supports early agent capabilities and function calling."
   },
-
   "specs": {
     "contextLength": 128000,
-    "languages": ["en", "zh", "ja", "ko", "de", "es", "fr"],
+    "languages": [
+      "en",
+      "zh",
+      "ja",
+      "ko",
+      "de",
+      "es",
+      "fr"
+    ],
     "architecture": "Qwen Transformer Decoder-only"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations"
   },
-
   "variants": [
     {
       "name": "Dolphin 2.9.3 Qwen2 0.5B",
@@ -35,8 +43,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.3-qwen2-0.5b",
       "requirements": {
-        "minVram": "2GB",
-        "recommendedVram": "3GB",
         "ram": "4GB"
       },
       "gguf": []
@@ -51,8 +57,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.2-qwen2-7b",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -67,8 +71,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphin-2.9.1-qwen-110b",
       "requirements": {
-        "minVram": "220GB",
-        "recommendedVram": "250GB",
         "ram": "300GB"
       },
       "gguf": []

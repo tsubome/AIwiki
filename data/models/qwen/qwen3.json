@@ -5,11 +5,14 @@
   "developer": "Alibaba Cloud / Qwen Team",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "multilingual", "long-context", "moe"],
-
+  "tags": [
+    "official",
+    "multilingual",
+    "long-context",
+    "moe"
+  ],
   "benchmarks": {
-    "mmlupro": 83.0,
+    "mmlupro": 83,
     "gpqa": 77.5,
     "ifeval": 88.7,
     "custom": {
@@ -18,34 +21,49 @@
     },
     "source": "Qwen3 Technical Report (arXiv:2505.09388)"
   },
-
   "description": {
     "ja": "2025年4月29日公開。36兆トークンで学習し、119言語に対応。256Kネイティブコンテキスト（1Mまで拡張可能）。GQA、QK LayerNorm、RoPE、SwiGLU、RMSNormを採用。Dense版（0.6B-32B）とMoE版（30B-A3B、235B-A22B）を提供。Thinkingモード（<think>タグ）による深い推論をサポート。",
     "en": "Released April 29, 2025. Trained on 36 trillion tokens with support for 119 languages. 256K native context (extendable to 1M). Features GQA, QK LayerNorm, RoPE, SwiGLU, and RMSNorm. Offers Dense (0.6B-32B) and MoE (30B-A3B, 235B-A22B) variants. Supports deep reasoning via Thinking mode (<think> tags)."
   },
-
   "specs": {
     "contextLength": 262144,
     "trainingTokens": "36T",
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["en", "zh", "es", "fr", "de", "ar", "ru", "ko", "ja", "th", "vi", "pt", "it", "hi", "id"],
+    "languages": [
+      "en",
+      "zh",
+      "es",
+      "fr",
+      "de",
+      "ar",
+      "ru",
+      "ko",
+      "ja",
+      "th",
+      "vi",
+      "pt",
+      "it",
+      "hi",
+      "id"
+    ],
     "architecture": "Decoder-only Transformer, GQA, QK LayerNorm, RoPE, SwiGLU, RMSNorm",
     "promptTemplate": {
       "format": "chatml-thinking",
       "system": "<|im_start|>system\n{system}<|im_end|>",
       "user": "<|im_start|>user\n{prompt}<|im_end|>",
       "assistant": "<|im_start|>assistant\n<think>\n{thinking}</think>\n{response}<|im_end|>",
-      "stopTokens": ["<|im_end|>", "</s>"]
+      "stopTokens": [
+        "<|im_end|>",
+        "</s>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/collections/Qwen/qwen3-67dd247413f0e2e4f653967f",
     "paper": "https://arxiv.org/abs/2505.09388",
     "github": "https://github.com/QwenLM/Qwen3",
     "website": "https://qwen.ai/"
   },
-
   "variants": [
     {
       "name": "Qwen3 0.6B",
@@ -56,9 +74,6 @@
         "en": "Lightest Dense variant. 32K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-0.6B",
-      "requirements": {
-        "minVram": "1.5GB"
-      },
       "gguf": []
     },
     {
@@ -70,9 +85,6 @@
         "en": "Lightweight Dense variant. 32K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-1.7B",
-      "requirements": {
-        "minVram": "4GB"
-      },
       "gguf": []
     },
     {
@@ -84,9 +96,6 @@
         "en": "Compact Dense variant. 32K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-4B",
-      "requirements": {
-        "minVram": "8GB"
-      },
       "gguf": []
     },
     {
@@ -98,9 +107,6 @@
         "en": "Standard Dense variant. 128K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-8B",
-      "requirements": {
-        "minVram": "16GB"
-      },
       "gguf": []
     },
     {
@@ -112,9 +118,6 @@
         "en": "Medium Dense variant. 128K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-14B",
-      "requirements": {
-        "minVram": "28GB"
-      },
       "gguf": []
     },
     {
@@ -126,9 +129,6 @@
         "en": "Large Dense variant. 128K context."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-32B",
-      "requirements": {
-        "minVram": "65GB"
-      },
       "gguf": []
     },
     {
@@ -145,9 +145,6 @@
         "en": "Lightweight MoE variant. Highly efficient with 3B active parameters."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-30B-A3B",
-      "requirements": {
-        "minVram": "60GB"
-      },
       "gguf": []
     },
     {
@@ -164,9 +161,6 @@
         "en": "Flagship MoE variant. Top performance with 22B active parameters."
       },
       "huggingface": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
-      "requirements": {
-        "minVram": "470GB"
-      },
       "gguf": []
     }
   ]

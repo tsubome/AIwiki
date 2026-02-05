@@ -499,8 +499,8 @@ export default async function ModelDetailPage({ params }: Props) {
                   </p>
                 )}
 
-                {/* MoE Details & Requirements & Base Model */}
-                {(variant.parameterDetails || variant.requirements || variant.baseModel) && (
+                {/* MoE Details & VRAM & Base Model */}
+                {(variant.parameterDetails || variant.minVram || variant.baseModel) && (
                   <div className="flex flex-wrap gap-2 sm:gap-3 mb-3">
                     {variant.parameterDetails && (
                       <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-purple-50 dark:bg-purple-900/30 text-xs">
@@ -511,16 +511,10 @@ export default async function ModelDetailPage({ params }: Props) {
                         </span>
                       </div>
                     )}
-                    {variant.requirements?.minVram && (
+                    {variant.minVram && (
                       <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-blue-50 dark:bg-blue-900/30 text-xs">
                         <span className="text-blue-600 dark:text-blue-400 font-medium">VRAM</span>
-                        <span className="text-gray-600 dark:text-gray-400">{variant.requirements.minVram}</span>
-                      </div>
-                    )}
-                    {variant.requirements?.ram && (
-                      <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-green-50 dark:bg-green-900/30 text-xs">
-                        <span className="text-green-600 dark:text-green-400 font-medium">RAM</span>
-                        <span className="text-gray-600 dark:text-gray-400">{variant.requirements.ram}</span>
+                        <span className="text-gray-600 dark:text-gray-400">{variant.minVram}</span>
                       </div>
                     )}
                     {variant.baseModel && (

@@ -5,9 +5,13 @@
   "developer": "Mistral AI",
   "license": "Apache-2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "text-generation", "sliding-window-attention", "gqa", "open-source"],
-
+  "tags": [
+    "official",
+    "text-generation",
+    "sliding-window-attention",
+    "gqa",
+    "open-source"
+  ],
   "benchmarks": {
     "mmlu": 60.1,
     "custom": {
@@ -17,31 +21,31 @@
     },
     "source": "https://mistral.ai/news/announcing-mistral-7b/"
   },
-
   "description": {
     "ja": "Mistral AIの初代モデル。2023年9月27日公開。Sliding Window Attention（SWA）とGrouped-Query Attention（GQA）を採用し効率的な推論を実現。LLaMA 2 13Bを全ベンチマークで上回り、LLaMA 34Bに匹敵する性能。8Kコンテキスト。Apache 2.0ライセンス。",
     "en": "Mistral AI's first model. Released September 27, 2023. Features Sliding Window Attention (SWA) and Grouped-Query Attention (GQA) for efficient inference. Outperforms LLaMA 2 13B on all benchmarks, rivaling LLaMA 34B. 8K context. Apache 2.0 license."
   },
-
   "specs": {
     "contextLength": 8192,
     "knowledgeCutoff": "2023",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Dense Transformer, Sliding Window Attention (SWA), Grouped-Query Attention (GQA), Byte-fallback BPE tokenizer, Vocab 32K",
     "promptTemplate": {
       "format": "mistral-instruct",
       "user": "<s>[INST] {user_message} [/INST]",
       "assistant": "{assistant_response}</s>",
-      "stopTokens": ["</s>"]
+      "stopTokens": [
+        "</s>"
+      ]
     }
   },
-
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
     "github": "https://github.com/mistralai/mistral-src",
     "website": "https://mistral.ai/news/announcing-mistral-7b/"
   },
-
   "variants": [
     {
       "name": "Mistral 7B v0.1",
@@ -53,7 +57,6 @@
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-7B-v0.1",
       "requirements": {
-        "minVram": "17GB",
         "notes": "INT4: 5GB"
       },
       "gguf": []
@@ -67,9 +70,6 @@
         "en": "v0.1 instruction-tuned variant."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -81,9 +81,6 @@
         "en": "Improved version. 32K context support."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-7B-v0.2",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -95,9 +92,6 @@
         "en": "v0.2 instruction-tuned variant. 32K context."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -109,9 +103,6 @@
         "en": "Function calling support. Extended vocabulary."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-7B-v0.3",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     },
     {
@@ -123,9 +114,6 @@
         "en": "v0.3 instruction-tuned variant. Function calling support."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
-      "requirements": {
-        "minVram": "17GB"
-      },
       "gguf": []
     }
   ]

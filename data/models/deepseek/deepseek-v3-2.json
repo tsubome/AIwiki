@@ -6,27 +6,31 @@
   "license": "MIT",
   "modelType": "BASE",
   "baseModel": "deepseek-v3-1",
-
-  "tags": ["official", "text-generation", "moe", "sparse-attention", "competition", "open-source"],
-
-
+  "tags": [
+    "official",
+    "text-generation",
+    "moe",
+    "sparse-attention",
+    "competition",
+    "open-source"
+  ],
   "description": {
     "ja": "DeepSeek AIのV3.2モデル。2025年12月1日公開。DeepSeek Sparse Attention（DSA）を導入し、より効率的なアテンション機構を実現。GPT-5/Gemini-3.0-Pro相当の性能。IMO 2025、IOI 2025で金メダル達成。685Bパラメータ。MITライセンス。",
     "en": "DeepSeek AI's V3.2 model. Released December 1, 2025. Introduces DeepSeek Sparse Attention (DSA) for more efficient attention mechanism. Performance comparable to GPT-5/Gemini-3.0-Pro. Achieved Gold medals at IMO 2025 and IOI 2025. 685B parameters. MIT license."
   },
-
   "specs": {
     "contextLength": 128000,
     "knowledgeCutoff": "2025-Q4",
-    "languages": ["en", "zh"],
+    "languages": [
+      "en",
+      "zh"
+    ],
     "architecture": "MoE with DeepSeek Sparse Attention (DSA), Efficient long-context attention"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
     "website": "https://chat.deepseek.com"
   },
-
   "variants": [
     {
       "name": "DeepSeek-V3.2",
@@ -42,7 +46,6 @@
       },
       "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
       "requirements": {
-        "minVram": "1.4TB",
         "notes": "8xH200 141GB recommended"
       },
       "gguf": []

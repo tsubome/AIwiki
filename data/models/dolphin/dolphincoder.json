@@ -6,24 +6,24 @@
   "license": "BigCode OpenRAIL-M",
   "modelType": "FINETUNE",
   "baseModel": "starcoder2",
-
-  "tags": ["uncensored", "coding"],
-
+  "tags": [
+    "uncensored",
+    "coding"
+  ],
   "description": {
     "ja": "StarCoder2ベースのコーディング特化モデル。大量のコーディングデータで学習。ソフトウェアエンジニアリングに最適化。qLoRA + Axolotlで学習。",
     "en": "Coding-focused model based on StarCoder2. Trained on extensive coding data. Optimized for software engineering. Trained with qLoRA + Axolotl."
   },
-
   "specs": {
     "contextLength": 16384,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "StarCoder2 Transformer"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/cognitivecomputations/dolphincoder-starcoder2-15b"
   },
-
   "variants": [
     {
       "name": "DolphinCoder StarCoder2 7B",
@@ -35,8 +35,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphincoder-starcoder2-7b",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -51,8 +49,6 @@
       },
       "huggingface": "https://huggingface.co/cognitivecomputations/dolphincoder-starcoder2-15b",
       "requirements": {
-        "minVram": "32GB",
-        "recommendedVram": "40GB",
         "ram": "64GB"
       },
       "gguf": []

@@ -5,26 +5,28 @@
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
-
-  "tags": ["official", "open-source", "moe", "efficient"],
-
+  "tags": [
+    "official",
+    "open-source",
+    "moe",
+    "efficient"
+  ],
   "description": {
     "ja": "Mixture-of-Experts (MoE) アーキテクチャを採用した効率的なモデル。7Bの総パラメータ数で1Bのみをアクティブに使用し、同等コストのモデルを大幅に上回る性能を実現。8エキスパート、Top-2ルーティング。",
     "en": "Efficient model using Mixture-of-Experts (MoE) architecture. Uses only 1B active parameters from 7B total, significantly outperforming models of equivalent cost. 8 experts with Top-2 routing."
   },
-
   "specs": {
     "contextLength": 4096,
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "architecture": "Sparse Mixture-of-Experts (8 experts, Top-2)"
   },
-
   "links": {
     "github": "https://github.com/allenai/OLMo",
     "huggingface": "https://huggingface.co/allenai",
     "paper": "https://arxiv.org/abs/2409.02060"
   },
-
   "variants": [
     {
       "name": "OLMoE 1B-7B 0924",
@@ -40,8 +42,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0924",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -60,8 +60,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0924-Instruct",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -80,8 +78,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0125",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
@@ -100,8 +96,6 @@
       },
       "huggingface": "https://huggingface.co/allenai/OLMoE-1B-7B-0125-Instruct",
       "requirements": {
-        "minVram": "14GB",
-        "recommendedVram": "18GB",
         "ram": "24GB"
       },
       "gguf": []
