@@ -5,30 +5,34 @@
   "developer": "Zhipu AI / Tsinghua University",
   "license": "MIT License",
   "modelType": "BASE",
-
-  "tags": ["official", "moe", "agent", "reasoning", "coding", "flagship"],
-
+  "tags": [
+    "official",
+    "moe",
+    "agent",
+    "reasoning",
+    "coding",
+    "flagship"
+  ],
   "description": {
     "ja": "最新フラッグシップモデル。オープンソースモデルで初めてClaude Sonnet 4.5に匹敵。コーディング・エージェント能力でオープンソース最高峰。3種の思考モード（Interleaved/Preserved/Turn-level Thinking）搭載。Cerebras上で1500+ tokens/sの高速推論。SWE-bench Verifiedで73.8%、LiveCodeBenchで84.9達成。",
     "en": "Latest flagship model. First open-source model to match Claude Sonnet 4.5. Top open-source performance in coding and agent capabilities. Features 3 thinking modes (Interleaved/Preserved/Turn-level). 1500+ tokens/s inference on Cerebras. Achieved 73.8% on SWE-bench Verified and 84.9 on LiveCodeBench."
   },
-
   "benchmarks": {
     "gpqa": 86,
     "humaneval": 84.9,
     "source": "GLM-4.7 Release Notes"
   },
-
   "specs": {
     "contextLength": 205000,
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "architecture": "Mixture of Experts (355B-400B total / 32B active)"
   },
-
   "links": {
     "huggingface": "https://huggingface.co/zai-org/GLM-4.7"
   },
-
   "variants": [
     {
       "name": "GLM-4.7",
@@ -53,7 +57,7 @@
     {
       "name": "GLM-4.7-Flash",
       "slug": "glm-4.7-flash",
-      "parameters": "400B",
+      "parameters": "31B",
       "parameterDetails": {
         "active": "32B",
         "total": "355B-400B"
