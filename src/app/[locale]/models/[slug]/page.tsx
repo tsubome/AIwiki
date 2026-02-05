@@ -200,6 +200,18 @@ export default async function ModelDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Breadcrumb - Family Link */}
+      <nav className="mb-3 sm:mb-4 text-sm">
+        <Link
+          href={`/models/${model.familySlug}`}
+          className="text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+        >
+          {model.familyName}
+        </Link>
+        <span className="mx-2 text-gray-400 dark:text-gray-500">/</span>
+        <span className="text-gray-700 dark:text-gray-300">{model.name}</span>
+      </nav>
+
       {/* Model Header */}
       <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 mb-4 sm:mb-6">
         <div className="flex items-start justify-between gap-2 mb-3 sm:mb-4">

@@ -99,6 +99,8 @@ export interface ModelForDetail {
   id: string
   name: string
   slug: string
+  familySlug: string
+  familyName: string
   description: string | null
   developer: string | null
   license: string | null
@@ -216,10 +218,13 @@ function toVariantForDetail(variant: ResolvedVariant, index: number, locale: str
 }
 
 function toModelForDetail(model: ResolvedModel, locale: string = DEFAULT_LOCALE): ModelForDetail {
+  const family = getFamilyByModelSlug(model.slug)
   return {
     id: model.id,
     name: model.name,
     slug: model.slug,
+    familySlug: family?.slug || model.familySlug,
+    familyName: family?.name || model.familySlug,
     description: getLocalizedString(model.description, locale) || null,
     developer: model.developer || null,
     license: model.license || null,
