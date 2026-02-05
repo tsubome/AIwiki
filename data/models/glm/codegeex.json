@@ -1,9 +1,9 @@
 {
   "name": "CodeGeeX",
   "slug": "codegeex",
-  "releaseDate": "2022-09-01",
+  "releaseDate": "2022-09-30",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0",
+  "license": "Apache 2.0 (code) / Non-Commercial Research License (weights)",
   "modelType": "BASE",
   "tags": [
     "official",

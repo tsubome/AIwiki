@@ -16,7 +16,7 @@
     "en": "GLM-4-32B derivative specialized for deep reasoning. Enhanced math, code, and logical reasoning. GLM-Z1-Rumination is a deliberation model with search tool integration, competing with Deep Research. Trained with Cold Start + Extended RL and Pairwise Ranking Feedback."
   },
   "specs": {
-    "contextLength": 32000,
+    "contextLength": 32768,
     "languages": [
       "zh",
       "en"

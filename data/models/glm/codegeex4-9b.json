@@ -1,9 +1,9 @@
 {
   "name": "CodeGeeX4-ALL-9B",
   "slug": "codegeex4-9b",
-  "releaseDate": "2024-07-01",
+  "releaseDate": "2024-07-05",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0",
+  "license": "Model License (codegeex4)",
   "modelType": "INSTRUCT",
   "baseModel": "glm-4-9b",
   "tags": [

@@ -15,7 +15,7 @@
     "en": "32B parameter model with enhanced agent capabilities. Trained on 15T tokens including reasoning-type synthetic data. Performance comparable to OpenAI GPT series and DeepSeek V3/R1. RLHF tuned. Context extendable with YaRN."
   },
   "specs": {
-    "contextLength": 32000,
+    "contextLength": 32768,
     "trainingTokens": "15T",
     "languages": [
       "zh",

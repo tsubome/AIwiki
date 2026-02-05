@@ -44,15 +44,15 @@
     {
       "name": "GLM-4.7",
       "slug": "glm-4.7-base",
-      "parameters": "355B",
+      "parameters": "358B",
       "parameterDetails": {
         "active": "32B",
-        "total": "355B",
-        "experts": 64
+        "total": "358B",
+        "experts": 160
       },
       "description": {
-        "ja": "フラッグシップMoEモデル。355B総パラメータ/32Bアクティブ。200Kコンテキスト入力、最大128K出力。3種の思考モード搭載。",
-        "en": "Flagship MoE model. 355B total / 32B active parameters. 200K context input, up to 128K output. Features 3 thinking modes."
+        "ja": "フラッグシップMoEモデル。358B総パラメータ/32Bアクティブ/160エキスパート。200Kコンテキスト入力、最大128K出力。3種の思考モード搭載。",
+        "en": "Flagship MoE model. 358B total / 32B active parameters / 160 experts. 200K context input, up to 128K output. Features 3 thinking modes."
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.7",
       "gguf": []
@@ -60,15 +60,15 @@
     {
       "name": "GLM-4.7-Flash",
       "slug": "glm-4.7-flash",
-      "parameters": "31B",
+      "parameters": "30B",
       "parameterDetails": {
         "active": "3B",
-        "total": "31B",
+        "total": "30B",
         "experts": 64
       },
       "description": {
-        "ja": "軽量MoEモデル（31B総パラメータ/3Bアクティブ）。消費者向けGPU（RTX 3090等）やApple Siliconで動作可能。2026年1月19日公開。SWE-bench Verifiedで59.2%達成。",
-        "en": "Lightweight MoE model (31B total / 3B active). Runs on consumer GPUs (RTX 3090+) and Apple Silicon. Released January 19, 2026. Achieved 59.2% on SWE-bench Verified."
+        "ja": "軽量MoEモデル（30B総パラメータ/3Bアクティブ）。消費者向けGPU（RTX 3090等）やApple Siliconで動作可能。2026年1月20日公開。SWE-bench Verifiedで59.2%達成。",
+        "en": "Lightweight MoE model (30B total / 3B active). Runs on consumer GPUs (RTX 3090+) and Apple Silicon. Released January 20, 2026. Achieved 59.2% on SWE-bench Verified."
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.7-Flash",
       "gguf": []

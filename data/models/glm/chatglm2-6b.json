@@ -3,7 +3,7 @@
   "slug": "chatglm2-6b",
   "releaseDate": "2023-06-25",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0",
+  "license": "Apache 2.0 (code) / Model License (weights)",
   "modelType": "INSTRUCT",
   "tags": [
     "official",

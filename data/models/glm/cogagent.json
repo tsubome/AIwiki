@@ -1,7 +1,7 @@
 {
   "name": "CogAgent",
   "slug": "cogagent",
-  "releaseDate": "2023-12-01",
+  "releaseDate": "2023-12-14",
   "developer": "Zhipu AI / Tsinghua University",
   "license": "Apache 2.0 + Model License",
   "modelType": "BASE",
@@ -51,7 +51,7 @@
     {
       "name": "CogAgent-9B-20241220",
       "slug": "cogagent-9b-20241220",
-      "parameters": "9B",
+      "parameters": "14B",
       "description": {
         "ja": "GLM-4V-9Bベースの最新版。ScreenSpot、OmniAct、OSWorldでトップクラス。GLM-PCプロダクトに採用。",
         "en": "Latest version based on GLM-4V-9B. Top performance on ScreenSpot, OmniAct, OSWorld. Adopted for GLM-PC product."

@@ -1,7 +1,7 @@
 {
   "name": "GLM-4.6",
   "slug": "glm-4.6",
-  "releaseDate": "2025-09-01",
+  "releaseDate": "2025-09-30",
   "developer": "Zhipu AI / Tsinghua University",
   "license": "MIT License",
   "modelType": "BASE",
@@ -53,14 +53,14 @@
     {
       "name": "GLM-4.6V",
       "slug": "glm-4.6v",
-      "parameters": "357B",
+      "parameters": "106B",
       "parameterDetails": {
-        "active": "32B",
-        "total": "357B"
+        "active": "12B",
+        "total": "106B"
       },
       "description": {
-        "ja": "ビジョン-言語モデル版。動画理解強化。",
-        "en": "Vision-Language model version. Enhanced video understanding."
+        "ja": "ビジョン-言語モデル版。動画理解強化。128Kコンテキスト。",
+        "en": "Vision-Language model version. Enhanced video understanding. 128K context."
       },
       "huggingface": "https://huggingface.co/zai-org/GLM-4.6V",
       "requirements": {

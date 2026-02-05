@@ -103,6 +103,8 @@ export interface GeneratedFamily extends FamilyData {
   tree: TreeData | null
 }
 
+export const DATA_GENERATED_AT = '${new Date().toISOString()}'
+
 export const GENERATED_FAMILIES: GeneratedFamily[] = ${JSON.stringify(data, null, 2)} as const
 
 // Quick lookup maps

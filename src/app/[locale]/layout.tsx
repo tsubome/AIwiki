@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing'
 import { Link } from '@/i18n/routing'
 import Header from '@/components/Header'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { DATA_GENERATED_AT } from '@/lib/generated-data'
 import '../globals.css'
 
 export function generateStaticParams() {
@@ -40,7 +41,7 @@ export default async function LocaleLayout({
             </main>
             <footer className="border-t border-gray-200 dark:border-gray-700 mt-8 sm:mt-16 py-6 sm:py-8 text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm px-4">
               <div className="mb-2">AIwiki - Local LLM Information Wiki</div>
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 mb-2">
                 <Link href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300">
                   Privacy Policy
                 </Link>
@@ -52,6 +53,9 @@ export default async function LocaleLayout({
                 >
                   GitHub
                 </a>
+              </div>
+              <div className="text-gray-400 dark:text-gray-500 text-xs">
+                Data updated: {new Date(DATA_GENERATED_AT).toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
               </div>
             </footer>
           </NextIntlClientProvider>

@@ -1,9 +1,9 @@
 {
   "name": "CogVLM2",
   "slug": "cogvlm2",
-  "releaseDate": "2024-05-01",
+  "releaseDate": "2024-05-20",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0 + Model License",
+  "license": "CogVLM2 License + Llama 3 License",
   "modelType": "BASE",
   "tags": [
     "official",

@@ -1,9 +1,9 @@
 {
   "name": "CodeGeeX2-6B",
   "slug": "codegeex2-6b",
-  "releaseDate": "2023-07-01",
+  "releaseDate": "2023-07-24",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0",
+  "license": "Apache 2.0 (code) / Model License (weights)",
   "modelType": "INSTRUCT",
   "baseModel": "chatglm2-6b",
   "tags": [

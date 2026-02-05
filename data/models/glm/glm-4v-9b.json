@@ -3,7 +3,7 @@
   "slug": "glm-4v-9b",
   "releaseDate": "2024-06-05",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0",
+  "license": "GLM-4 License",
   "modelType": "BASE",
   "baseModel": "glm-4-9b",
   "tags": [

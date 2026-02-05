@@ -11,8 +11,8 @@
     "vision"
   ],
   "description": {
-    "ja": "Visual Expert Moduleを導入した強力なVision-Language Model。言語能力を損なわずに深い視覚-言語融合を実現。10のVLMベンチマークでSOTA。NeurIPS 2024に採択。",
-    "en": "Powerful Vision-Language Model with Visual Expert Module. Achieves deep vision-language fusion without compromising language capabilities. SOTA on 10 VLM benchmarks. Accepted at NeurIPS 2024."
+    "ja": "Visual Expert Moduleを導入した強力なVision-Language Model。言語能力を損なわずに深い視覚-言語融合を実現。15のクロスモーダルベンチマークでSOTA。NeurIPS 2024に採択。",
+    "en": "Powerful Vision-Language Model with Visual Expert Module. Achieves deep vision-language fusion without compromising language capabilities. SOTA on 15 classic cross-modal benchmarks. Accepted at NeurIPS 2024."
   },
   "specs": {
     "contextLength": 2048,

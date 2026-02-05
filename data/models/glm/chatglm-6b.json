@@ -3,7 +3,7 @@
   "slug": "chatglm-6b",
   "releaseDate": "2023-03-14",
   "developer": "Zhipu AI / Tsinghua University",
-  "license": "Apache 2.0",
+  "license": "Apache 2.0 (code) / Model License (weights)",
   "modelType": "INSTRUCT",
   "tags": [
     "official",
@@ -15,7 +15,7 @@
     "en": "The first GLM dialogue model runnable on consumer GPUs. Inference possible with 6GB VRAM using INT4 quantization. Bilingual support for Chinese and English. Miniaturized GLM-130B technology enabling local execution."
   },
   "benchmarks": {
-    "mmlu": 25.2,
+    "mmlu": 32.35,
     "source": "ChatGLM Technical Report"
   },
   "specs": {
