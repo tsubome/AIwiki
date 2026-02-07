@@ -31,9 +31,7 @@
     "architecture": "Dense Transformer, Regional optimization"
   },
   "links": {
-    "website": "https://mistral.ai",
-    "blog": "https://mistral.ai/news/mistral-saba",
-    "docs": "https://docs.mistral.ai/models/mistral-saba-25-02"
+    "website": "https://mistral.ai/news/mistral-saba"
   },
   "variants": [
     {
