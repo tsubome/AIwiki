@@ -4,7 +4,7 @@
   "releaseDate": "2024-09-17",
   "developer": "Mistral AI",
   "license": "Apache-2.0",
-  "modelType": "BASE",
+  "modelType": "MULTIMODAL",
   "baseModel": "mistral-nemo",
   "tags": [
     "official",
@@ -31,7 +31,15 @@
     "contextLength": 128000,
     "knowledgeCutoff": "2024-Q3",
     "languages": [
-      "en"
+      "en",
+      "fr",
+      "de",
+      "es",
+      "it",
+      "pt",
+      "ru",
+      "zh",
+      "ko"
     ],
     "architecture": "Multimodal Transformer, Variable-resolution vision encoder, 128K context"
   },

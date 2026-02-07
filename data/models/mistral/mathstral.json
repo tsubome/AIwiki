@@ -18,7 +18,8 @@
     "math": 56.6,
     "custom": {
       "math-majority": 68.37,
-      "math-prm": 74.59
+      "math-prm": 74.59,
+      "gsm8k": 77.1
     },
     "source": "https://mistral.ai/news/mathstral"
   },
@@ -35,7 +36,7 @@
     "architecture": "Dense Transformer, Instruction-tuned for math reasoning"
   },
   "links": {
-    "huggingface": "https://huggingface.co/mistralai",
+    "huggingface": "https://huggingface.co/mistralai/Mathstral-7B-v0.1",
     "website": "https://mistral.ai/news/mathstral"
   },
   "variants": [

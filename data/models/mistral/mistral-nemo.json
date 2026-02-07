@@ -5,7 +5,6 @@
   "developer": "Mistral AI",
   "license": "Apache-2.0",
   "modelType": "BASE",
-  "baseModel": "mistral-7b",
   "tags": [
     "official",
     "text-generation",
@@ -19,16 +18,30 @@
     "ja": "NVIDIAとの共同開発モデル。2024年7月18日公開。12Bパラメータ。128Kコンテキスト。量子化対応学習でFP8推論でも性能劣化なし。Gemma 2 9B、LLaMA 3 8Bを上回る性能。Mistral 7Bのドロップイン置き換え。中国語処理を大幅改善。",
     "en": "Co-developed with NVIDIA. Released July 18, 2024. 12B parameters. 128K context. Quantization-aware training maintains performance at FP8 inference. Outperforms Gemma 2 9B, LLaMA 3 8B. Drop-in replacement for Mistral 7B. Significantly improved Chinese processing."
   },
+  "benchmarks": {
+    "mmlu": 68.0,
+    "custom": {
+      "hellaswag": 83.5,
+      "winogrande": 76.8,
+      "triviaqa": 73.8
+    },
+    "source": "https://huggingface.co/mistralai/Mistral-Nemo-Base-2407"
+  },
   "specs": {
     "contextLength": 128000,
-    "knowledgeCutoff": "2024-Q2",
+    "knowledgeCutoff": "2024-04",
     "languages": [
       "en",
       "fr",
       "de",
       "es",
       "it",
-      "zh"
+      "pt",
+      "zh",
+      "ja",
+      "ko",
+      "ar",
+      "hi"
     ],
     "architecture": "Dense Transformer, FP8 native support, 128K context"
   },

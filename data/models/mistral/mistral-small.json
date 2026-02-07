@@ -1,7 +1,7 @@
 {
   "name": "Mistral Small",
   "slug": "mistral-small",
-  "releaseDate": "2024-09-01",
+  "releaseDate": "2025-01-30",
   "developer": "Mistral AI",
   "license": "Apache-2.0",
   "modelType": "BASE",
@@ -18,13 +18,33 @@
   },
   "specs": {
     "contextLength": 128000,
-    "knowledgeCutoff": "2025-Q1",
+    "knowledgeCutoff": "2023-10",
     "languages": [
       "en",
       "fr",
       "de",
       "es",
-      "it"
+      "it",
+      "pt",
+      "zh",
+      "ja",
+      "ko",
+      "ar",
+      "hi",
+      "id",
+      "ms",
+      "ne",
+      "pl",
+      "ro",
+      "sr",
+      "sv",
+      "tr",
+      "uk",
+      "vi",
+      "bn",
+      "fa",
+      "el",
+      "nl"
     ],
     "architecture": "Dense Transformer, Vision encoder (Small 3.1+)"
   },
@@ -38,8 +58,8 @@
       "slug": "mistral-small-3-base-2501",
       "parameters": "24B",
       "description": {
-        "ja": "2025年1月リリース。24Bパラメータベースモデル。128Kコンテキスト。",
-        "en": "Released January 2025. 24B parameter base model. 128K context."
+        "ja": "2025年1月リリース。24Bパラメータベースモデル。32Kコンテキスト。",
+        "en": "Released January 2025. 24B parameter base model. 32K context."
       },
       "huggingface": "https://huggingface.co/mistralai/Mistral-Small-24B-Base-2501",
       "requirements": {

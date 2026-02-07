@@ -32,7 +32,9 @@
       "pt",
       "zh",
       "ja",
-      "ko"
+      "ko",
+      "nl",
+      "ar"
     ],
     "architecture": "Granular MoE, 2.5B vision encoder, FP8 native, 256K context"
   },

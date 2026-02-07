@@ -16,11 +16,11 @@
     "open-source"
   ],
   "benchmarks": {
-    "mmlu": 77.8,
+    "mmlu": 77.3,
     "humaneval": 45.1,
     "math": 44.6,
     "custom": {
-      "hellaswag": 88.5,
+      "hellaswag": 88.9,
       "gsm8k-maj8": 90.8
     },
     "source": "https://mistral.ai/news/mixtral-8x22b"

@@ -1,11 +1,10 @@
 {
   "name": "Voxtral",
   "slug": "voxtral",
-  "releaseDate": "2025-07-01",
+  "releaseDate": "2025-07-15",
   "developer": "Mistral AI",
-  "license": "Commercial",
+  "license": "Apache-2.0",
   "modelType": "FINETUNE",
-  "baseModel": "mistral-small",
   "tags": [
     "official",
     "audio",
@@ -18,32 +17,37 @@
     "en": "Mistral AI's audio input model. Released July 2025. Adds state-of-the-art audio input capabilities to Mistral Small 3. Excels at transcription, translation, and audio understanding. Integrates audio while maintaining text performance."
   },
   "specs": {
+    "contextLength": 32000,
     "knowledgeCutoff": "2025-Q2",
     "languages": [
       "en",
       "fr",
       "de",
       "es",
-      "it"
+      "it",
+      "pt",
+      "nl",
+      "hi"
     ],
     "architecture": "Multimodal Transformer, Audio encoder"
   },
   "links": {
-    "website": "https://mistral.ai"
+    "website": "https://mistral.ai/news/voxtral"
   },
   "variants": [
     {
       "name": "Voxtral Mini",
       "slug": "voxtral-mini",
-      "parameters": "Unknown",
+      "parameters": "3B",
       "description": {
-        "ja": "軽量音声モデル。エッジ向け。",
-        "en": "Lightweight audio model. For edge deployment."
+        "ja": "Ministral 3Bベースの軽量音声モデル。エッジ・ローカル向け。",
+        "en": "Lightweight audio model based on Ministral 3B. For edge and local deployment."
       },
       "requirements": {
-        "notes": "API only"
+        "notes": "bf16: ~9.5GB GPU RAM"
       },
-      "gguf": []
+      "gguf": [],
+      "huggingface": "https://huggingface.co/mistralai/Voxtral-Mini-3B-2507"
     },
     {
       "name": "Voxtral Small",
@@ -56,7 +60,8 @@
       "requirements": {
         "notes": "Includes audio encoder"
       },
-      "gguf": []
+      "gguf": [],
+      "huggingface": "https://huggingface.co/mistralai/Voxtral-Small-24B-2507"
     }
   ]
 }

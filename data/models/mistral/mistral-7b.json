@@ -22,8 +22,8 @@
     "source": "https://mistral.ai/news/announcing-mistral-7b/"
   },
   "description": {
-    "ja": "Mistral AIの初代モデル。2023年9月27日公開。Sliding Window Attention（SWA）とGrouped-Query Attention（GQA）を採用し効率的な推論を実現。LLaMA 2 13Bを全ベンチマークで上回り、LLaMA 34Bに匹敵する性能。8Kコンテキスト。Apache 2.0ライセンス。",
-    "en": "Mistral AI's first model. Released September 27, 2023. Features Sliding Window Attention (SWA) and Grouped-Query Attention (GQA) for efficient inference. Outperforms LLaMA 2 13B on all benchmarks, rivaling LLaMA 34B. 8K context. Apache 2.0 license."
+    "ja": "Mistral AIの初代モデル。2023年9月27日公開。Sliding Window Attention（SWA）とGrouped-Query Attention（GQA）を採用し効率的な推論を実現。LLaMA 2 13Bを全ベンチマークで上回り、多くのベンチマークでLlama 1 34Bを上回る性能。8Kコンテキスト。Apache 2.0ライセンス。",
+    "en": "Mistral AI's first model. Released September 27, 2023. Features Sliding Window Attention (SWA) and Grouped-Query Attention (GQA) for efficient inference. Outperforms LLaMA 2 13B on all benchmarks, outperforming Llama 1 34B on many benchmarks. 8K context. Apache 2.0 license."
   },
   "specs": {
     "contextLength": 8192,
@@ -43,7 +43,7 @@
   },
   "links": {
     "huggingface": "https://huggingface.co/mistralai",
-    "github": "https://github.com/mistralai/mistral-src",
+    "github": "https://github.com/mistralai/mistral-inference",
     "website": "https://mistral.ai/news/announcing-mistral-7b/"
   },
   "variants": [

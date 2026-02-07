@@ -1,33 +1,45 @@
 {
   "name": "Mistral Saba",
   "slug": "mistral-saba",
-  "releaseDate": "2025-02-01",
+  "releaseDate": "2025-02-17",
   "developer": "Mistral AI",
   "license": "Commercial",
-  "modelType": "BASE",
-
-  "tags": ["official", "text-generation", "regional", "middle-east", "south-asia"],
-
+  "modelType": "INSTRUCT",
+  "tags": [
+    "official",
+    "text-generation",
+    "regional",
+    "middle-east",
+    "south-asia"
+  ],
   "description": {
     "ja": "中東・南アジア地域特化モデル。2025年2月公開。中東・南アジアのデータセットで特別に学習。地域の言語・文化的コンテキストに最適化。地域アプリケーション向けに強化された言語サポート。",
     "en": "Regional model specialized for Middle East and South Asia. Released February 2025. Specially trained on Middle East and South Asian datasets. Optimized for regional language and cultural context. Enhanced language support for regional applications."
   },
-
   "specs": {
+    "contextLength": 32000,
     "knowledgeCutoff": "2025-Q1",
-    "languages": ["ar", "hi", "ur", "fa", "en"],
+    "languages": [
+      "ar",
+      "hi",
+      "ur",
+      "fa",
+      "he",
+      "ta",
+      "en"
+    ],
     "architecture": "Dense Transformer, Regional optimization"
   },
-
   "links": {
-    "website": "https://mistral.ai"
+    "website": "https://mistral.ai",
+    "blog": "https://mistral.ai/news/mistral-saba",
+    "docs": "https://docs.mistral.ai/models/mistral-saba-25-02"
   },
-
   "variants": [
     {
       "name": "Mistral Saba",
       "slug": "mistral-saba-main",
-      "parameters": "Unknown",
+      "parameters": "24B",
       "description": {
         "ja": "中東・南アジア地域特化。地域言語・文化に最適化。",
         "en": "Middle East & South Asia specialized. Optimized for regional languages and culture."

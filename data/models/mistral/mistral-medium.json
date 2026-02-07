@@ -3,27 +3,55 @@
   "slug": "mistral-medium",
   "releaseDate": "2025-05-07",
   "developer": "Mistral AI",
-  "license": "Commercial",
-  "modelType": "BASE",
-  "baseModel": "mistral-small",
-
-  "tags": ["official", "text-generation", "enterprise", "cost-efficient"],
-
+  "license": "Mistral Commercial License",
+  "modelType": "INSTRUCT",
+  "tags": [
+    "official",
+    "text-generation",
+    "enterprise",
+    "cost-efficient"
+  ],
   "description": {
     "ja": "Mistral AIのエンタープライズ向け中型モデル。2025年5月7日公開。フロンティアレベルの能力を大幅に低い運用コストで提供。Mistral Large 2とMistral Small 3の中間に位置。",
     "en": "Mistral AI's enterprise mid-tier model. Released May 7, 2025. Provides frontier-level capabilities at significantly lower operational costs. Positioned between Mistral Large 2 and Mistral Small 3."
   },
-
+  "benchmarks": {
+    "humaneval": 92.1,
+    "custom": {
+      "docvqa": 95.3,
+      "ruler-32k": 96,
+      "ruler-128k": 90.2
+    },
+    "source": "https://mistral.ai/news/mistral-medium-3"
+  },
   "specs": {
-    "knowledgeCutoff": "2025-Q1",
-    "languages": ["en", "fr", "de", "es", "it"],
+    "contextLength": 128000,
+    "knowledgeCutoff": "2025-02",
+    "languages": [
+      "en",
+      "fr",
+      "de",
+      "es",
+      "it",
+      "pt",
+      "zh",
+      "ja",
+      "ko",
+      "ar",
+      "hi",
+      "ru",
+      "nl",
+      "pl",
+      "sv",
+      "tr",
+      "uk",
+      "vi"
+    ],
     "architecture": "Dense Transformer"
   },
-
   "links": {
     "website": "https://mistral.ai"
   },
-
   "variants": [
     {
       "name": "Mistral Medium 3",
@@ -43,8 +71,8 @@
       "slug": "mistral-medium-3.1-2508",
       "parameters": "Unknown",
       "description": {
-        "ja": "2025年8月リリース。改良版。",
-        "en": "Released August 2025. Improved version."
+        "ja": "2025年8月リリース。推論・コーディング能力向上、マルチモーダル対応強化。",
+        "en": "Released August 2025. Enhanced reasoning, coding, and multimodal capabilities."
       },
       "requirements": {
         "notes": "API only"

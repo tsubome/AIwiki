@@ -1,10 +1,10 @@
 {
   "name": "Devstral",
   "slug": "devstral",
-  "releaseDate": "2025-05-01",
+  "releaseDate": "2025-05-21",
   "developer": "Mistral AI",
-  "license": "Commercial",
-  "modelType": "BASE",
+  "license": "Apache-2.0",
+  "modelType": "INSTRUCT",
   "tags": [
     "official",
     "code-generation",
@@ -16,6 +16,7 @@
     "en": "Mistral AI's developer and coding specialized model. Released May 2025. Optimized for AI-assisted software development. Devstral Small 2 (Dec 2025) outperforms Qwen 3 Coder Flash (30B). Integrates with Mistral Vibe CLI tool."
   },
   "specs": {
+    "contextLength": 128000,
     "knowledgeCutoff": "2025-Q2",
     "languages": [
       "en",
@@ -24,34 +25,36 @@
     "architecture": "Dense Transformer, Development-optimized"
   },
   "links": {
-    "website": "https://mistral.ai"
+    "website": "https://mistral.ai/news/devstral"
   },
   "variants": [
     {
       "name": "Devstral Small",
       "slug": "devstral-small",
-      "parameters": "Unknown",
+      "parameters": "24B",
       "description": {
         "ja": "初期リリース。開発タスク向け。",
         "en": "Initial release. For development tasks."
       },
       "requirements": {
-        "notes": "API only"
+        "notes": "INT4: 15GB"
       },
-      "gguf": []
+      "gguf": [],
+      "huggingface": "https://huggingface.co/mistralai/Devstral-Small-2505"
     },
     {
       "name": "Devstral Small 1.1 (2507)",
       "slug": "devstral-small-1.1-2507",
-      "parameters": "Unknown",
+      "parameters": "24B",
       "description": {
         "ja": "2025年7月リリース。改良版。",
         "en": "Released July 2025. Improved version."
       },
       "requirements": {
-        "notes": "API only"
+        "notes": "INT4: 15GB"
       },
-      "gguf": []
+      "gguf": [],
+      "huggingface": "https://huggingface.co/mistralai/Devstral-Small-2507"
     },
     {
       "name": "Devstral Small 2 (2512)",
@@ -64,7 +67,8 @@
       "requirements": {
         "notes": "INT4: 15GB"
       },
-      "gguf": []
+      "gguf": [],
+      "huggingface": "https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512"
     },
     {
       "name": "Devstral Medium",
@@ -76,6 +80,20 @@
       },
       "requirements": {
         "notes": "API only"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Devstral 2 (123B)",
+      "slug": "devstral-2-123b-2512",
+      "parameters": "123B",
+      "description": {
+        "ja": "2025年12月リリース。123Bパラメータ。SWE-bench Verified 72.2%達成。Modified MITライセンス。256Kコンテキスト。",
+        "en": "Released December 2025. 123B parameters. Achieves 72.2% on SWE-bench Verified. Modified MIT license. 256K context."
+      },
+      "huggingface": "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512",
+      "requirements": {
+        "notes": "INT4: ~65GB"
       },
       "gguf": []
     }

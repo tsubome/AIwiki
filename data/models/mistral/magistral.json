@@ -5,7 +5,7 @@
   "developer": "Mistral AI",
   "license": "Apache-2.0",
   "modelType": "FINETUNE",
-  "baseModel": "mistral-small",
+  "baseModel": "mistral-small-3.1",
   "tags": [
     "official",
     "reasoning",
@@ -13,22 +13,43 @@
     "multilingual"
   ],
   "description": {
-    "ja": "Mistral AI初の推論特化モデル。2025年6月10日公開。Mistral Small 3ベース。透明で多段階の論理的推論を実現。Chain-of-Thoughtアプローチ。多言語対応。OpenAI o1のような推論能力を目指す。エンタープライズ向け高忠実度推論。",
-    "en": "Mistral AI's first reasoning-focused model. Released June 10, 2025. Based on Mistral Small 3. Enables transparent, multi-step logical reasoning. Chain-of-Thought approach. Multilingual support. Aims for o1-like reasoning capabilities. Enterprise-grade high-fidelity reasoning."
+    "ja": "Mistral AI初の推論特化モデル。2025年6月10日公開。Mistral Small 3.1ベース。透明で多段階の論理的推論を実現。Chain-of-Thoughtアプローチ。多言語対応。OpenAI o1のような推論能力を目指す。エンタープライズ向け高忠実度推論。",
+    "en": "Mistral AI's first reasoning-focused model. Released June 10, 2025. Based on Mistral Small 3.1. Enables transparent, multi-step logical reasoning. Chain-of-Thought approach. Multilingual support. Aims for o1-like reasoning capabilities. Enterprise-grade high-fidelity reasoning."
   },
   "specs": {
+    "contextLength": 128000,
     "knowledgeCutoff": "2025-Q2",
     "languages": [
       "en",
       "fr",
       "de",
       "es",
-      "it"
+      "it",
+      "pt",
+      "zh",
+      "ja",
+      "ko",
+      "ar",
+      "hi",
+      "id",
+      "ms",
+      "ne",
+      "pl",
+      "ro",
+      "ru",
+      "sr",
+      "tr",
+      "uk",
+      "vi",
+      "bn",
+      "fa",
+      "el"
     ],
     "architecture": "Dense Transformer, Chain-of-Thought reasoning"
   },
   "links": {
-    "website": "https://mistral.ai"
+    "website": "https://mistral.ai/news/magistral",
+    "huggingface": "https://huggingface.co/mistralai/Magistral-Small-2506"
   },
   "variants": [
     {
@@ -36,8 +57,8 @@
       "slug": "magistral-small",
       "parameters": "24B",
       "description": {
-        "ja": "Mistral Small 3ベースの推論モデル。Apache 2.0ライセンス。",
-        "en": "Reasoning model based on Mistral Small 3. Apache 2.0 license."
+        "ja": "Mistral Small 3.1ベースの推論モデル。Apache 2.0ライセンス。",
+        "en": "Reasoning model based on Mistral Small 3.1. Apache 2.0 license."
       },
       "requirements": {
         "notes": "INT4: 15GB"

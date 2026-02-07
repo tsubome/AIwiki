@@ -16,8 +16,8 @@
     "source": "https://mistral.ai/news/codestral"
   },
   "description": {
-    "ja": "Mistral AIのコード特化モデル。2024年5月29日公開。80以上のプログラミング言語対応。Fill-in-the-Middle（FIM）対応でコード補完、テスト生成、コード修正に特化。32Kコンテキスト。Codestral 25.01で2.5倍高速化。",
-    "en": "Mistral AI's code-specialized model. Released May 29, 2024. Supports 80+ programming languages. Fill-in-the-Middle (FIM) support for code completion, test generation, and code fixes. 32K context. Codestral 25.01 is 2.5x faster."
+    "ja": "Mistral AIのコード特化モデル。2024年5月29日公開。80以上のプログラミング言語対応。Fill-in-the-Middle（FIM）対応でコード補完、テスト生成、コード修正に特化。32Kコンテキスト。Codestral 25.01で約2倍高速化。",
+    "en": "Mistral AI's code-specialized model. Released May 29, 2024. Supports 80+ programming languages. Fill-in-the-Middle (FIM) support for code completion, test generation, and code fixes. 32K context. Codestral 25.01 is approximately 2x faster."
   },
   "specs": {
     "contextLength": 32768,
@@ -57,10 +57,10 @@
     {
       "name": "Codestral 25.01",
       "slug": "codestral-25.01",
-      "parameters": "22B",
+      "parameters": "Unknown",
       "description": {
-        "ja": "2025年1月リリース。アーキテクチャ改善で2.5倍高速化。改良トークナイザー。",
-        "en": "Released January 2025. 2.5x faster with architecture improvements. Improved tokenizer."
+        "ja": "2025年1月リリース。アーキテクチャ改善で約2倍高速化。改良トークナイザー。",
+        "en": "Released January 2025. Approximately 2x faster with architecture improvements. Improved tokenizer."
       },
       "requirements": {
         "notes": "API and download available"
@@ -70,7 +70,7 @@
     {
       "name": "Codestral 25.08",
       "slug": "codestral-25.08",
-      "parameters": "22B",
+      "parameters": "Unknown",
       "description": {
         "ja": "2025年8月リリース。さらなる改良版。",
         "en": "Released August 2025. Further improvements."

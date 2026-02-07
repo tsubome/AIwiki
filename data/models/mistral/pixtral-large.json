@@ -4,7 +4,7 @@
   "releaseDate": "2024-11-18",
   "developer": "Mistral AI",
   "license": "Mistral Research License",
-  "modelType": "BASE",
+  "modelType": "INSTRUCT",
   "baseModel": "mistral-large",
   "tags": [
     "official",
@@ -15,7 +15,11 @@
   ],
   "benchmarks": {
     "custom": {
-      "mathvista": 69.4
+      "mathvista": 69.4,
+      "mmmu": 64,
+      "chartqa": 88.1,
+      "docvqa": 93.3,
+      "vqav2": 80.9
     },
     "source": "https://mistral.ai/news/pixtral-large"
   },
@@ -31,7 +35,14 @@
       "fr",
       "de",
       "es",
-      "it"
+      "it",
+      "pt",
+      "zh",
+      "ja",
+      "ko",
+      "ar",
+      "hi",
+      "nl"
     ],
     "architecture": "Multimodal Transformer, 1B vision encoder, Document/Chart/Image understanding"
   },

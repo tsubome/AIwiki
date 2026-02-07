@@ -18,14 +18,14 @@
     "mmlu": 70.6,
     "custom": {
       "hellaswag": 84.4,
-      "arc-c": 66.4,
+      "arc-c": 59.7,
       "gsm8k": 74.4
     },
     "source": "https://arxiv.org/abs/2401.04088"
   },
   "description": {
-    "ja": "Mistral AIの初のMoEモデル。2023年12月11日公開。8エキスパート構成でトークンごとに2つを選択（Top-2ルーティング）。総パラメータ47B、活性化13B。LLaMA 2 70Bを上回り、GPT-3.5に匹敵。32Kコンテキスト。英語、フランス語、イタリア語、ドイツ語、スペイン語対応。",
-    "en": "Mistral AI's first MoE model. Released December 11, 2023. 8 experts with Top-2 routing per token. 47B total parameters, 13B active. Outperforms LLaMA 2 70B, rivals GPT-3.5. 32K context. Supports English, French, Italian, German, Spanish."
+    "ja": "Mistral AIの初のMoEモデル。2023年12月11日公開。8エキスパート構成でトークンごとに2つを選択（Top-2ルーティング）。総パラメータ46.7B、活性化12.9B。LLaMA 2 70Bを上回り、GPT-3.5に匹敵。32Kコンテキスト。英語、フランス語、イタリア語、ドイツ語、スペイン語対応。",
+    "en": "Mistral AI's first MoE model. Released December 11, 2023. 8 experts with Top-2 routing per token. 46.7B total parameters, 12.9B active. Outperforms LLaMA 2 70B, rivals GPT-3.5. 32K context. Supports English, French, Italian, German, Spanish."
   },
   "specs": {
     "contextLength": 32768,
@@ -48,10 +48,10 @@
     {
       "name": "Mixtral 8x7B v0.1",
       "slug": "mixtral-8x7b-v0.1",
-      "parameters": "47B",
+      "parameters": "46.7B",
       "parameterDetails": {
-        "total": "47B",
-        "active": "13B"
+        "total": "46.7B",
+        "active": "12.9B"
       },
       "description": {
         "ja": "ベースモデル。8エキスパート×7B構成。",
@@ -66,10 +66,10 @@
     {
       "name": "Mixtral 8x7B Instruct v0.1",
       "slug": "mixtral-8x7b-instruct-v0.1",
-      "parameters": "47B",
+      "parameters": "46.7B",
       "parameterDetails": {
-        "total": "47B",
-        "active": "13B"
+        "total": "46.7B",
+        "active": "12.9B"
       },
       "description": {
         "ja": "指示チューニング版。",
