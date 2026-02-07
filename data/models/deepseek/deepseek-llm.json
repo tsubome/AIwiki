@@ -12,7 +12,7 @@
     "commercial-use"
   ],
   "benchmarks": {
-    "mmlu": 71.9,
+    "mmlu": 71.3,
     "humaneval": 73.78,
     "math": 32.6,
     "custom": {
@@ -90,8 +90,8 @@
         "active": "67B"
       },
       "description": {
-        "ja": "67Bベースモデル。Grouped-Query Attention（GQA）採用で効率的。MMLU 71.9%達成。",
-        "en": "67B base model. Uses Grouped-Query Attention (GQA) for efficiency. Achieves 71.9% on MMLU."
+        "ja": "67Bベースモデル。Grouped-Query Attention（GQA）採用で効率的。MMLU 71.3%達成。",
+        "en": "67B base model. Uses Grouped-Query Attention (GQA) for efficiency. Achieves 71.3% on MMLU."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-llm-67b-base",
       "requirements": {

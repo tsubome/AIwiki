@@ -13,11 +13,12 @@
     "image-understanding"
   ],
   "description": {
-    "ja": "DeepSeek AIのVision-Languageモデル。2024年3月11日公開。最大1024x1024ピクセルの画像入力に対応。1.3Bと7Bの2サイズ展開。画像理解、OCR、視覚的質問応答などのマルチモーダルタスクに対応。",
-    "en": "DeepSeek AI's Vision-Language model. Released March 11, 2024. Supports image input up to 1024x1024 pixels. Available in 1.3B and 7B sizes. Handles multimodal tasks including image understanding, OCR, and visual question answering."
+    "ja": "DeepSeek AIのVision-Languageモデル。2024年3月11日公開。7Bモデルは最大1024x1024ピクセル、1.3Bモデルは384x384ピクセルの画像入力に対応。1.3Bと7Bの2サイズ展開。画像理解、OCR、視覚的質問応答などのマルチモーダルタスクに対応。",
+    "en": "DeepSeek AI's Vision-Language model. Released March 11, 2024. 7B model supports up to 1024x1024 pixels, 1.3B model supports 384x384 pixels. Available in 1.3B and 7B sizes. Handles multimodal tasks including image understanding, OCR, and visual question answering."
   },
   "specs": {
-    "knowledgeCutoff": "2024-Q1",
+    "contextLength": 4096,
+    "knowledgeCutoff": "2023",
     "languages": [
       "en",
       "zh"

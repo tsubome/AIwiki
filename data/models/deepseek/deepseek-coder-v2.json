@@ -29,7 +29,7 @@
   "specs": {
     "contextLength": 128000,
     "trainingTokens": "6T (additional)",
-    "knowledgeCutoff": "2024-Q2",
+    "knowledgeCutoff": "2023-11",
     "languages": [
       "en",
       "zh",

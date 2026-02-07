@@ -12,12 +12,16 @@
     "efficient"
   ],
   "description": {
-    "ja": "DeepSeek AIのMixture-of-Experts（MoE）アーキテクチャ実証モデル。2024年1月11日公開。細粒度エキスパート分割と共有エキスパート分離という革新的技術を導入。16Bの総パラメータで27億のみ活性化し、7B Denseモデルに匹敵する性能を実現。後のV2、V3シリーズの基盤となるアーキテクチャ。",
-    "en": "DeepSeek AI's Mixture-of-Experts (MoE) architecture demonstration model. Released January 11, 2024. Introduces innovative fine-grained expert segmentation and shared expert isolation techniques. With 16B total parameters activating only 2.7B, achieves performance comparable to 7B dense models. Foundation architecture for later V2 and V3 series."
+    "ja": "DeepSeek AIのMixture-of-Experts（MoE）アーキテクチャ実証モデル。2024年1月11日公開。細粒度エキスパート分割と共有エキスパート分離という革新的技術を導入。16Bの総パラメータで約28億のみ活性化し、7B Denseモデルに匹敵する性能を実現。後のV2、V3シリーズの基盤となるアーキテクチャ。",
+    "en": "DeepSeek AI's Mixture-of-Experts (MoE) architecture demonstration model. Released January 11, 2024. Introduces innovative fine-grained expert segmentation and shared expert isolation techniques. With 16B total parameters activating only 2.8B, achieves performance comparable to 7B dense models. Foundation architecture for later V2 and V3 series."
   },
   "specs": {
     "contextLength": 4096,
-    "knowledgeCutoff": "2024-Q1",
+    "knowledgeCutoff": "2023",
+    "languages": [
+      "en",
+      "zh"
+    ],
     "architecture": "Sparse MoE, Fine-grained expert segmentation, Shared expert isolation, Always-active shared experts + routed experts, Reduced knowledge redundancy"
   },
   "links": {
@@ -31,16 +35,16 @@
       "slug": "deepseek-moe-16b",
       "parameters": "16B",
       "parameterDetails": {
-        "total": "16B",
-        "active": "2.7B"
+        "total": "16.4B",
+        "active": "2.8B"
       },
       "description": {
-        "ja": "16B総パラメータ、27億活性化。7B Denseモデル相当の性能を27億の活性化パラメータで実現。",
-        "en": "16B total, 2.7B active parameters. Achieves 7B dense model performance with only 2.7B active parameters."
+        "ja": "16.4B総パラメータ、約28億活性化。7B Denseモデル相当の性能を約28億の活性化パラメータで実現。",
+        "en": "16.4B total, 2.8B active parameters. Achieves 7B dense model performance with only 2.8B active parameters."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-moe-16b-base",
       "requirements": {
-        "notes": "INT4: 10GB (loads full model but activates only 2.7B)"
+        "notes": "INT4: 10GB (loads full model but activates only 2.8B)"
       },
       "gguf": []
     },
@@ -49,8 +53,8 @@
       "slug": "deepseek-moe-16b-chat",
       "parameters": "16B",
       "parameterDetails": {
-        "total": "16B",
-        "active": "2.7B"
+        "total": "16.4B",
+        "active": "2.8B"
       },
       "description": {
         "ja": "16B MoE対話チューニング版。",

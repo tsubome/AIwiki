@@ -25,6 +25,7 @@
     "en": "DeepSeek AI's second-generation math reasoning model. Released November 27, 2025. Introduces self-verification math reasoning. Achieves IMO 2025 Gold (5/6 solved), CMO 2024 Gold, and 118/120 on Putnam 2024 (human top: 90). 685B parameters. Apache 2.0 license."
   },
   "specs": {
+    "contextLength": 128000,
     "knowledgeCutoff": "2025-Q4",
     "languages": [
       "en",
@@ -34,7 +35,8 @@
   },
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
-    "paper": "https://arxiv.org/abs/2511.22570"
+    "paper": "https://arxiv.org/abs/2511.22570",
+    "github": "https://github.com/deepseek-ai/DeepSeek-Math-V2"
   },
   "variants": [
     {
@@ -43,7 +45,7 @@
       "parameters": "685B",
       "parameterDetails": {
         "total": "685B",
-        "active": "~40B"
+        "active": "~37B"
       },
       "description": {
         "ja": "自己検証型数学推論モデル。IMO 2025金メダル達成。",

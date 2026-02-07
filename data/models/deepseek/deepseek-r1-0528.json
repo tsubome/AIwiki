@@ -4,7 +4,7 @@
   "releaseDate": "2025-05-28",
   "developer": "DeepSeek AI",
   "license": "MIT",
-  "modelType": "BASE",
+  "modelType": "FINETUNE",
   "baseModel": "deepseek-r1",
   "tags": [
     "official",
@@ -21,7 +21,7 @@
   },
   "specs": {
     "contextLength": 128000,
-    "knowledgeCutoff": "2025-Q2",
+    "knowledgeCutoff": "2025-Q1",
     "languages": [
       "en",
       "zh"
@@ -30,6 +30,8 @@
   },
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2501.12948",
+    "github": "https://github.com/deepseek-ai/DeepSeek-R1",
     "website": "https://chat.deepseek.com"
   },
   "variants": [

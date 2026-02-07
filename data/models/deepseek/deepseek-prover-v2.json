@@ -1,9 +1,9 @@
 {
   "name": "DeepSeek-Prover-V2",
   "slug": "deepseek-prover-v2",
-  "releaseDate": "2025-04-01",
+  "releaseDate": "2025-04-30",
   "developer": "DeepSeek AI",
-  "license": "MIT",
+  "license": "DeepSeek Model License",
   "modelType": "FINETUNE",
   "baseModel": "deepseek-v3",
   "tags": [
@@ -17,11 +17,12 @@
   "benchmarks": {
     "custom": {
       "minif2f": 88.9
-    }
+    },
+    "source": "https://arxiv.org/abs/2504.21801"
   },
   "description": {
-    "ja": "DeepSeek AIの第2世代定理証明器。2025年4月公開。Lean 4形式言語対応。163,840トークンの超長コンテキスト。7Bと671Bの2サイズ展開。MiniF2F 88.9%達成。MITライセンス。",
-    "en": "DeepSeek AI's second-generation theorem prover. Released April 2025. Supports Lean 4 formal language. Ultra-long 163,840 token context. Available in 7B and 671B sizes. Achieves 88.9% on MiniF2F. MIT license."
+    "ja": "DeepSeek AIの第2世代定理証明器。2025年4月公開。Lean 4形式言語対応。163,840トークンの超長コンテキスト。7Bと671Bの2サイズ展開。MiniF2F 88.9%達成。",
+    "en": "DeepSeek AI's second-generation theorem prover. Released April 2025. Supports Lean 4 formal language. Ultra-long 163,840 token context. Available in 7B and 671B sizes. Achieves 88.9% on MiniF2F."
   },
   "specs": {
     "contextLength": 163840,
@@ -33,7 +34,9 @@
     "architecture": "Formal theorem proving for Lean 4, Ultra-long context"
   },
   "links": {
-    "huggingface": "https://huggingface.co/deepseek-ai"
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2504.21801",
+    "github": "https://github.com/deepseek-ai/DeepSeek-Prover-V2"
   },
   "variants": [
     {
@@ -41,8 +44,8 @@
       "slug": "deepseek-prover-v2-7b",
       "parameters": "7B",
       "description": {
-        "ja": "7B軽量版定理証明器。163Kコンテキスト。",
-        "en": "7B lightweight theorem prover. 163K context."
+        "ja": "7B軽量版定理証明器。32Kコンテキスト。",
+        "en": "7B lightweight theorem prover. 32K context."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-7B",
       "requirements": {

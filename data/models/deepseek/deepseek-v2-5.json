@@ -1,10 +1,10 @@
 {
   "name": "DeepSeek-V2.5",
   "slug": "deepseek-v2-5",
-  "releaseDate": "2024-09-06",
+  "releaseDate": "2024-09-05",
   "developer": "DeepSeek AI",
   "license": "DeepSeek Model License",
-  "modelType": "BASE",
+  "modelType": "INSTRUCT",
   "baseModel": "deepseek-v2",
   "tags": [
     "official",
@@ -14,8 +14,8 @@
     "unified"
   ],
   "description": {
-    "ja": "DeepSeek AIのV2.5統合モデル。2024年9月6日公開。DeepSeek-V2-0628とDeepSeek-Coder-V2-0724の長所を統合。汎用言語能力とコーディング能力を両立。",
-    "en": "DeepSeek AI's V2.5 unified model. Released September 6, 2024. Combines strengths of DeepSeek-V2-0628 and DeepSeek-Coder-V2-0724. Balances general language and coding capabilities."
+    "ja": "DeepSeek AIのV2.5統合モデル。2024年9月5日公開。DeepSeek-V2-0628とDeepSeek-Coder-V2-0724の長所を統合。汎用言語能力とコーディング能力を両立。",
+    "en": "DeepSeek AI's V2.5 unified model. Released September 5, 2024. Combines strengths of DeepSeek-V2-0628 and DeepSeek-Coder-V2-0724. Balances general language and coding capabilities."
   },
   "specs": {
     "contextLength": 128000,
@@ -28,7 +28,9 @@
     "architecture": "Unified MoE combining V2 and Coder-V2"
   },
   "links": {
-    "huggingface": "https://huggingface.co/deepseek-ai"
+    "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2405.04434",
+    "github": "https://github.com/deepseek-ai/DeepSeek-V2"
   },
   "variants": [
     {

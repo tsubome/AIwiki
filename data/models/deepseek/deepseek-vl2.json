@@ -25,10 +25,11 @@
     "source": "https://arxiv.org/abs/2412.10302"
   },
   "description": {
-    "ja": "DeepSeek AIの第2世代Vision-Language MoEモデル。2024年12月13日公開。384x384基本解像度で動的タイリング対応。Tiny（33.7B/10B活性化）、Small（161B/28B活性化）、フル（275B/45B活性化）の3サイズ展開。OCR、文書理解、チャート分析に強い。",
-    "en": "DeepSeek AI's second-generation Vision-Language MoE model. Released December 13, 2024. Supports dynamic tiling from 384x384 base resolution. Available in Tiny (33.7B/10B active), Small (161B/28B active), and full (275B/45B active) sizes. Strong in OCR, document understanding, and chart analysis."
+    "ja": "DeepSeek AIの第2世代Vision-Language MoEモデル。2024年12月13日公開。384x384基本解像度で動的タイリング対応。Tiny（3.37B/1.0B活性化）、Small（16.1B/2.8B活性化）、フル（27.5B/4.5B活性化）の3サイズ展開。OCR、文書理解、チャート分析に強い。",
+    "en": "DeepSeek AI's second-generation Vision-Language MoE model. Released December 13, 2024. Supports dynamic tiling from 384x384 base resolution. Available in Tiny (3.37B/1.0B active), Small (16.1B/2.8B active), and full (27.5B/4.5B active) sizes. Strong in OCR, document understanding, and chart analysis."
   },
   "specs": {
+    "contextLength": 4096,
     "knowledgeCutoff": "2024-Q4",
     "languages": [
       "en",
@@ -45,54 +46,54 @@
     {
       "name": "DeepSeek-VL2-Tiny",
       "slug": "deepseek-vl2-tiny",
-      "parameters": "33.7B",
+      "parameters": "3.37B",
       "parameterDetails": {
-        "total": "33.7B",
-        "active": "10B"
+        "total": "3.37B",
+        "active": "1.0B"
       },
       "description": {
-        "ja": "33.7B総パラメータ、10B活性化の軽量版。MMStar 45.9、OCRBench 809達成。",
-        "en": "Lightweight with 33.7B total, 10B active parameters. Achieves 45.9 on MMStar and 809 on OCRBench."
+        "ja": "3.37B総パラメータ、1.0B活性化の軽量版。MMStar 45.9、OCRBench 809達成。",
+        "en": "Lightweight with 3.37B total, 1.0B active parameters. Achieves 45.9 on MMStar and 809 on OCRBench."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl2-tiny",
       "requirements": {
-        "notes": "INT4: 20GB"
+        "notes": "INT4: 2GB"
       },
       "gguf": []
     },
     {
       "name": "DeepSeek-VL2-Small",
       "slug": "deepseek-vl2-small",
-      "parameters": "161B",
+      "parameters": "16.1B",
       "parameterDetails": {
-        "total": "161B",
-        "active": "28B"
+        "total": "16.1B",
+        "active": "2.8B"
       },
       "description": {
-        "ja": "161B総パラメータ、28B活性化の中型版。",
-        "en": "Medium size with 161B total, 28B active parameters."
+        "ja": "16.1B総パラメータ、2.8B活性化の中型版。",
+        "en": "Medium size with 16.1B total, 2.8B active parameters."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl2-small",
       "requirements": {
-        "notes": "4x80GB GPU recommended"
+        "notes": "INT4: 10GB"
       },
       "gguf": []
     },
     {
       "name": "DeepSeek-VL2",
       "slug": "deepseek-vl2-full",
-      "parameters": "275B",
+      "parameters": "27.5B",
       "parameterDetails": {
-        "total": "275B",
-        "active": "45B"
+        "total": "27.5B",
+        "active": "4.5B"
       },
       "description": {
-        "ja": "275B総パラメータ、45B活性化のフルサイズ版。",
-        "en": "Full size with 275B total, 45B active parameters."
+        "ja": "27.5B総パラメータ、4.5B活性化のフルサイズ版。",
+        "en": "Full size with 27.5B total, 4.5B active parameters."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-vl2",
       "requirements": {
-        "notes": "8x80GB GPU recommended"
+        "notes": "2x80GB GPU recommended"
       },
       "gguf": []
     }

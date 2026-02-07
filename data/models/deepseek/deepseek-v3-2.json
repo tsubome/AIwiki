@@ -15,8 +15,8 @@
     "open-source"
   ],
   "description": {
-    "ja": "DeepSeek AIのV3.2モデル。2025年12月1日公開。DeepSeek Sparse Attention（DSA）を導入し、より効率的なアテンション機構を実現。GPT-5/Gemini-3.0-Pro相当の性能。IMO 2025、IOI 2025で金メダル達成。685Bパラメータ。MITライセンス。",
-    "en": "DeepSeek AI's V3.2 model. Released December 1, 2025. Introduces DeepSeek Sparse Attention (DSA) for more efficient attention mechanism. Performance comparable to GPT-5/Gemini-3.0-Pro. Achieved Gold medals at IMO 2025 and IOI 2025. 685B parameters. MIT license."
+    "ja": "DeepSeek AIのV3.2モデル。2025年12月1日公開。DeepSeek Sparse Attention（DSA）を導入し、より効率的なアテンション機構を実現。GPT-5/Gemini-3.0-Pro相当の性能。671Bパラメータ（37B活性化）。MITライセンス。",
+    "en": "DeepSeek AI's V3.2 model. Released December 1, 2025. Introduces DeepSeek Sparse Attention (DSA) for more efficient attention mechanism. Performance comparable to GPT-5/Gemini-3.0-Pro. 671B parameters (37B active). MIT license."
   },
   "specs": {
     "contextLength": 128000,
@@ -29,20 +29,22 @@
   },
   "links": {
     "huggingface": "https://huggingface.co/deepseek-ai",
+    "paper": "https://arxiv.org/abs/2512.02556",
+    "github": "https://github.com/deepseek-ai/DeepSeek-V3.2-Exp",
     "website": "https://chat.deepseek.com"
   },
   "variants": [
     {
       "name": "DeepSeek-V3.2",
       "slug": "deepseek-v3.2-full",
-      "parameters": "685B",
+      "parameters": "671B",
       "parameterDetails": {
-        "total": "685B",
-        "active": "~40B"
+        "total": "671B (+14B MTP)",
+        "active": "37B"
       },
       "description": {
-        "ja": "DeepSeek Sparse Attention搭載。IMO/IOI 2025金メダル達成。",
-        "en": "Features DeepSeek Sparse Attention. Achieved Gold at IMO/IOI 2025."
+        "ja": "DeepSeek Sparse Attention搭載。GPT-5相当の性能。",
+        "en": "Features DeepSeek Sparse Attention. Performance comparable to GPT-5."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
       "requirements": {

@@ -14,8 +14,8 @@
   "benchmarks": {
     "humaneval": 56.1,
     "custom": {
-      "mbpp": 70.1,
-      "humaneval-instruct-33b": 78.7
+      "mbpp": 66.0,
+      "humaneval-instruct-33b": 79.3
     },
     "source": "https://arxiv.org/abs/2401.14196"
   },
@@ -29,6 +29,7 @@
     "knowledgeCutoff": "2023",
     "languages": [
       "en",
+      "zh",
       "code"
     ],
     "architecture": "LLaMA-style decoder-only Transformer, Fill-in-the-Middle (FIM) training, Repository-level code understanding, 87 programming languages"
@@ -122,8 +123,8 @@
       "slug": "deepseek-coder-33b-instruct",
       "parameters": "33B",
       "description": {
-        "ja": "33B指示チューニング版。HumanEval 78.7%達成。",
-        "en": "33B instruction-tuned variant. Achieves 78.7% on HumanEval."
+        "ja": "33B指示チューニング版。HumanEval 79.3%達成。",
+        "en": "33B instruction-tuned variant. Achieves 79.3% on HumanEval."
       },
       "huggingface": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-instruct",
       "gguf": []
