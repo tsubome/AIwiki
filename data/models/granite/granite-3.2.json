@@ -13,8 +13,8 @@
     "enterprise"
   ],
   "description": {
-    "ja": "Chain-of-Thought推論機能搭載（ON/OFF切替可能）。<think>タグで思考プロセスを出力。推論スケーリングでGPT-4o/Claude 3.5 Sonnet相当の性能。ArenaHard、AlpacaEvalで2桁改善。",
-    "en": "Features Chain-of-Thought reasoning (toggleable ON/OFF). Outputs thinking process with <think> tags. Achieves GPT-4o/Claude 3.5 Sonnet level performance with inference scaling. Double-digit improvement on ArenaHard and AlpacaEval."
+    "ja": "Chain-of-Thought推論機能搭載（ON/OFF切替可能）。自然言語形式で思考プロセスを出力。推論スケーリングでArenaHard、AlpacaEvalで2桁改善。",
+    "en": "Features Chain-of-Thought reasoning (toggleable ON/OFF). Outputs thinking process in natural language format. Double-digit improvement on ArenaHard and AlpacaEval with inference scaling."
   },
   "specs": {
     "contextLength": 128000,

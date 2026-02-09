@@ -1,7 +1,7 @@
 {
   "name": "Granite Code",
   "slug": "granite-code",
-  "releaseDate": "2024-05-01",
+  "releaseDate": "2024-05-06",
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "BASE",
@@ -36,7 +36,7 @@
         "ja": "軽量コードモデル。2K/8Kコンテキスト対応。",
         "en": "Lightweight code model. Supports 2K/8K context."
       },
-      "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-base",
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-base-2k",
       "requirements": {
         "ram": "12GB"
       },
@@ -50,7 +50,7 @@
         "ja": "指示追従版。コード生成・補完に最適化。",
         "en": "Instruction-tuned version. Optimized for code generation and completion."
       },
-      "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-instruct",
+      "huggingface": "https://huggingface.co/ibm-granite/granite-3b-code-instruct-2k",
       "requirements": {
         "ram": "12GB"
       },
@@ -64,7 +64,7 @@
         "ja": "標準サイズコードモデル。MBPPで同規模トップクラス。",
         "en": "Standard size code model. Top-class performance on MBPP among same-size models."
       },
-      "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-base",
+      "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-base-4k",
       "requirements": {
         "ram": "24GB"
       },
@@ -78,7 +78,7 @@
         "ja": "指示追従版。Function Calling対応。",
         "en": "Instruction-tuned version. Supports Function Calling."
       },
-      "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-instruct",
+      "huggingface": "https://huggingface.co/ibm-granite/granite-8b-code-instruct-4k",
       "requirements": {
         "ram": "24GB"
       },
@@ -92,7 +92,21 @@
         "ja": "大規模コードモデル。3兆トークンで学習。",
         "en": "Large code model. Trained on 3T tokens."
       },
-      "huggingface": "https://huggingface.co/ibm-granite/granite-20b-code-base",
+      "huggingface": "https://huggingface.co/ibm-granite/granite-20b-code-base-8k",
+      "requirements": {
+        "ram": "64GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 20B Instruct",
+      "slug": "granite-code-20b-instruct",
+      "parameters": "20B",
+      "description": {
+        "ja": "大規模コード指示追従版。",
+        "en": "Large code instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-20b-code-instruct-8k",
       "requirements": {
         "ram": "64GB"
       },
@@ -106,7 +120,21 @@
         "ja": "最大コードモデル。1.4兆トークンで学習。",
         "en": "Largest code model. Trained on 1.4T tokens."
       },
-      "huggingface": "https://huggingface.co/ibm-granite/granite-34b-code-base",
+      "huggingface": "https://huggingface.co/ibm-granite/granite-34b-code-base-8k",
+      "requirements": {
+        "ram": "128GB"
+      },
+      "gguf": []
+    },
+    {
+      "name": "Granite Code 34B Instruct",
+      "slug": "granite-code-34b-instruct",
+      "parameters": "34B",
+      "description": {
+        "ja": "最大コード指示追従版。",
+        "en": "Largest code instruction-tuned version."
+      },
+      "huggingface": "https://huggingface.co/ibm-granite/granite-34b-code-instruct-8k",
       "requirements": {
         "ram": "128GB"
       },

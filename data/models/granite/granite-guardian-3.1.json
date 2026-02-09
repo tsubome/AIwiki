@@ -5,7 +5,7 @@
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
-  "baseModel": "granite-guardian-3.0",
+  "baseModel": "granite-3.1",
   "tags": [
     "official",
     "safety",

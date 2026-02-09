@@ -12,11 +12,11 @@
     "document"
   ],
   "description": {
-    "ja": "ドキュメント理解特化のVision Language Model。85M PDFと26M合成QAペアで学習（DocFM）。DocVQA、ChartQA、OCRBenchでLlama 3.2 11B/Pixtral 12B相当の性能を2Bで達成。",
-    "en": "Vision Language Model specialized for document understanding. Trained on 85M PDFs and 26M synthetic QA pairs (DocFM). Achieves Llama 3.2 11B/Pixtral 12B level performance on DocVQA, ChartQA, OCRBench with just 2B parameters."
+    "ja": "ドキュメント理解特化のVision Language Model。85Mドキュメントページと26M合成QAペアで学習（DocFM）。DocVQA、ChartQA、OCRBenchでLlama 3.2 11B/Pixtral 12B相当の性能を2Bで達成。",
+    "en": "Vision Language Model specialized for document understanding. Trained on 85M document pages and 26M synthetic QA pairs (DocFM). Achieves Llama 3.2 11B/Pixtral 12B level performance on DocVQA, ChartQA, OCRBench with just 2B parameters."
   },
   "specs": {
-    "contextLength": 8192,
+    "contextLength": 128000,
     "languages": [
       "en"
     ],

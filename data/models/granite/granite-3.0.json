@@ -1,7 +1,7 @@
 {
   "name": "Granite 3.0",
   "slug": "granite-3.0",
-  "releaseDate": "2024-10-01",
+  "releaseDate": "2024-10-21",
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
@@ -11,12 +11,12 @@
     "enterprise"
   ],
   "description": {
-    "ja": "第3世代の汎用言語モデル。効率性とエンタープライズ用途に最適化。10兆トークン以上で学習。12言語対応（日本語含む）。MoE版（1B-A400M、3B-A800M）も提供。",
-    "en": "Third generation general-purpose language model. Optimized for efficiency and enterprise use. Trained on 10T+ tokens. Supports 12 languages including Japanese. MoE versions (1B-A400M, 3B-A800M) also available."
+    "ja": "第3世代の汎用言語モデル。効率性とエンタープライズ用途に最適化。最大12兆トークンで学習。12言語対応（日本語含む）。MoE版（1B-A400M、3B-A800M）も提供。",
+    "en": "Third generation general-purpose language model. Optimized for efficiency and enterprise use. Trained on up to 12T tokens. Supports 12 languages including Japanese. MoE versions (1B-A400M, 3B-A800M) also available."
   },
   "specs": {
     "contextLength": 4096,
-    "trainingTokens": "10T+",
+    "trainingTokens": "12T",
     "languages": [
       "en",
       "de",
@@ -49,8 +49,8 @@
       "slug": "granite-3.0-8b-instruct",
       "parameters": "8B",
       "description": {
-        "ja": "フラッグシップモデル。128Kコンテキスト拡張可能。",
-        "en": "Flagship model. Expandable to 128K context."
+        "ja": "フラッグシップモデル。12Tトークンで学習。",
+        "en": "Flagship model. Trained on 12T tokens."
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-3.0-8b-instruct",
       "requirements": {

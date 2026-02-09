@@ -1,7 +1,7 @@
 {
   "name": "Granite Vision 3.3",
   "slug": "granite-vision-3.3",
-  "releaseDate": "2025-06-01",
+  "releaseDate": "2025-06-11",
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "BASE",
@@ -17,7 +17,7 @@
     "en": "Improved version of Vision 3.2. New vision encoder with additional training data. Ranks 2nd on OCRBench Leaderboard and 5th on ViDoRe 2 Leaderboard (as of October 2025)."
   },
   "specs": {
-    "contextLength": 8192,
+    "contextLength": 128000,
     "languages": [
       "en"
     ],

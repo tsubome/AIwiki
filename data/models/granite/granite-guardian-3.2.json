@@ -1,7 +1,7 @@
 {
   "name": "Granite Guardian 3.2",
   "slug": "granite-guardian-3.2",
-  "releaseDate": "2025-02-01",
+  "releaseDate": "2025-02-26",
   "developer": "IBM",
   "license": "Apache 2.0",
   "modelType": "INSTRUCT",
@@ -13,8 +13,8 @@
     "reasoning"
   ],
   "description": {
-    "ja": "30%サイズ削減（8B→5B）でより効率的に。Verbalized Confidence（High/Low）出力、Thinking Mode対応。MoE版（3B-A800M）も提供。LLM-Aggrefactトップ3。",
-    "en": "30% size reduction (8B→5B) for better efficiency. Supports Verbalized Confidence (High/Low) output and Thinking Mode. MoE version (3B-A800M) also available. Top 3 on LLM-Aggrefact."
+    "ja": "30%サイズ削減（8B→5B）でより効率的に。Verbalized Confidence（High/Low）出力対応。MoE版（3B-A800M）も提供。LLM-AggreFact上位。",
+    "en": "30% size reduction (8B→5B) for better efficiency. Supports Verbalized Confidence (High/Low) output. MoE version (3B-A800M) also available. Competitive on LLM-AggreFact."
   },
   "specs": {
     "contextLength": 128000,
@@ -33,8 +33,8 @@
       "slug": "granite-guardian-3.2-5b",
       "parameters": "5B",
       "description": {
-        "ja": "30%サイズ削減版。Verbalized Confidence、Thinking Mode対応。",
-        "en": "30% size reduced version. Supports Verbalized Confidence and Thinking Mode."
+        "ja": "30%サイズ削減版。Verbalized Confidence対応。",
+        "en": "30% size reduced version. Supports Verbalized Confidence."
       },
       "huggingface": "https://huggingface.co/ibm-granite/granite-guardian-3.2-5b",
       "requirements": {
