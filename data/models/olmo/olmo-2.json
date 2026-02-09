@@ -1,7 +1,7 @@
 {
   "name": "OLMo 2",
   "slug": "olmo-2",
-  "releaseDate": "2024-11-01",
+  "releaseDate": "2024-11-27",
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
@@ -9,8 +9,7 @@
   "tags": [
     "official",
     "open-source",
-    "research",
-    "multilingual"
+    "research"
   ],
   "description": {
     "ja": "最大6Tトークンで学習した新世代モデル。RMSNorm、Z-loss正則化、学習率アニーリングなど安定性向上技術を導入。Llama 3.1 8Bを上回る性能。Tülu 3パイプラインでポストトレーニング。",

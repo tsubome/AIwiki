@@ -1,7 +1,7 @@
 {
   "name": "OLMo 3",
   "slug": "olmo-3",
-  "releaseDate": "2025-11-01",
+  "releaseDate": "2025-11-20",
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
@@ -27,6 +27,7 @@
   "links": {
     "github": "https://github.com/allenai/OLMo",
     "huggingface": "https://huggingface.co/allenai",
+    "paper": "https://arxiv.org/abs/2512.13961",
     "website": "https://allenai.org/papers/olmo3"
   },
   "variants": [
@@ -77,38 +78,10 @@
       "slug": "olmo-3-1125-32b",
       "parameters": "32B",
       "description": {
-        "ja": "大型ベースモデル。5.5Tトークンで学習。GQA採用。",
-        "en": "Large base model trained on 5.5T tokens. Uses GQA."
+        "ja": "大型ベースモデル。約6Tトークンで学習。GQA採用。",
+        "en": "Large base model trained on ~6T tokens. Uses GQA."
       },
       "huggingface": "https://huggingface.co/allenai/Olmo-3-1125-32B",
-      "requirements": {
-        "ram": "96GB"
-      },
-      "gguf": []
-    },
-    {
-      "name": "OLMo 3 32B Instruct",
-      "slug": "olmo-3-32b-instruct",
-      "parameters": "32B",
-      "description": {
-        "ja": "大型指示調整版。",
-        "en": "Large instruction-tuned version."
-      },
-      "huggingface": "https://huggingface.co/allenai/Olmo-3-32B-Instruct",
-      "requirements": {
-        "ram": "96GB"
-      },
-      "gguf": []
-    },
-    {
-      "name": "OLMo 3 32B Think",
-      "slug": "olmo-3-32b-think",
-      "parameters": "32B",
-      "description": {
-        "ja": "大型推論特化版。最高性能。",
-        "en": "Large reasoning-focused version. Highest performance."
-      },
-      "huggingface": "https://huggingface.co/allenai/Olmo-3-32B-Think",
       "requirements": {
         "ram": "96GB"
       },

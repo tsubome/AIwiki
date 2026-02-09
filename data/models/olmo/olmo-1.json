@@ -15,7 +15,7 @@
     "en": "AI2's first fully open-source large language model. Groundbreaking release with all training data (Dolma), code, checkpoints, and logs publicly available. Includes OLMo 1.7/April 2024 and July 2024 versions."
   },
   "specs": {
-    "contextLength": 4096,
+    "contextLength": 2048,
     "languages": [
       "en"
     ],
@@ -32,8 +32,8 @@
       "slug": "olmo-1b",
       "parameters": "1B",
       "description": {
-        "ja": "軽量版。3Tトークンで学習。",
-        "en": "Lightweight version trained on 3T tokens."
+        "ja": "軽量版。2Tトークンで学習。",
+        "en": "Lightweight version trained on 2T tokens."
       },
       "huggingface": "https://huggingface.co/allenai/OLMo-1B",
       "requirements": {

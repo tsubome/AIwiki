@@ -1,7 +1,7 @@
 {
   "name": "Molmo 2",
   "slug": "molmo-2",
-  "releaseDate": "2025-12-01",
+  "releaseDate": "2025-12-16",
   "developer": "Allen Institute for AI (AI2)",
   "license": "Apache 2.0",
   "modelType": "BASE",
@@ -17,14 +17,15 @@
     "en": "Next-generation VLM supporting video understanding, multi-image reasoning, and object tracking. Outperforms GPT-5 and Gemini 2.5 Pro on some tasks. Uses SigLIP 2 vision encoder. Processes up to 128 video frames."
   },
   "specs": {
-    "contextLength": 8192,
+    "contextLength": 40960,
     "languages": [
       "en"
     ],
     "architecture": "Vision-Language Model (SigLIP 2 + LLM)"
   },
   "links": {
-    "huggingface": "https://huggingface.co/collections/allenai/molmo2"
+    "huggingface": "https://huggingface.co/collections/allenai/molmo2",
+    "paper": "https://arxiv.org/abs/2601.10611"
   },
   "variants": [
     {
