@@ -53,6 +53,9 @@ export default async function LocaleLayout({
                 >
                   GitHub
                 </a>
+                <a href="https://ara-tech.jp" className="hover:text-gray-700 dark:hover:text-gray-300">
+                  ara-tech.jp
+                </a>
               </div>
               <div className="text-gray-400 dark:text-gray-500 text-xs">
                 Data updated: {new Date(DATA_GENERATED_AT).toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
