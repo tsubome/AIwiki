@@ -4,6 +4,7 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2024-09-23",
   "compatibility_flags": ["nodejs_compat"],
+  // Custom domain aiwiki.ara-tech.jp is configured via Cloudflare dashboard
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
