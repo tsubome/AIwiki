@@ -45,3 +45,6 @@ prisma/dev.db-journal
 
 # Generated files
 src/lib/generated-data.ts
+
+# Claude Code local files
+.claude/
